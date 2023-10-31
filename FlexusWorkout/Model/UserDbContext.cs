@@ -1,7 +1,19 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace FlexusWorkout.Model;
 
-public class UserDbContext
+public class UserDbContext : DbContext
 {
-    private int id = 4;
-    private string lol = "username";
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlite(@"Data Source = Resources/flexus_workout.db"); // @ means backslashes don't need to be escaped
+        
+    }
+
+    //protected override void OnModelCreating(ModelBuilder modelBuilder)
+    //{
+    //    base.OnModelCreating(modelBuilder); // Here we can write
+     //   modelBuilder.Entity<Education>().Property(e => e.Name).IsRequired();
+    //    // Make the field Name required, the more complex but more flexible way
+    //}
 }
