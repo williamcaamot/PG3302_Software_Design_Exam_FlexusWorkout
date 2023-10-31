@@ -7,7 +7,8 @@ namespace FlexusWorkout
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            // First commit by Johan
+            Console.WriteLine("Hello Flexus!");
             
             
             
