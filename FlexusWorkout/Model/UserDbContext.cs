@@ -1,3 +1,4 @@
+using FlexusWorkout.View_model.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace FlexusWorkout.Model;
@@ -10,6 +11,8 @@ public class UserDbContext : DbContext
         
     }
 
+    public DbSet<User> Student => Set<User>();
+    
     //protected override void OnModelCreating(ModelBuilder modelBuilder)
     //{
     //    base.OnModelCreating(modelBuilder); // Here we can write
