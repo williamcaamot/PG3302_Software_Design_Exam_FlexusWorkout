@@ -1,16 +1,14 @@
-using System.Text.RegularExpressions;
-
 namespace FlexusWorkout.View.Menu;
 
-public class InitialMenu : Menu
+public class MainMenu : Menu
 {
     public override bool Run()
     {
         Console.Clear();
-        Console.WriteLine("Welcome to the Flexus Workout app!");
-        Console.WriteLine("1 - Login");
-        Console.WriteLine("2 - Sign up");
-        Console.WriteLine("3 - Log in as guest");
+        Console.WriteLine("What would you like to do?");
+        Console.WriteLine("1 - Access Workout-planner");
+        Console.WriteLine("2 - See my workouts");
+        Console.WriteLine("3 - Look up an exercise");
         Console.WriteLine("0 - Exit");
         Console.Write("\r\nSelect an option: ");
 
@@ -19,13 +17,13 @@ public class InitialMenu : Menu
             case "0":
                 return false;
             case "1":
-                Console.WriteLine("To Login menu");
+                Console.WriteLine("To workout planner");
                 return true;
             case "2":
-                Console.WriteLine("To Signup menu");
+                Console.WriteLine("To my workouts");
                 return true;
             case "3":
-                Console.WriteLine("To guest menu");
+                Console.WriteLine("To look-up exercise");
                 return true;
             default:
                 Console.WriteLine("Invalid option, try again.");

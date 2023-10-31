@@ -2,6 +2,7 @@
 
 using System;
 using FlexusWorkout.View_model.WorkoutPlanner;
+using FlexusWorkout.View.Menu;
 using Microsoft.VisualBasic;
 
 namespace FlexusWorkout
@@ -10,17 +11,9 @@ namespace FlexusWorkout
     {
         static void Main(string[] args)
         {
-            // First commit by Johan
-            Console.WriteLine("Hello Flexus!");
+            InitialMenu initialMenu = new();
             
-            Console.WriteLine("This will be epic!");
-
-            Console.WriteLine("hhahhshahahah");
-            Console.WriteLine("hhahhshahahah");
-            Console.WriteLine("hhahhshahahah");
-            Console.WriteLine("hhahhshahahah");
-
-            var test = new WorkoutPlanner();
+            //var test = new WorkoutPlanner();
             
             //test.addSession(new WorkoutSession("Chest", "flys, benchpress, dumbell press", DateAndTime.Today ));
         }
