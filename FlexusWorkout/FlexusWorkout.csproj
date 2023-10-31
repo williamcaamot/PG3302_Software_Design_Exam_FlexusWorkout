@@ -19,4 +19,8 @@
 
 
 
+    <ItemGroup>
+      <Folder Include="View model\WorkoutPlanner\" />
+    </ItemGroup>
+
 </Project>
