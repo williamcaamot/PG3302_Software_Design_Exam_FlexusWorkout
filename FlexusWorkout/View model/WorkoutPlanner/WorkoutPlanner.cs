@@ -4,7 +4,11 @@ public class WorkoutPlanner
 {
     //Create a calender where user can track/plan workouts
     
-    public List<workoutSession> WorkoutsPlanned { get; set; }
+    public List<WorkoutSession> WorkoutsPlanned { get; set; } = new();
     
+    public void deleteSession(WorkoutSession ws)
+    {
+        WorkoutsPlanned.Remove(ws);
+    }
     
 }
