@@ -22,9 +22,6 @@
 
     <ItemGroup>
       <Folder Include="Resources\" />
-      <Folder Include="View\ExerciseFinder\" />
-      <Folder Include="View\WorkoutPlanner\" />
-      <Folder Include="View\MyWorkouts\" />
     </ItemGroup>
 
 </Project>
