@@ -14,4 +14,10 @@ public class WorkoutSession
         Description = description;
         Date = date;
     }
+
+    
+    public override string ToString()
+    {
+        return $"{Name}, {Date}, {Description}";
+    }
 }

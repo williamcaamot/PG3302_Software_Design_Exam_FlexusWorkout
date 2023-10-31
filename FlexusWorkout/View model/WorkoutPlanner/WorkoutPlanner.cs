@@ -10,5 +10,17 @@ public class WorkoutPlanner
     {
         WorkoutsPlanned.Remove(ws);
     }
-    
+
+    public void addSession(WorkoutSession ws)
+    {
+        WorkoutsPlanned.Add(ws);
+    }
+
+    public void DisplayWorkout()
+    {
+        foreach (var ws in WorkoutsPlanned )
+        {
+            Console.WriteLine(ws);
+        }
+    }
 }
