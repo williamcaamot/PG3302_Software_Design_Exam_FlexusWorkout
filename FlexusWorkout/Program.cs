@@ -13,6 +13,10 @@ namespace FlexusWorkout
             Console.WriteLine("This will be epic!");
 
             Console.WriteLine("hhahhshahahah");
+            Console.WriteLine("hhahhshahahah");
+            Console.WriteLine("hhahhshahahah");
+            Console.WriteLine("hhahhshahahah");
+            
             
         }
     }
