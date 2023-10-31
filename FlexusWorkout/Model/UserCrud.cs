@@ -9,12 +9,12 @@ public class UserCrud
         return new User();
     }
     
-    public User update()
+    public User update(User user)
     {
         return new User();
     }
     
-    public void delete()
+    public void delete(int id)
     {
         
     }

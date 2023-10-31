@@ -7,14 +7,15 @@ public class User
     [Key]private int id;
     private string firstName { get; set; }
     private string lastName { get; set; }
-    private string username { get; set; }
+    private string email { get; set; }
+
     //TODO implement workoutprogram
     //TODO implement workoutplan
-    public User(string firstName, string lastName, string username)
+    public User(string firstName, string lastName, string email)
     {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.username = username;
+        this.email = email;
     }
     public User() 
     {
