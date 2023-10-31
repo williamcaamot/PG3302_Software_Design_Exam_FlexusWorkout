@@ -25,7 +25,7 @@ public class InitialMenu : Menu
                 Console.WriteLine("To Signup menu");
                 return true;
             case "3":
-                Console.WriteLine("To guest menu");
+                GuestMenu guestMenu = new();
                 return true;
             default:
                 Console.WriteLine("Invalid option, try again.");
