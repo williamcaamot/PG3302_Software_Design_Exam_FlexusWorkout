@@ -2,7 +2,7 @@ namespace FlexusWorkout.View.Menu;
 
 public class GuestMenu : Menu
 {
-    public override bool Run()
+    protected override bool Run()
     {
         Console.Clear();
         Console.WriteLine("What would you like to do?");
@@ -15,6 +15,7 @@ public class GuestMenu : Menu
             case "0":
                 return false;
             case "1":
+                // TODO add redirect to ExerciseFinder View here
                 Console.WriteLine("To look-up exercise");
                 return true;
             default:

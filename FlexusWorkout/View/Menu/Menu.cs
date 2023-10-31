@@ -10,5 +10,5 @@ public abstract class Menu
             running = Run();
         }
     }
-    public abstract bool Run();
+    protected abstract bool Run();
 }

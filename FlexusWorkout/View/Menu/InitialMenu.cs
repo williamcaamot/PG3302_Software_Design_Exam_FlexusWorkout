@@ -4,7 +4,7 @@ namespace FlexusWorkout.View.Menu;
 
 public class InitialMenu : Menu
 {
-    public override bool Run()
+    protected override bool Run()
     {
         Console.Clear();
         Console.WriteLine("Welcome to the Flexus Workout app!");
@@ -22,7 +22,7 @@ public class InitialMenu : Menu
                 LoginMenu loginMenu = new();
                 return true;
             case "2":
-                Console.WriteLine("To Signup menu");
+                SignupMenu signupMenu = new();
                 return true;
             case "3":
                 GuestMenu guestMenu = new();
