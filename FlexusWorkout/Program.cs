@@ -10,7 +10,7 @@ namespace FlexusWorkout
             // First commit by Johan
             Console.WriteLine("Hello Flexus!");
             
-            
+            Console.WriteLine("This will be epic!");
             
         }
     }
