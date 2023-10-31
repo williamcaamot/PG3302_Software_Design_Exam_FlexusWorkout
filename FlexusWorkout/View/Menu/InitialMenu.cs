@@ -19,7 +19,7 @@ public class InitialMenu : Menu
             case "0":
                 return false;
             case "1":
-                Console.WriteLine("To Login menu");
+                LoginMenu loginMenu = new();
                 return true;
             case "2":
                 Console.WriteLine("To Signup menu");
