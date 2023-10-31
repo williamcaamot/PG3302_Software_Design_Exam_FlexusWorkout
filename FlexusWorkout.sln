@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlexusWorkout", "FlexusWorkout\FlexusWorkout.csproj", "{94038112-F07E-41A6-9848-F90214384474}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlexusWorkoutTests", "FlexusWorkoutTests\FlexusWorkoutTests.csproj", "{901B7F57-0FD1-407D-A6CB-6C4C4CE066AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94038112-F07E-41A6-9848-F90214384474}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94038112-F07E-41A6-9848-F90214384474}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94038112-F07E-41A6-9848-F90214384474}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94038112-F07E-41A6-9848-F90214384474}.Release|Any CPU.Build.0 = Release|Any CPU
+		{901B7F57-0FD1-407D-A6CB-6C4C4CE066AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{901B7F57-0FD1-407D-A6CB-6C4C4CE066AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{901B7F57-0FD1-407D-A6CB-6C4C4CE066AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{901B7F57-0FD1-407D-A6CB-6C4C4CE066AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
