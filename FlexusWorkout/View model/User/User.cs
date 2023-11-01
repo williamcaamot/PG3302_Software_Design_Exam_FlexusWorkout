@@ -4,25 +4,28 @@ namespace FlexusWorkout.View_model.User;
 
 public class User
 {
-    [Key]private int id;
-    private string firstName { get; set; }
-    private string lastName { get; set; }
-    private string email { get; set; }
+    [Key]
+    public int? UserId { get; set; } //EFCore needs getters and setters for id
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
+    public string? Email { get; set; }
+    public string? Password { get; set; }
+    
+    public bool Authenticated = false;
 
     //TODO implement workoutprogram
     //TODO implement workoutplan
     public User(string firstName, string lastName, string email)
     {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+        this.FirstName = firstName;
+        this.LastName = lastName;
+        this.Email = email;
     }
     public User() 
     {
     }
-    public string getFullName()
+    public string GetFullName()
     {
-        return $"{firstName} {lastName}";
+        return $"{FirstName} {LastName}";
     }
-    
 }

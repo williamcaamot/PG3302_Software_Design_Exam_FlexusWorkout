@@ -2,7 +2,7 @@ using FlexusWorkout.View_model.User;
 
 namespace FlexusWorkout.Model;
 
-public class UserCrud
+public class UserService
 {
     private FlexusWorkoutDbContext _flexusWorkoutDbContext = new();
     //TODO move this and use dependency injection from a wrapper class or something similar? The DBCOntext should be initialized elsewhere
@@ -11,6 +11,7 @@ public class UserCrud
     public User add(User user)
     {
         _flexusWorkoutDbContext.Users.Add(user);
+        //Should probably do some input sanitation / verifying that field values aren't too crazy here
         return new User();
     }
     
@@ -32,5 +33,5 @@ public class UserCrud
     {
         IList<User> users = new List<User>();
         return users;
-    } 
+    }
 }
