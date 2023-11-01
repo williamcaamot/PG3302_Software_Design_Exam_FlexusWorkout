@@ -13,9 +13,10 @@ namespace FlexusWorkout
         {
             InitialMenu initialMenu = new();
             
-            //var test = new WorkoutPlanner();
+            var test = new WorkoutPlanner();
             
-            //test.addSession(new WorkoutSession("Chest", "flys, benchpress, dumbell press", DateAndTime.Today ));
+            test.addSession(new WorkoutSession("Chest", "flys, benchpress, dumbell press", DateTime.Today ));
+            test.DisplayWorkout();
         }
     }
 }
