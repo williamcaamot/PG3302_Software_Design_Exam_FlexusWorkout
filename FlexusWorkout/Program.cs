@@ -17,9 +17,16 @@ namespace FlexusWorkout
             UserService userService = new();
             userService.add(user);
             
-            //InitialMenu initialMenu = new();
+            
+            InitialMenu initialMenu = new();
+            
             //var test = new WorkoutPlanner();
+            
             //test.addSession(new WorkoutSession("Chest", "flys, benchpress, dumbell press", DateAndTime.Today ));
+
+
+            
+
         }
     }
 }
