@@ -9,7 +9,7 @@ public class FlexusWorkoutDbContext : DbContext
 {// One DB context for project to keep things simple
     
     public DbSet<User> User => Set<User>();
-    public DbSet<Exercise> Exercise => Set<Exercise>();
+    //public DbSet<Exercise> Exercise => Set<Exercise>();
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
