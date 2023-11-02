@@ -21,6 +21,7 @@
 
 
     <ItemGroup>
+      <Folder Include="Presenter\" />
       <Folder Include="Resources\" />
     </ItemGroup>
 
@@ -28,6 +29,15 @@
       <None Update="Resources\Flexus.db">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Remove="Presenter\WorkoutPlanner\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Presenter\WorkoutPlanner\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Presenter\WorkoutPlanner\**" />
     </ItemGroup>
 
 </Project>
