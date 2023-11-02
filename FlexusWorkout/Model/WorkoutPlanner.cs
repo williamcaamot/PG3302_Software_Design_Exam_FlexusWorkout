@@ -4,6 +4,7 @@ public class WorkoutPlanner
 {
     //Create a calender where user can track/plan workouts
     
+    /* //TODO workoutsession doesnt exist anymore
     public List<WorkoutSession> WorkoutsPlanned { get; set; } = new();
     
     public void deleteSession(WorkoutSession ws)
@@ -23,4 +24,6 @@ public class WorkoutPlanner
             Console.WriteLine(ws);
         }
     }
+    */
+    
 }

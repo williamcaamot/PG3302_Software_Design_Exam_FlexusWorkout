@@ -4,14 +4,21 @@ namespace FlexusWorkout.Model;
 
 public class UserService
 {
-    private FlexusWorkoutDbContext _flexusWorkoutDbContext = new();
+    
+    private readonly FlexusWorkoutDbContext _db;
+
+    public UserService() //TODO NEED TO EDIT THIS TO USE DEPENDENCY INJECTION
+    {
+        _db = new();
+    }
     //TODO move this and use dependency injection from a wrapper class or something similar? The DBCOntext should be initialized elsewhere
     //to make sure we don't have connections here
     
     public User add(User user)
     {
-        _flexusWorkoutDbContext.Users.Add(user);
-        //Should probably do some input sanitation / verifying that field values aren't too crazy here
+        _db.User.Add(user);
+        _db.SaveChanges();
+        Console.WriteLine("Added user");
         return new User();
     }
     
