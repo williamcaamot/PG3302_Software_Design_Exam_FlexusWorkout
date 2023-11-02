@@ -13,9 +13,9 @@ namespace FlexusWorkout
     {
         static void Main(string[] args)
         {
-            User user = new("Test", "User", "bor@gmail.com","testpw");
+            User user = new("Test", "User", "bor@gmail.com");
             UserService userService = new();
-            userService.Add(user);
+            userService.add(user);
             
             
             InitialMenu initialMenu = new();

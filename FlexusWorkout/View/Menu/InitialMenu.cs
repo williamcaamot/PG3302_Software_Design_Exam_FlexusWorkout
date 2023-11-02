@@ -1,9 +1,14 @@
 using System.Text.RegularExpressions;
 
 namespace FlexusWorkout.View.Menu;
+using Presenter;
 
 public class InitialMenu : Menu
 {
+    public InitialMenu(Presenter presenter) : base(presenter)
+    {
+    }
+
     protected override bool Run()
     {
         Console.Clear();
@@ -14,22 +19,7 @@ public class InitialMenu : Menu
         Console.WriteLine("0 - Exit");
         Console.Write("\r\nSelect an option: ");
 
-        switch (Console.ReadLine())
-        {
-            case "0":
-                return false;
-            case "1":
-                LoginMenu loginMenu = new();
-                return true;
-            case "2":
-                SignupMenu signupMenu = new();
-                return true;
-            case "3":
-                GuestMenu guestMenu = new();
-                return true;
-            default:
-                Console.WriteLine("Invalid option, try again.");
-                return true;
-        }
+        return Presenter.InputHandler(Console.ReadLine());
+        
     }
 }

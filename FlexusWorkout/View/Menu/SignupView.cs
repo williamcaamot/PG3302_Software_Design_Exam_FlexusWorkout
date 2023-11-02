@@ -1,9 +1,17 @@
+using FlexusWorkout.Presenter;
+
 namespace FlexusWorkout.View.Menu;
 
-public class SignupMenu : Menu
+public class SignupView : Menu
 {
+    public SignupView(Presenter.Presenter presenter) : base(presenter)
+    {
+    }
+
     protected override bool Run()
     {
+        
+        
         Console.Clear();
         Console.WriteLine("Creating new account...");
         Console.WriteLine("Enter a username:");
@@ -19,7 +27,8 @@ public class SignupMenu : Menu
         {
             //TODO create user in db
             //TODO make the new user logged in on creation
-            MainMenu mainMenu = new(); // redirect to main menu
+            MainMenuPresenter mainMenuPresenter = new();
+            MainMenu mainMenu = new(mainMenuPresenter); // redirect to main menu
             return false;
         }
         // TODO implement a way to cancel signup?

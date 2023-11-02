@@ -4,8 +4,8 @@ namespace FlexusWorkout.View_model.User;
 
 public class User
 {
-    [Key]
-    public int? UserId { get; set; } //EFCore needs getters and setters for id
+    //EFCore needs getters and setters for id
+    public int? UserId { get; set; } //PK
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
     public string? Email { get; set; }
