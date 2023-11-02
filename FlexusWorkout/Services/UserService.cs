@@ -36,7 +36,7 @@ public class UserService
     {
         return new User();
     }
-    public IList<User> getAllusers()
+    public IList<User> getAllUsers()
     {
         IList<User> users = new List<User>();
         return users;
