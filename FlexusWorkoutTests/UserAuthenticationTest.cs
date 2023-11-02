@@ -14,38 +14,39 @@ public class UserAuthenticationTest
         Service = new UserService();
     }
     
-    
     [Test]
-    public void shouldAddUserToDbAndReturnSameUserWithId()
+    public void AddUser_ShouldReturnUserWithValidID()
     {
+        // Arange
         User user = new User("test","user","test@gmail.com","password");
+        
+        // Act
         User addedUser = Service.Add(user);
         
+        // Assert
         Assert.That(user.FirstName, Is.EqualTo(addedUser.FirstName));
         Assert.That(user.LastName, Is.EqualTo(addedUser.LastName));
         Assert.That(user.Email, Is.EqualTo(addedUser.Email));
-        Assert.That(user.FirstName, Is.EqualTo(addedUser.FirstName));
-        Assert.IsNotNull(addedUser.UserId );
+        Assert.That(addedUser.UserId, Is.GreaterThan(-1));
     }
 
     [Test]
-    public void shoudlAuthenticateUser()
+    public void AuthUser_ShouldReturnUserWithFullDetails()
     {
+        // Arrange
         User user = new User("test1","user1","test1@gmail.com","password");
-        Service.Add(user);
-        
-        
         User CheckUser = new User("test1@gmail.com", "password");
         UserAuthentication userAuthentication = new();
-        var autheduser = userAuthentication.AuthenticateUser(CheckUser);
-
         
-        Console.WriteLine(user.FirstName);
-        //Assert.That(user.FirstName, Is.EqualTo(autheduser.FirstName));
-        Assert.IsNotNull(autheduser.FirstName);
-
+        // Act
+        Service.Add(user);
+        var AuthenticatedUser = userAuthentication.Authenticate(CheckUser);
+        
+        // Assert
+        Assert.That(AuthenticatedUser.FirstName, Is.EqualTo(user.FirstName));
+        Assert.That(AuthenticatedUser.LastName, Is.EqualTo(user.LastName));
+        Assert.That(AuthenticatedUser.Email, Is.EqualTo(user.Email));
+        Assert.That(AuthenticatedUser.UserId, Is.GreaterThan(-1));
+        Assert.That(AuthenticatedUser.Authenticated, Is.True);
     }
-    
-    
-
 }

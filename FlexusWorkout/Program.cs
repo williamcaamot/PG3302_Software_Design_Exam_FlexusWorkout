@@ -14,20 +14,26 @@ namespace FlexusWorkout
     {
         static void Main(string[] args)
         {
-            User user = new("Test", "User", "bor@gmail.com", "Lol");
+            User user = new("Test", "User", "bor@gmail.com", "password");
             UserService userService = new();
-            userService.Add(user);
+            var addeduser = userService.Add(user);
+
+            User checkUser = new("bor@gmail.com", "password");
+            UserAuthentication userAuthentication = new();
+            var checkedUser = userAuthentication.Authenticate(checkUser);
+            Console.WriteLine(checkedUser.Password);
             
-            
-            InitialMenuPresenter initialMenuPresenter = new();
-            InitialMenu initialMenu = new(initialMenuPresenter);
-            
+
+
+            //InitialMenuPresenter initialMenuPresenter = new();
+            //InitialMenu initialMenu = new(initialMenuPresenter);
+
             //var test = new WorkoutPlanner();
-            
+
             //test.addSession(new WorkoutSession("Chest", "flys, benchpress, dumbell press", DateAndTime.Today ));
 
 
-            
+
 
         }
     }
