@@ -15,11 +15,17 @@ public class User
 
     //TODO implement workoutprogram
     //TODO implement workoutplan
-    public User(string firstName, string lastName, string email)
+    public User(string firstName, string lastName, string email, string password)
     {
         this.FirstName = firstName;
         this.LastName = lastName;
         this.Email = email;
+        this.Password = password;
+    }
+    public User(string email, string password)
+    {
+        this.Email = email;
+        this.Password = password;
     }
     public User() 
     {

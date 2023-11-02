@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+using System.Text;
 using FlexusWorkout.View_model.User;
 
 namespace FlexusWorkout.Model;
@@ -6,15 +8,24 @@ public class UserAuthentication
 {
     public User AuthenticateUser(User user)
     {
-        //Check that password & username is set before starting the auth process
-        //What should be identifier/unique (in addition to ID username should probably also be unique)
-        //auth based on an incoming user with password & username
+        UserService userService = new();
         
         
-        //Create user in menu for logging in and then authenticate to return something
+        var founduser = userService.GetUserByEmail(user);
+        string hashcheck;
         
+        using (SHA256 sha256 = SHA256.Create())
+        {
+            byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(user.Password));
+            hashcheck = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+        }
+
+        if (hashcheck == user.Password)
+        {
+            return founduser; //Returns the authenticated user
+        }
         
-        return new User(); // Should menu check if returned user is in fact authenticated? Or should something else be returned?
+        return new User();
     }
 
 }
