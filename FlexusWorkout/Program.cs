@@ -13,7 +13,7 @@ namespace FlexusWorkout
     {
         static void Main(string[] args)
         {
-            User user = new("Test", "User", "bor@gmail.com");
+            User user = new("Test", "User", "bor@gmail.com", "Lol");
             UserService userService = new();
             userService.Add(user);
             
