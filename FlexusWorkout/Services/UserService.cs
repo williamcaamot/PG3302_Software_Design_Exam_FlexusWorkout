@@ -45,14 +45,4 @@ public class UserService
     {
         
     }
-
-    public User getUserById(int id)
-    {
-        return new User();
-    }
-    public IList<User> getAllUsers()
-    {
-        IList<User> users = new List<User>();
-        return users;
-    }
 }

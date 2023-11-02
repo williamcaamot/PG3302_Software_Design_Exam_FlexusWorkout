@@ -7,10 +7,14 @@ namespace FlexusWorkout.Services;
 
 public class ExerciseService {
     private readonly FlexusWorkoutDbContext _db;
-    public ExerciseService(FlexusWorkoutDbContext db)
+    public ExerciseService() //TODO NEED TO EDIT THIS TO USE DEPENDENCY INJECTION
     {
-        _db = db;
+        _db = new();
     }
+    
+    
+    
+    
     //Getting the exercises by the type
     public Exercise GetExerciseByType(string type) {
         // LINQ Query
