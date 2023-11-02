@@ -2,6 +2,7 @@
 
 using System;
 using FlexusWorkout.Model;
+using FlexusWorkout.Presenter;
 using FlexusWorkout.View_model.User;
 using FlexusWorkout.View_model.WorkoutPlanner;
 using FlexusWorkout.View.Menu;
@@ -16,9 +17,9 @@ namespace FlexusWorkout
             User user = new("Test", "User", "bor@gmail.com");
             UserService userService = new();
             userService.add(user);
-            
-            
-            InitialMenu initialMenu = new();
+
+            InitialMenuPresenter initialMenuPresenter = new();
+            InitialMenu initialMenu = new(initialMenuPresenter);
             
             //var test = new WorkoutPlanner();
             

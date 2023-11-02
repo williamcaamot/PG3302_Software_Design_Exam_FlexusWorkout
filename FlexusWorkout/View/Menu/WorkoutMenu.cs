@@ -1,8 +1,11 @@
-namespace FlexusWorkout.View.MyWorkouts;
+namespace FlexusWorkout.View.Menu;
+using Presenter;
 
-public class WorkoutMenu : Menu.Menu
+public class WorkoutMenu : Menu
 {
-    // TODO Make MyWorkouts View
+    public WorkoutMenu(Presenter presenter) : base(presenter)
+    {
+    }
 
     protected override bool Run()
     {
@@ -13,22 +16,6 @@ public class WorkoutMenu : Menu.Menu
         Console.WriteLine("3 - Delete existing workout");
         Console.WriteLine("0 - Exit");
 
-        switch (Console.ReadLine())
-        {
-            case "0":
-                return false;
-            case "1":
-                // TODO add redirect to MyWorkout View here
-                return true;
-            case "2":
-                // TODO add redirect to CreateWorkout View here
-                return true;
-            case "3":
-                //TODO add view to delete
-                return true;
-            default:
-                Console.WriteLine("Invalid option, try again.");
-                return true;
-        }
+        return Presenter.InputHandler(Console.ReadLine());
     }
 }

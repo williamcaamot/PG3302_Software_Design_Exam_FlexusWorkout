@@ -2,6 +2,10 @@ namespace FlexusWorkout.View.Menu;
 
 public class GuestMenu : Menu
 {
+    public GuestMenu(Presenter.Presenter presenter) : base(presenter)
+    {
+    }
+
     protected override bool Run()
     {
         Console.Clear();
@@ -10,17 +14,6 @@ public class GuestMenu : Menu
         Console.WriteLine("0 - Exit");
         Console.Write("\r\nSelect an option: ");
 
-        switch (Console.ReadLine())
-        {
-            case "0":
-                return false;
-            case "1":
-                // TODO add redirect to ExerciseFinder View here
-                Console.WriteLine("To look-up exercise");
-                return true;
-            default:
-                Console.WriteLine("Invalid option, try again.");
-                return true;
-        }
+        return Presenter.InputHandler(Console.ReadLine());
     }
 }
