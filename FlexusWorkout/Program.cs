@@ -18,15 +18,8 @@ namespace FlexusWorkout
             UserService userService = new();
             var addeduser = userService.Add(user);
 
-            User checkUser = new("bor@gmail.com", "password");
-            UserAuthentication userAuthentication = new();
-            var checkedUser = userAuthentication.Authenticate(checkUser);
-            Console.WriteLine(checkedUser.Password);
-            
-
-
-            //InitialMenuPresenter initialMenuPresenter = new();
-            //InitialMenu initialMenu = new(initialMenuPresenter);
+            InitialMenuPresenter initialMenuPresenter = new();
+            InitialMenu initialMenu = new(initialMenuPresenter);
 
             //var test = new WorkoutPlanner();
 
