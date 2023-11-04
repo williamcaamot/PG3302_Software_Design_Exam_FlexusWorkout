@@ -1,4 +1,4 @@
-using FlexusWorkout.View_model;
+using FlexusWorkout.Model.Base;
 namespace FlexusWorkout.Model.Concrete; 
 
 public class BalanceExercise : Exercise {

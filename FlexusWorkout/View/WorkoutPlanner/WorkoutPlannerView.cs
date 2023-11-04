@@ -1,5 +1,5 @@
 using FlexusWorkout.Model;
-using FlexusWorkout.View_model;
+using FlexusWorkout.Model.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace FlexusWorkout.View.WorkoutPlanner;

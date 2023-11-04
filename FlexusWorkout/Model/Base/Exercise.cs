@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace FlexusWorkout.View_model;
+namespace FlexusWorkout.Model.Base;
 
 //Abstract Base Class 
 //used to create instances of specific exercise types (StrengthExercise, BalanceExercise and CardioExercise)

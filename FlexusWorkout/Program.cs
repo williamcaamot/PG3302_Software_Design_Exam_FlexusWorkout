@@ -3,8 +3,8 @@
 using System;
 using FlexusWorkout.Model;
 using FlexusWorkout.Presenter;
-using FlexusWorkout.View_model.User;
-using FlexusWorkout.View_model.WorkoutPlanner;
+using FlexusWorkout.Model.Base.User;
+using FlexusWorkout.Model.Base.WorkoutPlanner;
 using FlexusWorkout.View.Menu;
 using Microsoft.VisualBasic;
 

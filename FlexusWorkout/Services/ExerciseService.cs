@@ -1,7 +1,7 @@
 
 using FlexusWorkout.Model;
 using FlexusWorkout.Model.Concrete;
-using FlexusWorkout.View_model;
+using FlexusWorkout.Model.Base;
 
 namespace FlexusWorkout.Services;
 

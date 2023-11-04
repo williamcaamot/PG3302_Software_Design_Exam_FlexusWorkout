@@ -1,6 +1,6 @@
 using System.Diagnostics.Contracts;
 using FlexusWorkout.Model;
-using FlexusWorkout.View_model.User;
+using FlexusWorkout.Model.Base.User;
 using SQLitePCL;
 
 namespace FlexusWorkoutTests;

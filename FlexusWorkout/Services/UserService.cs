@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
-using FlexusWorkout.View_model.User;
+using FlexusWorkout.Model.Base.User;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace FlexusWorkout.Model;

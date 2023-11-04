@@ -1,6 +1,6 @@
 using FlexusWorkout.Model.Concrete;
-using FlexusWorkout.View_model;
-using FlexusWorkout.View_model.User;
+using FlexusWorkout.Model.Base;
+using FlexusWorkout.Model.Base.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace FlexusWorkout.Model;

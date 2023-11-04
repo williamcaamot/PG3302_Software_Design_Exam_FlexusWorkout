@@ -1,4 +1,4 @@
-namespace FlexusWorkout.View_model.WorkoutPlanner;
+namespace FlexusWorkout.Model.Base.WorkoutPlanner;
 
 public class WorkoutPlanner
 {
