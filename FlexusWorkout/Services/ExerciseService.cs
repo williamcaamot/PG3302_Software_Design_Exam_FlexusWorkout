@@ -1,6 +1,7 @@
 using FlexusWorkout.View.Menu.Model;
 using FlexusWorkout.Model.Base;
 using FlexusWorkout.Model.Concrete;
+using Microsoft.EntityFrameworkCore;
 
 namespace FlexusWorkout.Services;
 
@@ -11,13 +12,14 @@ public class ExerciseService {
         _db = new();
     }
     
-    
-    
-    
-    //Getting the exercises by the type
-    public Exercise GetExerciseByType(string type) {
-        // LINQ Query
-        //return _db.Exercise.FirstOrDefault(e => e.Type == type);
-        return new StrengthExercise();
+    public IList<Exercise> GetExercisesByType(string type)
+    {
+        return _db.Exercise
+            .Where(e => EF.Property<string>(e, "ExerciseType") == type)
+            .ToList();
     }
+    
+    
+    
+    
 }

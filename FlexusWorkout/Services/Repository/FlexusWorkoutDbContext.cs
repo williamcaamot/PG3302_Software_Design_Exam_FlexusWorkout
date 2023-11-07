@@ -16,7 +16,6 @@ public class FlexusWorkoutDbContext : DbContext
     }
     
     
-    
     // So that we only need ONE context for the three subclasses of exercise
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
