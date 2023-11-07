@@ -15,7 +15,7 @@ public class ExerciseService {
     public IList<Exercise> GetExercisesByType(string type)
     {
         return _db.Exercise
-            .Where(e => EF.Property<string>(e, "ExerciseType") == type)
+            .Where(e => EF.Property<string>(e, "Type") == type)
             .ToList();
     }
     
