@@ -11,6 +11,7 @@ namespace FlexusWorkout
         {
             DatabaseFiller databaseFiller = new();
             databaseFiller.FillUsers();
+            databaseFiller.FillExercises();
             
 
             //InitialMenu initialMenu = new();
