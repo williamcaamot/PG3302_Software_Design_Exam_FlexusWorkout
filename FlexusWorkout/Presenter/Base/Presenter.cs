@@ -11,10 +11,15 @@ public abstract class Presenter
         
         // Run the View loop
         View.Run();
-    }
+        
+        this.View.InputReceived += HandleInput;
 
+    }
+    
     protected View View { get; set; }
     protected Model? Model { get; set; }
+
+    public abstract void HandleInput(string? key, string? input);
     
-    public abstract bool InputHandler(string? input);
+    public abstract bool MainHandler(string? input);
 }

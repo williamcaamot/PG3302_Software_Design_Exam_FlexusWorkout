@@ -10,8 +10,8 @@ public class GuestMenu : Base.View
         Console.WriteLine("1 - Look up an exercise");
         Console.WriteLine("0 - Exit");
         Console.Write("\r\nSelect an option: ");
-
-        //return Presenter.InputHandler(Console.ReadLine());
+        var input = Console.ReadLine();
+        if (input != null) OnInputReceived("input", input);
         return false;
     }
 }

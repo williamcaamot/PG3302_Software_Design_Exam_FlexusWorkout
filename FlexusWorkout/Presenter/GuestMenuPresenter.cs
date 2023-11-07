@@ -7,7 +7,18 @@ public class GuestMenuPresenter : MenuPresenter
     {
     }
 
-    public override bool InputHandler(string? input)
+
+    public override void HandleInput(string? key, string? input)
+    {
+        switch (key)
+        {
+            case "input":
+                MainHandler(input);
+                break;
+        }
+    }
+
+    public override bool MainHandler(string? input)
     {
         switch (input)
         {

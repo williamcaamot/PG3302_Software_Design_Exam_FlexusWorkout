@@ -11,9 +11,10 @@ public class InitialMenu : Base.View
         Console.WriteLine("2 - Sign up");
         Console.WriteLine("3 - Log in as guest");
         Console.WriteLine("0 - Exit");
-        Console.Write("\r\nSelect an option: ");
+        Console.Write("\r\nSelect an option: "); 
+        var input = Console.ReadLine();
+        if (input != null) OnInputReceived("input", input);
 
-        //return Presenter.InputHandler(Console.ReadLine());
         return false;
     }
 }

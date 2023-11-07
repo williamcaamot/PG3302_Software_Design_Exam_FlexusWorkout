@@ -8,7 +8,12 @@ public class LoginPresenter : Presenter
     }
 
     // TODO Add LoginPresenter
-    public override bool InputHandler(string? input)
+    public override void HandleInput(string? key, string? input)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override bool MainHandler(string? input)
     {
         throw new NotImplementedException();
     }

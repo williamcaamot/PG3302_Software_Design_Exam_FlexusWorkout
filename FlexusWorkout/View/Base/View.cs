@@ -2,7 +2,9 @@ namespace FlexusWorkout.View.Base;
 using Presenter.Base;
 
 public abstract class View
-{
+{   
+    // Event for handling input
+    public event Action<string, string> InputReceived;
 
     public void Run()
     // Starts the loop
@@ -17,6 +19,10 @@ public abstract class View
     // This abstract method is where the view displays text to the console
     protected abstract bool Display();
 
-    //protected abstract void OnInputReceived(string input);
+    protected void OnInputReceived(string key, string input)
+    {
+        // Raise event when this method is called
+        InputReceived?.Invoke(key, input);
+    }
 
 }
