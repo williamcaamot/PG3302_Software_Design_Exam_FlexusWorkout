@@ -41,7 +41,7 @@ public class WorkoutPlannerPresenter
             //convert the exersices to list
             List<string> exercisesNames = available.Select(exercise => exercise.Name).ToList();
             var chooseExercise = _view.SelectExercise(day, exercisesNames);
-            _workoutPlanner.BuildWorkout(day, chooseExercise);
+            //_workoutPlanner.BuildWorkout(day, chooseExercise);
         }
 
         _menu.addWeeklyPlan(_workoutPlanner.GetWorkouts());
