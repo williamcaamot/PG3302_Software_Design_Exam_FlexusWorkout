@@ -22,7 +22,7 @@ public class FlexusWorkoutDbContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<Exercise>()
-            .HasDiscriminator<string>("ExerciseType")
+            .HasDiscriminator<string>("Discriminator")
             .HasValue<StrengthExercise>("Strength")
             .HasValue<BalanceExercise>("Balance")
             .HasValue<CardioExercise>("Cardio");

@@ -9,6 +9,6 @@ public class BalanceExercise : Exercise {
     }
 
     public BalanceExercise(string type, string? name, string? description, int? durationInMinutes, int? repetitions, int? sets, string? equipmentRequired, int? intensityLevel, string? location) : 
-        base("Balance", name, description, durationInMinutes, repetitions, sets, equipmentRequired, intensityLevel, location) {
+        base(type, name, description, durationInMinutes, repetitions, sets, equipmentRequired, intensityLevel, location) {
     }
 }
