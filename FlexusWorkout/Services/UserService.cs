@@ -16,6 +16,16 @@ public class UserService
     }
     //TODO move this and use dependency injection from a wrapper class or something similar? The DBCOntext should be initialized elsewhere
     //to make sure we don't have connections here
+
+
+    
+    public User loginUser(string email, string password)
+    {
+        UserAuthentication userAuthentication = new();
+        User user = new User(email, password);
+        User authedUser = userAuthentication.Authenticate(user);
+        return authedUser;
+    }
     
     public User Add(User user)
     {
