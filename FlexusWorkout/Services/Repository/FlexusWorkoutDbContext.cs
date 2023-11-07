@@ -20,12 +20,10 @@ public class FlexusWorkoutDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
         modelBuilder.Entity<Exercise>()
             .HasDiscriminator<string>("Discriminator")
             .HasValue<StrengthExercise>("Strength")
             .HasValue<BalanceExercise>("Balance")
             .HasValue<CardioExercise>("Cardio");
     }
-    
 }
