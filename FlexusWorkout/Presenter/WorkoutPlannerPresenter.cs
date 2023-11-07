@@ -1,36 +1,63 @@
+using FlexusWorkout.Model;
+using FlexusWorkout.Model.Base;
+using FlexusWorkout.Model.Concrete;
+using FlexusWorkout.Services;
+using FlexusWorkout.View.Menu.View.WorkoutPlanner;
+using FlexusWorkout.View.WorkoutPlanner;
+using WorkoutPlanner = FlexusWorkout.Model.Concrete.WorkoutPlanner;
+
 namespace FlexusWorkout.Presenter;
 using Base;
 
-/*public class WorkoutPlannerPresenter
+public class WorkoutPlannerPresenter
 {
-    private WorkoutPlannerView _view;
-    private WorkoutPlannerModel _model;
+    private IWorkoutPlannerView _view;
+    private WorkoutPlanner _workoutPlanner;
+    private WorkoutPlannerMenu _menu;
+    private ExerciseService _exerciseService;
 
-    public WorkoutPlannerPresenter(WorkoutPlannerView _view, WorkoutPlannerModel _model)
+    public WorkoutPlannerPresenter(IWorkoutPlannerView _view, WorkoutPlanner _workoutPlanner, WorkoutPlannerMenu _menu, ExerciseService _exerciseService)
     {
-        this._model = _model;
+        this._menu = _menu;
+        this._workoutPlanner = _workoutPlanner;
         this._view = _view;
-        
-        _view.Select
+        this._exerciseService = _exerciseService;
     }
-
-    public void SelectExercise()
+    
+    public void CreatePlan()
     {
-        
-    }
+        List<string> daysInWeek = new List<string>
+            { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 
-    public void DisplayUpcomingWorkouts()
-    {
-        
-    }
+        WeeklyWorkoutPlanner weeklyPlan = new WeeklyWorkoutPlanner();
 
-    public void DisplayExistingWorkouts()
-    {
-        
-    }
+        foreach (var day in daysInWeek)
+        {
+            Console.WriteLine($"Creating a plan for {day}");
+            
+            //Retrive exercises from db
+            IList<Exercise> available = _exerciseService.GetExercisesByType("Strength");
 
-    public void CreateWeeklyPlan()
-    {
-        
+            //convert the exersices to list
+            List<string> exercisesNames = available.Select(exercise => exercise.Name).ToList();
+            var chooseExercise = _view.SelectExercise(day, exercisesNames);
+            _workoutPlanner.BuildWorkout(day, chooseExercise);
+        }
+
+        _menu.addWeeklyPlan(_workoutPlanner.GetWorkouts());
     }
-} */
+    
+    //UNDER HERE SHOULD LOGIC TO RETRIVE AVALABLE EXERCISES FROM THE DATABASE BE!!!!!!!!!!!!!!!!
+    private List<string> retriveExercisesFromDB()
+    {
+
+        return new List<string>
+        {
+            "Exercise 1",
+            "Exercise 2",
+            "Exercise 3",
+        };
+    }
+    
+    
+} 

@@ -1,29 +1,25 @@
+using FlexusWorkout.Model.Base;
+
 namespace FlexusWorkout.Model.Concrete;
 
 public class WorkoutPlanner
 {
-    //Create a calender where user can track/plan workouts
-    
-    /* //TODO workoutsession doesnt exist anymore
-    public List<WorkoutSession> WorkoutsPlanned { get; set; } = new();
-    
-    public void deleteSession(WorkoutSession ws)
+    private List<WeeklyWorkoutPlanner> weekPlans;
+
+    public WorkoutPlanner()
     {
-        WorkoutsPlanned.Remove(ws);
+        weekPlans = new List<WeeklyWorkoutPlanner>();
     }
 
-    public void addSession(WorkoutSession ws)
+    public List<WeeklyWorkoutPlanner> GetWorkouts()
     {
-        WorkoutsPlanned.Add(ws);
+        return weekPlans;
     }
 
-    public void DisplayWorkout()
+    public void BuildWorkout(string day, List<Exercise> exercises)
     {
-        foreach (var ws in WorkoutsPlanned )
-        {
-            Console.WriteLine(ws);
-        }
+        var session = new WeeklyWorkoutPlanner(day, exercises);
+        weekPlans.Add(session);
     }
-    */
     
 }

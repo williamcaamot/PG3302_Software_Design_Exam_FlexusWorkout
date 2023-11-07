@@ -1,6 +1,21 @@
+using FlexusWorkout.Model.Base;
+
 namespace FlexusWorkout.Model.Concrete;
 
 public class Workout
 {
-    // Should possibly be an interface or abstract class for different types of workout -W
+    public string Day { get; set; }
+    public List<Exercise> Exercises { get; set; }
+
+
+    public Workout(string setDay)
+    {
+        Day = setDay;
+        Exercises = new List<Exercise>();
+    }
+
+    public Workout()
+    {
+        throw new NotImplementedException();
+    }
 }
