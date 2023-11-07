@@ -18,13 +18,11 @@ public class ExerciseService {
             .Where(e => EF.Property<string>(e, "ExerciseType") == type)
             .ToList();
     }
-
-
-    /*public Exercise addExercise(Exercise exercise)
+    
+    public Exercise AddExercise(Exercise exercise)
     {
-        
-    }*/
-    
-    
-    
+        var addedExercise = _db.Exercise.Add(exercise);
+        _db.SaveChanges();
+        return addedExercise.Entity;
+    }
 }
