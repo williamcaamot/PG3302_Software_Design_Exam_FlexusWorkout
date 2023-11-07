@@ -1,4 +1,4 @@
-namespace FlexusWorkout.Model;
+namespace FlexusWorkout.Services;
 
 public class WorkoutPlannerService
 {

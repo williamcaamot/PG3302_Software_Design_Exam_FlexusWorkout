@@ -1,4 +1,4 @@
-namespace FlexusWorkout.View.ExerciseFinder;
+namespace FlexusWorkout.View.Menu.View.ExerciseFinder;
 
 public class ExerciseFinder
 {

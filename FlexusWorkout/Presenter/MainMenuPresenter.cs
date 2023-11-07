@@ -1,8 +1,13 @@
 namespace FlexusWorkout.Presenter;
 using View.Menu;
+using Base;
 
-public class MainMenuPresenter : Presenter
+public class MainMenuPresenter : MenuPresenter
 {
+    public MainMenuPresenter(View.Base.View view) : base(view)
+    {
+    }
+
     public override bool InputHandler(string? input)
     {
         switch (input)
@@ -14,8 +19,7 @@ public class MainMenuPresenter : Presenter
                 Console.WriteLine("To workout planner");
                 return true;
             case "2":
-                WorkoutMenuPresenter workoutMenuPresenter = new();
-                WorkoutMenu workoutMenu = new(workoutMenuPresenter);
+                //WorkoutMenuPresenter workoutMenuPresenter = new();
                 return true;
             case "3":
                 // TODO add redirect to ExerciseFinder View here

@@ -1,5 +1,5 @@
-namespace FlexusWorkout.Model.Base.WorkoutPlanner;
-
+namespace FlexusWorkout.Model;
+using Model.Base;
 public class WeeklyWorkoutPlanner
 {
 

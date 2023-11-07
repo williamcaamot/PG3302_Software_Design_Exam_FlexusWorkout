@@ -1,4 +1,4 @@
-namespace FlexusWorkout.View.MyWorkouts;
+namespace FlexusWorkout.View.Menu.View.MyWorkouts;
 
 public class MyWorkouts
 {

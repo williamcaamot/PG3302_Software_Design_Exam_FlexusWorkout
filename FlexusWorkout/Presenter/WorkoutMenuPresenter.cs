@@ -1,7 +1,12 @@
 namespace FlexusWorkout.Presenter;
+using Base;
 
-public class WorkoutMenuPresenter : Presenter
+public class WorkoutMenuPresenter : MenuPresenter
 {
+    public WorkoutMenuPresenter(View.Base.View view) : base(view)
+    {
+    }
+
     public override bool InputHandler(string? input)
     {
         switch (input)

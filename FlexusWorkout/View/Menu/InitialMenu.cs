@@ -1,15 +1,9 @@
-using System.Text.RegularExpressions;
-
 namespace FlexusWorkout.View.Menu;
-using Presenter;
 
-public class InitialMenu : Menu
+public class InitialMenu : Base.View
 {
-    public InitialMenu(Presenter presenter) : base(presenter)
-    {
-    }
 
-    protected override bool Run()
+    protected override bool Display()
     {
         Console.Clear();
         Console.WriteLine("Welcome to the Flexus Workout app!");
@@ -19,7 +13,7 @@ public class InitialMenu : Menu
         Console.WriteLine("0 - Exit");
         Console.Write("\r\nSelect an option: ");
 
-        return Presenter.InputHandler(Console.ReadLine());
-        
+        //return Presenter.InputHandler(Console.ReadLine());
+        return false;
     }
 }

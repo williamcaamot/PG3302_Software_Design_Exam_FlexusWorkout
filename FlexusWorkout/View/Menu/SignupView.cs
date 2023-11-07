@@ -1,14 +1,9 @@
-using FlexusWorkout.Presenter;
-
 namespace FlexusWorkout.View.Menu;
-
-public class SignupView : Menu
+using Presenter;
+public class SignupView : Base.View
 {
-    public SignupView(Presenter.Presenter presenter) : base(presenter)
-    {
-    }
 
-    protected override bool Run()
+    protected override bool Display()
     {
         
         
@@ -27,8 +22,8 @@ public class SignupView : Menu
         {
             //TODO create user in db
             //TODO make the new user logged in on creation
-            MainMenuPresenter mainMenuPresenter = new();
-            MainMenu mainMenu = new(mainMenuPresenter); // redirect to main menu
+            //MainMenuBasePresenter mainMenuBasePresenter = new();
+            //MainMenu mainMenu = new(mainMenuBasePresenter); // redirect to main menu
             return false;
         }
         // TODO implement a way to cancel signup?

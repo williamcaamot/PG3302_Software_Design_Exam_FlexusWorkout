@@ -1,9 +1,8 @@
-using FlexusWorkout.Model.Concrete;
 using FlexusWorkout.Model.Base;
-using FlexusWorkout.Model.Base.User;
+using FlexusWorkout.Model.Concrete;
 using Microsoft.EntityFrameworkCore;
 
-namespace FlexusWorkout.Model;
+namespace FlexusWorkout.View.Menu.Model;
 
 public class FlexusWorkoutDbContext : DbContext
 {// One DB context for project to keep things simple

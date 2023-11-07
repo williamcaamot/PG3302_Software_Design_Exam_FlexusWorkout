@@ -1,8 +1,7 @@
-using FlexusWorkout.Model;
-using FlexusWorkout.Model.Base.User;
+using FlexusWorkout.Model.Concrete;
+using FlexusWorkout.Services;
 
 namespace FlexusWorkoutTests;
-
 public class UserServiceTest
 {
     private UserService Service;

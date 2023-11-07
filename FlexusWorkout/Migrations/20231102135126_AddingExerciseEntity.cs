@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace FlexusWorkout.Migrations
+namespace FlexusWorkout.View.Menu.Migrations
 {
     /// <inheritdoc />
     public partial class AddingExerciseEntity : Migration

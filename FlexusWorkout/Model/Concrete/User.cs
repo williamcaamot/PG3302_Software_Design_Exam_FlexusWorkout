@@ -1,7 +1,6 @@
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FlexusWorkout.Model.Base.User;
+namespace FlexusWorkout.Model.Concrete;
 
 public class User
 {

@@ -1,9 +1,9 @@
 using System.Security.Cryptography;
 using System.Text;
-using FlexusWorkout.Model.Base.User;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+using FlexusWorkout.Model.Concrete;
+using FlexusWorkout.View.Menu.Model;
 
-namespace FlexusWorkout.Model;
+namespace FlexusWorkout.Services;
 
 public class UserService
 {

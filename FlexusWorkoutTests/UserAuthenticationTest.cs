@@ -1,10 +1,7 @@
-using System.Diagnostics.Contracts;
-using FlexusWorkout.Model;
-using FlexusWorkout.Model.Base.User;
-using SQLitePCL;
+using FlexusWorkout.Services;
+using FlexusWorkout.Model.Concrete;
 
 namespace FlexusWorkoutTests;
-
 public class UserAuthenticationTest
 {
     private UserService Service;

@@ -1,12 +1,9 @@
 namespace FlexusWorkout.View.Menu;
 
-public class MainMenu : Menu
+public class MainMenu : Base.View
 {
-    public MainMenu(Presenter.Presenter presenter) : base(presenter)
-    {
-    }
 
-    protected override bool Run()
+    protected override bool Display()
     {
         Console.Clear();
         Console.WriteLine("What would you like to do?");
@@ -16,6 +13,7 @@ public class MainMenu : Menu
         Console.WriteLine("0 - Exit");
         Console.Write("\r\nSelect an option: ");
 
-        return Presenter.InputHandler(Console.ReadLine());
+        //return Presenter.InputHandler(Console.ReadLine());
+        return false;
     }
 }

@@ -1,8 +1,8 @@
 using System.Security.Cryptography;
 using System.Text;
-using FlexusWorkout.Model.Base.User;
+using FlexusWorkout.Model.Concrete;
 
-namespace FlexusWorkout.Model;
+namespace FlexusWorkout.Services;
 
 public class UserAuthentication
 {

@@ -34,4 +34,6 @@ public abstract class Exercise
         IntensityLevel = intensityLevel;
         Location = location;
     }
+    
+    
 }

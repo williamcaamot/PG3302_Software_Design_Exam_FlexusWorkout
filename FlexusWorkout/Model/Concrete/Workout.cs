@@ -1,4 +1,4 @@
-namespace FlexusWorkout.Model.Base;
+namespace FlexusWorkout.Model.Concrete;
 
 public class Workout
 {

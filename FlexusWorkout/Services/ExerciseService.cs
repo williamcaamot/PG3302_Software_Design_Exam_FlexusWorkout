@@ -1,7 +1,6 @@
-
-using FlexusWorkout.Model;
-using FlexusWorkout.Model.Concrete;
+using FlexusWorkout.View.Menu.Model;
 using FlexusWorkout.Model.Base;
+using FlexusWorkout.Model.Concrete;
 
 namespace FlexusWorkout.Services;
 
