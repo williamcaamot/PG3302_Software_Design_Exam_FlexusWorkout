@@ -9,12 +9,12 @@ namespace FlexusWorkout
     {
         static void Main(string[] args)
         {
-            //User user = new("Test", "User", "bor@gmail.com", "password");
-            //UserService userService = new();
-            //User addeduser = userService.Add(user);
+            DatabaseFiller databaseFiller = new();
+            databaseFiller.FillUsers();
+            
 
-            InitialMenu initialMenu = new();
-            InitialMenuPresenter initialMenuPresenter = new(initialMenu);
+            //InitialMenu initialMenu = new();
+            //InitialMenuPresenter initialMenuPresenter = new(initialMenu);
 
         }
     }
