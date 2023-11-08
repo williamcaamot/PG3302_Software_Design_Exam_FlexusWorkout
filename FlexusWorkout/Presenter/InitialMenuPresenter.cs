@@ -27,24 +27,30 @@ public class InitialMenuPresenter : MenuPresenter
         switch (input)
         {
             case "0":
+                // exit view
                 View.Stop();
                 break;
             case "1":
+                // send user to login view
                 LoginView loginView = new();
                 User user = new();
                 LoginPresenter loginPresenter = new(loginView, user);
                 break;
             case "2":
+                // send user to signup view
                 SignupView signupView = new();
                 User user2 = new();
-                //SignupPresenter signupPresenter = new(signupView, user2);
+                SignupPresenter signupPresenter = new(signupView, user2);
                 break;
             case "3":
+                // send user to guest menu
                 GuestMenu guestMenu = new();
                 GuestMenuPresenter guestMenuPresenter = new(guestMenu);
                 break;
             default:
-                Console.WriteLine("Invalid option, try again.");
+                Console.Clear();
+                Console.WriteLine("Invalid option, try again...");
+                Thread.Sleep(2000);
                 break;
         }
 

@@ -38,7 +38,8 @@ public class LoginPresenter : Presenter
                 }
                 break;
         }
-
+        
+        // both email and password were received successfully
         if (_email != null && _password != null)
         {
             MainHandler("ok");
