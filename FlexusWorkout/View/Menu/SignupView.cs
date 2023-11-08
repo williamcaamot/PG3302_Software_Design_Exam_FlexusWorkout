@@ -3,7 +3,7 @@ using Presenter;
 public class SignupView : Base.View
 {
 
-    protected override bool Display()
+    protected override void Display()
     {
         
         
@@ -24,9 +24,7 @@ public class SignupView : Base.View
             //TODO make the new user logged in on creation
             //MainMenuBasePresenter mainMenuBasePresenter = new();
             //MainMenu mainMenu = new(mainMenuBasePresenter); // redirect to main menu
-            return false;
         }
         // TODO implement a way to cancel signup?
-        return true;
     }
 }

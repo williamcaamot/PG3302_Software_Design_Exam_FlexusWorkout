@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FlexusWorkout.Model.Concrete;
 
-public class User
+public class User : Base.Model
 {
     //EFCore needs getters and setters for id
     public int? UserId { get; set; } //PK

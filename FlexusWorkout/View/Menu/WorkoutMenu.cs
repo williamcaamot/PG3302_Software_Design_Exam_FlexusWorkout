@@ -4,7 +4,7 @@ using Presenter;
 public class WorkoutMenu : Base.View
 {
 
-    protected override bool Display()
+    protected override void Display()
     {
         Console.Clear();
         Console.WriteLine("--Workout Menu--");
@@ -14,6 +14,5 @@ public class WorkoutMenu : Base.View
         Console.WriteLine("0 - Exit");
 
         //return Presenter.InputHandler(Console.ReadLine());
-        return false;
     }
 }

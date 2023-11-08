@@ -2,8 +2,8 @@ namespace FlexusWorkout.View.Menu;
 
 public class InitialMenu : Base.View
 {
-
-    protected override bool Display()
+    
+    protected override void Display()
     {
         Console.Clear();
         Console.WriteLine("Welcome to the Flexus Workout app!");
@@ -13,8 +13,6 @@ public class InitialMenu : Base.View
         Console.WriteLine("0 - Exit");
         Console.Write("\r\nSelect an option: "); 
         var input = Console.ReadLine();
-        if (input != null) OnInputReceived("input", input);
-
-        return false;
+        OnInputReceived("input", input);
     }
 }

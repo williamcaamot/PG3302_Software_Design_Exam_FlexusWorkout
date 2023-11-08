@@ -12,7 +12,7 @@ public class SignupPresenter : Presenter
         throw new NotImplementedException();
     }
 
-    public override bool MainHandler(string? input)
+    public override void MainHandler(string? input)
     {
         throw new NotImplementedException();
     }

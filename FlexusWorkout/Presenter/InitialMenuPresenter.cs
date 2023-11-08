@@ -22,30 +22,30 @@ public class InitialMenuPresenter : MenuPresenter
         }
     }
 
-    public override bool MainHandler(string? input)
+    public override void MainHandler(string? input)
     {
         switch (input)
         {
             case "0":
-                return false;
+                View.Stop();
+                break;
             case "1":
                 LoginView loginView = new();
                 User user = new();
-                //LoginPresenter loginPresenter = new(loginView, user)
-                    ;
-                return true;
+                LoginPresenter loginPresenter = new(loginView, user);
+                break;
             case "2":
                 SignupView signupView = new();
                 User user2 = new();
                 //SignupPresenter signupPresenter = new(signupView, user2);
-                return true;
+                break;
             case "3":
                 GuestMenu guestMenu = new();
                 GuestMenuPresenter guestMenuPresenter = new(guestMenu);
-                return true;
+                break;
             default:
                 Console.WriteLine("Invalid option, try again.");
-                return true;
+                break;
         }
 
     }

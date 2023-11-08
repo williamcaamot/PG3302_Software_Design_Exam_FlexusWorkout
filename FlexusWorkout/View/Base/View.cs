@@ -1,23 +1,30 @@
 namespace FlexusWorkout.View.Base;
-using Presenter.Base;
 
 public abstract class View
 {   
     // Event for handling input
     public event Action<string, string> InputReceived;
+    private bool _running;
 
     public void Run()
     // Starts the loop
     {
-        var running = true;
-        while (running)
+        _running = true;
+        while (_running)
         {
-            running = Display();
+            Display();
         }
     }
     
+    // Method for stopping loop
+    public void Stop()
+    {
+        _running = false;
+    }
+    
     // This abstract method is where the view displays text to the console
-    protected abstract bool Display();
+    protected abstract void Display();
+
 
     protected void OnInputReceived(string key, string input)
     {

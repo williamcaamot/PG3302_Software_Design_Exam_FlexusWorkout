@@ -3,7 +3,7 @@ namespace FlexusWorkout.View.Menu;
 public class MainMenu : Base.View
 {
 
-    protected override bool Display()
+    protected override void Display()
     {
         Console.Clear();
         Console.WriteLine("What would you like to do?");
@@ -14,6 +14,5 @@ public class MainMenu : Base.View
         Console.Write("\r\nSelect an option: ");
 
         //return Presenter.InputHandler(Console.ReadLine());
-        return false;
     }
 }

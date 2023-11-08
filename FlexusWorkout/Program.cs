@@ -14,8 +14,8 @@ namespace FlexusWorkout
             databaseFiller.FillExercises();
             
 
-            //InitialMenu initialMenu = new();
-            //InitialMenuPresenter initialMenuPresenter = new(initialMenu);
+            InitialMenu initialMenu = new();
+            InitialMenuPresenter initialMenuPresenter = new(initialMenu);
 
         }
     }

@@ -13,26 +13,26 @@ public class MainMenuPresenter : MenuPresenter
         throw new NotImplementedException();
     }
 
-    public override bool MainHandler(string? input)
+    public override void MainHandler(string? input)
     {
         switch (input)
         {
             case "0":
-                return false;
+                View.Stop();
+                break;
             case "1":
                 // TODO add redirect to WorkoutPlanner View here
                 Console.WriteLine("To workout planner");
-                return true;
+                break;
             case "2":
                 //WorkoutMenuPresenter workoutMenuPresenter = new();
-                return true;
             case "3":
                 // TODO add redirect to ExerciseFinder View here
                 Console.WriteLine("To look-up exercise");
-                return true;
+                break;
             default:
                 Console.WriteLine("Invalid option, try again.");
-                return true;
+                break;
         }
     }
 }

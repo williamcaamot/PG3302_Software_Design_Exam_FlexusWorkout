@@ -4,22 +4,21 @@ using View.Base;
 
 public abstract class Presenter
 {
+    protected readonly View View;
+    protected readonly Model Model;
     protected Presenter(View view, Model? model = default)
     {
         View = view;
         Model = model;
         
-        // Run the View loop
-        View.Run();
+        view.InputReceived += HandleInput;
         
-        this.View.InputReceived += HandleInput;
+        // Run the View loop
+        view.Run();
 
     }
-    
-    protected View View { get; set; }
-    protected Model? Model { get; set; }
 
     public abstract void HandleInput(string? key, string? input);
     
-    public abstract bool MainHandler(string? input);
+    public abstract void MainHandler(string? input);
 }
