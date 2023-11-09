@@ -13,6 +13,11 @@ public class ExerciseService : Service
         _db = new();
     }
 
+    public IList<Exercise> GetAllExercises()
+    {
+        return _db.Exercise.ToList();
+    }
+
     public IList<String> getExerciseTypes()
     {
         IList<String> Exercises = _db.Exercise

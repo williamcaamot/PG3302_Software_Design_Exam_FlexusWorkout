@@ -6,14 +6,24 @@ namespace FlexusWorkout.View.WorkoutPlanner;
 
 public interface IWorkoutPlannerView
 {
-    List<string> ChooseExercise(string day, List<string> exercises);
+    List<string> ChooseExercise(string day, List<string> exercises, List<string> retriveExisting);
+    List<string> RetriveExistingWorkouts();
     int ChooseTypeOfExercise(Dictionary<int, string> typeOfExercise);
     void UserMessage(string message);
 
     public class ExtendedWorkoutPlannerView : IWorkoutPlannerView
     {
-        public List<string> ChooseExercise(string day, List<string> exercises)
+        public List<string> ChooseExercise(string day, List<string> exercises, List<string> retriveExisting = null)
         {
+            if (retriveExisting != null && retriveExisting.Count > 0)
+            {
+                Console.WriteLine("Do you want to use an existing workout? (yes/no)");
+                string inputFromUser = Console.ReadLine().Trim();
+                if (inputFromUser.Equals("yes", StringComparison.OrdinalIgnoreCase))
+                {
+                    return RetriveExistingWorkouts();
+                }
+            }
             Console.WriteLine(
                 $"Choose exercises for {day}, enter corresponding numbers of wanted exercise/exercises: ");
 
@@ -46,9 +56,35 @@ public interface IWorkoutPlannerView
             }
             return selctedExercises;
         }
+        
+        public List<string> RetriveExistingWorkouts()
+        {
+            List<string> workoutsSaved = GetWorkoutsSaved();
+            Console.WriteLine("Select one of the saved workouts");
+            for (int i = 0; i < workoutsSaved.Count; i++)
+            {
+                Console.WriteLine($"{i + 1} {workoutsSaved[i]}");
+            }
 
+            while (true)
+            {
+                string userInput = Console.ReadLine().Trim();
+                if (int.TryParse(userInput, out int number) && number >= 1 && number <= workoutsSaved.Count)
+                {
+                    return new List<string> { workoutsSaved[number - 1] };
+                }
+                else
+                {
+                    Console.WriteLine("Error: Invalid input, please try again");
+                }
+            }
+        }
 
-
+        public List<string> GetWorkoutsSaved()
+        {
+            //Here should actual logfic to retrive workouts from db be,delete the list under later
+            return new List<string> { "Workout 1", "Workout 2", "Workout 3" };
+        }
         public int ChooseTypeOfExercise(Dictionary<int, string> typeOfExercise)
         {
             foreach (var eType in typeOfExercise)

@@ -24,13 +24,21 @@ public class WorkoutPlannerPresenter
         this._view = _view;
         this._exerciseService = _exerciseService;
     }
+    
 
     public void CreatePlan()
     {
         List<string> daysInWeek = new List<string>
             { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 
-        List<string> exercisesToChooseFrom = retriveExercisesFromDB();
+        // might delte l8ter ? :))))/////List<string> exercisesToChooseFrom = retriveExercisesFromDB();
+        IList<Exercise> getAll = _exerciseService.GetAllExercises();
+        List<string> exerciseNames = getAll.Select(e => e.Name).ToList();
+
+        foreach (var exercises in getAll)
+        {
+            Console.WriteLine($"Id: {exercises.Id}, Name: {exercises.Id}, Type: {exercises.Type}");
+        }
         
 
         Dictionary<int, string> exercisesTypes = new Dictionary<int, string>
@@ -39,7 +47,6 @@ public class WorkoutPlannerPresenter
             { 2, "Cardio" },
             { 3, "Balance" }
         };
-        
 
     }
     //UNDER HERE SHOULD LOGIC TO RETRIVE AVALABLE EXERCISES FROM THE DATABASE BE!!!!!!!!!!!!!!!!
