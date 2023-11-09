@@ -10,9 +10,9 @@ public class MainMenu : Base.View
         Console.WriteLine("1 - Access Workout-planner");
         Console.WriteLine("2 - See my workouts");
         Console.WriteLine("3 - Find an exercise");
-        Console.WriteLine("0 - Exit");
+        Console.WriteLine("0 - Log out");
         Console.Write("\r\nSelect an option: ");
-
-        //return Presenter.InputHandler(Console.ReadLine());
+        var input = Console.ReadLine();
+        OnInputReceived("input", input);
     }
 }

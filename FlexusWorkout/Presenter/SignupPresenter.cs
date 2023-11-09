@@ -14,8 +14,6 @@ public class SignupPresenter : Presenter
 
     public override void HandleInput(string? key, string? input)
     {
-        string? temp = null;
-        
         switch (key)
         {
             case "firstname":

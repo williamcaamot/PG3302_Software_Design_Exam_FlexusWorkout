@@ -10,7 +10,18 @@ public class MainMenuPresenter : MenuPresenter
 
     public override void HandleInput(string? key, string? input)
     {
-        throw new NotImplementedException();
+        switch (key)
+        {
+            case "input":
+                if (input == null)
+                {
+                    MainHandler("error");
+                } else
+                {
+                    MainHandler(input);
+                }
+                break;
+        }
     }
 
     public override void MainHandler(string? input)
@@ -18,20 +29,26 @@ public class MainMenuPresenter : MenuPresenter
         switch (input)
         {
             case "0":
+                // Exit view
                 View.Stop();
                 break;
             case "1":
                 // TODO add redirect to WorkoutPlanner View here
-                Console.WriteLine("To workout planner");
                 break;
             case "2":
                 //WorkoutMenuPresenter workoutMenuPresenter = new();
             case "3":
                 // TODO add redirect to ExerciseFinder View here
-                Console.WriteLine("To look-up exercise");
+                break;
+            case "error":
+                Console.Clear();
+                Console.WriteLine("There was an error receiving input.");
+                Thread.Sleep(2000);
                 break;
             default:
+                Console.Clear();
                 Console.WriteLine("Invalid option, try again.");
+                Thread.Sleep(2000);
                 break;
         }
     }

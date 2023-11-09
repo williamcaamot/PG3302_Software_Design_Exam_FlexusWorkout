@@ -63,10 +63,11 @@ public class LoginPresenter : Presenter
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e); // Need to handle this exception better
-                    // menu could be in a while loop that doesn' break untless the loginsuer above
-                    // has loginuser.Authenticated = true (is only true if the user is in fact
-                    // authentiacted
+                    Console.Clear();
+                    //Console.WriteLine(e); // Need to handle this exception better
+                    Console.WriteLine("Wrong credentials. Try again.");
+                    Thread.Sleep(2000); // sleep so user can see error msg.
+                    // TODO Write errors to log file???
                 }
         
                 // TODO check user db for valid credentials - handle what happens on correct/incorrect
