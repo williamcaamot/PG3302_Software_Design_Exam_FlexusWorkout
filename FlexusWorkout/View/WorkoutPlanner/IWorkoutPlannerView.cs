@@ -1,43 +1,82 @@
+using System.Runtime.InteropServices.JavaScript;
 using FlexusWorkout.Model.Base;
 using FlexusWorkout.View.Menu.Model;
+using Mysqlx.Datatypes;
 
 namespace FlexusWorkout.View.WorkoutPlanner;
 
 public interface IWorkoutPlannerView
 {
-    public List<string> SelectExercise(string getExercisesByType, List<string> GetExercisesByType);
+    List<string> ChooseExercise(string day, List<string> exercises);
+    int ChooseTypeOfExercise(Dictionary<int, string> typeOfExercise);
+    void UserMessage(string message);
 
-    public List<string> SelectedExercises(string day, List<string> GetExercisesByType)
+    public class ExtendedWorkoutPlannerView : IWorkoutPlannerView
     {
-        Console.WriteLine($"Choose exercises for {day} by entering the number of exercise you want!");
-
-        for (int j = 0; j < GetExercisesByType.Count; j++)
+        public List<string> ChooseExercise(string day, List<string> exercises)
         {
-            Console.WriteLine($"{j + 1}. {GetExercisesByType[j]}");
+            Console.WriteLine(
+                $"Choose exercises for {day}, enter corresponding numbers of wanted exercise/exercises: ");
+
+            for (int i = 0; i < exercises.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {exercises[i]}");
+            }
+
+            List<string> selctedExercises = new List<string>();
+            while (true)
+            {
+                Console.WriteLine("Enter identifier of wanted exercise on chosen day, type 'ok' when complete");
+                string inputFromUser = Console.ReadLine()!.Trim(); //Remove leading and trailing spaces
+
+                if (inputFromUser.Equals("ok", StringComparison.OrdinalIgnoreCase))
+                {
+                    break;
+                }
+
+                if (int.TryParse(inputFromUser, out int exerciseNumber) && exerciseNumber >= 1 &&
+                    exerciseNumber <= exercises.Count)
+                {
+                    selctedExercises.Add(exercises[exerciseNumber - 1]);
+                    Console.WriteLine($"{exercises[exerciseNumber - 1]} added to your workout on {day}");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid entry, please try again");
+                }
+            }
+            return selctedExercises;
         }
 
-        var choosenExercises = new List<string>();
 
-        while (true)
+
+        public int ChooseTypeOfExercise(Dictionary<int, string> typeOfExercise)
         {
-            Console.WriteLine("Enter the number of wanted exercise, press 'ok' when done.");
-            var userInput = Console.ReadLine().Trim(); //Trim to remove leading av trailing spaces
+            foreach (var eType in typeOfExercise)
+            {
+                Console.WriteLine($"{eType.Key}, {eType.Key}");
+            }
 
-            if (userInput.Equals("ok"))
+            Console.WriteLine("Select the type of workout you want: ");
+            while (true)
             {
-                break;
-            }
-            
-            if (int.TryParse(userInput, out int number) && number >= 1 && number <= GetExercisesByType.Count)
-            {
-                choosenExercises.Add(GetExercisesByType[number - 1]);
-            }
-            else
-            {
-                Console.WriteLine("Invalid number, please try again or exit with 'ok'");
+                string? inputFromUser = Console.ReadLine();
+                if (int.TryParse(inputFromUser, out int Choosen) && typeOfExercise.ContainsKey(Choosen))
+                {
+                    return Choosen;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid entry, please try again");
+                }
             }
         }
 
-        return choosenExercises;
+        public void UserMessage(string messageToUser)
+        {
+            Console.WriteLine(messageToUser);
+        }
     }
+    
+    
 }
