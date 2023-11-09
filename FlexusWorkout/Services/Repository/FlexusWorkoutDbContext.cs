@@ -2,7 +2,7 @@ using FlexusWorkout.Model.Base;
 using FlexusWorkout.Model.Concrete;
 using Microsoft.EntityFrameworkCore;
 
-namespace FlexusWorkout.View.Menu.Model;
+namespace FlexusWorkout.Services.Repository;
 
 public class FlexusWorkoutDbContext : DbContext
 {// One DB context for project to keep things simple

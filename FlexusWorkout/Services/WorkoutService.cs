@@ -1,6 +1,8 @@
+using FlexusWorkout.Services.Base;
+
 namespace FlexusWorkout.Services;
 
-public class WorkoutService
+public class WorkoutService : Service
 {
     
 }

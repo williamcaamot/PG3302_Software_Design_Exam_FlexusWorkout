@@ -1,16 +1,18 @@
 using System.Security.Cryptography;
 using System.Text;
 using FlexusWorkout.Model.Concrete;
-using FlexusWorkout.View.Menu.Model;
+using FlexusWorkout.Services.Base;
+using FlexusWorkout.Services.Repository;
+using FlexusWorkout.Model.Base;
 
 namespace FlexusWorkout.Services;
 
-public class UserService
+public class UserService : Service
 {
-    
     private readonly FlexusWorkoutDbContext _db;
 
     public UserService() //TODO NEED TO EDIT THIS TO USE DEPENDENCY INJECTION
+    
     {
         _db = new();
     }
