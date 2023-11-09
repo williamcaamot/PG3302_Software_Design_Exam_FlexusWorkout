@@ -31,6 +31,7 @@ public class WorkoutPlannerPresenter
             { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 
         List<string> exercisesToChooseFrom = retriveExercisesFromDB();
+        
 
         Dictionary<int, string> exercisesTypes = new Dictionary<int, string>
         {
