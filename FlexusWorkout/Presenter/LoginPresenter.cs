@@ -1,3 +1,4 @@
+using FlexusWorkout.Services.Base;
 using FlexusWorkout.View.Menu;
 
 namespace FlexusWorkout.Presenter;
@@ -9,7 +10,7 @@ public class LoginPresenter : Presenter
 {
     private string? _email;
     private string? _password;
-    public LoginPresenter(View.Base.View view, Model.Base.Model model) : base(view, model)
+    public LoginPresenter(View.Base.View view, Service service) : base(view, service)
     {
         
     }

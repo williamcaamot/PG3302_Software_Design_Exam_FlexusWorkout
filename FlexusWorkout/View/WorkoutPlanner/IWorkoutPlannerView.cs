@@ -1,5 +1,3 @@
-using FlexusWorkout.Model.Base;
-using FlexusWorkout.View.Menu.Model;
 
 namespace FlexusWorkout.View.WorkoutPlanner;
 

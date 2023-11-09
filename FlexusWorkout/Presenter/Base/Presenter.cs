@@ -1,16 +1,16 @@
 namespace FlexusWorkout.Presenter.Base;
-using Model.Base;
+using Services.Base;
 using View.Base;
 
 public abstract class Presenter
 {
     protected readonly View View;
-    protected readonly Model Model;
-    protected Presenter(View view, Model? model = default)
+    protected readonly Service? Service;
+    protected Presenter(View view, Service? service = default)
     // TODO Service in constructor or model
     {
         View = view;
-        Model = model;
+        Service = service;
         
         // HandleInput() subscribes to InputReceived event from view
         view.InputReceived += HandleInput;

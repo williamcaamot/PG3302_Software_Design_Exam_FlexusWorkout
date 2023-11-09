@@ -1,18 +1,8 @@
-using FlexusWorkout.View.Menu.Model;
+using FlexusWorkout.Services.Base;
 
 namespace FlexusWorkout.Services;
 
-public class WorkoutService
+public class WorkoutService : Service
 {
-    private FlexusWorkoutDbContext _db;
-
-    public WorkoutService() //TODO should be injected not created
-    {
-        _db = new FlexusWorkoutDbContext();
-
-    }
     
-    
-
-
 }
