@@ -1,21 +1,23 @@
 using FlexusWorkout.Model.Base;
+using FlexusWorkout.Services;
 
 namespace FlexusWorkout.Model.Concrete;
 
 public class Workout
 {
-    public string Day { get; set; }
-    public List<Exercise> Exercises { get; set; }
+    public int? Id { get; set; }
+    public string description { get; set; }
+    public string location { get; set; }
+    public IList<Exercise> Exercises { get; set; }
 
 
-    public Workout(string setDay)
-    {
-        Day = setDay;
-        Exercises = new List<Exercise>();
-    }
 
     public Workout()
     {
-        throw new NotImplementedException();
+
+        Exercises = new List<Exercise>();
     }
+    
+    
+    
 }

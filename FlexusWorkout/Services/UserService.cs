@@ -1,3 +1,4 @@
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using FlexusWorkout.Model.Concrete;
@@ -45,6 +46,28 @@ public class UserService
         var FoundUser = _db.User.FirstOrDefault(u => u.Email == user.Email);
         return FoundUser ?? new User();
     }
+
+    public User registerUser(User user)
+    {
+        try //Verify that the email is in fact an email
+        {
+            var email = new MailAddress(user.Email);
+        }
+        catch (Exception e)
+        {
+            throw new Exception("Email is not formatted correctly");
+        }
+
+        var checkUser = GetUserByEmail(user);
+        if (checkUser.Email != null)
+        {
+            throw new Exception("Email already exists");
+        }
+        var newUser = Add(user);
+        return newUser;
+    }
+    
+    
     
     public User update(User user)
     {

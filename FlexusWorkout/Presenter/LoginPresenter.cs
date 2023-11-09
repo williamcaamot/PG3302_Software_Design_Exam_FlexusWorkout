@@ -64,7 +64,7 @@ public class LoginPresenter : Presenter
                 catch (Exception e)
                 {
                     Console.Clear();
-                    //Console.WriteLine(e); // Need to handle this exception better
+                    //Console.WriteLine(e.Message); // ONLY FOR DEBUG USAGE, WE DO NOT WANT TO SEND MORE DETAILED INFO TO END USER
                     Console.WriteLine("Wrong credentials. Try again.");
                     Thread.Sleep(2000); // sleep so user can see error msg.
                     // TODO Write errors to log file???

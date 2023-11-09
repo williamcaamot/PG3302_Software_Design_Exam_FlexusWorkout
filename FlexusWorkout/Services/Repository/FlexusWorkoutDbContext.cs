@@ -1,5 +1,6 @@
 using FlexusWorkout.Model.Base;
 using FlexusWorkout.Model.Concrete;
+using Google.Protobuf;
 using Microsoft.EntityFrameworkCore;
 
 namespace FlexusWorkout.View.Menu.Model;
@@ -10,6 +11,9 @@ public class FlexusWorkoutDbContext : DbContext
     public DbSet<User> User => Set<User>();
     public DbSet<Exercise> Exercise => Set<Exercise>();
     
+    
+    //TODO migration
+    //public DbSet<Workout> Workout => Set<Workout>();
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlite(@"Data Source = Resources/Flexus.db"); // @ means backslashes don't need to be escaped
