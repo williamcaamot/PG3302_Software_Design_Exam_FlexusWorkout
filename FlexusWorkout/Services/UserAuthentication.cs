@@ -11,7 +11,7 @@ public class UserAuthentication
         UserService userService = new(); //TODO create dependency injection on this
         
         var foundUser = userService.GetUserByEmail(user);
-        if (foundUser == null)
+        if (foundUser.Email == null)
         {
             throw new Exception("Could not find user");
         }

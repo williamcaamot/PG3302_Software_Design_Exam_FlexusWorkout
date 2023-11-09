@@ -1,3 +1,5 @@
+using FlexusWorkout.Services.Base;
+
 namespace FlexusWorkout.Presenter;
 using Base;
 
@@ -8,14 +10,12 @@ public class SignupPresenter : Presenter
     private string? _email;
     private string? _password;
     
-    public SignupPresenter(View.Base.View view, Model.Base.Model model) : base(view, model)
+    public SignupPresenter(View.Base.View view, Service service) : base(view, service)
     {
     }
 
     public override void HandleInput(string? key, string? input)
     {
-        string? temp = null;
-        
         switch (key)
         {
             case "firstname":

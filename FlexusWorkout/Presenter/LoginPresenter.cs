@@ -1,3 +1,4 @@
+using FlexusWorkout.Services.Base;
 using FlexusWorkout.View.Menu;
 
 namespace FlexusWorkout.Presenter;
@@ -9,7 +10,7 @@ public class LoginPresenter : Presenter
 {
     private string? _email;
     private string? _password;
-    public LoginPresenter(View.Base.View view, Model.Base.Model model) : base(view, model)
+    public LoginPresenter(View.Base.View view, Service service) : base(view, service)
     {
         
     }
@@ -63,10 +64,11 @@ public class LoginPresenter : Presenter
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e); // Need to handle this exception better
-                    // menu could be in a while loop that doesn' break untless the loginsuer above
-                    // has loginuser.Authenticated = true (is only true if the user is in fact
-                    // authentiacted
+                    Console.Clear();
+                    //Console.WriteLine(e.Message); // ONLY FOR DEBUG USAGE, WE DO NOT WANT TO SEND MORE DETAILED INFO TO END USER
+                    Console.WriteLine("Wrong credentials. Try again.");
+                    Thread.Sleep(2000); // sleep so user can see error msg.
+                    // TODO Write errors to log file???
                 }
         
                 // TODO check user db for valid credentials - handle what happens on correct/incorrect

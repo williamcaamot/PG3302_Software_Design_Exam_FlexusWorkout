@@ -1,5 +1,6 @@
 using System.Reflection.Metadata;
 using FlexusWorkout.Model.Concrete;
+using FlexusWorkout.Services;
 
 namespace FlexusWorkout.Presenter;
 using View.Menu;
@@ -33,14 +34,14 @@ public class InitialMenuPresenter : MenuPresenter
             case "1":
                 // send user to login view
                 LoginView loginView = new();
-                User user = new();
-                LoginPresenter loginPresenter = new(loginView, user);
+                UserService userService = new();
+                LoginPresenter loginPresenter = new(loginView, userService);
                 break;
             case "2":
                 // send user to signup view
                 SignupView signupView = new();
-                User user2 = new();
-                SignupPresenter signupPresenter = new(signupView, user2);
+                UserService userService2 = new();
+                SignupPresenter signupPresenter = new(signupView, userService2);
                 break;
             case "3":
                 // send user to guest menu

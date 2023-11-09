@@ -1,15 +1,26 @@
-using FlexusWorkout.View.Menu.Model;
+using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Model.Base;
-using FlexusWorkout.Model.Concrete;
+using FlexusWorkout.Services.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace FlexusWorkout.Services;
 
-public class ExerciseService {
+public class ExerciseService : Service
+{
     private readonly FlexusWorkoutDbContext _db;
     public ExerciseService() //TODO NEED TO EDIT THIS TO USE DEPENDENCY INJECTION
     {
         _db = new();
+    }
+
+    public IList<String> getExerciseTypes()
+    {
+        IList<String> Exercises = _db.Exercise
+            .Select(e => e.Type)
+            .Distinct()
+            .ToList();
+        
+        return Exercises;
     }
     
     public IList<Exercise> GetExercisesByType(string type)

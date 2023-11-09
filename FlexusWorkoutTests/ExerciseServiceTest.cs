@@ -1,3 +1,5 @@
+using System.Net.Http.Headers;
+using FlexusWorkout;
 using FlexusWorkout.Model.Base;
 using FlexusWorkout.Model.Concrete;
 using FlexusWorkout.Services;
@@ -12,8 +14,6 @@ public class ExerciseServiceTest
     {
         Service = new ExerciseService();
     }
-
-
     [Test]
     public void AddExerciseOfTypeStrength_ShouldReturnSameExercise()
     {
@@ -100,6 +100,22 @@ public class ExerciseServiceTest
         Assert.That(strengthExercises[0].EquipmentRequired, Is.EqualTo(cardioExercise.EquipmentRequired));
         Assert.That(strengthExercises[0].IntensityLevel, Is.EqualTo(cardioExercise.IntensityLevel));
         Assert.That(strengthExercises[0].Location, Is.EqualTo(cardioExercise.Location));
+    }
+
+    [Test]
+    public void GetExerciseTypes_ShouldReturnStringOfExercises()
+    {
+
+        ExerciseService exerciseService = new();
+        DatabaseFiller databaseFiller = new();
+        databaseFiller.FillExercises();
+        
+        
+        IList<String> exercises = exerciseService.getExerciseTypes();
+        Console.WriteLine(exercises);
+        Assert.That(exercises[0], Is.AnyOf("Cardio","Balance","Strength"));
+        Assert.That(exercises[1], Is.AnyOf("Cardio","Balance","Strength"));
+        Assert.That(exercises[2], Is.AnyOf("Cardio","Balance","Strength"));
     }
 
     
