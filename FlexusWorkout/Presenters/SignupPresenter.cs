@@ -1,9 +1,14 @@
+using FlexusWorkout.Models.Concrete;
+using FlexusWorkout.Services;
 using FlexusWorkout.Services.Base;
 using FlexusWorkout.Views.Base;
+using FlexusWorkout.Views.Menu;
+using ZstdSharp.Unsafe;
 
 namespace FlexusWorkout.Presenters;
+using Base;
 
-public class SignupPresenter : Base.Presenter
+public class SignupPresenter : Presenter
 {
     private string? _firstName;
     private string? _lastName;
@@ -16,33 +21,59 @@ public class SignupPresenter : Base.Presenter
 
     public override void HandleInput(string? key, string? input)
     {
-        if (input == null)
-        {
-            MainHandler("error");
-            return;
-        }
         switch (key)
         {
             case "firstname":
-                _firstName = input;
-                break;
-            case "lastname":
-                _lastName = input;
-                break;
-            case "email":
-                _email = input;
-                break;
-            case "password":
-                _password = input;
-                break;
-            case "confirmpassword":
-                if (_password == input)
+                if (input == null)
                 {
-                    MainHandler("ok");
+                    MainHandler("error");
                 } else
                 {
-                    _password = null;
-                    MainHandler("didntmatch");
+                    _firstName = input;
+                }
+                break;
+            case "lastname":
+                if (input == null)
+                {
+                    MainHandler("error");
+                } else
+                {
+                    _lastName = input;
+                }
+                break;
+            case "email":
+                if (input == null)
+                {
+                    MainHandler("error");
+                } else
+                {
+                    _email = input;
+                }
+                break;
+            case "password":
+                if (input == null)
+                {
+                    MainHandler("error");
+                } else
+                {
+                    _password = input;
+                }
+                break;
+            case "confirmpassword":
+                if (input == null)
+                {
+                    MainHandler("error");
+                } else
+                {
+                    if (_password == input)
+                    {
+                        MainHandler("ok"); //TODO Should this password checking logic be here or should it be moved to the register user method? 
+                    }
+                    else
+                    {
+                        _password = null;
+                        MainHandler("didntmatch");
+                    }
                 }
                 break;
         }
@@ -53,7 +84,23 @@ public class SignupPresenter : Base.Presenter
         switch (input)
         {
             case "ok":
-                // TODO add sign up code here.
+                UserService service = new();
+                User user = new User(_firstName, _lastName, _email, _password);
+                try
+                {
+                    user = service.registerUser(user);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Thread.Sleep(2000);
+                }
+
+                if (user.Authenticated)
+                {
+                    MainMenu mainMenu = new();
+                    MainMenuPresenter mainMenuPresenter = new(mainMenu, user);
+                }
                 break;
             case "error":
                 Console.Clear();

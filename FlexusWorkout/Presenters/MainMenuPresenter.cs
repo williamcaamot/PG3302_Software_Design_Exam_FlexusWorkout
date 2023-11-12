@@ -1,7 +1,7 @@
 <<<<<<< Updated upstream:FlexusWorkout/Presenter/MainMenuPresenter.cs
-using FlexusWorkout.Model.Concrete;
+using FlexusWorkout.Models.Concrete;
 
-namespace FlexusWorkout.Presenter;
+namespace FlexusWorkout.Presenters;
 using View.Menu;
 using Base;
 
