@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlexusWorkout.Migrations
 {
     [DbContext(typeof(FlexusWorkoutDbContext))]
-    [Migration("20231112143734_Initial")]
+    [Migration("20231112150045_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -101,6 +101,9 @@ namespace FlexusWorkout.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("description")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -118,6 +121,8 @@ namespace FlexusWorkout.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("workoutId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Workout");
                 });
@@ -148,6 +153,22 @@ namespace FlexusWorkout.Migrations
                     b.HasOne("FlexusWorkout.Models.Concrete.Workout", null)
                         .WithMany("Exercises")
                         .HasForeignKey("workoutId");
+                });
+
+            modelBuilder.Entity("FlexusWorkout.Models.Concrete.Workout", b =>
+                {
+                    b.HasOne("FlexusWorkout.Models.Concrete.User", "User")
+                        .WithMany("Workouts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FlexusWorkout.Models.Concrete.User", b =>
+                {
+                    b.Navigation("Workouts");
                 });
 
             modelBuilder.Entity("FlexusWorkout.Models.Concrete.Workout", b =>

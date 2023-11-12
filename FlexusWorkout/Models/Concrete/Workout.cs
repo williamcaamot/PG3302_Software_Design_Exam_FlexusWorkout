@@ -9,6 +9,7 @@ public class Workout
     public string name { get; set; }
     public string description { get; set; }
     public IList<Exercise> Exercises { get; set; }
+    public User User { get; set; }
     public string type { get; set; }
     public string location { get; set; }
     

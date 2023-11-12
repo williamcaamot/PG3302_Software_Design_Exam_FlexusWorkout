@@ -15,9 +15,15 @@ public class WorkoutService : Service
 
     public Workout addExercise(Workout workout, Exercise exercise)
     {
-        workout.Exercises.Add(exercise);
+        workout.Exercises.Add(exercise); //Todo check if exercise already exists
+        var addedWorkout = _db.Workout.Update(workout);
+        return addedWorkout.Entity;
+    }
 
-        return new Workout();
+    public Workout addWorkout(Workout workout)
+    {
+        var addedWorkout = _db.Workout.Add(workout);
+        return addedWorkout.Entity;
     }
     
     

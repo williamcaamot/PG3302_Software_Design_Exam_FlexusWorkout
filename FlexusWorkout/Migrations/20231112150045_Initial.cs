@@ -34,12 +34,19 @@ namespace FlexusWorkout.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     name = table.Column<string>(type: "TEXT", nullable: false),
                     description = table.Column<string>(type: "TEXT", nullable: false),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
                     type = table.Column<string>(type: "TEXT", nullable: false),
                     location = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Workout", x => x.workoutId);
+                    table.ForeignKey(
+                        name: "FK_Workout_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -74,6 +81,11 @@ namespace FlexusWorkout.Migrations
                 name: "IX_Exercise_workoutId",
                 table: "Exercise",
                 column: "workoutId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Workout_UserId",
+                table: "Workout",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -83,10 +95,10 @@ namespace FlexusWorkout.Migrations
                 name: "Exercise");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Workout");
 
             migrationBuilder.DropTable(
-                name: "Workout");
+                name: "User");
         }
     }
 }

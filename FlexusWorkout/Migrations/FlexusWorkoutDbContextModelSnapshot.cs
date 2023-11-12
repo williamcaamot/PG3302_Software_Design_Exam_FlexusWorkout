@@ -98,6 +98,9 @@ namespace FlexusWorkout.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("description")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -115,6 +118,8 @@ namespace FlexusWorkout.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("workoutId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Workout");
                 });
@@ -145,6 +150,22 @@ namespace FlexusWorkout.Migrations
                     b.HasOne("FlexusWorkout.Models.Concrete.Workout", null)
                         .WithMany("Exercises")
                         .HasForeignKey("workoutId");
+                });
+
+            modelBuilder.Entity("FlexusWorkout.Models.Concrete.Workout", b =>
+                {
+                    b.HasOne("FlexusWorkout.Models.Concrete.User", "User")
+                        .WithMany("Workouts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FlexusWorkout.Models.Concrete.User", b =>
+                {
+                    b.Navigation("Workouts");
                 });
 
             modelBuilder.Entity("FlexusWorkout.Models.Concrete.Workout", b =>
