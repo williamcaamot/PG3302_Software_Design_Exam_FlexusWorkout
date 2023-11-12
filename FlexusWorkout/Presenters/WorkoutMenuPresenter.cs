@@ -7,6 +7,8 @@ public class WorkoutMenuPresenter : MenuPresenter
 {
     public WorkoutMenuPresenter(View view) : base(view)
     {
+        // Run the View loop
+        view.Run();
     }
 
     public override void HandleInput(string? key, string? input)

@@ -9,6 +9,8 @@ public class InitialMenuPresenter : MenuPresenter
 {
     public InitialMenuPresenter(View view) : base(view)
     {
+        // Run the View loop
+        view.Run();
     }
 
     public override void HandleInput(string? key, string? input)

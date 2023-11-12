@@ -12,7 +12,8 @@ public class LoginPresenter : Base.Presenter
     private string? _password;
     public LoginPresenter(View view, Service service) : base(view, service)
     {
-        
+        // Run the View loop
+        view.Run();   
     }
 
     // TODO Add LoginPresenter

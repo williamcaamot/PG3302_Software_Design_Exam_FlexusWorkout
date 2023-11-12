@@ -13,6 +13,8 @@ public class MainMenuPresenter : MenuPresenter
     public MainMenuPresenter(View view, User user) : base(view)
     {
         _user = user;
+        // Run the View loop
+        view.Run();
     }
 
     public override void HandleInput(string? key, string? input)

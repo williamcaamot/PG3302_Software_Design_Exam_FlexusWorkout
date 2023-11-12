@@ -17,6 +17,8 @@ public class SignupPresenter : Presenter
     
     public SignupPresenter(View view, Service service) : base(view, service)
     {
+        // Run the View loop
+        view.Run();
     }
 
     public override void HandleInput(string? key, string? input)

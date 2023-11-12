@@ -10,6 +10,8 @@ public class GuestMenuPresenter : MenuPresenter
 {
     public GuestMenuPresenter(View view) : base(view)
     {
+        // Run the View loop
+        view.Run();
     }
 
 

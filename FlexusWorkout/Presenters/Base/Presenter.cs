@@ -14,10 +14,6 @@ public abstract class Presenter
         
         // HandleInput() subscribes to InputReceived event from view
         view.InputReceived += HandleInput;
-        
-        // Run the View loop
-        view.Run();
-
     }
 
     // HandleInput method will listen for events and gets <key, input>

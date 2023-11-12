@@ -13,6 +13,8 @@ public class ExerciseSelectorPresenter : Presenter
     public ExerciseSelectorPresenter(string type, View view, Service? service = default) : base(view, service)
     {
         _type = type;
+        // Run the View loop
+        view.Run();
     }
 
     public override void HandleInput(string? key, string? input)

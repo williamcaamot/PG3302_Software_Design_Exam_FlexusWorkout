@@ -9,6 +9,8 @@ public class ExerciseFinderPresenter : Base.Presenter
 {
     public ExerciseFinderPresenter(View view, Service? service = default) : base(view, service)
     {
+        // Run the View loop
+        view.Run();
     }
 
     public override void HandleInput(string? key, string? input)
