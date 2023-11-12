@@ -15,7 +15,7 @@ public class UserServiceTest
     public void AddUser_ShouldReturnUserWithValidID()
     {
         // Arange
-        User user = new User("test","user","test@gmail.com","password");
+        User user = new User("test","user","test1@gmail.com","password");
         
         // Act
         User addedUser = Service.Add(user);
@@ -32,7 +32,7 @@ public class UserServiceTest
     public void RegisterUserCorrectly_ShouldReturnRegisteredUser()
     {
         // Arrange
-        User user = new User("test","user","test@gmail.com","password");
+        User user = new User("test","user","test2@gmail.com","password");
         User registeredUser;
         
         //Act
@@ -65,29 +65,26 @@ public class UserServiceTest
     }
     [Test]
     public void RegisterUserWithExistingEmail_ShouldThrowError()
-    {
-        // Arrange
-        User user1 = new User("test","user","test.com","password");
-        User user = new User("test","user","test.com","password");
-        User registeredUser;
-        string errorMessage = null;
-        
-        //Act
-        Service.registerUser(user1);
-        
-        try
-        {
-            registeredUser = Service.registerUser(user);
-        }
-        catch (Exception e)
-        {
-            errorMessage = e.Message;
-        }
-        
-        // Assert
-        Assert.That(errorMessage == "Email already exists");
-    }
-
-    
-    
+         {
+             // Arrange
+             User user1 = new User("test","user","test3@test.com","password");
+             User user = new User("test","user","test3@test.com","password");
+             User registeredUser;
+             string errorMessage = null;
+             
+             //Act
+             Service.registerUser(user1);
+             
+             try
+             {
+                 registeredUser = Service.registerUser(user);
+             }
+             catch (Exception e)
+             {
+                 errorMessage = e.Message;
+             }
+             
+             // Assert
+             Assert.That(errorMessage == "Email already exists");
+         }
 }

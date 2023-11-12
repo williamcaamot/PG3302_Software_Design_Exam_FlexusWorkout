@@ -14,7 +14,7 @@ public class UserAuthenticationTest
     public void AuthUser_ShouldReturnUserWithFullDetails()
     {
         // Arrange
-        User user = new User("test1","user1","test1@gmail.com","password");
+        User user = new User("test","user1","test1@gmail.com","password");
         User CheckUser = new User("test1@gmail.com", "password");
         UserAuthentication userAuthentication = new();
         

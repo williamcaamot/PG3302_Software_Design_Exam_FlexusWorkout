@@ -5,7 +5,7 @@ using FlexusWorkout.Models.Concrete;
 namespace FlexusWorkout.Services;
 
 public class UserAuthentication
-{
+{ //TODO move this to userService
     public User Authenticate(User user) // TAKES A USER IN - AND RETURNS THE AUTHENTICATED USER IF IT IS SUCCESSFUL!
     {
         UserService userService = new(); //TODO create dependency injection on this
