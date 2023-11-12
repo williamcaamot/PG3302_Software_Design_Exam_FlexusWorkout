@@ -5,7 +5,7 @@ using Views.Base;
 public abstract class Presenter
 {
     protected readonly View View;
-    protected readonly Service? Service;
+    protected Service? Service;
     protected Presenter(View view, Service? service = default)
     // TODO Service in constructor or model
     {
