@@ -98,7 +98,7 @@ public class SignupPresenter : Presenter
                 if (user.Authenticated)
                 {
                     MainMenu mainMenu = new();
-                    MainMenuPresenter mainMenuPresenter = new(mainMenu);   
+                    MainMenuPresenter mainMenuPresenter = new(mainMenu, user);
                 }
                 break;
             case "error":

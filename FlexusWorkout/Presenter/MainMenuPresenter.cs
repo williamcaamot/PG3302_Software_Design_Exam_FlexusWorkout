@@ -1,11 +1,16 @@
+using FlexusWorkout.Model.Concrete;
+
 namespace FlexusWorkout.Presenter;
 using View.Menu;
 using Base;
 
 public class MainMenuPresenter : MenuPresenter
 {
-    public MainMenuPresenter(View.Base.View view) : base(view)
+
+    private User _user;
+    public MainMenuPresenter(View.Base.View view, User user) : base(view)
     {
+        _user = user;
     }
 
     public override void HandleInput(string? key, string? input)

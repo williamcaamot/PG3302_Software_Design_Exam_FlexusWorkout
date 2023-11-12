@@ -77,7 +77,7 @@ public class LoginPresenter : Presenter
                     // redirects to main menu on successful login
                     // TODO load user profile somehow (main menu takes in a user object?)
                     MainMenu mainMenu = new();
-                    MainMenuPresenter mainMenuPresenter = new(mainMenu);
+                    MainMenuPresenter mainMenuPresenter = new(mainMenu, loginUser);
                 }
                 View.Stop();
                 break;
