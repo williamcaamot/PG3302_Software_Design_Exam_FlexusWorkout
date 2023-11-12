@@ -32,7 +32,7 @@ public class ExerciseService : Service
 
     public Exercise GetExercise(int id)
     {
-        return _db.Exercise.FirstOrDefault(e => e.Id == id);
+        return _db.Exercise.FirstOrDefault(e => e.ExerciseId == id);
     }
     
     public Exercise AddExercise(Exercise exercise)

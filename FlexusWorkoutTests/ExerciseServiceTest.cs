@@ -33,7 +33,7 @@ public class ExerciseServiceTest
 
         IList<Exercise> strengthExercises = exerciseService.GetExercisesByType("Strength");
 
-        Assert.That(strengthExercises[0].Id, Is.GreaterThan(0));
+        Assert.That(strengthExercises[0].ExerciseId, Is.GreaterThan(0));
         Assert.That(strengthExercises[0].Name, Is.EqualTo(strengthExercise.Name));
         Assert.That(strengthExercises[0].Description, Is.EqualTo(strengthExercise.Description));
         Assert.That(strengthExercises[0].Repetitions, Is.EqualTo(strengthExercise.Repetitions));
@@ -62,7 +62,7 @@ public class ExerciseServiceTest
 
         IList<Exercise> strengthExercises = exerciseService.GetExercisesByType("Balance");
 
-        Assert.That(strengthExercises[0].Id, Is.GreaterThan(0));
+        Assert.That(strengthExercises[0].ExerciseId, Is.GreaterThan(0));
         Assert.That(strengthExercises[0].Name, Is.EqualTo(balanceExercise.Name));
         Assert.That(strengthExercises[0].Description, Is.EqualTo(balanceExercise.Description));
         Assert.That(strengthExercises[0].Repetitions, Is.EqualTo(balanceExercise.Repetitions));
@@ -92,7 +92,7 @@ public class ExerciseServiceTest
 
         IList<Exercise> strengthExercises = exerciseService.GetExercisesByType("Cardio");
 
-        Assert.That(strengthExercises[0].Id, Is.GreaterThan(0));
+        Assert.That(strengthExercises[0].ExerciseId, Is.GreaterThan(0));
         Assert.That(strengthExercises[0].Name, Is.EqualTo(cardioExercise.Name));
         Assert.That(strengthExercises[0].Description, Is.EqualTo(cardioExercise.Description));
         Assert.That(strengthExercises[0].Repetitions, Is.EqualTo(cardioExercise.Repetitions));

@@ -5,7 +5,7 @@
 namespace FlexusWorkout.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,7 +14,7 @@ namespace FlexusWorkout.Migrations
                 name: "Exercise",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    ExerciseId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Type = table.Column<string>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
@@ -29,7 +29,7 @@ namespace FlexusWorkout.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Exercise", x => x.Id);
+                    table.PrimaryKey("PK_Exercise", x => x.ExerciseId);
                 });
 
             migrationBuilder.CreateTable(

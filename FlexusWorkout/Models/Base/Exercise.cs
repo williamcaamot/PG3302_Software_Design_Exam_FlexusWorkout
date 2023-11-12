@@ -7,7 +7,7 @@ namespace FlexusWorkout.Models.Base;
 public abstract class Exercise
 {
     //Common properties for all the exercise types (Strength, Balance, Cardio)
-    public int? Id { get; set; } //PK
+    public int? ExerciseId { get; set; } //PK
     public string Type { get; set; }
     public string? Name { get; set; }
     public string? Description { get; set; }

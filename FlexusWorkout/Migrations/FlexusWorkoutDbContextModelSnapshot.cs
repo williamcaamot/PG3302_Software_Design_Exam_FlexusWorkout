@@ -15,49 +15,47 @@ namespace FlexusWorkout.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.13")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
 
-            modelBuilder.Entity("FlexusWorkout.Model.Base.Exercise", b =>
+            modelBuilder.Entity("FlexusWorkout.Models.Base.Exercise", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int?>("ExerciseId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("DurationInMinutes")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("EquipmentRequired")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("IntensityLevel")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Location")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("Repetitions")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("Sets")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("ExerciseId");
 
                     b.ToTable("Exercise");
 
@@ -66,46 +64,46 @@ namespace FlexusWorkout.Migrations
                     b.UseTphMappingStrategy();
                 });
 
-            modelBuilder.Entity("FlexusWorkout.Model.Concrete.User", b =>
+            modelBuilder.Entity("FlexusWorkout.Models.Concrete.User", b =>
                 {
                     b.Property<int?>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Email")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("UserId");
 
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("FlexusWorkout.Model.Concrete.BalanceExercise", b =>
+            modelBuilder.Entity("FlexusWorkout.Models.Concrete.BalanceExercise", b =>
                 {
-                    b.HasBaseType("FlexusWorkout.Model.Base.Exercise");
+                    b.HasBaseType("FlexusWorkout.Models.Base.Exercise");
 
                     b.HasDiscriminator().HasValue("Balance");
                 });
 
-            modelBuilder.Entity("FlexusWorkout.Model.Concrete.CardioExercise", b =>
+            modelBuilder.Entity("FlexusWorkout.Models.Concrete.CardioExercise", b =>
                 {
-                    b.HasBaseType("FlexusWorkout.Model.Base.Exercise");
+                    b.HasBaseType("FlexusWorkout.Models.Base.Exercise");
 
                     b.HasDiscriminator().HasValue("Cardio");
                 });
 
-            modelBuilder.Entity("FlexusWorkout.Model.Concrete.StrengthExercise", b =>
+            modelBuilder.Entity("FlexusWorkout.Models.Concrete.StrengthExercise", b =>
                 {
-                    b.HasBaseType("FlexusWorkout.Model.Base.Exercise");
+                    b.HasBaseType("FlexusWorkout.Models.Base.Exercise");
 
                     b.HasDiscriminator().HasValue("Strength");
                 });

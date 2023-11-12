@@ -5,7 +5,7 @@ namespace FlexusWorkout.Models.Concrete;
 
 public class Workout
 {
-    public int? Id { get; set; }
+    public int? workoutId { get; set; }
     public string name { get; set; }
     public string description { get; set; }
     public IList<Exercise> Exercises { get; set; }

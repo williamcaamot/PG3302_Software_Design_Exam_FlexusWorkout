@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlexusWorkout.Migrations
 {
     [DbContext(typeof(FlexusWorkoutDbContext))]
-    [Migration("20231107120141_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231112142127_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,9 +20,9 @@ namespace FlexusWorkout.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
 
-            modelBuilder.Entity("FlexusWorkout.Model.Base.Exercise", b =>
+            modelBuilder.Entity("FlexusWorkout.Models.Base.Exercise", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int?>("ExerciseId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -58,7 +58,7 @@ namespace FlexusWorkout.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("ExerciseId");
 
                     b.ToTable("Exercise");
 
@@ -67,7 +67,7 @@ namespace FlexusWorkout.Migrations
                     b.UseTphMappingStrategy();
                 });
 
-            modelBuilder.Entity("FlexusWorkout.Model.Concrete.User", b =>
+            modelBuilder.Entity("FlexusWorkout.Models.Concrete.User", b =>
                 {
                     b.Property<int?>("UserId")
                         .ValueGeneratedOnAdd()
@@ -90,23 +90,23 @@ namespace FlexusWorkout.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("FlexusWorkout.Model.Concrete.BalanceExercise", b =>
+            modelBuilder.Entity("FlexusWorkout.Models.Concrete.BalanceExercise", b =>
                 {
-                    b.HasBaseType("FlexusWorkout.Model.Base.Exercise");
+                    b.HasBaseType("FlexusWorkout.Models.Base.Exercise");
 
                     b.HasDiscriminator().HasValue("Balance");
                 });
 
-            modelBuilder.Entity("FlexusWorkout.Model.Concrete.CardioExercise", b =>
+            modelBuilder.Entity("FlexusWorkout.Models.Concrete.CardioExercise", b =>
                 {
-                    b.HasBaseType("FlexusWorkout.Model.Base.Exercise");
+                    b.HasBaseType("FlexusWorkout.Models.Base.Exercise");
 
                     b.HasDiscriminator().HasValue("Cardio");
                 });
 
-            modelBuilder.Entity("FlexusWorkout.Model.Concrete.StrengthExercise", b =>
+            modelBuilder.Entity("FlexusWorkout.Models.Concrete.StrengthExercise", b =>
                 {
-                    b.HasBaseType("FlexusWorkout.Model.Base.Exercise");
+                    b.HasBaseType("FlexusWorkout.Models.Base.Exercise");
 
                     b.HasDiscriminator().HasValue("Strength");
                 });
