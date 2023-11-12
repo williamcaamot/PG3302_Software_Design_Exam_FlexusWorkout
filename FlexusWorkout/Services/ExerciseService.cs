@@ -1,5 +1,5 @@
 using FlexusWorkout.Services.Repository;
-using FlexusWorkout.Model.Base;
+using FlexusWorkout.Models.Base;
 using FlexusWorkout.Services.Base;
 using Microsoft.EntityFrameworkCore;
 

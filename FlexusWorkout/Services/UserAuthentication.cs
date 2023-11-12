@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
-using FlexusWorkout.Model.Concrete;
+using FlexusWorkout.Models.Concrete;
 
 namespace FlexusWorkout.Services;
 

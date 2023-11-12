@@ -1,5 +1,5 @@
-using FlexusWorkout.Model.Base;
-using FlexusWorkout.Model.Concrete;
+using FlexusWorkout.Models.Base;
+using FlexusWorkout.Models.Concrete;
 using Google.Protobuf;
 using Microsoft.EntityFrameworkCore;
 

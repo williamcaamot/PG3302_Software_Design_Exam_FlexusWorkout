@@ -1,7 +1,7 @@
 using System.Net.Http.Headers;
 using FlexusWorkout;
-using FlexusWorkout.Model.Base;
-using FlexusWorkout.Model.Concrete;
+using FlexusWorkout.Models.Base;
+using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
 
 namespace FlexusWorkoutTests;

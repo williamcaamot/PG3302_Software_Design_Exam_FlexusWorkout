@@ -1,4 +1,4 @@
-using FlexusWorkout.Model.Concrete;
+using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
 
 namespace FlexusWorkoutTests;

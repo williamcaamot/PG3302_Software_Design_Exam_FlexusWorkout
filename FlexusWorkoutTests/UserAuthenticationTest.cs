@@ -1,5 +1,5 @@
 using FlexusWorkout.Services;
-using FlexusWorkout.Model.Concrete;
+using FlexusWorkout.Models.Concrete;
 
 namespace FlexusWorkoutTests;
 public class UserAuthenticationTest

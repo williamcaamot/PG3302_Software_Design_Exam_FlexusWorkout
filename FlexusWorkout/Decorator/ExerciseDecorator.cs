@@ -1,4 +1,4 @@
-using FlexusWorkout.Model.Base;
+using FlexusWorkout.Models.Base;
 
 namespace FlexusWorkout.Decorator;
 
