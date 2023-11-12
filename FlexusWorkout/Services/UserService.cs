@@ -66,6 +66,7 @@ public class UserService : Service
             throw new Exception("Email already exists");
         }
         var newUser = Add(user);
+        newUser.Authenticated = true;
         return newUser;
     }
     

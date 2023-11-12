@@ -1,4 +1,8 @@
+using FlexusWorkout.Model.Concrete;
+using FlexusWorkout.Services;
 using FlexusWorkout.Services.Base;
+using FlexusWorkout.View.Menu;
+using ZstdSharp.Unsafe;
 
 namespace FlexusWorkout.Presenter;
 using Base;
@@ -62,7 +66,7 @@ public class SignupPresenter : Presenter
                 {
                     if (_password == input)
                     {
-                        MainHandler("ok");
+                        MainHandler("ok"); //TODO Should this password checking logic be here or should it be moved to the register user method? 
                     }
                     else
                     {
@@ -79,7 +83,23 @@ public class SignupPresenter : Presenter
         switch (input)
         {
             case "ok":
-                // TODO add sign up code here.
+                UserService service = new();
+                User user = new User(_firstName, _lastName, _email, _password);
+                try
+                {
+                    user = service.registerUser(user);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Thread.Sleep(2000);
+                }
+
+                if (user.Authenticated)
+                {
+                    MainMenu mainMenu = new();
+                    MainMenuPresenter mainMenuPresenter = new(mainMenu);   
+                }
                 break;
             case "error":
                 Console.Clear();
