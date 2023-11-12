@@ -7,8 +7,10 @@ namespace FlexusWorkout.Presenters.ExerciseFinder;
 
 public class ExerciseFinderPresenter : Base.Presenter
 {
-    public ExerciseFinderPresenter(View view, Service? service = default) : base(view, service)
+    private readonly ExerciseService _exerciseService;
+    public ExerciseFinderPresenter(View view, ExerciseService service) : base(view, service)
     {
+        _exerciseService = service;
         // Run the View loop
         view.Run();
     }
@@ -46,8 +48,7 @@ public class ExerciseFinderPresenter : Base.Presenter
 
     public IList<string> GetCategories()
     {
-        ExerciseService exerciseService = new();
-        var categories = exerciseService.getExerciseTypes();
+        var categories = _exerciseService.getExerciseTypes();
         return categories;
     }
 }

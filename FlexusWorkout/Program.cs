@@ -1,8 +1,4 @@
-﻿using FlexusWorkout.Models.Base;
-using FlexusWorkout.Presenters;
-using FlexusWorkout.Presenters.ExerciseFinder;
-using FlexusWorkout.Services;
-using FlexusWorkout.Views.ExerciseFinder;
+﻿using FlexusWorkout.Presenters;
 using FlexusWorkout.Views.Menu;
 
 namespace FlexusWorkout
