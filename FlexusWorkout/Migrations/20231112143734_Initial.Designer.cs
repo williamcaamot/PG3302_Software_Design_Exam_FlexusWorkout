@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlexusWorkout.Migrations
 {
     [DbContext(typeof(FlexusWorkoutDbContext))]
-    [Migration("20231112142127_Initial")]
+    [Migration("20231112143734_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -58,7 +58,12 @@ namespace FlexusWorkout.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("workoutId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("ExerciseId");
+
+                    b.HasIndex("workoutId");
 
                     b.ToTable("Exercise");
 
@@ -90,6 +95,33 @@ namespace FlexusWorkout.Migrations
                     b.ToTable("User");
                 });
 
+            modelBuilder.Entity("FlexusWorkout.Models.Concrete.Workout", b =>
+                {
+                    b.Property<int?>("workoutId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("location")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("type")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("workoutId");
+
+                    b.ToTable("Workout");
+                });
+
             modelBuilder.Entity("FlexusWorkout.Models.Concrete.BalanceExercise", b =>
                 {
                     b.HasBaseType("FlexusWorkout.Models.Base.Exercise");
@@ -109,6 +141,18 @@ namespace FlexusWorkout.Migrations
                     b.HasBaseType("FlexusWorkout.Models.Base.Exercise");
 
                     b.HasDiscriminator().HasValue("Strength");
+                });
+
+            modelBuilder.Entity("FlexusWorkout.Models.Base.Exercise", b =>
+                {
+                    b.HasOne("FlexusWorkout.Models.Concrete.Workout", null)
+                        .WithMany("Exercises")
+                        .HasForeignKey("workoutId");
+                });
+
+            modelBuilder.Entity("FlexusWorkout.Models.Concrete.Workout", b =>
+                {
+                    b.Navigation("Exercises");
                 });
 #pragma warning restore 612, 618
         }

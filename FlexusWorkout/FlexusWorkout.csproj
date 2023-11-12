@@ -30,9 +30,6 @@
 
     <ItemGroup>
       <None Remove="Presenter\WorkoutPlanner\**" />
-      <None Update="Resources\Flexus.db">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
     </ItemGroup>
 
     <ItemGroup>
