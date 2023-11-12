@@ -29,6 +29,11 @@ public class ExerciseService : Service
             .Where(e => EF.Property<string>(e, "Type") == type)
             .ToList();
     }
+
+    public Exercise GetExercise(int id)
+    {
+        return _db.Exercise.FirstOrDefault(e => e.Id == id);
+    }
     
     public Exercise AddExercise(Exercise exercise)
     {

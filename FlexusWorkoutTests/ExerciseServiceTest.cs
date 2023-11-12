@@ -118,5 +118,21 @@ public class ExerciseServiceTest
         Assert.That(exercises[2], Is.AnyOf("Cardio","Balance","Strength"));
     }
 
+    [Test]
+    public void GetExerciseById_ShouldReturnExercise()
+    {
+        ExerciseService exerciseService = new();
+        DatabaseFiller databaseFiller = new();
+        databaseFiller.FillExercises();
+        
+        
+        Exercise exercise = Service.GetExercise(1);
+        
+        Assert.That(exercise.Description, Is.EqualTo("A pose that replicates the steady stance of a tree."));
+        
+        
+        
+    }
+
     
 }
