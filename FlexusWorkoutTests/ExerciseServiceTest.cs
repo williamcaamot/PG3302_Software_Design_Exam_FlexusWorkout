@@ -111,11 +111,11 @@ public class ExerciseServiceTest
         databaseFiller.FillExercises();
         
         
-        IList<String> exercises = exerciseService.getExerciseTypes();
-        Console.WriteLine(exercises);
-        Assert.That(exercises[0], Is.AnyOf("Cardio","Balance","Strength"));
-        Assert.That(exercises[1], Is.AnyOf("Cardio","Balance","Strength"));
-        Assert.That(exercises[2], Is.AnyOf("Cardio","Balance","Strength"));
+        IList<ExerciseType> exercisesTypes = exerciseService.getExerciseTypes();
+        Console.WriteLine(exercisesTypes);
+        Assert.That(exercisesTypes[0].Name, Is.AnyOf("Cardio","Balance","Strength"));
+        Assert.That(exercisesTypes[1].Name, Is.AnyOf("Cardio","Balance","Strength"));
+        Assert.That(exercisesTypes[2].Name, Is.AnyOf("Cardio","Balance","Strength"));
     }
 
     [Test]
