@@ -17,3 +17,4 @@ Todo (w)
 - [ ] - Fix tests with DB teardown or use another context (this requires some advanced dependency injection, which should be implemented)
 - [ ] - Can throw custom exception when something goes wrong
 - [ ] - Move password checking logic from signup presenter to register method in user service
+- [ ] - Change the login and register methods to take in strings rather than user objects

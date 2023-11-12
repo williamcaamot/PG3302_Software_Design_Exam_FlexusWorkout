@@ -22,12 +22,23 @@ public class UserService : Service
 
 
     
-    public User loginUser(string email, string password)
+    public User loginUser(string email, string password) //TODO use this instead of authentication method
     {
         UserAuthentication userAuthentication = new();
         User user = new User(email, password);
         User authedUser = userAuthentication.Authenticate(user);
         return authedUser;
+    }
+    
+    public User GetUserByEmail(User user)
+    {
+        var FoundUser = _db.User.FirstOrDefault(u => u.Email == user.Email);
+        return FoundUser ?? new User();
+    }
+    public User GetUserByEmail(String email)
+    {
+        var FoundUser = _db.User.FirstOrDefault(u => u.Email == email);
+        return FoundUser ?? new User();
     }
     
     private User Add(User user)
@@ -42,13 +53,6 @@ public class UserService : Service
         _db.SaveChanges();
         return addeduser.Entity;
     }
-
-    public User GetUserByEmail(User user)
-    {
-        var FoundUser = _db.User.FirstOrDefault(u => u.Email == user.Email);
-        return FoundUser ?? new User();
-    }
-
     public User registerUser(User user)
     {
         try //Verify that the email is in fact an email
