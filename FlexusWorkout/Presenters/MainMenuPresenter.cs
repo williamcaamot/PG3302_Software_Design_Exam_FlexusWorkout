@@ -1,16 +1,4 @@
-<<<<<<< Updated upstream:FlexusWorkout/Presenter/MainMenuPresenter.cs
 using FlexusWorkout.Models.Concrete;
-
-namespace FlexusWorkout.Presenters;
-using View.Menu;
-using Base;
-
-public class MainMenuPresenter : MenuPresenter
-{
-
-    private User _user;
-    public MainMenuPresenter(View.Base.View view, User user) : base(view)
-=======
 using FlexusWorkout.Presenters.Base;
 using FlexusWorkout.Presenters.ExerciseFinder;
 using FlexusWorkout.Services;
@@ -21,8 +9,8 @@ namespace FlexusWorkout.Presenters;
 
 public class MainMenuPresenter : MenuPresenter
 {
-    public MainMenuPresenter(View view) : base(view)
->>>>>>> Stashed changes:FlexusWorkout/Presenters/MainMenuPresenter.cs
+    private User _user;
+    public MainMenuPresenter(View view, User user) : base(view)
     {
         _user = user;
     }
