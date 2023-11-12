@@ -19,7 +19,7 @@ public class UserAuthenticationTest
         UserAuthentication userAuthentication = new();
         
         // Act
-        Service.Add(user);
+        Service.registerUser(user);
         var AuthenticatedUser = userAuthentication.Authenticate(CheckUser);
         
         // Assert
@@ -62,7 +62,7 @@ public class UserAuthenticationTest
         string errormessage = null;
         
         //Act
-        Service.Add(user);
+        Service.registerUser(user);
         try
         {
             userAuthentication.Authenticate(CheckUser);

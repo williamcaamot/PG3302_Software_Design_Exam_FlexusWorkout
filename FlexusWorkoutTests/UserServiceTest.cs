@@ -18,7 +18,7 @@ public class UserServiceTest
         User user = new User("test","user","test1@gmail.com","password");
         
         // Act
-        User addedUser = Service.Add(user);
+        User addedUser = Service.registerUser(user);
         
         // Assert
         Assert.That(user.FirstName, Is.EqualTo(addedUser.FirstName));

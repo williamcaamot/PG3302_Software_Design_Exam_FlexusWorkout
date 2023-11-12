@@ -29,7 +29,7 @@ namespace FlexusWorkout;
                 };
 
                 // Add the new user to the database
-                _userService.Add(newUser);
+                _userService.registerUser(newUser);
             }
         }
         

@@ -30,7 +30,7 @@ public class UserService : Service
         return authedUser;
     }
     
-    public User Add(User user)
+    private User Add(User user)
     {
         using (SHA256 sha256 = SHA256.Create())
         {
