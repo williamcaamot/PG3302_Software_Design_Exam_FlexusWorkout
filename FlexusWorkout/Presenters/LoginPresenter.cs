@@ -1,6 +1,7 @@
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
 using FlexusWorkout.Services.Base;
+using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Views.Base;
 using FlexusWorkout.Views.Menu;
 
@@ -10,8 +11,10 @@ public class LoginPresenter : Base.Presenter
 {
     private string? _email;
     private string? _password;
+    private FlexusWorkoutDbContext _flexusWorkoutDbContext;
     public LoginPresenter(View view, Service service) : base(view, service)
     {
+        _flexusWorkoutDbContext = new();
         // Run the View loop
         view.Run();   
     }
@@ -47,7 +50,7 @@ public class LoginPresenter : Base.Presenter
         {
             case "ok":
                 User loginUser = new();
-                UserService userService = new();
+                UserService userService = new(_flexusWorkoutDbContext);
 
                 loginUser.Email = _email;
                 loginUser.Password = _password;

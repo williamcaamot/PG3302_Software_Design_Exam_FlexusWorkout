@@ -2,6 +2,7 @@ using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Presenters.Base;
 using FlexusWorkout.Presenters.ExerciseFinder;
 using FlexusWorkout.Services;
+using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Views.Base;
 using FlexusWorkout.Views.ExerciseFinder;
 
@@ -10,8 +11,10 @@ namespace FlexusWorkout.Presenters;
 public class MainMenuPresenter : MenuPresenter
 {
     private User _user;
+    private FlexusWorkoutDbContext _flexusWorkoutDbContext;
     public MainMenuPresenter(View view, User user) : base(view)
     {
+        _flexusWorkoutDbContext = new();
         _user = user;
         // Run the View loop
         view.Run();
@@ -47,7 +50,7 @@ public class MainMenuPresenter : MenuPresenter
                 // TODO add redirect to WorkoutMenu here
                 //WorkoutMenuPresenter workoutMenuPresenter = new();
             case "3":
-                ExerciseService exerciseService = new();
+                ExerciseService exerciseService = new(_flexusWorkoutDbContext);
                 ExerciseFinderMenu exerciseFinderMenu = new();
                 ExerciseFinderPresenter exerciseFinderPresenter = new(exerciseFinderMenu, exerciseService);
                 break;

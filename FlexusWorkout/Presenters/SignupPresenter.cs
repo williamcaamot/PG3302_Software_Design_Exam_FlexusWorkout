@@ -1,6 +1,7 @@
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
 using FlexusWorkout.Services.Base;
+using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Views.Base;
 using FlexusWorkout.Views.Menu;
 using ZstdSharp.Unsafe;
@@ -14,9 +15,11 @@ public class SignupPresenter : Presenter
     private string? _lastName;
     private string? _email;
     private string? _password;
+    private FlexusWorkoutDbContext _flexusWorkoutDbContext;
     
     public SignupPresenter(View view, Service service) : base(view, service)
     {
+        _flexusWorkoutDbContext = new();
         // Run the View loop
         view.Run();
     }
@@ -86,7 +89,7 @@ public class SignupPresenter : Presenter
         switch (input)
         {
             case "ok":
-                UserService service = new();
+                UserService service = new(_flexusWorkoutDbContext);
                 User user = new User(_firstName, _lastName, _email, _password);
                 try
                 {

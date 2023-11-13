@@ -1,5 +1,6 @@
 using FlexusWorkout.Presenters.Base;
 using FlexusWorkout.Services;
+using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Views.Base;
 using FlexusWorkout.Views.Menu;
 
@@ -7,8 +8,10 @@ namespace FlexusWorkout.Presenters;
 
 public class InitialMenuPresenter : MenuPresenter
 {
+    private FlexusWorkoutDbContext _flexusWorkoutDbContext;
     public InitialMenuPresenter(View view) : base(view)
     {
+        _flexusWorkoutDbContext = new();
         // Run the View loop
         view.Run();
     }
@@ -39,13 +42,13 @@ public class InitialMenuPresenter : MenuPresenter
             case "1":
                 // send user to login view
                 LoginView loginView = new();
-                UserService userService = new();
+                UserService userService = new(_flexusWorkoutDbContext);
                 LoginPresenter loginPresenter = new(loginView, userService);
                 break;
             case "2":
                 // send user to signup view
                 SignupView signupView = new();
-                UserService userService2 = new();
+                UserService userService2 = new(_flexusWorkoutDbContext);
                 SignupPresenter signupPresenter = new(signupView, userService2);
                 break;
             case "3":
