@@ -17,19 +17,22 @@ public class UserService : Service
     {
         _db = new();
     }
-    //TODO move this and use dependency injection from a wrapper class or something similar? The DBCOntext should be initialized elsewhere
-    //to make sure we don't have connections here
-
-
-    
-    public User loginUser(string email, string password) //TODO use this instead of authentication method
+    private User Add(User user)
     {
-        UserAuthentication userAuthentication = new();
-        User user = new User(email, password);
-        User authedUser = Authenticate(user);
-        return authedUser;
+        user.Password = hashPassword(user.Password);
+        var addeduser =_db.User.Add(user);
+        _db.SaveChanges();
+        return addeduser.Entity;
+    }
+    public User update(User user)
+    {
+        return new User();
     }
     
+    public void delete(int id)
+    {
+        
+    }
     public User GetUserByEmail(User user)
     {
         var FoundUser = _db.User.FirstOrDefault(u => u.Email == user.Email);
@@ -40,18 +43,11 @@ public class UserService : Service
         var FoundUser = _db.User.FirstOrDefault(u => u.Email == email);
         return FoundUser ?? new User();
     }
-    
-    private User Add(User user)
+    public User loginUser(string email, string password) //TODO use this instead of authentication method
     {
-        using (SHA256 sha256 = SHA256.Create())
-        {
-            byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(user.Password));
-            String hashPassword = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
-            user.Password = hashPassword;
-        }
-        var addeduser =_db.User.Add(user);
-        _db.SaveChanges();
-        return addeduser.Entity;
+        User user = new User(email, password);
+        User authedUser = Authenticate(user);
+        return authedUser;
     }
     public User registerUser(User user)
     {
@@ -73,41 +69,29 @@ public class UserService : Service
         newUser.Authenticated = true;
         return newUser;
     }
-    
-    
-    
-    public User update(User user)
-    {
-        return new User();
-    }
-    
-    public void delete(int id)
-    {
-        
-    }
-    
     public User Authenticate(User user) // TAKES A USER IN - AND RETURNS THE AUTHENTICATED USER IF IT IS SUCCESSFUL!
     {
-
-        
         var foundUser = GetUserByEmail(user);
         if (foundUser.Email == null)
         {
             throw new Exception("Could not find user");
         }
-        string hashcheck;
-        using (SHA256 sha256 = SHA256.Create()) //TODO create a method on this that can be used multiple places
-        {                                       // Can also be an extension method on class string, is this something we did in the project?
-            byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(user.Password));
-            hashcheck = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
-        }
-        
+        string hashcheck = hashPassword(user.Password);
         if (hashcheck != foundUser.Password)
         {
             throw new Exception("Input had wrong password");
         }
         foundUser.Authenticated = true;
         return foundUser;
+    }
+
+    private string hashPassword(string password)
+    {
+        using (SHA256 sha256 = SHA256.Create())
+        {                              
+            byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+            return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+        }
     }
     
 }
