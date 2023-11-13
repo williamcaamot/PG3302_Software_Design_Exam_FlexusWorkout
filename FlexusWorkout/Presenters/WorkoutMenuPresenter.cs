@@ -16,7 +16,16 @@ public class WorkoutMenuPresenter : MenuPresenter
 
     public override void HandleInput(string? key, string? input)
     {
-        throw new NotImplementedException();
+        if (input == null)
+        {
+            MainHandler("error");
+        }
+        switch (key)
+        {
+            case "input":
+                MainHandler(input);
+                break;
+        }
     }
 
     public override void MainHandler(string? input)
@@ -35,8 +44,15 @@ public class WorkoutMenuPresenter : MenuPresenter
             case "3":
                 //TODO add view to delete
                 break;
+            case "error":
+                Console.Clear();
+                Console.WriteLine("There was en error getting your input.");
+                Thread.Sleep(2000);
+                break;
             default:
+                Console.Clear();
                 Console.WriteLine("Invalid option, try again.");
+                Thread.Sleep(2000);
                 break;
         }
     }

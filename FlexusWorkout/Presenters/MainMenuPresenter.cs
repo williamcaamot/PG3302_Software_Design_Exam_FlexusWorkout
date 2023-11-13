@@ -51,9 +51,6 @@ public class MainMenuPresenter : MenuPresenter
                 // TODO add redirect to WorkoutMenu here
                 WorkoutMenu workoutMenu = new();
                 WorkoutMenuPresenter workoutMenuPresenter = new(workoutMenu);
-                
-                
-                
                 break;
             case "3":
                 ExerciseService exerciseService = new(_flexusWorkoutDbContext);
