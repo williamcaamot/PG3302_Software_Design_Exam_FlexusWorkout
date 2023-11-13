@@ -17,13 +17,8 @@ public class ExerciseService : Service
         _db = db;
     }
 
-    public IList<ExerciseType> getExerciseTypes()
+    public IList<ExerciseType> GetExerciseTypes()
     {
-        /*IList<String> exerciseTypes = _db.Exercise
-            .Select(e => e.Type)
-            .Distinct()
-            .ToList();
-        */
         IList<ExerciseType> exerciseTypes = _db.Exercise
             .Select(e => new ExerciseType(EF.Property<string>(e, "Type")))
             .Distinct()

@@ -1,4 +1,5 @@
 using FlexusWorkout.Models.Base;
+using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Presenters.Base;
 using FlexusWorkout.Services;
 using FlexusWorkout.Services.Base;
@@ -9,10 +10,10 @@ namespace FlexusWorkout.Presenters.ExerciseFinder;
 
 public class ExerciseSelectorPresenter : Presenter
 {
-    private readonly string _type;
+    private readonly ExerciseType _type;
     private FlexusWorkoutDbContext _flexusWorkoutDbContext;
 
-    public ExerciseSelectorPresenter(string type, View view, Service? service = default) : base(view, service)
+    public ExerciseSelectorPresenter(ExerciseType type, View view, Service? service = default) : base(view, service)
     {
         _flexusWorkoutDbContext = new();
         _type = type;
@@ -49,6 +50,9 @@ public class ExerciseSelectorPresenter : Presenter
                     View.DisplayText(i + 1 + " - " + exercises[i].Name);
                 }
                 break;
+            case "0":
+                View.Stop();
+                break;
         }
             
     }
@@ -56,7 +60,7 @@ public class ExerciseSelectorPresenter : Presenter
     private IList<Exercise> GetExercises()
     {
         ExerciseService exerciseService = new(_flexusWorkoutDbContext);
-        var exercises = exerciseService.GetExercisesByType(_type);
+        var exercises = exerciseService.GetExercisesByType(_type.Name);
         return exercises;
     }
 }
