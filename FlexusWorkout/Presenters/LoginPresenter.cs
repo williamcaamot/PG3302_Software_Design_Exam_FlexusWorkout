@@ -54,7 +54,7 @@ public class LoginPresenter : Base.Presenter
                 
                 try
                 {
-                    loginUser = userService.Authenticate(loginUser); // Will return the authentiacted user    
+                    loginUser = userService.loginUser(_email, _password); // Will return the authentiacted user    
                 }
                 catch (Exception e)
                 {

@@ -43,6 +43,32 @@ public class UserService : Service
         var FoundUser = _db.User.FirstOrDefault(u => u.Email == email);
         return FoundUser ?? new User();
     }
+    
+    private User Authenticate(User user) // TAKES A USER IN - AND RETURNS THE AUTHENTICATED USER IF IT IS SUCCESSFUL!
+    {
+        var foundUser = GetUserByEmail(user);
+        if (foundUser.Email == null)
+        {
+            throw new Exception("Could not find user");
+        }
+        string hashcheck = hashPassword(user.Password);
+        if (hashcheck != foundUser.Password)
+        {
+            throw new Exception("Input had wrong password");
+        }
+        foundUser.Authenticated = true;
+        return foundUser;
+    }
+
+    private string hashPassword(string password)
+    {
+        using (SHA256 sha256 = SHA256.Create())
+        {
+            byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+            return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+        }
+    }
+
     public User loginUser(string email, string password) //TODO use this instead of authentication method
     {
         User user = new User(email, password);
@@ -68,30 +94,6 @@ public class UserService : Service
         var newUser = Add(user);
         newUser.Authenticated = true;
         return newUser;
-    }
-    public User Authenticate(User user) // TAKES A USER IN - AND RETURNS THE AUTHENTICATED USER IF IT IS SUCCESSFUL!
-    {
-        var foundUser = GetUserByEmail(user);
-        if (foundUser.Email == null)
-        {
-            throw new Exception("Could not find user");
-        }
-        string hashcheck = hashPassword(user.Password);
-        if (hashcheck != foundUser.Password)
-        {
-            throw new Exception("Input had wrong password");
-        }
-        foundUser.Authenticated = true;
-        return foundUser;
-    }
-
-    private string hashPassword(string password)
-    {
-        using (SHA256 sha256 = SHA256.Create())
-        {                              
-            byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-            return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
-        }
     }
     
 }
