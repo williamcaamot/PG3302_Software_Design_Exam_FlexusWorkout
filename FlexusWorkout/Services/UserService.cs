@@ -40,7 +40,7 @@ public class UserService : Service
     public User getUserById(int id)
     {
         var FoundUser = _db.User.FirstOrDefault(u => u.UserId == id);
-        return FoundUser ?? new User();
+        return FoundUser ?? null;
     }
     
     public User GetUserByEmail(String email)

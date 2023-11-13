@@ -28,6 +28,11 @@ public class FlexusWorkoutDbContext : DbContext, FlexusDbContext
             .HasValue<StrengthExercise>("Strength")
             .HasValue<BalanceExercise>("Balance")
             .HasValue<CardioExercise>("Cardio");
+        
+        modelBuilder.Entity<Workout>() //Should create a join table
+            .HasMany(e => e.Exercises)
+            .WithMany();
+        
     }
     public new int SaveChanges()
     {

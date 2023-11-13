@@ -45,8 +45,7 @@ namespace FlexusWorkout;
         
         public void FillExercises()
         {
-            if (_exerciseService.GetExercise(1)
-                == null)
+            if (_exerciseService.GetExercise(1) == null)
             {
                 var balanceExercises = new List<Exercise>
                 {
