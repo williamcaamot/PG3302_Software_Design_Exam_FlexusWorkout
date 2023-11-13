@@ -13,7 +13,6 @@ public class WeeklyWorkoutPlanner
     {
         Exercises = new List<Exercise>();
     }
-
     public WeeklyWorkoutPlanner(string day, List<Exercise> exercises)
     {
         unknownDay = Enum.Parse<DayOfWeek>(day);
