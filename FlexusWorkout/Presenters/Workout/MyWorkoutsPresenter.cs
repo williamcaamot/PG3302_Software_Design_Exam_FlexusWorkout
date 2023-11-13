@@ -53,11 +53,13 @@ public class MyWorkoutsPresenter : Presenter
     {
         if (input == "getworkouts") // writes menu choices to view
         {
-            var workouts = GetWorkouts();
+            var workouts = _user.Workouts;
             for (int i = 0; i < workouts.Count; i++)
             {
                 View.DisplayText(i + 1 + " - " + workouts[i].Name);
             }
+
+
         } else if (input == "error")
         {
             Console.Clear();

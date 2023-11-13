@@ -5,6 +5,7 @@ using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services.Base;
 using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Models.Base;
+using Microsoft.EntityFrameworkCore;
 
 namespace FlexusWorkout.Services;
 
@@ -34,12 +35,16 @@ public class UserService : Service
     }
     public User GetUserByEmail(User user)
     {
-        var FoundUser = _db.User.FirstOrDefault(u => u.Email == user.Email);
+        var FoundUser = _db.User
+            .Include(u => u.Workouts) //eager loading
+            .FirstOrDefault(u => u.Email == user.Email);
         return FoundUser ?? new User();
     }
     public User getUserById(int id)
     {
-        var FoundUser = _db.User.FirstOrDefault(u => u.UserId == id);
+        var FoundUser = _db.User
+            .Include(u => u.Workouts)
+            .FirstOrDefault(u => u.UserId == id);
         return FoundUser ?? null;
     }
     
