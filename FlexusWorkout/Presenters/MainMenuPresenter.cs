@@ -30,6 +30,9 @@ public class MainMenuPresenter : MenuPresenter
         }
         switch (key)
         {
+            case "greetuser":
+                MainHandler("greetuser");
+                break;
             case "input":
                 MainHandler(input);
                 break;
@@ -40,6 +43,9 @@ public class MainMenuPresenter : MenuPresenter
     {
         switch (input)
         {
+            case "greetuser":
+                View.DisplayText("What would you like to do, " + _user.FirstName + "?");
+                break;
             case "0":
                 // Exit view
                 View.Stop();
@@ -50,7 +56,7 @@ public class MainMenuPresenter : MenuPresenter
             case "2":
                 // TODO add redirect to WorkoutMenu here
                 WorkoutMenu workoutMenu = new();
-                WorkoutMenuPresenter workoutMenuPresenter = new(workoutMenu);
+                WorkoutMenuPresenter workoutMenuPresenter = new(workoutMenu, _user);
                 break;
             case "3":
                 ExerciseService exerciseService = new(_flexusWorkoutDbContext);

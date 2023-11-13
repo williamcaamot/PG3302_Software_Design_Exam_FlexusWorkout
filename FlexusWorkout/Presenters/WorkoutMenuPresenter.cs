@@ -1,15 +1,21 @@
+using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Presenters.Base;
+using FlexusWorkout.Presenters.Workout;
+using FlexusWorkout.Services;
 using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Views.Base;
+using FlexusWorkout.Views.MyWorkouts;
 
 namespace FlexusWorkout.Presenters;
 
 public class WorkoutMenuPresenter : MenuPresenter
 {
+    private User _user;
     private FlexusDbContext _db;
-    public WorkoutMenuPresenter(View view) : base(view)
+    public WorkoutMenuPresenter(View view, User user) : base(view)
     {
         _db = new FlexusWorkoutDbContext();
+        _user = user;
         // Run the View loop
         view.Run();
     }
@@ -36,7 +42,8 @@ public class WorkoutMenuPresenter : MenuPresenter
                 View.Stop();
                 break;
             case "1":
-                // TODO add redirect to MyWorkout View here
+                MyWorkouts myWorkouts = new();
+                MyWorkoutsPresenter myWorkoutsPresenter = new(_user, myWorkouts);
                 break;
             case "2":
                 // TODO add redirect to CreateWorkout View here

@@ -6,7 +6,7 @@ public class MainMenu : Base.View
     protected override void Display()
     {
         Console.Clear();
-        Console.WriteLine("What would you like to do?");
+        OnInputReceived("greetuser", "");
         Console.WriteLine("1 - Access Workout-planner");
         Console.WriteLine("2 - See my workouts");
         Console.WriteLine("3 - Find an exercise");

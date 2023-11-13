@@ -25,7 +25,6 @@
     <ItemGroup>
       <Folder Include="Migrations\" />
       <Folder Include="Resources\" />
-      <Folder Include="Views\" />
     </ItemGroup>
 
     <ItemGroup>

@@ -14,7 +14,5 @@ public class WorkoutMenu : Base.View
         Console.Write("\r\nSelect an option: ");
         var input = Console.ReadLine();
         OnInputReceived("input", input);
-
-        //return Presenter.InputHandler(Console.ReadLine());
     }
 }
