@@ -1,6 +1,7 @@
 using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
+using FlexusWorkout.Services.Repository;
 
 namespace FlexusWorkout;
 
@@ -11,8 +12,9 @@ namespace FlexusWorkout;
 
         public DatabaseFiller()
         {
-            _userService = new UserService();
-            _exerciseService = new ExerciseService();
+            FlexusWorkoutDbContext flexusWorkoutDbContext = new();
+            _userService = new UserService(flexusWorkoutDbContext);
+            _exerciseService = new ExerciseService(flexusWorkoutDbContext);
         }
 
         public void FillUsers()

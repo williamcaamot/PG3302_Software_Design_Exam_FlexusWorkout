@@ -9,8 +9,13 @@ namespace FlexusWorkout.Services;
 
 public class ExerciseService : Service
 {
-    private readonly FlexusWorkoutDbContext _db = new();
+    private readonly FlexusDbContext _db;
     //TODO NEED TO EDIT THIS TO USE DEPENDENCY INJECTION
+
+    public ExerciseService(FlexusDbContext db)
+    {
+        _db = db;
+    }
 
     public IList<ExerciseType> getExerciseTypes()
     {

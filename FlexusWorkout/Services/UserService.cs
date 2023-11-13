@@ -10,12 +10,10 @@ namespace FlexusWorkout.Services;
 
 public class UserService : Service
 {
-    private readonly FlexusWorkoutDbContext _db;
-
-    public UserService() //TODO NEED TO EDIT THIS TO USE DEPENDENCY INJECTION
-    
+    private readonly FlexusDbContext _db;
+    public UserService(FlexusDbContext db) //TODO NEED TO EDIT THIS TO USE DEPENDENCY INJECTION
     {
-        _db = new();
+        _db = db;
     }
     private User Add(User user)
     {
