@@ -1,5 +1,8 @@
 ﻿using FlexusWorkout.Presenters;
+using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Views.Menu;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FlexusWorkout
 {

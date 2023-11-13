@@ -18,3 +18,4 @@ Todo (w)
 - [ ] - Can throw custom exception when something goes wrong
 - [ ] - Move password checking logic from signup presenter to register method in user service
 - [ ] - Change the login and register methods to take in strings rather than user objects
+- [ ] - Some sort of check for when creating workouts that it is in fact associated with a user before inserting it

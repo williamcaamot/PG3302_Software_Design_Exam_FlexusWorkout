@@ -81,5 +81,11 @@ public class WorkoutTest
         workout = _workoutService.addExercise(workout, exercise);
 
         Console.WriteLine(workout.WorkoutId);
+        
+        User user = _userService.GetUserByEmail("test6@example.com");
+        foreach (var workoutX in user.Workouts)
+        {
+            Console.WriteLine(workoutX.Name);
+        }
     }
 }
