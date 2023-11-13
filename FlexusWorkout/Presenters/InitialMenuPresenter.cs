@@ -64,6 +64,5 @@ public class InitialMenuPresenter : MenuPresenter
                 Thread.Sleep(2000);
                 break;
         }
-
     }
 }

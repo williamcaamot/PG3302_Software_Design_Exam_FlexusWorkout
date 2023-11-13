@@ -29,9 +29,10 @@ public class UserService : Service
         return new User();
     }
     
-    public void delete(int id)
+    public void delete(User user)
     {
-        
+        _db.User.Remove(user);
+        _db.SaveChanges();
     }
     public User GetUserByEmail(User user)
     {
@@ -95,5 +96,4 @@ public class UserService : Service
         newUser.Authenticated = true;
         return newUser;
     }
-    
 }

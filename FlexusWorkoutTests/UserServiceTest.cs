@@ -12,10 +12,11 @@ public class UserServiceTest
     }
     
     [Test]
-    public void AddUser_ShouldReturnUserWithValidID()
+    public void RegisterUser_ShouldReturnUserWithValidID()
     {
         // Arange
         User user = new User("test","user","test1@gmail.com","password");
+        
         
         // Act
         User addedUser = Service.registerUser(user);
@@ -25,22 +26,11 @@ public class UserServiceTest
         Assert.That(user.LastName, Is.EqualTo(addedUser.LastName));
         Assert.That(user.Email, Is.EqualTo(addedUser.Email));
         Assert.That(addedUser.UserId, Is.GreaterThan(-1));
-    }
-
-
-    [Test]
-    public void RegisterUserCorrectly_ShouldReturnRegisteredUser()
-    {
-        // Arrange
-        User user = new User("test","user","test2@gmail.com","password");
-        User registeredUser;
         
-        //Act
-        registeredUser = Service.registerUser(user);
-        
-        // Assert
-        Assert.That(registeredUser.UserId != null);
+        //Cleanup
+        Service.delete(addedUser);
     }
+    
     
     [Test]
     public void RegisterUserWithWrongEmailFormat_ShouldThrowError()
