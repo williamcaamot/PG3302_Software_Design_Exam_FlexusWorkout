@@ -1,6 +1,6 @@
 using FlexusWorkout.Views.Base;
 
-namespace FlexusWorkout.Views.MyWorkouts;
+namespace FlexusWorkout.Views.Workout;
 
 public class MyWorkouts : View
 {
