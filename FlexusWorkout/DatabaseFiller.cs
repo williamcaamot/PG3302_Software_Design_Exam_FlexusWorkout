@@ -9,12 +9,14 @@ namespace FlexusWorkout;
     {
         private UserService _userService;
         private ExerciseService _exerciseService;
+        private WorkoutService _workoutService;
 
         public DatabaseFiller()
         {
             FlexusWorkoutDbContext flexusWorkoutDbContext = new();
             _userService = new UserService(flexusWorkoutDbContext);
             _exerciseService = new ExerciseService(flexusWorkoutDbContext);
+            _workoutService = new(flexusWorkoutDbContext);
         }
 
         public void FillUsers()
@@ -72,6 +74,29 @@ namespace FlexusWorkout;
                 return;
             }
             
+        }
+
+        public void fillWorkouts()
+        {
+            User user = _userService.getUserById(1);
+            
+            Workout workout = new Workout(
+                "NewWorkout",
+                "This is a cool workout",
+                "Strength",
+                "Gym")
+            {
+                User = user
+            };
+
+            workout = _workoutService.addWorkout(workout);
+            
+            workout.Exercises.Add(_exerciseService.GetExercise(1));
+            workout.Exercises.Add(_exerciseService.GetExercise(2));
+
+            workout = _workoutService.updateWorkout(workout);
+
+
         }
         
         

@@ -1,12 +1,15 @@
 using FlexusWorkout.Presenters.Base;
+using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Views.Base;
 
 namespace FlexusWorkout.Presenters;
 
 public class WorkoutMenuPresenter : MenuPresenter
 {
+    private FlexusDbContext _db;
     public WorkoutMenuPresenter(View view) : base(view)
     {
+        _db = new FlexusWorkoutDbContext();
         // Run the View loop
         view.Run();
     }

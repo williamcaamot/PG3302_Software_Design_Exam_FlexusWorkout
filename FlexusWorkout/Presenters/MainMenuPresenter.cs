@@ -5,6 +5,7 @@ using FlexusWorkout.Services;
 using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Views.Base;
 using FlexusWorkout.Views.ExerciseFinder;
+using FlexusWorkout.Views.Menu;
 
 namespace FlexusWorkout.Presenters;
 
@@ -48,7 +49,12 @@ public class MainMenuPresenter : MenuPresenter
                 break;
             case "2":
                 // TODO add redirect to WorkoutMenu here
-                //WorkoutMenuPresenter workoutMenuPresenter = new();
+                WorkoutMenu workoutMenu = new();
+                WorkoutMenuPresenter workoutMenuPresenter = new(workoutMenu);
+                
+                
+                
+                break;
             case "3":
                 ExerciseService exerciseService = new(_flexusWorkoutDbContext);
                 ExerciseFinderMenu exerciseFinderMenu = new();
