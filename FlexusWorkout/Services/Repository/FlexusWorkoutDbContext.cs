@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FlexusWorkout.Services.Repository;
 
-public class FlexusWorkoutDbContext : DbContext
+public class FlexusWorkoutDbContext : DbContext, FlexusDbContext
 {// One DB context for project to keep things simple
     
     public DbSet<User> User => Set<User>();
