@@ -47,14 +47,14 @@ public class LoginPresenter : Base.Presenter
         {
             case "ok":
                 User loginUser = new();
-                UserAuthentication userAuthentication = new();
+                UserService userService = new();
 
                 loginUser.Email = _email;
                 loginUser.Password = _password;
                 
                 try
                 {
-                    loginUser = userAuthentication.Authenticate(loginUser); // Will return the authentiacted user    
+                    loginUser = userService.Authenticate(loginUser); // Will return the authentiacted user    
                 }
                 catch (Exception e)
                 {
