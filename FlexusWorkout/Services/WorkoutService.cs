@@ -15,9 +15,10 @@ public class WorkoutService : Service
 
     public Workout addExercise(Workout workout, Exercise exercise)
     {
-        var addedWorkout = _db.Workout.Update(workout);
+        workout.Exercises.Add(exercise);
+        var updatedWorkout = _db.Workout.Update(workout);
         _db.SaveChanges();
-        return addedWorkout.Entity;
+        return updatedWorkout.Entity;
     }
 
     public Workout addWorkout(Workout workout)

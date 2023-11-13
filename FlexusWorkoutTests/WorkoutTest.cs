@@ -62,4 +62,24 @@ public class WorkoutTest
         Console.WriteLine(workout.Exercises[0].ExerciseId);
 
     }
+
+    [Test]
+    public void AddExerciseWorkout_ShouldReturnWorkoutWithNewExercise()
+    {
+        User workoutUser = _userService.GetUserByEmail("test6@example.com");
+
+        Workout workout = new Workout("Epic Strength Workout", "This is a really heavy strength workout", "Strength",
+            "Gym")
+        {
+            User = workoutUser
+        };
+
+        Exercise exercise = _exerciseService.GetExercise(1);
+
+        workout = _workoutService.addWorkout(workout);
+
+        workout = _workoutService.addExercise(workout, exercise);
+
+        Console.WriteLine(workout.WorkoutId);
+    }
 }
