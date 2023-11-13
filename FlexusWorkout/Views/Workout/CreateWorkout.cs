@@ -6,6 +6,10 @@ public class CreateWorkout : View
 {
     protected override void Display()
     {
-        throw new NotImplementedException();
+        Console.Clear();
+        Console.WriteLine("Creating new workout...");
+        Console.WriteLine("Enter a name for workout: ");
+        var name = Console.ReadLine();
+        OnInputReceived("name", name);
     }
 }
