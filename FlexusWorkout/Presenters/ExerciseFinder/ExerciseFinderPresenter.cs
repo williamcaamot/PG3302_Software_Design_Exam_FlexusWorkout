@@ -1,3 +1,4 @@
+using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
 using FlexusWorkout.Services.Base;
 using FlexusWorkout.Views.Base;
@@ -40,13 +41,13 @@ public class ExerciseFinderPresenter : Base.Presenter
                 var categories = GetCategories();
                 for (int i = 0; i < categories.Count; i++)
                 {
-                    View.DisplayText(i + 1 + " - " + categories[i]);
+                    View.DisplayText(i + 1 + " - " + categories[i].Name);
                 }
                 break;
         }
     }
 
-    public IList<string> GetCategories()
+    public IList<ExerciseType> GetCategories()
     {
         var categories = _exerciseService.getExerciseTypes();
         return categories;
