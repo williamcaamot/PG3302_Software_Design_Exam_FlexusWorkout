@@ -11,7 +11,7 @@
 
 
 Todo (w)
-- [ ] - Create a seperate hashing method for password (use dependency injection, or string extension method)
+- [Xx ] - Create a seperate hashing method for password (use dependency injection, or string extension method)
 - [ ] - Create a custom userNotFoundException : Exception class for trying to find user by e-mail if not successfull
 - [ ] - Refactor code so password is not sent around, it should not be in user objects other than when authenticating or registering
 - [ ] - Fix tests with DB teardown or use another context (this requires some advanced dependency injection, which should be implemented)
