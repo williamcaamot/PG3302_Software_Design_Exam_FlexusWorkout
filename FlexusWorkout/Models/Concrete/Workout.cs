@@ -22,6 +22,7 @@ public class Workout
         Description = description;
         Type = type;
         Location = location;
+        Exercises = new List<Exercise>();
     }
 
     public Workout()

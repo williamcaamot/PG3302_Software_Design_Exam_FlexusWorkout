@@ -1,5 +1,6 @@
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
+using FlexusWorkout.Services.Repository;
 
 namespace FlexusWorkoutTests;
 public class UserServiceTest
@@ -8,7 +9,7 @@ public class UserServiceTest
     [OneTimeSetUp]
     public void SetUpBeforeEachTest()
     {
-        Service = new UserService();
+        Service = new UserService(new FlexusWorkoutDbContext());
     }
     
     [Test]

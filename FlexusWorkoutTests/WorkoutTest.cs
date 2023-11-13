@@ -25,18 +25,17 @@ public class WorkoutTest
         
         DatabaseFiller databaseFiller = new();
         //databaseFiller.FillUsers();
-        //databaseFiller.FillExercises();
+        databaseFiller.FillExercises();
         
     }
 
     [Test]
     public void exerciseTest()
     {
-
-
+        //Getting user
         User workoutUser = _userService.GetUserByEmail("test6@example.com");
         
-        //Now both user and exercises are added to DB, now create a new workout 
+        //Create new workout with user from database 
         Workout workout = new Workout(
             "NewWorkout",
             "This is a cool workout",
@@ -45,12 +44,22 @@ public class WorkoutTest
         {
             User = workoutUser
         };
-        //workout.User = user;
-
+        Exercise exercise = _exerciseService.GetExercise(1);
+        
+        
+        //Save workout to DB
         workout = _workoutService.addWorkout(workout);
 
-
+        //Write ID of new workout
         Console.WriteLine(workout.WorkoutId);
+
         
+        workout.Exercises.Add(exercise);
+        _workoutService.updateWorkout(workout);
+        
+
+
+        Console.WriteLine(workout.Exercises[0].ExerciseId);
+
     }
 }

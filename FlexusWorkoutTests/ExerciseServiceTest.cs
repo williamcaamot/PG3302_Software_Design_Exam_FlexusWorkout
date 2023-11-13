@@ -3,16 +3,20 @@ using FlexusWorkout;
 using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
+using FlexusWorkout.Services.Repository;
 
 namespace FlexusWorkoutTests;
 
 public class ExerciseServiceTest
 {
     private ExerciseService Service;
+    private FlexusWorkoutDbContext _flexusWorkoutDbContext;
     [OneTimeSetUp]
     public void SetUpBeforeEachTest()
     {
-        Service = new ExerciseService();
+        Service = new ExerciseService(new FlexusWorkoutDbContext());
+        _flexusWorkoutDbContext = new();
+
     }
     [Test]
     public void AddExerciseOfTypeStrength_ShouldReturnSameExercise()
@@ -28,7 +32,7 @@ public class ExerciseServiceTest
             "Gym"
         );
 
-        ExerciseService exerciseService = new();
+        ExerciseService exerciseService = new(_flexusWorkoutDbContext);
         exerciseService.AddExercise(strengthExercise);
 
         IList<Exercise> strengthExercises = exerciseService.GetExercisesByType("Strength");
@@ -57,7 +61,7 @@ public class ExerciseServiceTest
             "Trenignssenter for yoga øvelser"
         );
         
-        ExerciseService exerciseService = new();
+        ExerciseService exerciseService = new(_flexusWorkoutDbContext);
         exerciseService.AddExercise(balanceExercise);
 
         IList<Exercise> strengthExercises = exerciseService.GetExercisesByType("Balance");
@@ -87,7 +91,7 @@ public class ExerciseServiceTest
             "Utendørs"
         );
         
-        ExerciseService exerciseService = new();
+        ExerciseService exerciseService = new(_flexusWorkoutDbContext);
         exerciseService.AddExercise(cardioExercise);
 
         IList<Exercise> strengthExercises = exerciseService.GetExercisesByType("Cardio");
@@ -106,7 +110,7 @@ public class ExerciseServiceTest
     public void GetExerciseTypes_ShouldReturnStringOfExercises()
     {
 
-        ExerciseService exerciseService = new();
+        ExerciseService exerciseService = new(_flexusWorkoutDbContext);
         DatabaseFiller databaseFiller = new();
         databaseFiller.FillExercises();
         
@@ -121,7 +125,7 @@ public class ExerciseServiceTest
     [Test]
     public void GetExerciseById_ShouldReturnExercise()
     {
-        ExerciseService exerciseService = new();
+        ExerciseService exerciseService = new(_flexusWorkoutDbContext);
         DatabaseFiller databaseFiller = new();
         databaseFiller.FillExercises();
         
