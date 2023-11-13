@@ -7,10 +7,10 @@ namespace FlexusWorkout.Services;
 
 public class WorkoutService : Service
 {
-    private FlexusWorkoutDbContext _db;
-    public WorkoutService()
+    private FlexusDbContext _db;
+    public WorkoutService(FlexusDbContext db)
     {
-        _db = new FlexusWorkoutDbContext();
+        _db = db;
     }
 
     public Workout addExercise(Workout workout, Exercise exercise)

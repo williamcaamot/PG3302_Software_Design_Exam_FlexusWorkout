@@ -29,4 +29,8 @@ public class FlexusWorkoutDbContext : DbContext, FlexusDbContext
             .HasValue<BalanceExercise>("Balance")
             .HasValue<CardioExercise>("Cardio");
     }
+    public new int SaveChanges()
+    {
+        return base.SaveChanges();
+    }
 }

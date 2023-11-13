@@ -16,8 +16,9 @@ public class WorkoutTest
     [SetUp]
     public void insertData()
     {
+        FlexusWorkoutDbContext flexusWorkoutDbContext = new();
         _userService = new UserService();
-        _workoutService = new WorkoutService();
+        _workoutService = new WorkoutService(flexusWorkoutDbContext);
         _exerciseService = new ExerciseService();
 
         DatabaseFiller databaseFiller = new();
