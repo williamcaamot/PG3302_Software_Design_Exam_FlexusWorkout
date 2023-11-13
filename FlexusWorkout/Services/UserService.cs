@@ -37,6 +37,12 @@ public class UserService : Service
         var FoundUser = _db.User.FirstOrDefault(u => u.Email == user.Email);
         return FoundUser ?? new User();
     }
+    public User getUserById(int id)
+    {
+        var FoundUser = _db.User.FirstOrDefault(u => u.UserId == id);
+        return FoundUser ?? new User();
+    }
+    
     public User GetUserByEmail(String email)
     {
         var FoundUser = _db.User.FirstOrDefault(u => u.Email == email);
