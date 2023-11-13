@@ -17,10 +17,12 @@ public class WorkoutTest
     public void insertData()
     {
         FlexusWorkoutDbContext flexusWorkoutDbContext = new();
-        _userService = new UserService();
+        
+        _userService = new UserService(flexusWorkoutDbContext);
         _workoutService = new WorkoutService(flexusWorkoutDbContext);
-        _exerciseService = new ExerciseService();
+        _exerciseService = new ExerciseService(flexusWorkoutDbContext);
 
+        
         DatabaseFiller databaseFiller = new();
         //databaseFiller.FillUsers();
         //databaseFiller.FillExercises();

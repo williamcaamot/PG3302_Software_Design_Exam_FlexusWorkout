@@ -7,9 +7,9 @@ namespace FlexusWorkout
     {
         static void Main(string[] args)
         {
-            DatabaseFiller databaseFiller = new();
-            databaseFiller.FillUsers();
-            databaseFiller.FillExercises();
+            //DatabaseFiller databaseFiller = new();
+            //databaseFiller.FillUsers();
+            //databaseFiller.FillExercises();
 
             InitialMenu initialMenu = new();
             InitialMenuPresenter initialMenuPresenter = new(initialMenu);
