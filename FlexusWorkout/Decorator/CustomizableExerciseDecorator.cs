@@ -3,6 +3,7 @@ using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
 namespace FlexusWorkout.Decorators
 {
+    //Concrete decorator that adds specific customization logic for making exercises harder or easier
     public class CustomizableExerciseDecorator : ExerciseDecorator
     {
         public CustomizableExerciseDecorator(Exercise component) : base(component) { }

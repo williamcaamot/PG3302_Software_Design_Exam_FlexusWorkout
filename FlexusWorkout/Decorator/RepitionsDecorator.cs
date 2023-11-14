@@ -2,12 +2,9 @@ using FlexusWorkout.Models.Base;
 
 namespace FlexusWorkout.Decorator
 {
-
     public class RepitionsDecorator : ExerciseDecorator
     {
-        public RepitionsDecorator(Exercise component) : base(component)
-        {
-        }
+        public RepitionsDecorator(Exercise component) : base(component) { }
 
         public void IncreaseRepetitions()
         {
