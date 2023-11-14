@@ -1,21 +1,16 @@
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Presenters.Base;
-using FlexusWorkout.Presenters.Workout;
-using FlexusWorkout.Services;
+using FlexusWorkout.Services.Base;
 using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Views.Base;
-using FlexusWorkout.Views.Workout;
-using ModifyWorkout = FlexusWorkout.Views.Workout.ModifyWorkout;
 
-namespace FlexusWorkout.Presenters;
+namespace FlexusWorkout.Presenters.Workout;
 
-public class WorkoutMenuPresenter : MenuPresenter
+public class ModifyWorkoutPresenter : MenuPresenter
 {
     private User _user;
-    private FlexusDbContext _db;
-    public WorkoutMenuPresenter(View view, User user) : base(view)
+    public ModifyWorkoutPresenter(User user, View view, Service? service = default) : base(view)
     {
-        _db = new FlexusWorkoutDbContext();
         _user = user;
         // Run the View loop
         view.Run();
@@ -27,8 +22,12 @@ public class WorkoutMenuPresenter : MenuPresenter
         {
             MainHandler("error");
         }
+
         switch (key)
         {
+            case "currentlymodifying":
+                MainHandler(key);
+                break;
             case "input":
                 MainHandler(input);
                 break;
@@ -39,21 +38,17 @@ public class WorkoutMenuPresenter : MenuPresenter
     {
         switch (input)
         {
+            case "currentlymodifying":
+                View.DisplayText("Currently modifying workout - \"" + _user.Workouts[0] + "\"");
+                break;
             case "0":
                 View.Stop();
                 break;
             case "1":
-                MyWorkouts myWorkouts = new();
-                MyWorkoutsPresenter myWorkoutsPresenter = new(_user, myWorkouts);
                 break;
             case "2":
-                WorkoutService workoutService = new(_db);
-                CreateWorkout createWorkout = new();
-                CreateWorkoutPresenter createWorkoutPresenter = new(_user, createWorkout, workoutService);
                 break;
             case "3":
-                ModifyWorkout modifyWorkout = new();
-                ModifyWorkoutPresenter modifyWorkoutPresenter = new(_user, modifyWorkout);
                 break;
             case "error":
                 Console.Clear();
@@ -65,6 +60,7 @@ public class WorkoutMenuPresenter : MenuPresenter
                 Console.WriteLine("Invalid option, try again.");
                 Thread.Sleep(2000);
                 break;
+            
         }
     }
 }
