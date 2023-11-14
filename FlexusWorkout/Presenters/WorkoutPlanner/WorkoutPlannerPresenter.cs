@@ -50,6 +50,7 @@ public class WorkoutPlannerPresenter : Presenter
                IWorkoutPlannerView.ExtendedWorkoutPlannerView extendedWorkoutPlannerView =
                    new IWorkoutPlannerView.ExtendedWorkoutPlannerView();
                //extendedWorkoutPlannerView
+               //
            break;
        }
            
