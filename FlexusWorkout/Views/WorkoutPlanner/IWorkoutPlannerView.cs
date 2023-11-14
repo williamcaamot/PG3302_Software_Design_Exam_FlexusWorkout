@@ -1,19 +1,20 @@
 using System.Runtime.InteropServices.JavaScript;
 using FlexusWorkout.Models.Base;
+using FlexusWorkout.Models.Concrete;
 using Mysqlx.Datatypes;
 
 namespace FlexusWorkout.Views.WorkoutPlanner;
 
 public interface IWorkoutPlannerView
 {
-    List<string> ChooseExercise(string day, List<string> exercises, List<string> retriveExisting);
+    List<string> ChooseExercise(string day, List<string> exercises, List<string>? retriveExisting);
     List<string> RetriveExistingWorkouts();
     int ChooseTypeOfExercise(Dictionary<int, string> typeOfExercise);
     void UserMessage(string message);
 
     public class ExtendedWorkoutPlannerView : IWorkoutPlannerView
     {
-        public List<string> ChooseExercise(string day, List<string> exercises, List<string> retriveExisting = null)
+        public List<string> ChooseExercise(string day, List<string> exercises, List<string>? retriveExisting = null)
         {
             if (retriveExisting != null && retriveExisting.Count > 0)
             {
@@ -59,7 +60,7 @@ public interface IWorkoutPlannerView
         
         public List<string> RetriveExistingWorkouts()
         {
-            List<string> workoutsSaved = GetWorkoutsSaved();
+            IList<Models.Concrete.Workout> workoutsSaved = GetWorkoutsSaved();
             Console.WriteLine("Select one of the saved workouts");
             for (int i = 0; i < workoutsSaved.Count; i++)
             {
@@ -71,7 +72,8 @@ public interface IWorkoutPlannerView
                 string userInput = Console.ReadLine().Trim();
                 if (int.TryParse(userInput, out int number) && number >= 1 && number <= workoutsSaved.Count)
                 {
-                    return new List<string> { workoutsSaved[number - 1] };
+                    string choosenWorkout = workoutsSaved[number - 1].Name;
+                    return new List<string> { choosenWorkout };
                 }
                 else
                 {
@@ -80,10 +82,12 @@ public interface IWorkoutPlannerView
             }
         }
 
-        public List<string> GetWorkoutsSaved()
+        public IList<Models.Concrete.Workout> GetWorkoutsSaved()
         {
-            //Here should actual logfic to retrive workouts from db be,delete the list under later
-            return new List<string> { "Workout 1", "Workout 2", "Workout 3" };
+            //Implement method to retive saved workouts
+            User user = new User();
+
+            return user.Workouts.ToList();
         }
         public int ChooseTypeOfExercise(Dictionary<int, string> typeOfExercise)
         {

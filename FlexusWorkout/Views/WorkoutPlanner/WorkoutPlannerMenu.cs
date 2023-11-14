@@ -23,7 +23,7 @@ public class WorkoutPlannerMenu : View
         Console.Clear();
         Console.WriteLine("Workoutplanner Menu");
         Console.WriteLine("1- Show the weekly plan");
-        Console.WriteLine("2- Plan a new week");
+        Console.WriteLine("2- Plan a new day");
         Console.WriteLine("0- Exit");
         var userInput = Console.ReadLine();
         OnInputReceived("input", userInput);
