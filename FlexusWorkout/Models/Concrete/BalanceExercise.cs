@@ -3,8 +3,6 @@ using FlexusWorkout.Models.Base;
 namespace FlexusWorkout.Models.Concrete; 
 
 public class BalanceExercise : Exercise {
-    
-   
 
     public BalanceExercise() {
     }
