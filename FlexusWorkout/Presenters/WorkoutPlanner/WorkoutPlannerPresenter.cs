@@ -5,23 +5,23 @@ using FlexusWorkout.Services;
 using FlexusWorkout.Views.WorkoutPlanner;
 using WorkoutPlanner = FlexusWorkout.Models.Concrete.WorkoutPlanner;
 
-namespace FlexusWorkout.Presenters;
+namespace FlexusWorkout.Presenters.WorkoutPlanner;
 
 public class WorkoutPlannerPresenter
 {
     private IWorkoutPlannerView _view;
-    private WorkoutPlanner _workoutPlanner;
+    private Models.Concrete.WorkoutPlanner _workoutPlanner;
     private WorkoutPlannerMenu _menu;
     private ExerciseService _exerciseService;
 
-    public WorkoutPlannerPresenter(IWorkoutPlannerView _view, WorkoutPlanner _workoutPlanner, WorkoutPlannerMenu _menu,
+   /*public WorkoutPlannerPresenter(IWorkoutPlannerView _view, Models.Concrete.WorkoutPlanner _workoutPlanner, WorkoutPlannerMenu _menu,
         ExerciseService _exerciseService)
     {
         this._menu = _menu;
         this._workoutPlanner = _workoutPlanner;
         this._view = _view;
         this._exerciseService = _exerciseService;
-    }
+    } */
     
 
     public void CreatePlan()
@@ -30,13 +30,13 @@ public class WorkoutPlannerPresenter
             { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 
         // might delte l8ter ? :))))/////List<string> exercisesToChooseFrom = retriveExercisesFromDB();
-        IList<Exercise> getAll = _exerciseService.GetAllExercises();
+        /*IList<Exercise> getAll = _exerciseService
         List<string> exerciseNames = getAll.Select(e => e.Name).ToList();
 
         foreach (var exercises in getAll)
         {
             Console.WriteLine($"Id: {exercises.Id}, Name: {exercises.Id}, Type: {exercises.Type}");
-        }
+        } */
         
 
         Dictionary<int, string> exercisesTypes = new Dictionary<int, string>

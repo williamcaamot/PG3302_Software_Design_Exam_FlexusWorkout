@@ -1,11 +1,13 @@
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Presenters.Base;
 using FlexusWorkout.Presenters.ExerciseFinder;
+using FlexusWorkout.Presenters.WorkoutPlanner;
 using FlexusWorkout.Services;
 using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Views.Base;
 using FlexusWorkout.Views.ExerciseFinder;
 using FlexusWorkout.Views.Menu;
+using FlexusWorkout.Views.WorkoutPlanner;
 
 namespace FlexusWorkout.Presenters;
 
@@ -51,7 +53,8 @@ public class MainMenuPresenter : MenuPresenter
                 View.Stop();
                 break;
             case "1":
-                // TODO add redirect to WorkoutPlanner View here
+                WorkoutPlannerMenu workoutPlannerMenu = new();
+                WPPRresenterMenu wppRresenterMenu = new(workoutPlannerMenu);
                 break;
             case "2":
                 // TODO add redirect to WorkoutMenu here

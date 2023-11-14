@@ -1,5 +1,5 @@
 using System.Runtime.InteropServices.JavaScript;
-using FlexusWorkout.Model.Base;
+using FlexusWorkout.Models.Base;
 using Mysqlx.Datatypes;
 
 namespace FlexusWorkout.Views.WorkoutPlanner;
