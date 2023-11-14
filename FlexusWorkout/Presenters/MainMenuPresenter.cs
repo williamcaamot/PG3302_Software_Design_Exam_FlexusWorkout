@@ -54,7 +54,7 @@ public class MainMenuPresenter : MenuPresenter
                 break;
             case "1":
                 WorkoutPlannerMenu workoutPlannerMenu = new();
-                WPPRresenterMenu wppRresenterMenu = new(workoutPlannerMenu);
+                WPPRresenterMenu wppRresenterMenu = new(workoutPlannerMenu, _user);
                 break;
             case "2":
                 // TODO add redirect to WorkoutMenu here
