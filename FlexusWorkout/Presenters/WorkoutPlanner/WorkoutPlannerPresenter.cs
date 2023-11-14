@@ -15,7 +15,7 @@ public class WorkoutPlannerPresenter : Presenter
 {
     private User _user;
     private FlexusDbContext _db;
-    
+    private WorkoutPlan _workoutPlan;
 
    public WorkoutPlannerPresenter(User user, View view, Service? service = default ) : base(view, service)
    {
@@ -30,66 +30,65 @@ public class WorkoutPlannerPresenter : Presenter
        {
            MainHandler("Error");
        }
+       if (input == "exit")
+       {
+           MainHandler(input);
+       }
        switch (key)
        {
-           case "input":
+           case "date":
+               if (DateOnly.TryParse(input, out DateOnly choosenDate))
+               {
+                   DateHandler(choosenDate);
+               }
+               else
+               {
+                   MainHandler("invalidDate");
+               }
                MainHandler(input);
                break;
+                
+           case "getWorkouts":
+               MainHandler("getWorkouts");
+               break;
        }
-       
    }
+
 
    public override void MainHandler(string? input)
    {
        switch (input)
        {
-           case "0": 
+           case "exit":
                View.Stop();
                break;
-           case "1":
-               IWorkoutPlannerView.ExtendedWorkoutPlannerView extendedWorkoutPlannerView =
-                   new IWorkoutPlannerView.ExtendedWorkoutPlannerView();
-               extendedWorkoutPlannerView.GetWorkoutsSaved();
+           case "invalidDate":
+               Console.Clear();
+               Console.WriteLine("Error: Please try again, invalid date format ");
+               Thread.Sleep(2500);
+               break;
+           case "getWorkouts":
+               for (int i = 0; i < _user.Workouts.Count; i++)
+               {
+                   View.DisplayText(i + 1 + " - " + _user.Workouts[i].Name);
+               }
+               break;
                
-           break;
        }
            
+   }
+   private void DateHandler(DateOnly choosenDate)
+   {
+       _workoutPlan.Date = choosenDate;
+       
    }
     
 
     public void CreatePlan()
     {
-        List<string> daysInWeek = new List<string>
-            { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
-
-        // might delte l8ter ? :))))/////List<string> exercisesToChooseFrom = retriveExercisesFromDB();
-       /* IList<Exercise> getAll = _exerciseService
-        List<string> exerciseNames = getAll.Select(e => e.Name).ToList();
-
-        foreach (var exercises in getAll)
-        {
-            Console.WriteLine($"Id: {exercises.ExerciseId}, Name: {exercises.Name}, Type: {exercises.Type}");
-        }  */
         
 
-        Dictionary<int, string> exercisesTypes = new Dictionary<int, string>
-        {
-            { 1, "Strength" },
-            { 2, "Cardio" },
-            { 3, "Balance" }
-        };
-
     }
-    //UNDER HERE SHOULD LOGIC TO RETRIVE AVALABLE EXERCISES FROM THE DATABASE BE!!!!!!!!!!!!!!!!
-   private List<string> retriveExercisesFromDB()
-    {
-
-        return new List<string>
-        {
-            "Exercise 1",
-            "Exercise 2",
-            "Exercise 3",
-        };
-    }
+    
 
 } 

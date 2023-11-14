@@ -42,7 +42,7 @@ public class WPPRresenterMenu : Presenter
                 break;
             
             case "1":
-                ShowWeekMenu showWeekMenu = new ShowWeekMenu();
+                ShowUpcomingWorkoutsMenu showUpcomingWorkoutsMenu = new ShowUpcomingWorkoutsMenu();
                 //Show the menu
                 foreach (var workoutDay in _user.WorkoutDays)
                 {
