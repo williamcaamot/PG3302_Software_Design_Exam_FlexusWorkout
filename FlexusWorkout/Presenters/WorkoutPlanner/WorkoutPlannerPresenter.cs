@@ -49,8 +49,8 @@ public class WorkoutPlannerPresenter : Presenter
            case "1":
                IWorkoutPlannerView.ExtendedWorkoutPlannerView extendedWorkoutPlannerView =
                    new IWorkoutPlannerView.ExtendedWorkoutPlannerView();
-               //extendedWorkoutPlannerView
-               //
+               extendedWorkoutPlannerView.GetWorkoutsSaved();
+               
            break;
        }
            
