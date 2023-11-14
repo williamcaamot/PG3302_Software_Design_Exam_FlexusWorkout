@@ -3,6 +3,7 @@ using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Views.Menu;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MySql.Data.MySqlClient;
 
 namespace FlexusWorkout
 {
@@ -14,6 +15,8 @@ namespace FlexusWorkout
             databaseFiller.FillUsers();
             databaseFiller.FillExercises();
             databaseFiller.fillWorkouts();
+            
+            
 
             InitialMenu initialMenu = new();
             InitialMenuPresenter initialMenuPresenter = new(initialMenu);

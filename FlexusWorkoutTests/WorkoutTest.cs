@@ -38,9 +38,7 @@ public class WorkoutTest
         //Create new workout with user from database 
         Workout workout = new Workout(
             "NewWorkout",
-            "This is a cool workout",
-            "Strength",
-            "Gym")
+            "This is a cool workout")
         {
             User = workoutUser
         };
@@ -68,8 +66,7 @@ public class WorkoutTest
     {
         User workoutUser = _userService.GetUserByEmail("test6@example.com");
 
-        Workout workout = new Workout("Epic Strength Workout", "This is a really heavy strength workout", "Strength",
-            "Gym")
+        Workout workout = new Workout("Epic Strength Workout", "This is a really heavy strength workout")
         {
             User = workoutUser
         };
