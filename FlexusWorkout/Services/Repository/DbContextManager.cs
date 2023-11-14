@@ -2,8 +2,8 @@ namespace FlexusWorkout.Services.Repository;
 
 public class DbContextManager
 {
-    private static FlexusDbContext _instance;
-    public static FlexusDbContext Instance
+    private static FlexusWorkoutDbContext _instance;
+    public static FlexusWorkoutDbContext Instance
     {
         get
         {

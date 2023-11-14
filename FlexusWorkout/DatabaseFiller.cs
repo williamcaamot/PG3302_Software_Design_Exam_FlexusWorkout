@@ -13,7 +13,7 @@ namespace FlexusWorkout;
 
         public DatabaseFiller()
         {
-            FlexusWorkoutDbContext flexusWorkoutDbContext = new();
+            FlexusDbContext flexusWorkoutDbContext = DbContextManager.Instance;
             _userService = new UserService(flexusWorkoutDbContext);
             _exerciseService = new ExerciseService(flexusWorkoutDbContext);
             _workoutService = new(flexusWorkoutDbContext);
@@ -82,9 +82,8 @@ namespace FlexusWorkout;
             
             Workout workout = new Workout(
                 "NewWorkout",
-                "This is a cool workout",
-                "Strength",
-                "Gym")
+                "This is a cool workout"
+                )
             {
                 User = user
             };

@@ -14,7 +14,7 @@ public class LoginPresenter : Base.Presenter
     private FlexusWorkoutDbContext _flexusWorkoutDbContext;
     public LoginPresenter(View view, Service service) : base(view, service)
     {
-        _flexusWorkoutDbContext = new();
+        _flexusWorkoutDbContext = DbContextManager.Instance;
         // Run the View loop
         view.Run();   
     }

@@ -19,7 +19,7 @@ public class SignupPresenter : Presenter
     
     public SignupPresenter(View view, Service service) : base(view, service)
     {
-        _flexusWorkoutDbContext = new();
+        _flexusWorkoutDbContext = DbContextManager.Instance;
         // Run the View loop
         view.Run();
     }

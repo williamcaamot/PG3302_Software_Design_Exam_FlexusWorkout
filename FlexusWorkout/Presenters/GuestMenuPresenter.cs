@@ -12,7 +12,7 @@ public class GuestMenuPresenter : MenuPresenter
     private FlexusWorkoutDbContext _flexusWorkoutDbContext;
     public GuestMenuPresenter(View view) : base(view)
     {
-        _flexusWorkoutDbContext = new();
+        _flexusWorkoutDbContext = DbContextManager.Instance;
         // Run the View loop
         view.Run();
     }
