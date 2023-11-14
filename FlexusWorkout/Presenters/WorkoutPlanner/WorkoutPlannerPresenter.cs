@@ -17,78 +17,97 @@ public class WorkoutPlannerPresenter : Presenter
     private FlexusDbContext _db;
     private WorkoutPlan _workoutPlan;
 
-   public WorkoutPlannerPresenter(User user, View view, Service? service = default ) : base(view, service)
-   {
-       _db = new FlexusWorkoutDbContext();
-       _user = user;
-       view.Run();
-   } 
-   
-   public override void HandleInput(string? key, string? input)
-   {
-       if (input == null){}
-       {
-           MainHandler("Error");
-       }
-       if (input == "exit")
-       {
-           MainHandler(input);
-       }
-       switch (key)
-       {
-           case "date":
-               if (DateOnly.TryParse(input, out DateOnly choosenDate))
-               {
-                   DateHandler(choosenDate);
-               }
-               else
-               {
-                   MainHandler("invalidDate");
-               }
-               MainHandler(input);
-               break;
-                
-           case "getWorkouts":
-               MainHandler("getWorkouts");
-               break;
-       }
-   }
-
-
-   public override void MainHandler(string? input)
-   {
-       switch (input)
-       {
-           case "exit":
-               View.Stop();
-               break;
-           case "invalidDate":
-               Console.Clear();
-               Console.WriteLine("Error: Please try again, invalid date format ");
-               Thread.Sleep(2500);
-               break;
-           case "getWorkouts":
-               for (int i = 0; i < _user.Workouts.Count; i++)
-               {
-                   View.DisplayText(i + 1 + " - " + _user.Workouts[i].Name);
-               }
-               break;
-               
-       }
-           
-   }
-   private void DateHandler(DateOnly choosenDate)
-   {
-       _workoutPlan.Date = choosenDate;
-       
-   }
-    
-
-    public void CreatePlan()
+    public WorkoutPlannerPresenter(User user, View view, Service? service = default) : base(view, service)
     {
-        
+        _db = new FlexusWorkoutDbContext();
+        _user = user;
+        _workoutPlan = new WorkoutPlan();
+        view.Run();
+    }
+
+    public override void HandleInput(string? key, string? input)
+    {
+        if (input == null)
+        {
+        }
+
+        {
+            MainHandler("Error");
+        }
+        if (input == "exit")
+        {
+            MainHandler(input);
+        }
+
+        switch (key)
+        {
+            case "date":
+                if (DateOnly.TryParse(input, out DateOnly choosenDate))
+                {
+                    DateHandler(choosenDate);
+                }
+                else
+                {
+                    MainHandler("invalidDate");
+                }
+
+                MainHandler(input);
+                break;
+
+            case "getWorkouts":
+                MainHandler("getWorkouts");
+                break;
+            case "workout":
+                ExcersiseHandler(input);
+                break;
+            case "getWorkoutPlans":
+                MainHandler("getWorkoutPlans");
+                break;
+        }
+    }
+
+
+
+    public override void MainHandler(string? input)
+    {
+        switch (input)
+        {
+            case "exit":
+                View.Stop();
+                break;
+            case "invalidDate":
+                Console.Clear();
+                Console.WriteLine("Error: Please try again, invalid date format ");
+                Thread.Sleep(2500);
+                break;
+            case "getWorkouts":
+                for (int i = 0; i < _user.Workouts.Count; i++)
+                {
+                    View.DisplayText(i + 1 + " - " + _user.Workouts[i].Name);
+                }
+
+                break;
+
+        }
 
     }
-    
 
-} 
+    private void DateHandler(DateOnly choosenDate)
+    {
+        _workoutPlan.Date = choosenDate;
+
+    }
+
+    private void ExcersiseHandler(string input)
+    {
+        if (int.TryParse(input, out int choice))
+        {
+            _workoutPlan.Workout = _user.Workouts[choice - 1];
+
+        }
+
+    }
+}
+   
+
+

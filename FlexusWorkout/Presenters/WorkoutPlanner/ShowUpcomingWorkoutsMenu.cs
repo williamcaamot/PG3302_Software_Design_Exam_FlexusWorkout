@@ -1,7 +1,7 @@
 namespace FlexusWorkout.Presenters.WorkoutPlanner;
 using ConsoleTableExt;
 
-public class ShowUpcomingWorkoutsMenu //Option 1 in WPPResenterMenu
+public class ShowUpcomingWorkoutsMenu 
 {
     public void DisplayMenu()
     {

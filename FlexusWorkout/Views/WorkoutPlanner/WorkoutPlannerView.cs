@@ -2,7 +2,7 @@ using FlexusWorkout.Views.Base;
 
 namespace FlexusWorkout.Views.WorkoutPlanner;
 
-public class WorkoutPlanner : View
+public class WorkoutPlannerView : View
 {
     public DateOnly GetInputDate()
     {
@@ -30,8 +30,12 @@ public class WorkoutPlanner : View
 
 
         Console.Clear();
-        Console.WriteLine("Select an existing workout");
+        Console.WriteLine("Your workouts:");
         OnInputReceived("getWorkouts", "");
+        Console.WriteLine("\r\nSelect an existing workout ");
+        string? workout = Console.ReadLine();
+        OnInputReceived("workout", workout);
         
+
     }
 }

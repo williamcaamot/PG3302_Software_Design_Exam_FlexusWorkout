@@ -2,6 +2,7 @@ using System.Runtime.InteropServices.JavaScript;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Presenters.Base;
 using FlexusWorkout.Services.Base;
+using FlexusWorkout.Views.WorkoutPlanner;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ZstdSharp.Unsafe;
 using View = FlexusWorkout.Views.Base.View;
@@ -43,7 +44,7 @@ public class WPPRresenterMenu : Presenter
             
             case "1":
                 ShowUpcomingWorkoutsMenu showUpcomingWorkoutsMenu = new ShowUpcomingWorkoutsMenu();
-                //Show the menu
+                
                 foreach (var workoutDay in _user.WorkoutDays)
                 {
                     Console.WriteLine(workoutDay.Workout.Name);
@@ -51,9 +52,8 @@ public class WPPRresenterMenu : Presenter
                 Thread.Sleep(2000);
                 break;
             case "2":
-                //TODO create a new menu
-                // First select date in the new menu
-                // This new menu needs options to either create a new workout or use an exisiting
+                WorkoutPlannerView workoutPlannerView = new();
+                WorkoutPlannerPresenter workoutPlannerPresenter = new(_user, workoutPlannerView );
                 break;
             case "error":
                 Console.Clear();
