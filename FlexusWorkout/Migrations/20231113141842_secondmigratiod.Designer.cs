@@ -3,6 +3,7 @@ using System;
 using FlexusWorkout.Services.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,29 +11,16 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlexusWorkout.Migrations
 {
     [DbContext(typeof(FlexusWorkoutDbContext))]
-    partial class FlexusWorkoutDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231113141842_secondmigratiod")]
+    partial class secondmigratiod
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("ExerciseWorkout", b =>
-                {
-                    b.Property<int>("ExercisesExerciseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WorkoutId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ExercisesExerciseId", "WorkoutId");
-
-                    b.HasIndex("WorkoutId");
-
-                    b.ToTable("ExerciseWorkout");
-                });
 
             modelBuilder.Entity("FlexusWorkout.Models.Base.Exercise", b =>
                 {
@@ -72,7 +60,12 @@ namespace FlexusWorkout.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("WorkoutId")
+                        .HasColumnType("int");
+
                     b.HasKey("ExerciseId");
+
+                    b.HasIndex("WorkoutId");
 
                     b.ToTable("Exercise");
 
@@ -157,19 +150,11 @@ namespace FlexusWorkout.Migrations
                     b.HasDiscriminator().HasValue("Strength");
                 });
 
-            modelBuilder.Entity("ExerciseWorkout", b =>
+            modelBuilder.Entity("FlexusWorkout.Models.Base.Exercise", b =>
                 {
-                    b.HasOne("FlexusWorkout.Models.Base.Exercise", null)
-                        .WithMany()
-                        .HasForeignKey("ExercisesExerciseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FlexusWorkout.Models.Concrete.Workout", null)
-                        .WithMany()
-                        .HasForeignKey("WorkoutId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Exercises")
+                        .HasForeignKey("WorkoutId");
                 });
 
             modelBuilder.Entity("FlexusWorkout.Models.Concrete.Workout", b =>
@@ -186,6 +171,11 @@ namespace FlexusWorkout.Migrations
             modelBuilder.Entity("FlexusWorkout.Models.Concrete.User", b =>
                 {
                     b.Navigation("Workouts");
+                });
+
+            modelBuilder.Entity("FlexusWorkout.Models.Concrete.Workout", b =>
+                {
+                    b.Navigation("Exercises");
                 });
 #pragma warning restore 612, 618
         }

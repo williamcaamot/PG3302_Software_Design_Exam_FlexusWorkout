@@ -1,5 +1,7 @@
+using System.Collections;
 using FlexusWorkout.Services.Repository;
-using FlexusWorkout.Model.Base;
+using FlexusWorkout.Models.Base;
+using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services.Base;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,25 +9,21 @@ namespace FlexusWorkout.Services;
 
 public class ExerciseService : Service
 {
-    private readonly FlexusWorkoutDbContext _db;
-    public ExerciseService() //TODO NEED TO EDIT THIS TO USE DEPENDENCY INJECTION
+    private readonly FlexusDbContext _db;
+    //TODO NEED TO EDIT THIS TO USE DEPENDENCY INJECTION
+
+    public ExerciseService(FlexusDbContext db)
     {
-        _db = new();
+        _db = db;
     }
 
-    public IList<Exercise> GetAllExercises()
+    public IList<ExerciseType> GetExerciseTypes()
     {
-        return _db.Exercise.ToList();
-    }
-
-    public IList<String> getExerciseTypes()
-    {
-        IList<String> Exercises = _db.Exercise
-            .Select(e => e.Type)
+        IList<ExerciseType> exerciseTypes = _db.Exercise
+            .Select(e => new ExerciseType(EF.Property<string>(e, "Type")))
             .Distinct()
             .ToList();
-        
-        return Exercises;
+        return exerciseTypes;
     }
     
     public IList<Exercise> GetExercisesByType(string type)
@@ -33,6 +31,11 @@ public class ExerciseService : Service
         return _db.Exercise
             .Where(e => EF.Property<string>(e, "Type") == type)
             .ToList();
+    }
+
+    public Exercise GetExercise(int id)
+    {
+        return _db.Exercise.FirstOrDefault(e => e.ExerciseId == id);
     }
     
     public Exercise AddExercise(Exercise exercise)

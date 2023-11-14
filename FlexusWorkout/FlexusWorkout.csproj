@@ -23,14 +23,15 @@
 
 
     <ItemGroup>
+      <Folder Include="Migrations\" />
       <Folder Include="Resources\" />
     </ItemGroup>
 
     <ItemGroup>
+      <None Remove="Presenter\WorkoutPlanner\**" />
       <None Update="Resources\Flexus.db">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Remove="Presenter\WorkoutPlanner\**" />
     </ItemGroup>
 
     <ItemGroup>

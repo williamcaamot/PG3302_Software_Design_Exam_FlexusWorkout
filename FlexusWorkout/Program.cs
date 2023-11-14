@@ -1,7 +1,8 @@
-﻿using FlexusWorkout.Model.Concrete;
-using FlexusWorkout.Presenter;
-using FlexusWorkout.Services;
-using FlexusWorkout.View.Menu;
+﻿using FlexusWorkout.Presenters;
+using FlexusWorkout.Services.Repository;
+using FlexusWorkout.Views.Menu;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FlexusWorkout
 {
@@ -12,11 +13,10 @@ namespace FlexusWorkout
             DatabaseFiller databaseFiller = new();
             databaseFiller.FillUsers();
             databaseFiller.FillExercises();
-            
+            databaseFiller.fillWorkouts();
 
             InitialMenu initialMenu = new();
             InitialMenuPresenter initialMenuPresenter = new(initialMenu);
-
         }
     }
 }

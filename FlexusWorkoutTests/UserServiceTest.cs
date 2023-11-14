@@ -1,5 +1,6 @@
-using FlexusWorkout.Model.Concrete;
+using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
+using FlexusWorkout.Services.Repository;
 
 namespace FlexusWorkoutTests;
 public class UserServiceTest
@@ -8,39 +9,29 @@ public class UserServiceTest
     [OneTimeSetUp]
     public void SetUpBeforeEachTest()
     {
-        Service = new UserService();
+        Service = new UserService(new FlexusWorkoutDbContext());
     }
     
     [Test]
-    public void AddUser_ShouldReturnUserWithValidID()
+    public void RegisterUser_ShouldReturnUserWithValidID()
     {
         // Arange
-        User user = new User("test","user","test@gmail.com","password");
+        User user = new User("test","user","test1@gmail.com","password");
+        
         
         // Act
-        User addedUser = Service.Add(user);
+        User addedUser = Service.registerUser(user);
         
         // Assert
         Assert.That(user.FirstName, Is.EqualTo(addedUser.FirstName));
         Assert.That(user.LastName, Is.EqualTo(addedUser.LastName));
         Assert.That(user.Email, Is.EqualTo(addedUser.Email));
         Assert.That(addedUser.UserId, Is.GreaterThan(-1));
-    }
-
-
-    [Test]
-    public void RegisterUserCorrectly_ShouldReturnRegisteredUser()
-    {
-        // Arrange
-        User user = new User("test","user","test@gmail.com","password");
-        User registeredUser;
         
-        //Act
-        registeredUser = Service.registerUser(user);
-        
-        // Assert
-        Assert.That(registeredUser.UserId != null);
+        //Cleanup
+        Service.delete(addedUser);
     }
+    
     
     [Test]
     public void RegisterUserWithWrongEmailFormat_ShouldThrowError()
@@ -65,29 +56,26 @@ public class UserServiceTest
     }
     [Test]
     public void RegisterUserWithExistingEmail_ShouldThrowError()
-    {
-        // Arrange
-        User user1 = new User("test","user","test.com","password");
-        User user = new User("test","user","test.com","password");
-        User registeredUser;
-        string errorMessage = null;
-        
-        //Act
-        Service.registerUser(user1);
-        
-        try
-        {
-            registeredUser = Service.registerUser(user);
-        }
-        catch (Exception e)
-        {
-            errorMessage = e.Message;
-        }
-        
-        // Assert
-        Assert.That(errorMessage == "Email already exists");
-    }
-
-    
-    
+         {
+             // Arrange
+             User user1 = new User("test","user","test3@test.com","password");
+             User user = new User("test","user","test3@test.com","password");
+             User registeredUser;
+             string errorMessage = null;
+             
+             //Act
+             Service.registerUser(user1);
+             
+             try
+             {
+                 registeredUser = Service.registerUser(user);
+             }
+             catch (Exception e)
+             {
+                 errorMessage = e.Message;
+             }
+             
+             // Assert
+             Assert.That(errorMessage == "Email already exists");
+         }
 }

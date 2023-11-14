@@ -1,18 +1,22 @@
 using System.Net.Http.Headers;
 using FlexusWorkout;
-using FlexusWorkout.Model.Base;
-using FlexusWorkout.Model.Concrete;
+using FlexusWorkout.Models.Base;
+using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
+using FlexusWorkout.Services.Repository;
 
 namespace FlexusWorkoutTests;
 
 public class ExerciseServiceTest
 {
     private ExerciseService Service;
+    private FlexusWorkoutDbContext _flexusWorkoutDbContext;
     [OneTimeSetUp]
     public void SetUpBeforeEachTest()
     {
-        Service = new ExerciseService();
+        Service = new ExerciseService(new FlexusWorkoutDbContext());
+        _flexusWorkoutDbContext = new();
+
     }
     [Test]
     public void AddExerciseOfTypeStrength_ShouldReturnSameExercise()
@@ -28,12 +32,12 @@ public class ExerciseServiceTest
             "Gym"
         );
 
-        ExerciseService exerciseService = new();
+        ExerciseService exerciseService = new(_flexusWorkoutDbContext);
         exerciseService.AddExercise(strengthExercise);
 
         IList<Exercise> strengthExercises = exerciseService.GetExercisesByType("Strength");
 
-        Assert.That(strengthExercises[0].Id, Is.GreaterThan(0));
+        Assert.That(strengthExercises[0].ExerciseId, Is.GreaterThan(0));
         Assert.That(strengthExercises[0].Name, Is.EqualTo(strengthExercise.Name));
         Assert.That(strengthExercises[0].Description, Is.EqualTo(strengthExercise.Description));
         Assert.That(strengthExercises[0].Repetitions, Is.EqualTo(strengthExercise.Repetitions));
@@ -57,12 +61,12 @@ public class ExerciseServiceTest
             "Trenignssenter for yoga øvelser"
         );
         
-        ExerciseService exerciseService = new();
+        ExerciseService exerciseService = new(_flexusWorkoutDbContext);
         exerciseService.AddExercise(balanceExercise);
 
         IList<Exercise> strengthExercises = exerciseService.GetExercisesByType("Balance");
 
-        Assert.That(strengthExercises[0].Id, Is.GreaterThan(0));
+        Assert.That(strengthExercises[0].ExerciseId, Is.GreaterThan(0));
         Assert.That(strengthExercises[0].Name, Is.EqualTo(balanceExercise.Name));
         Assert.That(strengthExercises[0].Description, Is.EqualTo(balanceExercise.Description));
         Assert.That(strengthExercises[0].Repetitions, Is.EqualTo(balanceExercise.Repetitions));
@@ -87,12 +91,12 @@ public class ExerciseServiceTest
             "Utendørs"
         );
         
-        ExerciseService exerciseService = new();
+        ExerciseService exerciseService = new(_flexusWorkoutDbContext);
         exerciseService.AddExercise(cardioExercise);
 
         IList<Exercise> strengthExercises = exerciseService.GetExercisesByType("Cardio");
 
-        Assert.That(strengthExercises[0].Id, Is.GreaterThan(0));
+        Assert.That(strengthExercises[0].ExerciseId, Is.GreaterThan(0));
         Assert.That(strengthExercises[0].Name, Is.EqualTo(cardioExercise.Name));
         Assert.That(strengthExercises[0].Description, Is.EqualTo(cardioExercise.Description));
         Assert.That(strengthExercises[0].Repetitions, Is.EqualTo(cardioExercise.Repetitions));
@@ -106,16 +110,32 @@ public class ExerciseServiceTest
     public void GetExerciseTypes_ShouldReturnStringOfExercises()
     {
 
-        ExerciseService exerciseService = new();
+        ExerciseService exerciseService = new(_flexusWorkoutDbContext);
         DatabaseFiller databaseFiller = new();
         databaseFiller.FillExercises();
         
         
-        IList<String> exercises = exerciseService.getExerciseTypes();
-        Console.WriteLine(exercises);
-        Assert.That(exercises[0], Is.AnyOf("Cardio","Balance","Strength"));
-        Assert.That(exercises[1], Is.AnyOf("Cardio","Balance","Strength"));
-        Assert.That(exercises[2], Is.AnyOf("Cardio","Balance","Strength"));
+        IList<ExerciseType> exercisesTypes = exerciseService.GetExerciseTypes();
+        Console.WriteLine(exercisesTypes);
+        Assert.That(exercisesTypes[0].Name, Is.AnyOf("Cardio","Balance","Strength"));
+        Assert.That(exercisesTypes[1].Name, Is.AnyOf("Cardio","Balance","Strength"));
+        Assert.That(exercisesTypes[2].Name, Is.AnyOf("Cardio","Balance","Strength"));
+    }
+
+    [Test]
+    public void GetExerciseById_ShouldReturnExercise()
+    {
+        ExerciseService exerciseService = new(_flexusWorkoutDbContext);
+        DatabaseFiller databaseFiller = new();
+        databaseFiller.FillExercises();
+        
+        
+        Exercise exercise = Service.GetExercise(1);
+        
+        Assert.That(exercise.Description, Is.EqualTo("A pose that replicates the steady stance of a tree."));
+        
+        
+        
     }
 
     

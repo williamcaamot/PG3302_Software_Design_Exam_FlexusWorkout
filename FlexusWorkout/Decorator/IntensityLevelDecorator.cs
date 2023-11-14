@@ -1,5 +1,5 @@
 using FlexusWorkout.Decorator;
-using FlexusWorkout.Model.Base;
+using FlexusWorkout.Models.Base;
 
 namespace FlexusWorkout.Decorators; 
 //Decorator for adding intensity level to an exercise
