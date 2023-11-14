@@ -18,7 +18,7 @@ public interface IWorkoutPlannerView
             if (retriveExisting != null && retriveExisting.Count > 0)
             {
                 Console.WriteLine("Do you want to use an existing workout? (yes/no)");
-                string inputFromUser = Console.ReadLine().Trim();
+                string inputFromUser = Console.ReadLine()!.Trim();
                 if (inputFromUser.Equals("yes", StringComparison.OrdinalIgnoreCase))
                 {
                     return RetriveExistingWorkouts();
