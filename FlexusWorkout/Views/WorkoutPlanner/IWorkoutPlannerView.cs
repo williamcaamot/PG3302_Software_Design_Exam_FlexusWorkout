@@ -7,14 +7,14 @@ namespace FlexusWorkout.Views.WorkoutPlanner;
 
 public interface IWorkoutPlannerView
 {
-    List<string> ChooseExercise(string day, List<string> exercises, List<string>? retriveExisting);
+    List<string> ChooseExercise(DateOnly DateOnly, List<string> exercises, List<string>? retriveExisting);
     List<string> RetriveExistingWorkouts();
     int ChooseTypeOfExercise(Dictionary<int, string> typeOfExercise);
     void UserMessage(string message);
 
     public class ExtendedWorkoutPlannerView : IWorkoutPlannerView
     {
-        public List<string> ChooseExercise(string day, List<string> exercises, List<string>? retriveExisting = null)
+        public List<string> ChooseExercise(DateOnly dateOnly, List<string> exercises, List<string>? retriveExisting = null)
         {
             if (retriveExisting != null && retriveExisting.Count > 0)
             {
@@ -26,7 +26,7 @@ public interface IWorkoutPlannerView
                 }
             }
             Console.WriteLine(
-                $"Choose exercises for {day}, enter corresponding numbers of wanted exercise/exercises: ");
+                $"Choose exercises for {dateOnly}, enter corresponding numbers of wanted exercise/exercises: ");
 
             for (int i = 0; i < exercises.Count; i++)
             {
@@ -36,7 +36,7 @@ public interface IWorkoutPlannerView
             List<string> selctedExercises = new List<string>();
             while (true)
             {
-                Console.WriteLine("Enter identifier of wanted exercise on chosen day, type 'ok' when complete");
+                Console.WriteLine("Enter identifier of wanted exercise on chosen date, type 'ok' when complete");
                 string inputFromUser = Console.ReadLine()!.Trim(); //Remove leading and trailing spaces
 
                 if (inputFromUser.Equals("ok", StringComparison.OrdinalIgnoreCase))
@@ -48,7 +48,7 @@ public interface IWorkoutPlannerView
                     exerciseNumber <= exercises.Count)
                 {
                     selctedExercises.Add(exercises[exerciseNumber - 1]);
-                    Console.WriteLine($"{exercises[exerciseNumber - 1]} added to your workout on {day}");
+                    Console.WriteLine($"{exercises[exerciseNumber - 1]} added to your workout on {dateOnly}");
                 }
                 else
                 {
@@ -58,6 +58,7 @@ public interface IWorkoutPlannerView
             return selctedExercises;
         }
         
+
         public List<string> RetriveExistingWorkouts()
         {
             IList<Models.Concrete.Workout> workoutsSaved = GetWorkoutsSaved();
