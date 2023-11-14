@@ -128,6 +128,30 @@ namespace FlexusWorkout.Migrations
                     b.ToTable("Workout");
                 });
 
+            modelBuilder.Entity("FlexusWorkout.Models.Concrete.WorkoutDay", b =>
+                {
+                    b.Property<int?>("WorkoutDayId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WorkoutId")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly>("date")
+                        .HasColumnType("date");
+
+                    b.HasKey("WorkoutDayId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("WorkoutId");
+
+                    b.ToTable("WorkoutDay");
+                });
+
             modelBuilder.Entity("FlexusWorkout.Models.Concrete.BalanceExercise", b =>
                 {
                     b.HasBaseType("FlexusWorkout.Models.Base.Exercise");
@@ -175,8 +199,25 @@ namespace FlexusWorkout.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("FlexusWorkout.Models.Concrete.WorkoutDay", b =>
+                {
+                    b.HasOne("FlexusWorkout.Models.Concrete.User", null)
+                        .WithMany("WorkoutDays")
+                        .HasForeignKey("UserId");
+
+                    b.HasOne("FlexusWorkout.Models.Concrete.Workout", "Workout")
+                        .WithMany()
+                        .HasForeignKey("WorkoutId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Workout");
+                });
+
             modelBuilder.Entity("FlexusWorkout.Models.Concrete.User", b =>
                 {
+                    b.Navigation("WorkoutDays");
+
                     b.Navigation("Workouts");
                 });
 #pragma warning restore 612, 618

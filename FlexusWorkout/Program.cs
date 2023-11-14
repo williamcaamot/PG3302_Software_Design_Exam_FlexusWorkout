@@ -12,6 +12,7 @@ namespace FlexusWorkout
         static void Main(string[] args)
         {
             DatabaseFiller databaseFiller = new();
+            //databaseFiller.runMySqlScript();
             databaseFiller.FillUsers();
             databaseFiller.FillExercises();
             databaseFiller.fillWorkouts();
