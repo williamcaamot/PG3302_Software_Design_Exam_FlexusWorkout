@@ -25,52 +25,48 @@ namespace FlexusWorkout;
 
         public void runMySqlScript()
         {
-            for (int i = 0; i < 0; i++)
-            {
+
             try
             {
                 _exerciseService.GetExercise(1);
             }
             catch (Exception e)
             {
-                    try
+                    Console.Clear();
+                    Console.WriteLine("------------------------------------------------------------");
+                    Console.WriteLine("---- INITIAL SETUP - WAIT WHILE DATABASE IS INITIALIZED ----");
+                    Console.WriteLine("------------------------------------------------------------");
+                    string script = File.ReadAllText("Resources/create_tables_and_insert_data.sql");
+                    using (var conn = new MySqlConnection(
+                               "server=localhost;port=3200;database=db;user=root;password=password;ConnectionTimeout=1500;DefaultCommandTimeout=1500"))
                     {
-                        string script = File.ReadAllText("Resources/create_tables_and_insert_data.sql");
-                        using (var conn = new MySqlConnection(
-                                   "server=localhost;port=3200;database=db;user=user;password=password;ConnectionTimeout=1500;DefaultCommandTimeout=1500"))
+                        conn.Open();
+                        var commands = script.Split(new[] { ";\r\n", ";\n" }, StringSplitOptions.RemoveEmptyEntries);
+                        foreach (var cmd in commands)
                         {
-                            conn.Open();
-
-                            var commands = script.Split(new[] { ";\r\n", ";\n" }, StringSplitOptions.RemoveEmptyEntries);
-                            foreach (var cmd in commands)
+                            Thread.Sleep(500);
+                            if (cmd != null)
                             {
-                                if (!string.IsNullOrWhiteSpace(cmd))
+                                using (var command = new MySqlCommand(cmd, conn))
                                 {
-                                    using (var command = new MySqlCommand(cmd, conn))
+                                    command.CommandTimeout = 300; // Increase timeout to 300 seconds
+                                    try
                                     {
-                                        command.CommandTimeout = 300; // Increase timeout to 300 seconds
-                                        try
-                                        {
-                                            command.ExecuteNonQuery();
-                                        }
-                                        catch (MySqlException ex)
-                                        {
-                                            Console.WriteLine("Error encountered executing the following SQL:");
-                                            Console.WriteLine(cmd);
-                                            Console.WriteLine("Error details:");
-                                            Console.WriteLine(ex.Message);
-                                            break; // Stop execution on error
-                                        }
+                                        command.ExecuteNonQuery(); //Can run any query
+                                    }
+                                    catch (MySqlException ex)
+                                    {
+                                        Console.WriteLine("Error encountered executing the following SQL:");
+                                        Console.WriteLine(cmd);
+                                        Console.WriteLine("Error details:");
+                                        Console.WriteLine(ex.Message);
+                                        break; // Stop execution on error
                                     }
                                 }
                             }
                         }
+                    
                     }
-                    catch (Exception ev)
-                    {
-                        Console.WriteLine(ev.Message);
-                    }
-                }
             }
         }
         public void FillUsers()
