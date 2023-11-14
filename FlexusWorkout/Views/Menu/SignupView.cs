@@ -20,7 +20,6 @@ public class SignupView : View
         Console.WriteLine("Enter your email:");
         var email = Console.ReadLine();
         OnInputReceived("email", email);
-        // TODO check if username is available here
         
         Console.WriteLine("Enter a password:");
         var password = Console.ReadLine();

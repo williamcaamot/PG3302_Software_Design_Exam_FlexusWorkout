@@ -26,59 +26,33 @@ public class SignupPresenter : Presenter
 
     public override void HandleInput(string? key, string? input)
     {
+        if (input == null)
+        {
+            MainHandler("error");
+        }
         switch (key)
         {
             case "firstname":
-                if (input == null)
-                {
-                    MainHandler("error");
-                } else
-                {
-                    _firstName = input;
-                }
+                _firstName = input;
                 break;
             case "lastname":
-                if (input == null)
-                {
-                    MainHandler("error");
-                } else
-                {
-                    _lastName = input;
-                }
+                _lastName = input;
                 break;
             case "email":
-                if (input == null)
-                {
-                    MainHandler("error");
-                } else
-                {
-                    _email = input;
-                }
+                _email = input;
                 break;
             case "password":
-                if (input == null)
-                {
-                    MainHandler("error");
-                } else
-                {
-                    _password = input;
-                }
+                _password = input;
                 break;
             case "confirmpassword":
-                if (input == null)
+                if (_password == input)
                 {
-                    MainHandler("error");
+                    MainHandler("ok");
+                    //TODO Should this password checking logic be here or should it be moved to the register user method? 
                 } else
                 {
-                    if (_password == input)
-                    {
-                        MainHandler("ok"); //TODO Should this password checking logic be here or should it be moved to the register user method? 
-                    }
-                    else
-                    {
-                        _password = null;
-                        MainHandler("didntmatch");
-                    }
+                    _password = null;
+                    MainHandler("didntmatch");
                 }
                 break;
         }
