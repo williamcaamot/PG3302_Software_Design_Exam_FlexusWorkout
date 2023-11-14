@@ -7,7 +7,7 @@ namespace FlexusWorkout.Views.WorkoutPlanner;
 
 public interface IWorkoutPlannerView
 {
-    List<string> ChooseExercise(DateOnly DateOnly, List<string> exercises, List<string>? retriveExisting);
+    List<string> ChooseExercise(DateOnly dateOnly, List<string> exercises, List<string>? retriveExisting);
     List<string> RetriveExistingWorkouts();
     int ChooseTypeOfExercise(Dictionary<int, string> typeOfExercise);
     void UserMessage(string message);

@@ -29,4 +29,11 @@ public class WorkoutPlannerMenu : View
         OnInputReceived("input", userInput);
 
     }
+
+    protected void DisplayChoices()
+    {
+        Console.Clear();
+        Console.WriteLine("Select a date for you workout");
+        
+    }
 }

@@ -41,7 +41,7 @@ public class WPPRresenterMenu : Presenter
                 ShowWeekMenu showWeekMenu = new ShowWeekMenu();
                 break;
             case "2":
-                //todo
+                //todo plan a new workoutday
                 break;
             case "error":
                 Console.Clear();
