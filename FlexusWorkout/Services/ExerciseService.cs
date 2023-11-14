@@ -44,4 +44,5 @@ public class ExerciseService : Service
         _db.SaveChanges();
         return addedExercise.Entity;
     }
+    
 }

@@ -38,7 +38,8 @@ public class UserService : Service
     public User GetUserByEmail(User user)
     {
         var FoundUser = _db.User
-            .Include(u => u.Workouts) //eager loading
+            .Include(u => u.Workouts)
+            .Include(u => u.WorkoutDays)//eager loading
             .FirstOrDefault(u => u.Email == user.Email);
         return FoundUser ?? new User();
     }
