@@ -8,8 +8,8 @@ public class WorkoutMenu : Base.View
         Console.Clear();
         Console.WriteLine("--Workout Menu--");
         Console.WriteLine("1 - Show your existing workouts");
-        Console.WriteLine("2 - Add new workout");
-        Console.WriteLine("3 - Delete existing workout");
+        Console.WriteLine("2 - Add a new workout");
+        Console.WriteLine("3 - Modify an existing workout");
         Console.WriteLine("0 - Exit");
         Console.Write("\r\nSelect an option: ");
         var input = Console.ReadLine();

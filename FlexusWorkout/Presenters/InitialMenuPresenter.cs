@@ -11,7 +11,7 @@ public class InitialMenuPresenter : MenuPresenter
     private FlexusWorkoutDbContext _flexusWorkoutDbContext;
     public InitialMenuPresenter(View view) : base(view)
     {
-        _flexusWorkoutDbContext = new();
+        _flexusWorkoutDbContext = DbContextManager.Instance;;
         // Run the View loop
         view.Run();
     }
