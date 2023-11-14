@@ -1,15 +1,19 @@
 namespace FlexusWorkout.Presenters.WorkoutPlanner;
 using ConsoleTableExt;
 
-public class ShowUpcomingWorkoutsMenu 
+public class ShowUpcomingWorkoutsMenu
 {
-    public void DisplayMenu()
+    public static void DisplayMenu(List<Models.Concrete.Workout> workouts)
     {
         var tableData = new List<List<object>>
             { 
-                new List<object>   {"Monday", "Thuesday", "Wedensday", "Thursday", "Friday", "Saturday", "Sunday" }, 
-                new List<object>   { "Test", "Test", "Test", "Test", "Test", "Test", "Test" },
+                new List<object>   {"Should", "be", "dates", "off", "upcoming", "workouts", "here" }, 
+                
         };
+        foreach (var workout in workouts)
+        {
+            tableData.Add(new List<object>{workout.Name});
+        }
 
         ConsoleTableBuilder.From(tableData).WithFormat(ConsoleTableBuilderFormat.Default).ExportAndWriteLine();
             

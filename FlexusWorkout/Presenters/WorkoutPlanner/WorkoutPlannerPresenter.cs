@@ -15,13 +15,13 @@ public class WorkoutPlannerPresenter : Presenter
 {
     private User _user;
     private FlexusDbContext _db;
-    private WorkoutPlan _workoutPlan;
+    private WorkoutDay _workoutDay;
 
     public WorkoutPlannerPresenter(User user, View view, Service? service = default) : base(view, service)
     {
         _db = new FlexusWorkoutDbContext();
         _user = user;
-        _workoutPlan = new WorkoutPlan();
+        _workoutDay = new WorkoutDay();
         view.Run();
     }
 
@@ -60,9 +60,6 @@ public class WorkoutPlannerPresenter : Presenter
             case "workout":
                 ExcersiseHandler(input);
                 break;
-            case "getWorkoutPlans":
-                MainHandler("getWorkoutPlans");
-                break;
         }
     }
 
@@ -85,16 +82,14 @@ public class WorkoutPlannerPresenter : Presenter
                 {
                     View.DisplayText(i + 1 + " - " + _user.Workouts[i].Name);
                 }
-
                 break;
-
         }
 
     }
 
     private void DateHandler(DateOnly choosenDate)
     {
-        _workoutPlan.Date = choosenDate;
+        _workoutDay.Date = choosenDate;
 
     }
 
@@ -102,7 +97,7 @@ public class WorkoutPlannerPresenter : Presenter
     {
         if (int.TryParse(input, out int choice))
         {
-            _workoutPlan.Workout = _user.Workouts[choice - 1];
+            _workoutDay.Workout = _user.Workouts[choice - 1];
 
         }
 

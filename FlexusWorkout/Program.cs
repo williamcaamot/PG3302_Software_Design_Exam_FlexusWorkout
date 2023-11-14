@@ -15,7 +15,8 @@ namespace FlexusWorkout
             databaseFiller.runMySqlScript();
             databaseFiller.FillUsers();
             databaseFiller.FillExercises();
-            databaseFiller.fillWorkouts();
+            databaseFiller.FillWorkouts();
+            databaseFiller.FillWorkoutDays();
             
             
 
