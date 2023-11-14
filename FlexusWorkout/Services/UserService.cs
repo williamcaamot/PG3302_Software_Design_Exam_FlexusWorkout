@@ -12,10 +12,12 @@ namespace FlexusWorkout.Services;
 public class UserService : Service
 {
     private readonly FlexusDbContext _db;
-    public UserService(FlexusDbContext db) //TODO NEED TO EDIT THIS TO USE DEPENDENCY INJECTION
+    public UserService(FlexusDbContext db)
     {
         _db = db;
     }
+    
+    
     private User Add(User user)
     {
         user.Password = hashPassword(user.Password);
