@@ -22,7 +22,7 @@ namespace FlexusWorkout;
 
             conn = new MySqlConnection("server=localhost;port=3200;database=db;user=user;password=password;");
             conn.Open();
-            string script = File.ReadAllText("~/Resources/create_tables_and_insert_data.sql");
+            string script = File.ReadAllText("Resources/create_tables_and_insert_data.sql");
         }
 
         public void FillUsers()
