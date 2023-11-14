@@ -7,7 +7,7 @@ namespace FlexusWorkout.Models.Concrete;
 public class ExerciseType
 {
     public string Name { get; }
-    private List<Exercise> Exercises { get; set; }
+    public List<Exercise> Exercises { get; set; }
 
     public int Count
     {

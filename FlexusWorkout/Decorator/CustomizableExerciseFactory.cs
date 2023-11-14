@@ -1,38 +1,32 @@
-using FlexusWorkout.Decorator;
+using FlexusWorkout.Decorators;
 using FlexusWorkout.Models.Base;
-using FlexusWorkout.Models.Concrete;
+using FlexusWorkout.Services.Repository;
+using System;
+using System.Collections.Generic;
+using FlexusWorkout.Services;
 
 namespace FlexusWorkout.Decorators
 {
     public class CustomizableExerciseFactory
     {
-        // Method to create a customizable exercise based on input parameters
-        public Exercise CreateCustomizableExercise(string type, string name, string description, int? durationInMinutes, int? repetitions, int? sets, string? equipmentRequired, int? intensityLevel, string? location)
+        private readonly ExerciseService _exerciseService;
+
+        public CustomizableExerciseFactory(ExerciseService exerciseService)
         {
-            Exercise exercise;
-            
-            // Using a switch statement to handle different exercise types
-            //Converts the type parameter to lowercase for case-insensitive comparison
-            switch (type.ToLower())
+            _exerciseService = exerciseService;
+        }
+
+        public CustomizableExerciseDecorator CreateCustomizableExercise(int exerciseId)
+        {
+            // Fetch the exercise from the database using the ExerciseService
+            Exercise exercise = _exerciseService.GetExercise(exerciseId);
+
+            if (exercise == null)
             {
-                case "strength":
-                    // Creating a new instance of StrengthExercise and assigning it to the exercise variable
-                    // Providing necessary parameters for the StrengthExercise constructor
-                    exercise = new StrengthExercise(type, name, description, durationInMinutes, repetitions, sets,
-                        equipmentRequired, intensityLevel, location);
-                    break;
-                case "balance":
-                    exercise = new BalanceExercise(type, name, description, durationInMinutes, repetitions, sets,
-                        equipmentRequired, intensityLevel, location);
-                    break;
-                case "cardio":
-                    exercise = new CardioExercise(type, name, description, durationInMinutes, repetitions, sets,
-                        equipmentRequired, intensityLevel, location);
-                    break;
-                default:
-                    throw new ArgumentException("Invalid exercise type");
+                throw new ArgumentException("Invalid exercise ID");
             }
-            // Wrapping the created exercise with the CustomizableExerciseDecorator
+
+            // Wrap the exercise with the CustomizableExerciseDecorator
             return new CustomizableExerciseDecorator(exercise);
         }
     }

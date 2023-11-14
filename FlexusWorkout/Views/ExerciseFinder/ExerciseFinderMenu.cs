@@ -2,7 +2,6 @@ namespace FlexusWorkout.Views.ExerciseFinder;
 
 public class ExerciseFinderMenu : Base.View
 {
-    // TODO Make ExerciseFinder View
     protected override void Display()
     {
         Console.Clear();
