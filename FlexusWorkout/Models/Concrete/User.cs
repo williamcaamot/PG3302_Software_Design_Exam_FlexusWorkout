@@ -12,8 +12,10 @@ public class User : Base.Model
     public string? Email { get; set; }
     public string? Password { get; set; }
 
-    public IList<Workout> Workouts { get; set; }= new List<Workout>();
-    
+    public IList<Workout> Workouts { get; set; } = new List<Workout>();
+
+    public IList<WorkoutDay> WorkoutDays { get; set; } = new List<WorkoutDay>();
+
     [NotMapped] //This dooes not need to be mapped, only for programming usage
     public bool Authenticated = false;
 

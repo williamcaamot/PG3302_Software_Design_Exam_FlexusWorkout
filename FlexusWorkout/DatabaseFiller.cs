@@ -20,10 +20,25 @@ namespace FlexusWorkout;
             _exerciseService = new ExerciseService(flexusWorkoutDbContext);
             _workoutService = new(flexusWorkoutDbContext);
 
+            
+        }
+
+        public void runMySqlScript()
+        {
             conn = new MySqlConnection("server=localhost;port=3200;database=db;user=user;password=password;");
             conn.Open();
             string script = File.ReadAllText("Resources/create_tables_and_insert_data.sql");
+            var commands = script.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var cmd in commands)
+            {
+                using (var command = new MySqlCommand(cmd, conn))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
         }
+        
+        
 
         public void FillUsers()
         {
