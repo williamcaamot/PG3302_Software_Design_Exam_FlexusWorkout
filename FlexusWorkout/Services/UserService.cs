@@ -25,11 +25,21 @@ public class UserService : Service
         _db.SaveChanges();
         return addeduser.Entity;
     }
+
     public User update(User user)
     {
-        return new User();
+        try
+        {
+            var updatedUser = _db.User.Update(user);
+            _db.SaveChanges();
+            return updatedUser.Entity;
+        }
+        catch (Exception e)
+        { // easy way to handle any kind of exception
+            throw new Exception(e.Message);
+        }
     }
-    
+
     public void delete(User user)
     {
         _db.User.Remove(user);
@@ -108,4 +118,14 @@ public class UserService : Service
         newUser.Authenticated = true;
         return newUser;
     }
+
+    public User addWorkoutDay(User user, WorkoutDay workoutDay)
+    {
+        //TODO NEED TO DO SOME CHECKING ON THE WORKOUT DAY HERE AND THROW AN ERROR
+        user.WorkoutDays.Add(workoutDay);
+        user = update(user);
+        return user;
+    }
+    
+    
 }

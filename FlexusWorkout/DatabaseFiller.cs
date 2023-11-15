@@ -153,19 +153,19 @@ namespace FlexusWorkout;
             WorkoutDay workoutDay1 = new();
             workoutDay1.Date = DateOnly.Parse("2023-12-12");
             workoutDay1.Workout = user.Workouts[1];
-            
-            user.WorkoutDays.Add(workoutDay1);
+
+            _userService.addWorkoutDay(user, workoutDay1);
             
             WorkoutDay workoutDay2 = new();
             workoutDay2.Date = DateOnly.Parse("2023-12-14");
             workoutDay2.Workout = user.Workouts[2];
-            
-            user.WorkoutDays.Add(workoutDay2);
+
+            _userService.addWorkoutDay(user, workoutDay2);
             
             WorkoutDay workoutDay3 = new();
             workoutDay3.Date = DateOnly.Parse("2023-12-17");
             workoutDay3.Workout = user.Workouts[3];
-            
-            user.WorkoutDays.Add(workoutDay3);
+
+            _userService.addWorkoutDay(user, workoutDay3);
         }
     }
