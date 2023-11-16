@@ -47,6 +47,7 @@ public class ExerciseFinderPresenter : Base.Presenter
                 break;
         }
     }
+    
 
     public override void MainHandler(string? input)
     {
