@@ -21,17 +21,7 @@ public class ExerciseServiceTest
     [Test]
     public void AddExerciseOfTypeStrength_ShouldReturnSameExercise()
     {
-        StrengthExercise strengthExercise = new StrengthExercise("Strength",
-            "Knebøy",
-            "Knebøy",
-            null,
-            8,
-            2,
-            "Barbell",
-            10,
-            "Gym"
-        );
-
+        
         ExerciseService exerciseService = new(_flexusWorkoutDbContext);
         exerciseService.AddExercise(strengthExercise);
 
