@@ -17,9 +17,9 @@ public abstract class Exercise
     public string? EquipmentRequired { get; set; } //can be null? 
     public int? IntensityLevel { get; set; }
     public string? Location { get; set; }
-    
 
-    
+    public bool? standard { get; set; } = true;
+
     //Constructor 
     public Exercise() 
     { }

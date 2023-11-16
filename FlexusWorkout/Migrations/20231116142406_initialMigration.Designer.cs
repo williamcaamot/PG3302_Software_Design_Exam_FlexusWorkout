@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlexusWorkout.Migrations
 {
     [DbContext(typeof(FlexusWorkoutDbContext))]
-    [Migration("20231114140453_initialMigration")]
+    [Migration("20231116142406_initialMigration")]
     partial class initialMigration
     {
         /// <inheritdoc />
@@ -75,6 +75,9 @@ namespace FlexusWorkout.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<bool?>("standard")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("ExerciseId");
 
                     b.ToTable("Exercise");
@@ -137,14 +140,14 @@ namespace FlexusWorkout.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.Property<int>("WorkoutId")
                         .HasColumnType("int");
-
-                    b.Property<DateOnly>("date")
-                        .HasColumnType("date");
 
                     b.HasKey("WorkoutDayId");
 

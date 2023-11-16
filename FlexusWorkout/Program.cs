@@ -29,8 +29,6 @@ namespace FlexusWorkout
             
             DatabaseFiller databaseFiller = new(DbContextManager.Instance);
             databaseFiller.fill(); //Keep fill data methods in here and not convert to SQL script, that makes these methods work regardless of what database type / context we use.
-
-            
             
             InitialMenu initialMenu = new();
             InitialMenuPresenter initialMenuPresenter = new(initialMenu);
