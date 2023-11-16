@@ -48,6 +48,7 @@ public class WPUpcomingPresenter : Presenter
                     tableData.Add(dataSet);
                 }
                 ConsoleTableBuilder.From(tableData).WithFormat(ConsoleTableBuilderFormat.Alternative).ExportAndWriteLine(TableAligntment.Center);
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 View.Stop();
                 break;
         }
