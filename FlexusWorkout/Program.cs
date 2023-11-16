@@ -30,7 +30,7 @@ namespace FlexusWorkout
             databaseFiller.FillUsers(); //Keep fill data methods in here and not convert to SQL script, that makes these methods works regardless of what database type / context we use.
             databaseFiller.FillExercises();
             databaseFiller.FillWorkouts();
-            databaseFiller.FillWorkoutDays();
+            //databaseFiller.FillWorkoutDays();
             
             
 

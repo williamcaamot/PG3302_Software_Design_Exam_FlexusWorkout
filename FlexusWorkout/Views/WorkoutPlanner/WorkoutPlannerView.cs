@@ -30,7 +30,7 @@ public class WorkoutPlannerView : View
 
 
         Console.Clear();
-        Console.WriteLine("Your workouts:");
+        Console.WriteLine("Your previous workouts:");
         OnInputReceived("getWorkouts", "");
         Console.WriteLine("\r\nSelect an existing workout ");
         string? workout = Console.ReadLine();
