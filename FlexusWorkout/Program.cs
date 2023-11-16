@@ -1,9 +1,5 @@
 ﻿using FlexusWorkout.Presenters;
-using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Views.Menu;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using MySql.Data.MySqlClient;
 
 namespace FlexusWorkout
 {
@@ -11,6 +7,7 @@ namespace FlexusWorkout
     {
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine(@"           ______   _        ______  __   __  _    _    _____                ");
@@ -25,14 +22,11 @@ namespace FlexusWorkout
             Console.WriteLine(@"             \  /\  /    | |__| | | | \ \  | . \  | |__| | | |__| |    | |   ");
             Console.WriteLine(@"              \/  \/      \____/  |_|  \_\ |_|\_\  \____/   \____/     |_|   ");
             Thread.Sleep(2000);
+            Console.ResetColor();
+            
             DatabaseFiller databaseFiller = new();
             databaseFiller.runMySqlScript();
             databaseFiller.FillUsers(); //Keep fill data methods in here and not convert to SQL script, that makes these methods works regardless of what database type / context we use.
-            databaseFiller.FillExercises();
-            databaseFiller.FillWorkouts();
-            //databaseFiller.FillWorkoutDays();
-            
-            
 
             InitialMenu initialMenu = new();
             InitialMenuPresenter initialMenuPresenter = new(initialMenu);

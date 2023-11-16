@@ -118,7 +118,30 @@ public class UserService : Service
         newUser.Authenticated = true;
         return newUser;
     }
+    public User registerUser(string firstname, string lastname, string email, string password, string confirmPassword)
+    {
+        //Check that passwords are the same
+        User user = new User(firstname, lastname, email, password);
+        try //Verify that the email is in fact an email
+        {
+            new MailAddress(user.Email);
+        }
+        catch (Exception e)
+        {
+            throw new Exception("Email is not formatted correctly");
+        }
 
+        var checkUser = GetUserByEmail(user);
+        if (checkUser.Email != null)
+        {
+            throw new Exception("Email already exists");
+        }
+        var newUser = Add(user);
+        newUser.Authenticated = true;
+        return newUser;
+    }
+
+    
     public User addWorkoutDay(User user, WorkoutDay workoutDay)
     {
         //TODO NEED TO DO SOME CHECKING ON THE WORKOUT DAY HERE AND THROW AN ERROR
