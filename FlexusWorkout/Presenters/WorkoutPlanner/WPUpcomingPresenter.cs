@@ -45,7 +45,7 @@ public class WPUpcomingPresenter : Presenter
                     };
                     tableData.Add(dataSet);
                 }
-                ConsoleTableBuilder.From(tableData).WithFormat(ConsoleTableBuilderFormat.Alternative).ExportAndWriteLine(TableAligntment.Center);
+                ConsoleTableBuilder.From(tableData).WithFormat(ConsoleTableBuilderFormat.Alternative).ExportAndWriteLine();
                 View.Stop();
                 break;
         }
