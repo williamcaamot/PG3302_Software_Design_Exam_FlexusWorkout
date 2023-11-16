@@ -41,20 +41,34 @@ public class ExerciseSelectorPresenter : Presenter
 
     public override void MainHandler(string? input)
     {
-        switch (input)
+        if (input == "getexercises")
         {
-            case "getexercises":
-                var exercises = GetExercises();
-                for (int i = 0; i < exercises.Count; i++)
+            var exercises = GetExercises();
+            for (int i = 0; i < exercises.Count; i++)
+            {
+                View.DisplayText(i + 1 + " - " + exercises[i].Name);
+            }
+        } else if (input == "error")
+        {
+            Console.Clear();
+            Console.WriteLine("There was an error receiving input.");
+            Thread.Sleep(2000);
+        } else
+        {
+            if (int.TryParse(input, out int choice))
+            {
+                if (choice == 0) // Exit view
                 {
-                    View.DisplayText(i + 1 + " - " + exercises[i].Name);
+                    View.Stop();
+                } else
+                {
+                    Console.Clear();
+                    Console.WriteLine(GetExercises()[choice - 1]);
+                    Console.WriteLine("\r\nPress any key to exit.");
+                    Console.ReadKey();
                 }
-                break;
-            case "0":
-                View.Stop();
-                break;
+            }
         }
-            
     }
 
     private IList<Exercise> GetExercises()

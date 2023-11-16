@@ -12,12 +12,15 @@ public class WPUpcomingPresenter : Presenter
     public WPUpcomingPresenter(User user, View view, Service? service = default) : base(view, service)
     {
         _user = user;
-        
         View.Run();
     }
-
+    
     public override void HandleInput(string? key, string? input)
     {
+        if (input == null)
+        {
+            MainHandler("error");
+        }
         switch (key)
         {
             case "getWorkoutPlans":
@@ -31,18 +34,22 @@ public class WPUpcomingPresenter : Presenter
         switch (input)
         {
             case "getWorkoutPlans":
-                List<List<object>> tableData = new();
-                List<object> data;
+                    List<List<object>> tableData = new();
                 foreach (var workoutDay in _user.WorkoutDays)
                 {
-                    //data = {workoutDay.Workout.Name}
-                    tableData.Add(new List<object>{workoutDay.Workout.Name,});
+                    Console.WriteLine(workoutDay.Workout.Name);
+                    List<object> dataSet = new List<object>
+                    {
+                        workoutDay.Workout.Name,
+                        workoutDay.Workout.Description,
+                    };
+                    tableData.Add(dataSet);
                 }
-
-                ConsoleTableBuilder.From(tableData).WithFormat(ConsoleTableBuilderFormat.Default).ExportAndWriteLine();
-                
+                ConsoleTableBuilder.From(tableData).WithFormat(ConsoleTableBuilderFormat.Alternative).ExportAndWriteLine(TableAligntment.Center);
                 View.Stop();
                 break;
         }
+        
     }
+    
 }
