@@ -18,7 +18,7 @@ public abstract class Exercise
     public int? IntensityLevel { get; set; }
     public string? Location { get; set; }
 
-    public bool Standard { get; set; } = true;
+    public bool Standard { get; set; } = false;
 
     //Constructor 
     public Exercise() 
