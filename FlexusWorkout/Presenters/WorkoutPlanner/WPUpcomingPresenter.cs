@@ -34,7 +34,8 @@ public class WPUpcomingPresenter : Presenter
         switch (input)
         {
             case "getWorkoutPlans":
-                    List<List<object>> tableData = new();
+                List<List<object>> tableData = new();
+                List<string> myStringList = new List<string> { "String1", "String2", "String3" };
                 foreach (var workoutDay in _user.WorkoutDays)
                 {
                     Console.WriteLine(workoutDay.Workout.Name);
@@ -45,6 +46,7 @@ public class WPUpcomingPresenter : Presenter
                     };
                     tableData.Add(dataSet);
                 }
+                
                 ConsoleTableBuilder.From(tableData).WithFormat(ConsoleTableBuilderFormat.Alternative).ExportAndWriteLine();
                 View.Stop();
                 break;

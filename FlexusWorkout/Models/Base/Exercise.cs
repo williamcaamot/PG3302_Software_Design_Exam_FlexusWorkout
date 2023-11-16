@@ -18,6 +18,8 @@ public abstract class Exercise
     public int? IntensityLevel { get; set; }
     public string? Location { get; set; }
     
+
+    
     //Constructor 
     public Exercise() 
     { }
