@@ -18,7 +18,7 @@ public class Workout
         Name = name;
         Description = description;
 
-
+        
         Exercises = new List<Exercise>();
     }
 
