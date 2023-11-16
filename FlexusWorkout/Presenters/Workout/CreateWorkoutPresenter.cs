@@ -52,10 +52,10 @@ public class CreateWorkoutPresenter : Presenter
                 MainHandler("description");
                 break;
             case "categoryInput":
-                CategoryHandler(input);
+                CategoryInputHandler(input);
                 break;
             case "exerciseInput":
-                ExerciseHandler(input);
+                ExerciseInputHandler(input);
                 break;
             case "getcategories":
                 CategoryHandler("getcategories");
@@ -67,7 +67,16 @@ public class CreateWorkoutPresenter : Presenter
                 DecoratorHandler(input);
                 break;
             case "addMore":
-                MainHandler(input);
+                if (input == "1")
+                {
+                    MainHandler("yes");
+                } else if (input == "2")
+                {
+                    MainHandler("no");
+                } else
+                {
+                   MainHandler("invalid"); 
+                }
                 break;
         }
     }
@@ -87,8 +96,10 @@ public class CreateWorkoutPresenter : Presenter
                 _view.DisplayCategories();
                 break;
             case "no":
+                // finished adding exercises
                 _user.Workouts.Add(_workout);
                 _user = _userService.update(_user);
+                _view.Stop();
                 break;
             case "error":
                 Console.Clear();
@@ -97,7 +108,12 @@ public class CreateWorkoutPresenter : Presenter
                 break;
         }
     }
-
+    
+    private IList<ExerciseType> GetCategories()
+    {
+        return _service.GetExerciseTypes();
+    }
+    
     private void CategoryHandler(string? input)
     {
         if (input == "getcategories") // writes menu choices to view
@@ -114,52 +130,10 @@ public class CreateWorkoutPresenter : Presenter
             Console.WriteLine("Invalid menu choice - try again.");
             Thread.Sleep(2000);
         }
-        else
-        {
-            if (int.TryParse(input, out int choice))
-            {
-                if (choice == 0) // Exit view
-                {
-                    View.Stop();
-                }
-                else
-                {
-                    _exerciseType = GetCategories()[choice - 1];
-                    _view.DisplayExercises(_exerciseType.Name);
-
-                }
-            }
-        }
     }
-
-    private void ExerciseHandler(string? input)
+    
+    private void CategoryInputHandler(string? input)
     {
-        {
-            if (input == "getexercises") // writes menu choices to view
-            {
-                var exercises = _exerciseType.Exercises;
-                for (int i = 0; i < exercises.Count; i++)
-                {
-                    View.DisplayText(i + 1 + " - " + exercises[i].Name);
-                }
-            }
-            else if (input == "invalid")
-            {
-                Console.Clear();
-                Console.WriteLine("Invalid menu choice - try again.");
-                Thread.Sleep(2000);
-            }
-        }
-    }
-
-    private IList<ExerciseType> GetCategories()
-    {
-        return _service.GetExerciseTypes();
-    }
-
-    private void ExerciseInputHandler(string input)
-    {
-        // Handling exercises selection input
         if (int.TryParse(input, out int choice))
         {
             if (choice == 0) // Exit view
@@ -168,7 +142,45 @@ public class CreateWorkoutPresenter : Presenter
             }
             else
             {
+                _exerciseType = GetCategories()[choice - 1];
+                _view.DisplayExercises(_exerciseType.Name);
+            }
+        }
+    }
+
+    private void ExerciseHandler(string? input)
+    {
+        if (input == "getexercises") // writes menu choices to view
+        {
+            var exercises = _exerciseType.Exercises;
+            for (int i = 0; i < exercises.Count; i++)
+            {
+                View.DisplayText(i + 1 + " - " + exercises[i].Name);
+            }
+        }
+        else if (input == "invalid")
+        {
+            Console.Clear();
+            Console.WriteLine("Invalid menu choice - try again.");
+            Thread.Sleep(2000);
+        }
+    }
+
+
+    private void ExerciseInputHandler(string input)
+    {
+        // Handling exercises selection input
+        if (int.TryParse(input, out int choice))
+        {
+            if (choice == 0) // Exit view
+            {
+                _view.Stop();
+            }
+            else
+            {
                 _selectedExercise = _exerciseType.Exercises[choice - 1];
+                Console.WriteLine(_selectedExercise.Name); // -------
+                Thread.Sleep(3000); // -------- remove this
                 _view.DisplayDecoratingChoices();
             }
         }
