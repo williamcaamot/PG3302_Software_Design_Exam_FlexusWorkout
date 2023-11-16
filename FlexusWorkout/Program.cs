@@ -8,8 +8,33 @@ namespace FlexusWorkout
     {
         static void Main(string[] args)
         {
+            try
+            {
+                DatabaseFiller databaseFiller = new(DbContextManager.Instance);
+                databaseFiller
+                    .Fill(); //Keep fill data methods in here and not convert to SQL script, that makes these methods work regardless of what database type / context we use.    
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("There was an error connecting to the database " +
+                                  "\r\nHave you run 'docker compose up -d'?");
+                Console.WriteLine();
+                Console.WriteLine("Error message:");
+                Console.WriteLine(e.Message);
+                return;
+            }
+
+            PrintStartUpMessage();
+
+            InitialMenu initialMenu = new();
+            InitialMenuPresenter initialMenuPresenter = new(initialMenu);
+        }
+
+
+        
+        private static void PrintStartUpMessage()
+        {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine(@"           ______   _        ______  __   __  _    _    _____                ");
             Console.WriteLine(@"          |  ____| | |      |  ____| \ \ / / | |  | |  / ____|               ");
@@ -24,14 +49,6 @@ namespace FlexusWorkout
             Console.WriteLine(@"              \/  \/      \____/  |_|  \_\ |_|\_\  \____/   \____/     |_|   ");
             Thread.Sleep(2000);
             Console.ResetColor();
-            
-            
-            
-            DatabaseFiller databaseFiller = new(DbContextManager.Instance);
-            databaseFiller.fill(); //Keep fill data methods in here and not convert to SQL script, that makes these methods work regardless of what database type / context we use.
-            
-            InitialMenu initialMenu = new();
-            InitialMenuPresenter initialMenuPresenter = new(initialMenu);
         }
     }
 }

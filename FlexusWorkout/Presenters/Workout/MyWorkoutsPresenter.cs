@@ -86,7 +86,7 @@ public class MyWorkoutsPresenter : Presenter
                     Console.WriteLine($"Exercises:");
                     foreach (var exercise in _user.Workouts[choice -1].Exercises)
                     {
-                        Console.WriteLine($"      {exercise.Type}  {exercise.Name} ");
+                        Console.WriteLine($"      {exercise.Type}  {exercise.Name} {exercise.Sets} {exercise.Repetitions} {exercise.Location}");
                     }
                     View.DisplayText("\r\nPress any key to exit.");
                     

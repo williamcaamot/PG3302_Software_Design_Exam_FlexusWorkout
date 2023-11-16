@@ -10,7 +10,7 @@ namespace FlexusWorkout;
     {
         private UserService _userService;
         private ExerciseService _exerciseService;
-        private MySqlConnection conn;
+        private MySqlConnection _mySqlConnectionconn;
 
         public DatabaseFiller(FlexusDbContext flexusDbContext)
         {
@@ -18,7 +18,7 @@ namespace FlexusWorkout;
             _exerciseService = new ExerciseService(flexusDbContext);
         }
 
-        public void fill()
+        public void Fill()
         {
             try
             {
@@ -26,6 +26,10 @@ namespace FlexusWorkout;
             }
             catch (Exception e)
             {
+                Console.Clear();
+                Console.WriteLine("-----------------------------------");
+                Console.WriteLine("---- Setting up... Please wait ----");
+                Console.WriteLine("------------------------------------");
                 runMySqlScript();
                 Console.WriteLine("Finished running database setup script");
                 FillUsers();
@@ -43,41 +47,32 @@ namespace FlexusWorkout;
 
         public void runMySqlScript()
         {
-                    Console.Clear();
-                    Console.WriteLine("------------------------------------------------------------");
-                    Console.WriteLine("---- INITIAL SETUP - WAIT WHILE DATABASE IS INITIALIZED ----");
-                    Console.WriteLine("------------------------------------------------------------");
-                    string script = File.ReadAllText("Resources/create_tables_and_insert_data.sql");
-                    using (var conn = new MySqlConnection(
-                               "server=localhost;port=3200;database=db;user=root;password=password;ConnectionTimeout=1500;DefaultCommandTimeout=1500"))
+            string script = File.ReadAllText("Resources/create_tables_and_insert_data.sql");
+            using (var _mySqlConnectionconn = new MySqlConnection(
+                       "server=localhost;port=3200;database=db;user=root;password=password;ConnectionTimeout=1500;DefaultCommandTimeout=1500")) //Default command timeout increased because of error while running scripts
+            {
+                _mySqlConnectionconn.Open();
+                var commands = script.Split(new[] { ";\r\n", ";\n" }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var cmd in commands)
+                {
+                    Thread.Sleep(500);
+                    if (cmd != null)
                     {
-                        conn.Open();
-                        var commands = script.Split(new[] { ";\r\n", ";\n" }, StringSplitOptions.RemoveEmptyEntries);
-                        foreach (var cmd in commands)
+                        using (var command = new MySqlCommand(cmd, _mySqlConnectionconn))
                         {
-                            Thread.Sleep(500);
-                            if (cmd != null)
+                            try
                             {
-                                using (var command = new MySqlCommand(cmd, conn))
-                                {
-                                    command.CommandTimeout = 300; // Increase timeout to 300 seconds
-                                    try
-                                    {
-                                        command.ExecuteNonQuery(); //Can run any query
-                                    }
-                                    catch (MySqlException ex)
-                                    {
-                                        Console.WriteLine("Error encountered executing the following SQL:");
-                                        Console.WriteLine(cmd);
-                                        Console.WriteLine("Error details:");
-                                        Console.WriteLine(ex.Message);
-                                        break; // Stop execution on error
-                                    }
-                                }
+                                command.ExecuteNonQuery(); //Can run any query
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("There was an error while executing SQL commands, see error message:");
+                                Console.WriteLine(e.Message);
+                                return;
                             }
                         }
-                    
-            
+                    }
+                }
             }
         }
         public void FillUsers()
