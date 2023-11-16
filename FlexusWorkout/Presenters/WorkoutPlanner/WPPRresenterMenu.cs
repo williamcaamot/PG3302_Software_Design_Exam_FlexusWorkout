@@ -43,14 +43,6 @@ public class WPPRresenterMenu : Presenter
                 break;
             
             case "1":
-                /*ShowUpcomingWorkoutsMenu showUpcomingWorkoutsMenu = new ShowUpcomingWorkoutsMenu();
-                
-                foreach (var workoutDay in _user.WorkoutDays)
-                {
-                    Console.WriteLine(workoutDay.Workout.Name);
-                }
-                Thread.Sleep(2000);
-                */
                 WPUpcomingView wpUpcomingView = new();
                 WPUpcomingPresenter wpUpcomingPresenter = new(_user, wpUpcomingView);
                 break;

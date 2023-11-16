@@ -11,6 +11,7 @@ public class WPUpcomingView : View
         Console.WriteLine("Your upcoming workout plans");
         OnInputReceived("getWorkoutPlans", "");
         var pressKey = Console.ReadKey();
+        
 
     }
 }

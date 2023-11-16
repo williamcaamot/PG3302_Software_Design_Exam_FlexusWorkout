@@ -32,17 +32,20 @@ public class WPUpcomingPresenter : Presenter
         {
             case "getWorkoutPlans":
                 List<List<object>> tableData = new();
-                List<object> data;
                 foreach (var workoutDay in _user.WorkoutDays)
                 {
-                    //data = {workoutDay.Workout.Name}
-                    tableData.Add(new List<object>{workoutDay.Workout.Name,});
-                }
+                    List<object> dataSet = new List<object>
+                    {
 
-                ConsoleTableBuilder.From(tableData).WithFormat(ConsoleTableBuilderFormat.Default).ExportAndWriteLine();
-                
+                        workoutDay.Workout.Name,
+                    };
+                tableData.Add(dataSet);
+                }
+                ConsoleTableBuilder.From(tableData).WithFormat(ConsoleTableBuilderFormat.Alternative).ExportAndWriteLine(TableAligntment.Center);
                 View.Stop();
                 break;
         }
+        
     }
+    
 }
