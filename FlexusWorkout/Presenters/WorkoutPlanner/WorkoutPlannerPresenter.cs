@@ -17,13 +17,15 @@ public class WorkoutPlannerPresenter : Presenter
     private FlexusDbContext _db;
     private WorkoutDay _workoutDay;
     private WorkoutPlannerView _view;
+    private UserService _userService;
 
     public WorkoutPlannerPresenter(User user, WorkoutPlannerView view, Service? service = default) : base(view, service)
     {
         _view = view;
-        _db = new FlexusWorkoutDbContext();
+        _db = DbContextManager.Instance;
         _user = user;
         _workoutDay = new WorkoutDay();
+        _userService = new UserService(_db);
         
         view.Run();
     }
@@ -114,7 +116,8 @@ public class WorkoutPlannerPresenter : Presenter
         if (int.TryParse(input, out int choice))
         {
             _workoutDay.Workout = _user.Workouts[choice - 1];
-
+            _user.WorkoutDays.Add(_workoutDay);
+            _user = _userService.update(_user);
         }
     }
 }

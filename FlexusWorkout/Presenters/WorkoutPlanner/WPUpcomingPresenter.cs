@@ -1,4 +1,5 @@
 using ConsoleTableExt;
+using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Presenters.Base;
 using FlexusWorkout.Services.Base;
@@ -49,8 +50,10 @@ public class WPUpcomingPresenter : Presenter
                     tableData.Add(dataSet);
                 }
                     
-                    ConsoleTableBuilder.From(tableData).WithFormat(ConsoleTableBuilderFormat.Alternative).ExportAndWriteLine();
-                    
+                ConsoleTableBuilder.From(tableData).WithFormat(ConsoleTableBuilderFormat.Alternative).ExportAndWriteLine();
+                
+                
+                //todo, add implementation for a better interface. Fix underneath!!!!
                    /* ConsoleTableBuilder.From(tableData)
                         .WithFormat(ConsoleTableBuilderFormat.Alternative)
                         .WithColumnFormatter(, cell => {
