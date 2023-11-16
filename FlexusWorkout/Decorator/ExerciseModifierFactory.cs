@@ -12,24 +12,43 @@ public class ExerciseModifierFactory
             
             if (exercise is StrengthExercise)
             {
-                
                 // Increase sets and repetitions for StrengthExercise
                 Exercise e = new RepetitionIncreaseDecorator(exercise);
                 e = new SetIncreaseDecorator(e);
-                return e;
+                return new StrengthExercise(
+                    e.Type, 
+                    e.Name, 
+                    e.Description,
+                    e.Repetitions,
+                    e.Sets,
+                    e.EquipmentRequired, 
+                    e.IntensityLevel,
+                    e.Location);
             }
             else if (exercise is BalanceExercise)
             {
                 // Increasing duration in minutes for balance exercises
                 Exercise e = new DurationIncreaseDecorator(exercise);
-                return e;
+                return new BalanceExercise(
+                    e.Type, 
+                    e.Name, 
+                    e.Description,
+                    e.DurationInMinutes, 
+                    e.IntensityLevel,
+                    e.Location);
             }
             else if (exercise is CardioExercise)
             {
                 // Increasing intensity level cardio exercises
                 Exercise e = new IntensityIncreaseDecorator(exercise);
-                Exercise ef = new BalanceExercise();
-                return ef;
+                return new CardioExercise(
+                    e.Type, 
+                    e.Name, 
+                    e.Description,
+                    e.DurationInMinutes, 
+                    e.EquipmentRequired, 
+                    e.IntensityLevel,
+                    e.Location);
             }
 
             return exercise;

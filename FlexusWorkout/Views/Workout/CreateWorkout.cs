@@ -46,8 +46,9 @@ public class CreateWorkout : View
     public void DisplayDecoratingChoices()
     {
         Console.Clear();
-        Console.WriteLine("Do you want to customize this exericse?");
-        Console.WriteLine("1 - Make it harder");
+        Console.WriteLine("Do you want to customize this exercise?\r\n");
+        OnInputReceived("showDecoratorInfo", "");
+        Console.WriteLine("\r\n1 - Make it harder");
         Console.WriteLine("2 - Make it easier");
         Console.WriteLine("3 - Don't change anything.");
         var input = Console.ReadLine();

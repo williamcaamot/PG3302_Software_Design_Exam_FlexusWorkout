@@ -82,6 +82,9 @@ public class CreateWorkoutPresenter : Presenter
                    MainHandler("invalid"); 
                 }
                 break;
+            case "showDecoratorInfo":
+                MainHandler(key);
+                break;
         }
     }
 
@@ -109,6 +112,19 @@ public class CreateWorkoutPresenter : Presenter
                 Thread.Sleep(5000);
                 
                 _user = _userService.update(_user);
+                break;
+            case "showDecoratorInfo":
+                if (_selectedExercise.Type == "Strength")
+                {
+                    _view.DisplayText("Current repetitions: " + _selectedExercise.Repetitions);
+                    _view.DisplayText("Current sets: " + _selectedExercise.Sets);   
+                } else if (_selectedExercise.Type == "Cardio")
+                {
+                    _view.DisplayText("Current intensity level: " + _selectedExercise.IntensityLevel);
+                } else if (_selectedExercise.Type == "Balance")
+                {
+                    _view.DisplayText("Current duration (minutes): " + _selectedExercise.DurationInMinutes);   
+                }
                 break;
             case "error":
                 Console.Clear();
