@@ -1,3 +1,4 @@
+using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Presenters.Base;
 using FlexusWorkout.Presenters.Workout;
@@ -47,9 +48,9 @@ public class WorkoutMenuPresenter : MenuPresenter
                 MyWorkoutsPresenter myWorkoutsPresenter = new(_user, myWorkouts);
                 break;
             case "2":
-                WorkoutService workoutService = new(_db);
+                ExerciseService exerciseService = new(_db);
                 CreateWorkout createWorkout = new();
-                CreateWorkoutPresenter createWorkoutPresenter = new(_user, createWorkout, workoutService);
+                CreateWorkoutPresenter createWorkoutPresenter = new(_user, createWorkout, exerciseService);
                 break;
             case "3":
                 ModifyWorkout modifyWorkout = new();

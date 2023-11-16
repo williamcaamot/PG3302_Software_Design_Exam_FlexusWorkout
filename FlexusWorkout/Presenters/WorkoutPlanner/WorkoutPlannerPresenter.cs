@@ -15,81 +15,94 @@ public class WorkoutPlannerPresenter : Presenter
 {
     private User _user;
     private FlexusDbContext _db;
-    
+    private WorkoutDay _workoutDay;
 
-   public WorkoutPlannerPresenter(User user, View view, Service? service = default ) : base(view, service)
-   {
-       _db = new FlexusWorkoutDbContext();
-       _user = user;
-       view.Run();
-   } 
+    public WorkoutPlannerPresenter(User user, View view, Service? service = default) : base(view, service)
+    {
+        _db = new FlexusWorkoutDbContext();
+        _user = user;
+        _workoutDay = new WorkoutDay();
+        view.Run();
+    }
+
+    public override void HandleInput(string? key, string? input)
+    {
+        if (input == null)
+        {
+        }
+
+        {
+            MainHandler("Error");
+        }
+        if (input == "exit")
+        {
+            MainHandler(input);
+        }
+
+        switch (key)
+        {
+            case "date":
+                if (DateOnly.TryParse(input, out DateOnly choosenDate))
+                {
+                    DateHandler(choosenDate);
+                }
+                else
+                {
+                    MainHandler("invalidDate");
+                }
+
+                MainHandler(input);
+                break;
+
+            case "getWorkouts":
+                MainHandler("getWorkouts");
+                break;
+            case "workout":
+                ExcersiseHandler(input);
+                break;
+        }
+    }
+
+
+
+    public override void MainHandler(string? input)
+    {
+        switch (input)
+        {
+            case "exit":
+                View.Stop();
+                break;
+            case "invalidDate":
+                Console.Clear();
+                Console.WriteLine("Error: Please try again, invalid date format ");
+                Thread.Sleep(2500);
+                break;
+            case "getWorkouts":
+                for (int i = 0; i < _user.Workouts.Count; i++)
+                {
+                    View.DisplayText(i + 1 + " - " + _user.Workouts[i].Name);
+                }
+                break;
+        }
+
+    }
+
+    private void DateHandler(DateOnly choosenDate)
+    {
+        _workoutDay.Date = choosenDate;
+
+    }
+
+    private void ExcersiseHandler(string input)
+    {
+        if (int.TryParse(input, out int choice))
+        {
+            _workoutDay.Workout = _user.Workouts[choice - 1];
+
+        }
+
+    }
+}
    
-   public override void HandleInput(string? key, string? input)
-   {
-       if (input == null){}
-       {
-           MainHandler("Error");
-       }
-       switch (key)
-       {
-           case "input":
-               MainHandler(input);
-               break;
-       }
-       
-   }
 
-   public override void MainHandler(string? input)
-   {
-       switch (input)
-       {
-           case "0": 
-               View.Stop();
-               break;
-           case "1":
-               IWorkoutPlannerView.ExtendedWorkoutPlannerView extendedWorkoutPlannerView =
-                   new IWorkoutPlannerView.ExtendedWorkoutPlannerView();
-               //extendedWorkoutPlannerView
-               //
-           break;
-       }
-           
-   }
-    
 
-    public void CreatePlan()
-    {
-        List<string> daysInWeek = new List<string>
-            { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
-
-        // might delte l8ter ? :))))/////List<string> exercisesToChooseFrom = retriveExercisesFromDB();
-       /* IList<Exercise> getAll = _exerciseService
-        List<string> exerciseNames = getAll.Select(e => e.Name).ToList();
-
-        foreach (var exercises in getAll)
-        {
-            Console.WriteLine($"Id: {exercises.ExerciseId}, Name: {exercises.Name}, Type: {exercises.Type}");
-        }  */
-        
-
-        Dictionary<int, string> exercisesTypes = new Dictionary<int, string>
-        {
-            { 1, "Strength" },
-            { 2, "Cardio" },
-            { 3, "Balance" }
-        };
-
-    }
-    //UNDER HERE SHOULD LOGIC TO RETRIVE AVALABLE EXERCISES FROM THE DATABASE BE!!!!!!!!!!!!!!!!
-   private List<string> retriveExercisesFromDB()
-    {
-
-        return new List<string>
-        {
-            "Exercise 1",
-            "Exercise 2",
-            "Exercise 3",
-        };
-    }
-
-} 
