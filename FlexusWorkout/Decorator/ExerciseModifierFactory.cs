@@ -9,25 +9,27 @@ public class ExerciseModifierFactory
 {
     public Exercise MakeHarder(Exercise exercise)
         {
+            
             if (exercise is StrengthExercise)
             {
                 
                 // Increase sets and repetitions for StrengthExercise
-                Exercise repsIncreasedExercise = new RepetitionIncreaseDecorator(exercise);
-                Exercise setsIncreasedExercise = new SetIncreaseDecorator(repsIncreasedExercise);
-                return setsIncreasedExercise;
+                Exercise e = new RepetitionIncreaseDecorator(exercise);
+                e = new SetIncreaseDecorator(e);
+                return e;
             }
             else if (exercise is BalanceExercise)
             {
                 // Increasing duration in minutes for balance exercises
-                Exercise durationIncreasedExercise = new DurationIncreaseDecorator(exercise);
-                return durationIncreasedExercise;
+                Exercise e = new DurationIncreaseDecorator(exercise);
+                return e;
             }
             else if (exercise is CardioExercise)
             {
                 // Increasing intensity level cardio exercises
-                Exercise intensityIncreasedExercise = new IntensityIncreaseDecorator(exercise);
-                return intensityIncreasedExercise;
+                Exercise e = new IntensityIncreaseDecorator(exercise);
+                Exercise ef = new BalanceExercise();
+                return ef;
             }
 
             return exercise;

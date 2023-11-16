@@ -1,4 +1,5 @@
 ﻿using FlexusWorkout.Presenters;
+using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Views.Menu;
 
 namespace FlexusWorkout
@@ -24,9 +25,11 @@ namespace FlexusWorkout
             Thread.Sleep(2000);
             Console.ResetColor();
             
-            DatabaseFiller databaseFiller = new();
-            databaseFiller.fill(); //Keep fill data methods in here and not convert to SQL script, that makes these methods works regardless of what database type / context we use.
-
+            
+            
+            DatabaseFiller databaseFiller = new(DbContextManager.Instance);
+            databaseFiller.fill(); //Keep fill data methods in here and not convert to SQL script, that makes these methods work regardless of what database type / context we use.
+            
             InitialMenu initialMenu = new();
             InitialMenuPresenter initialMenuPresenter = new(initialMenu);
         }

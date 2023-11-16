@@ -20,6 +20,8 @@ public class CreateWorkoutPresenter : Presenter
     private Exercise _selectedExercise;
     private ExerciseModifierFactory _exerciseModifierFactory;
     private UserService _userService;
+    private string _workoutName;
+    private string _workoutDescription;
 
     public CreateWorkoutPresenter(User user, CreateWorkout view, ExerciseService? service = default) : base(view,
         service)
@@ -46,16 +48,18 @@ public class CreateWorkoutPresenter : Presenter
         switch (key)
         {
             case "name":
+                _workoutName = input;
                 MainHandler("name");
                 break;
             case "description":
+                _workoutDescription = input;
                 MainHandler("description");
                 break;
             case "categoryInput":
-                CategoryHandler(input);
+                CategoryInputHandler(input);
                 break;
             case "exerciseInput":
-                ExerciseHandler(input);
+                ExerciseInputHandler(input);
                 break;
             case "getcategories":
                 CategoryHandler("getcategories");
@@ -67,7 +71,16 @@ public class CreateWorkoutPresenter : Presenter
                 DecoratorHandler(input);
                 break;
             case "addMore":
-                MainHandler(input);
+                if (input == "1")
+                {
+                    MainHandler("yes");
+                } else if (input == "2")
+                {
+                    MainHandler("no");
+                } else
+                {
+                   MainHandler("invalid"); 
+                }
                 break;
         }
     }
@@ -77,17 +90,24 @@ public class CreateWorkoutPresenter : Presenter
         switch (input)
         {
             case "name":
-                _workout.Name = input;
+                _workout.Name = _workoutName;
                 break;
             case "description":
-                _workout.Description = input;
+                _workout.Description = _workoutDescription;
                 break;
             case "yes":
                 // go to exercise selection again
                 _view.DisplayCategories();
                 break;
             case "no":
+                // finished adding exercises
                 _user.Workouts.Add(_workout);
+                
+                Console.WriteLine("ID OF THE EXERCISE ADDED TO THE NEW WORKOUT");
+                Console.WriteLine(_user.Workouts.Last().Exercises.Last().ExerciseId);
+
+                Thread.Sleep(5000);
+                
                 _user = _userService.update(_user);
                 break;
             case "error":
@@ -97,7 +117,12 @@ public class CreateWorkoutPresenter : Presenter
                 break;
         }
     }
-
+    
+    private IList<ExerciseType> GetCategories()
+    {
+        return _service.GetExerciseTypes();
+    }
+    
     private void CategoryHandler(string? input)
     {
         if (input == "getcategories") // writes menu choices to view
@@ -114,48 +139,42 @@ public class CreateWorkoutPresenter : Presenter
             Console.WriteLine("Invalid menu choice - try again.");
             Thread.Sleep(2000);
         }
-        else
+    }
+    
+    private void CategoryInputHandler(string? input)
+    {
+        if (int.TryParse(input, out int choice))
         {
-            if (int.TryParse(input, out int choice))
+            if (choice == 0) // Exit view
             {
-                if (choice == 0) // Exit view
-                {
-                    View.Stop();
-                }
-                else
-                {
-                    _exerciseType = GetCategories()[choice - 1];
-                    _view.DisplayExercises(_exerciseType.Name);
-
-                }
+                View.Stop();
+            }
+            else
+            {
+                _exerciseType = GetCategories()[choice - 1];
+                _view.DisplayExercises(_exerciseType.Name);
             }
         }
     }
 
     private void ExerciseHandler(string? input)
     {
+        if (input == "getexercises") // writes menu choices to view
         {
-            if (input == "getexercises") // writes menu choices to view
+            var exercises = _exerciseType.Exercises;
+            for (int i = 0; i < exercises.Count; i++)
             {
-                var exercises = _exerciseType.Exercises;
-                for (int i = 0; i < exercises.Count; i++)
-                {
-                    View.DisplayText(i + 1 + " - " + exercises[i].Name);
-                }
+                View.DisplayText(i + 1 + " - " + exercises[i].Name);
             }
-            else if (input == "invalid")
-            {
-                Console.Clear();
-                Console.WriteLine("Invalid menu choice - try again.");
-                Thread.Sleep(2000);
-            }
+        }
+        else if (input == "invalid")
+        {
+            Console.Clear();
+            Console.WriteLine("Invalid menu choice - try again.");
+            Thread.Sleep(2000);
         }
     }
 
-    private IList<ExerciseType> GetCategories()
-    {
-        return _service.GetExerciseTypes();
-    }
 
     private void ExerciseInputHandler(string input)
     {
@@ -164,7 +183,7 @@ public class CreateWorkoutPresenter : Presenter
         {
             if (choice == 0) // Exit view
             {
-                View.Stop();
+                _view.Stop();
             }
             else
             {
@@ -190,7 +209,7 @@ public class CreateWorkoutPresenter : Presenter
                 break;
             case "3":
                 // Keep exercise
-                _workout.Exercises.Add(_selectedExercise);
+                _workout.Exercises.Add(_service.GetExercise(_selectedExercise.ExerciseId));
                 _view.DisplayAddMore();
                 break;
         }

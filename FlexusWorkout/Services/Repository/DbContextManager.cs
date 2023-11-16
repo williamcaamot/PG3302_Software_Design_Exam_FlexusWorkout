@@ -2,23 +2,23 @@ namespace FlexusWorkout.Services.Repository;
 
 public class DbContextManager
 {
-    private static FlexusWorkoutDbContext _instance;
+    private static FlexusWorkoutDbContext _flexusWorkoutDbContext;
     public static FlexusWorkoutDbContext Instance
     {
         get
         {
-            if (_instance == null)
+            if (_flexusWorkoutDbContext == null)
             {
-                _instance = new FlexusWorkoutDbContext();
+                _flexusWorkoutDbContext = new FlexusWorkoutDbContext();
 
             }
-            return _instance;
+            return _flexusWorkoutDbContext;
         }
     }
 
 
     public static void Dispose()
     {
-        _instance.Dispose();
+        _flexusWorkoutDbContext.Dispose();
     }
 }

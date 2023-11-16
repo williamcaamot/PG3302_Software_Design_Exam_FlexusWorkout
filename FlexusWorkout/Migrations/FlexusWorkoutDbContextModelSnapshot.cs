@@ -68,6 +68,9 @@ namespace FlexusWorkout.Migrations
                     b.Property<int?>("Sets")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Standard")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -134,14 +137,14 @@ namespace FlexusWorkout.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.Property<int>("WorkoutId")
                         .HasColumnType("int");
-
-                    b.Property<DateOnly>("date")
-                        .HasColumnType("date");
 
                     b.HasKey("WorkoutDayId");
 

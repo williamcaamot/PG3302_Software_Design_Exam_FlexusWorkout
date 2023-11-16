@@ -10,15 +10,12 @@ namespace FlexusWorkout;
     {
         private UserService _userService;
         private ExerciseService _exerciseService;
-        private WorkoutService _workoutService;
         private MySqlConnection conn;
 
-        public DatabaseFiller()
+        public DatabaseFiller(FlexusDbContext flexusDbContext)
         {
-            FlexusDbContext flexusWorkoutDbContext = DbContextManager.Instance;
-            _userService = new UserService(flexusWorkoutDbContext);
-            _exerciseService = new ExerciseService(flexusWorkoutDbContext);
-            _workoutService = new(flexusWorkoutDbContext);
+            _userService = new UserService(flexusDbContext);
+            _exerciseService = new ExerciseService(flexusDbContext);
         }
 
         public void fill()
@@ -107,6 +104,7 @@ namespace FlexusWorkout;
                 };
                 foreach (var exercise in balanceExercises)
                 {
+                    exercise.Standard = true;
                     _exerciseService.AddExercise(exercise);
                 }
         }
