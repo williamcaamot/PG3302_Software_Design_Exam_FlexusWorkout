@@ -20,7 +20,7 @@ public class CreateWorkout : View
         
     }
 
-    protected void DisplayCategories()
+    public void DisplayCategories()
     {
         Console.Clear();
         Console.WriteLine("Adding exercise to workout...");
@@ -40,6 +40,25 @@ public class CreateWorkout : View
         var input = Console.ReadLine();
         OnInputReceived("exerciseInput", input);
     }
-    
-    
+
+    public void DisplayDecoratingChoices()
+    {
+        Console.Clear();
+        Console.WriteLine("Do you want to customize this exericse?");
+        Console.WriteLine("1 - Make it harder");
+        Console.WriteLine("2 - Make it easier");
+        Console.WriteLine("3 - Don't change anything.");
+        var input = Console.ReadLine();
+        OnInputReceived("decoratingChoice", input);
+    }
+
+    public void DisplayAddMore()
+    {
+        Console.Clear();
+        Console.WriteLine("Do you want to add another exercise to your workout?");
+        Console.WriteLine("1 - Yes");
+        Console.WriteLine("2 - No");
+        var input = Console.ReadLine();
+        OnInputReceived("addMore", input);
+    }
 }

@@ -1,14 +1,10 @@
 
 using FlexusWorkout.Models.Base;
-using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.MODIFINGGGGG.modifierAndDecorators;
 using FlexusWorkout.Presenters.Base;
 using FlexusWorkout.Services;
-using FlexusWorkout.Services.Base;
 using FlexusWorkout.Services.Repository;
-using FlexusWorkout.Views.Base;
 using FlexusWorkout.Views.Workout;
-using Org.BouncyCastle.Crypto.Engines;
 
 namespace FlexusWorkout.Presenters.Workout;
 using Models.Concrete;
@@ -21,14 +17,19 @@ public class CreateWorkoutPresenter : Presenter
     private ExerciseService _service;
     private Workout _workout;
     private ExerciseType _exerciseType;
+    private Exercise _selectedExercise;
+    private ExerciseModifierFactory _exerciseModifierFactory;
+    private UserService _userService;
 
     public CreateWorkoutPresenter(User user, CreateWorkout view, ExerciseService? service = default) : base(view,
         service)
     {
-        _db = new FlexusWorkoutDbContext();
+        _db = DbContextManager.Instance;
+        _exerciseModifierFactory = new ExerciseModifierFactory();
         _user = user;
         _service = service;
         _view = view;
+        _userService = new UserService(_db);
 
         _workout = new Workout();
 
@@ -62,6 +63,12 @@ public class CreateWorkoutPresenter : Presenter
             case "getexercises":
                 ExerciseHandler("getexercises");
                 break;
+            case "decoratingChoice":
+                DecoratorHandler(input);
+                break;
+            case "addMore":
+                MainHandler(input);
+                break;
         }
     }
 
@@ -75,7 +82,18 @@ public class CreateWorkoutPresenter : Presenter
             case "description":
                 _workout.Description = input;
                 break;
+            case "yes":
+                // go to exercise selection again
+                _view.DisplayCategories();
+                break;
+            case "no":
+                _user.Workouts.Add(_workout);
+                _user = _userService.update(_user);
+                break;
             case "error":
+                Console.Clear();
+                _view.DisplayText("There was a problem with getting your input");
+                Thread.Sleep(2000);
                 break;
         }
     }
@@ -131,39 +149,50 @@ public class CreateWorkoutPresenter : Presenter
                 Console.WriteLine("Invalid menu choice - try again.");
                 Thread.Sleep(2000);
             }
-            else
-            {
-                if (int.TryParse(input, out int choice))
-                {
-                    if (choice == 0) // Exit view
-                    {
-                        View.Stop();
-                    }
-                    else
-                    {
-                        // TODO customize?????
-                        var selectedExercise = _exerciseType.Exercises[choice - 1];
-                        ExerciseModifierFactory exerciseModifierFactory = new();
-                        if (choice == 1)
-                        {
-                            exerciseModifierFactory.MakeHarder(selectedExercise);
-                        }
-                        else if (choice == 2)
-                        {
-                            exerciseModifierFactory.MakeEasier(selectedExercise);
-                        }
-                        else
-                        {
-                            //????????
-                        }
-                    }
-                }
-            }
         }
     }
 
     private IList<ExerciseType> GetCategories()
     {
         return _service.GetExerciseTypes();
+    }
+
+    private void ExerciseInputHandler(string input)
+    {
+        // Handling exercises selection input
+        if (int.TryParse(input, out int choice))
+        {
+            if (choice == 0) // Exit view
+            {
+                View.Stop();
+            }
+            else
+            {
+                _selectedExercise = _exerciseType.Exercises[choice - 1];
+                _view.DisplayDecoratingChoices();
+            }
+        }
+    }
+
+    private void DecoratorHandler(string input)
+    {
+        switch (input)
+        {
+            case "1":
+                // Decorate harder
+                _selectedExercise = _exerciseModifierFactory.MakeHarder(_selectedExercise);
+                _view.DisplayDecoratingChoices();
+                break;
+            case "2":
+                // Decorate easier
+                _selectedExercise = _exerciseModifierFactory.MakeEasier(_selectedExercise);
+                _view.DisplayDecoratingChoices();
+                break;
+            case "3":
+                // Keep exercise
+                _workout.Exercises.Add(_selectedExercise);
+                _view.DisplayAddMore();
+                break;
+        }
     }
 }
