@@ -3,7 +3,7 @@ namespace FlexusWorkout.Models.Concrete;
 public class WorkoutDay : Base.Model
 {
     public int? WorkoutDayId { get; set; } //PK
-    public Workout Workout { get; set; }
+    public virtual Workout Workout { get; set; }
     public DateTime Date { get; set; }
 
     public WorkoutDay()

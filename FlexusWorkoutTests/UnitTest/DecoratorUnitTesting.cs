@@ -9,8 +9,8 @@ namespace FlexusWorkoutTests.UnitTest
         public void DurationInMinutesDecorator_ShouldIncreaseDuration()
         {
             // Arrange
-            var baseExercise = new StrengthExercise("Strength", "Test Exercise", "Description", 30, 10, 3, "Dumbbells",
-                3, "Gym");
+            var baseExercise = new StrengthExercise("Strength", "Test Exercise", "Description", 30, 10, "3", 2,
+                "Pro");
             var decorator = new DurationIncreaseDecorator(baseExercise);
 
             // Act

@@ -13,6 +13,7 @@ public class FlexusWorkoutDbContext : DbContext, FlexusDbContext
     public DbSet<Workout> Workout => Set<Workout>();
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+        optionsBuilder.UseLazyLoadingProxies();
         optionsBuilder.UseMySQL("server=localhost;port=3200;database=db;user=user;password=password;");
         //optionsBuilder.UseSqlite(@"Data Source = Resources/Flexus.db");
     }

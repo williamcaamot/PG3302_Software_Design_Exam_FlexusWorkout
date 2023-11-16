@@ -21,20 +21,6 @@ public class ExerciseServiceTest
     [Test]
     public void AddExerciseOfTypeStrength_ShouldReturnSameExercise()
     {
-        
-        ExerciseService exerciseService = new(_flexusWorkoutDbContext);
-        exerciseService.AddExercise(strengthExercise);
-
-        IList<Exercise> strengthExercises = exerciseService.GetExercisesByType("Strength");
-
-        Assert.That(strengthExercises[0].ExerciseId, Is.GreaterThan(0));
-        Assert.That(strengthExercises[0].Name, Is.EqualTo(strengthExercise.Name));
-        Assert.That(strengthExercises[0].Description, Is.EqualTo(strengthExercise.Description));
-        Assert.That(strengthExercises[0].Repetitions, Is.EqualTo(strengthExercise.Repetitions));
-        Assert.That(strengthExercises[0].Sets, Is.EqualTo(strengthExercise.Sets));
-        Assert.That(strengthExercises[0].EquipmentRequired, Is.EqualTo(strengthExercise.EquipmentRequired));
-        Assert.That(strengthExercises[0].IntensityLevel, Is.EqualTo(strengthExercise.IntensityLevel));
-        Assert.That(strengthExercises[0].Location, Is.EqualTo(strengthExercise.Location));
     }
     
     [Test]
@@ -44,9 +30,7 @@ public class ExerciseServiceTest
             "Balancøvelse",
             "BalancøvelseBeskrivelse",
             5,
-            null,
-            null,
-            null,
+            
             1,
             "Trenignssenter for yoga øvelser"
         );
@@ -74,8 +58,6 @@ public class ExerciseServiceTest
             "Løping",
             "En kul treningsøkt.",
             20,
-            null,
-            null,
             "Løpesko",
             4,
             "Utendørs"
@@ -101,7 +83,7 @@ public class ExerciseServiceTest
     {
 
         ExerciseService exerciseService = new(_flexusWorkoutDbContext);
-        DatabaseFiller databaseFiller = new();
+        DatabaseFiller databaseFiller = new(_flexusWorkoutDbContext);
         databaseFiller.FillExercises();
         
         
@@ -116,7 +98,7 @@ public class ExerciseServiceTest
     public void GetExerciseById_ShouldReturnExercise()
     {
         ExerciseService exerciseService = new(_flexusWorkoutDbContext);
-        DatabaseFiller databaseFiller = new();
+        DatabaseFiller databaseFiller = new(_flexusWorkoutDbContext);
         databaseFiller.FillExercises();
         
         

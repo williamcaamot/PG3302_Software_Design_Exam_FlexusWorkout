@@ -23,7 +23,7 @@ public class WorkoutTest
         _exerciseService = new ExerciseService(flexusWorkoutDbContext);
 
         
-        DatabaseFiller databaseFiller = new();
+        DatabaseFiller databaseFiller = new(new FlexusWorkoutDbContext());
         //databaseFiller.FillUsers();
         databaseFiller.FillExercises();
         

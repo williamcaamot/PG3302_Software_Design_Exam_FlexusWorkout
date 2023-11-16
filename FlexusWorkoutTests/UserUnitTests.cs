@@ -1,4 +1,7 @@
 using FlexusWorkout.Models.Concrete;
+using FlexusWorkout.Services;
+using FlexusWorkout.Services.Repository;
+using ZstdSharp.Unsafe;
 
 namespace FlexusWorkoutTests;
 
@@ -26,6 +29,23 @@ public class UserUnitTests
         Assert.That(user.Password, Is.EqualTo(password));
 
     }
-    
-    
+
+    [Test]
+    public void wtest()
+    {
+
+        FlexusWorkoutDbContext flexusWorkoutDbContext = new();
+        ExerciseService exerciseService = new(flexusWorkoutDbContext);
+        UserService userService = new UserService(flexusWorkoutDbContext);
+
+
+
+        User user = userService.getUserById(1);
+
+        user.Workouts.Last().Exercises.Add(exerciseService.getRandomExercise("strength"));
+
+        user = userService.update(user);
+        
+        Console.WriteLine(user.Workouts.Last().Exercises.Count);
+    }
 }
