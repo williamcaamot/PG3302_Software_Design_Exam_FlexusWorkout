@@ -10,9 +10,15 @@ public class DbContextManager
             if (_instance == null)
             {
                 _instance = new FlexusWorkoutDbContext();
+
             }
             return _instance;
         }
     }
-}
 
+
+    public static void Dispose()
+    {
+        _instance.Dispose();
+    }
+}

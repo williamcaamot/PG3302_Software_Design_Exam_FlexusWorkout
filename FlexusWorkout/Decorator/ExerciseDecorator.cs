@@ -1,18 +1,13 @@
 using FlexusWorkout.Models.Base;
 
-namespace FlexusWorkout.Decorator
-{
-    //base class for all decorators
-    public abstract class ExerciseDecorator : Exercise
-    {
-        //component can be accessed by derived classes
-        protected Exercise _component;
+namespace FlexusWorkout.MODIFINGGGGG.modifierAndDecorators;
 
-        //Constructor that takes in wrapped component as parameter
-        public ExerciseDecorator(Exercise component) : base()
-        {
-            _component = component;
-        }
-        
+public abstract class ExerciseDecorator : Exercise
+{
+    protected Exercise _component;
+
+    public ExerciseDecorator(Exercise component) : base()
+    {
+        _component = component;
     }
 }

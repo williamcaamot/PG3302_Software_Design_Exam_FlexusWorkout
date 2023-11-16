@@ -1,6 +1,7 @@
-using FlexusWorkout.Decorators;
+
 using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
+using FlexusWorkout.MODIFINGGGGG.modifierAndDecorators;
 using FlexusWorkout.Presenters.Base;
 using FlexusWorkout.Services;
 using FlexusWorkout.Services.Base;
@@ -38,9 +39,6 @@ public class CreateWorkoutPresenter : Presenter
     public override void HandleInput(string? key, string? input)
     {
         if (input == null)
-        {
-        }
-
         {
             MainHandler("error");
         }
@@ -145,8 +143,19 @@ public class CreateWorkoutPresenter : Presenter
                     {
                         // TODO customize?????
                         var selectedExercise = _exerciseType.Exercises[choice - 1];
-                        //CustomizableExerciseFactory customizableExerciseFactory = new();
-                        //customizableExerciseFactory.CreateCustomizableExercise(selectedExercise.Type)
+                        ExerciseModifierFactory exerciseModifierFactory = new();
+                        if (choice == 1)
+                        {
+                            exerciseModifierFactory.MakeHarder(selectedExercise);
+                        }
+                        else if (choice == 2)
+                        {
+                            exerciseModifierFactory.MakeEasier(selectedExercise);
+                        }
+                        else
+                        {
+                            //????????
+                        }
                     }
                 }
             }

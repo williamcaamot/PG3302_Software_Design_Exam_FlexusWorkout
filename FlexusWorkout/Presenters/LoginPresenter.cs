@@ -51,13 +51,9 @@ public class LoginPresenter : Base.Presenter
             case "ok":
                 User loginUser = new();
                 UserService userService = new(_flexusWorkoutDbContext);
-
-                loginUser.Email = _email;
-                loginUser.Password = _password;
-                
                 try
                 {
-                    loginUser = userService.loginUser(_email, _password); // Will return the authentiacted user    
+                    loginUser = userService.loginUser(_email, _password); // Will return the authentiacted user  
                 }
                 catch (Exception e)
                 {

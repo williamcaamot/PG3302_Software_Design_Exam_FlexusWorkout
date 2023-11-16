@@ -25,8 +25,7 @@ namespace FlexusWorkout
             Console.ResetColor();
             
             DatabaseFiller databaseFiller = new();
-            databaseFiller.runMySqlScript();
-            databaseFiller.FillUsers(); //Keep fill data methods in here and not convert to SQL script, that makes these methods works regardless of what database type / context we use.
+            databaseFiller.fill(); //Keep fill data methods in here and not convert to SQL script, that makes these methods works regardless of what database type / context we use.
 
             InitialMenu initialMenu = new();
             InitialMenuPresenter initialMenuPresenter = new(initialMenu);
