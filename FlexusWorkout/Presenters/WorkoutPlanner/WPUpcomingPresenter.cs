@@ -24,7 +24,6 @@ public class WPUpcomingPresenter : Presenter
         switch (key)
         {
             case "getWorkoutPlans":
-                Console.WriteLine("Kommer man inn her?");
                 MainHandler("getWorkoutPlans");
                 break;
         }
@@ -35,7 +34,6 @@ public class WPUpcomingPresenter : Presenter
         switch (input)
         {
             case "getWorkoutPlans":
-                Console.WriteLine("kommer hit også");
                     List<List<object>> tableData = new();
                 foreach (var workoutDay in _user.WorkoutDays)
                 {
@@ -48,7 +46,6 @@ public class WPUpcomingPresenter : Presenter
                     tableData.Add(dataSet);
                 }
                 ConsoleTableBuilder.From(tableData).WithFormat(ConsoleTableBuilderFormat.Alternative).ExportAndWriteLine(TableAligntment.Center);
-                Console.ForegroundColor = ConsoleColor.Yellow;
                 View.Stop();
                 break;
         }
