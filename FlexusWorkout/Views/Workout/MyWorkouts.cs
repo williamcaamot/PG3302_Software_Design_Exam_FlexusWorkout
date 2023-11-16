@@ -10,7 +10,7 @@ public class MyWorkouts : View
         Console.WriteLine("-- My Workouts --");
         Console.WriteLine("Here is all your existing workouts:");
         OnInputReceived("getworkouts", "");
-        Console.WriteLine("0 - Exit");
+        Console.WriteLine("0 - Back");
         Console.Write("\r\nSelect an option: ");
         var input = Console.ReadLine();
         OnInputReceived("input", input);

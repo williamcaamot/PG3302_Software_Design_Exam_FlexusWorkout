@@ -11,7 +11,7 @@ public class ModifyWorkout : View
         Console.WriteLine("How would you like to modify this workout?");
         Console.WriteLine("1 - Edit exercises in workout");
         Console.WriteLine("2 - Delete this workout");
-        Console.WriteLine("0 - Exit");
+        Console.WriteLine("0 - Back");
         Console.Write("\r\nSelect an option: ");
         var input = Console.ReadLine();
         OnInputReceived("input", input);

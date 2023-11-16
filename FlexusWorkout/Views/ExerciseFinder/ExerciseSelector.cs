@@ -9,7 +9,7 @@ public class ExerciseSelector : View
         Console.Clear();
         Console.WriteLine("Which exercise would you like to look at?");
         OnInputReceived("getexercises", "");
-        Console.WriteLine("0 - Exit");
+        Console.WriteLine("0 - Back");
         Console.Write("\r\nSelect an option: "); 
         var input = Console.ReadLine();
         OnInputReceived("input", input);

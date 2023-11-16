@@ -46,7 +46,7 @@ public class MainMenuPresenter : MenuPresenter
         switch (input)
         {
             case "greetuser":
-                View.DisplayText("What would you like to do, " + _user.FirstName + "?");
+                View.DisplayText("What would you like to do, " + _user.GetFullName() + "?");
                 break;
             case "0":
                 // Exit view

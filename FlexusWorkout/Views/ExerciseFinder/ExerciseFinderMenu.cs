@@ -8,7 +8,7 @@ public class ExerciseFinderMenu : Base.View
         Console.WriteLine("-- Exercise Finder --");
         Console.WriteLine("Find an exercise:");
         OnInputReceived("getcategories", "");
-        Console.WriteLine("0 - Exit");
+        Console.WriteLine("0 - Back");
         Console.Write("\r\nSelect an option: "); 
         var input = Console.ReadLine();
         OnInputReceived("input", input);

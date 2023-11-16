@@ -105,13 +105,10 @@ public class CreateWorkoutPresenter : Presenter
             case "no":
                 // finished adding exercises
                 _user.Workouts.Add(_workout);
-                
-                Console.WriteLine("ID OF THE EXERCISE ADDED TO THE NEW WORKOUT");
-                Console.WriteLine(_user.Workouts.Last().Exercises.Last().ExerciseId);
-
-                Thread.Sleep(5000);
-                
                 _user = _userService.update(_user);
+                Console.WriteLine("Successfully added workout!"); //TODO SHOULD PROABLY CHANGE THIS TO SOMETHING BETTER
+                Console.WriteLine("Returning...");
+                Thread.Sleep(2000);
                 break;
             case "showDecoratorInfo":
                 if (_selectedExercise.Type == "Strength")
@@ -225,7 +222,15 @@ public class CreateWorkoutPresenter : Presenter
                 break;
             case "3":
                 // Keep exercise
-                _workout.Exercises.Add(_service.GetExercise(_selectedExercise.ExerciseId));
+                if (_selectedExercise.Standard == false)
+                {
+                    _selectedExercise = _service.AddExercise(_selectedExercise);
+                    _workout.Exercises.Add(_service.GetExercise(_selectedExercise.ExerciseId));
+                }
+                else
+                {
+                    _workout.Exercises.Add(_service.GetExercise(_selectedExercise.ExerciseId));
+                }
                 _view.DisplayAddMore();
                 break;
         }

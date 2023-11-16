@@ -8,7 +8,7 @@ public class MainMenu : Base.View
         Console.Clear();
         OnInputReceived("greetuser", "");
         Console.WriteLine("1 - Access Workout-planner");
-        Console.WriteLine("2 - See my workouts");
+        Console.WriteLine("2 - Open workout menu");
         Console.WriteLine("3 - Find an exercise");
         Console.WriteLine("0 - Log out");
         Console.Write("\r\nSelect an option: ");

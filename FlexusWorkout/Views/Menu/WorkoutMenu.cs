@@ -10,7 +10,7 @@ public class WorkoutMenu : Base.View
         Console.WriteLine("1 - Show your existing workouts");
         Console.WriteLine("2 - Add a new workout");
         Console.WriteLine("3 - Modify an existing workout");
-        Console.WriteLine("0 - Exit");
+        Console.WriteLine("0 - Back");
         Console.Write("\r\nSelect an option: ");
         var input = Console.ReadLine();
         OnInputReceived("input", input);

@@ -26,7 +26,7 @@ public class CreateWorkout : View
         Console.Clear();
         Console.WriteLine("Adding exercise to workout...");
         OnInputReceived("getcategories", "");
-        Console.WriteLine("0 - Exit");
+        Console.WriteLine("0 - Back");
         Console.Write("\r\nSelect a category: "); 
         var input = Console.ReadLine();
         OnInputReceived("categoryInput", input);
@@ -37,7 +37,7 @@ public class CreateWorkout : View
         Console.Clear();
         Console.WriteLine("Adding exercise to workout...");
         OnInputReceived("getexercises", type);
-        Console.WriteLine("0 - Exit");
+        Console.WriteLine("0 - Back");
         Console.Write("\r\nSelect an exercise: "); 
         var input = Console.ReadLine();
         OnInputReceived("exerciseInput", input);

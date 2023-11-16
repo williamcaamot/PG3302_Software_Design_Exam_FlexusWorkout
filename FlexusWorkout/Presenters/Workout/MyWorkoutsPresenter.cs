@@ -80,8 +80,17 @@ public class MyWorkoutsPresenter : Presenter
                     View.Stop();
                 } else
                 {
-                    // TODO Display that workout somehow here
-                    // using GetWorkouts()[choice - 1] as reference to workout object of choice
+
+                    Console.WriteLine($"Workout Name:    {_user.Workouts[choice - 1].Name}");
+                    Console.WriteLine($"Description:     {_user.Workouts[choice - 1].Description}");
+                    Console.WriteLine($"Exercises:");
+                    foreach (var exercise in _user.Workouts[choice -1].Exercises)
+                    {
+                        Console.WriteLine($"      {exercise.Type}  {exercise.Name} ");
+                    }
+                    View.DisplayText("\r\nPress any key to exit.");
+                    
+                    Console.ReadKey();
                 }
             }
         }

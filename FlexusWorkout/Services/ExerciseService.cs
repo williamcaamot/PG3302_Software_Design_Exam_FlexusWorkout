@@ -21,7 +21,7 @@ public class ExerciseService : Service
     public IList<ExerciseType> GetExerciseTypes()
     {
         IList<ExerciseType> exerciseTypes = _db.Exercise
-            .Where(e => e.Standard)
+            .Where(e => e.Standard == true)
             .Select(e => new ExerciseType(EF.Property<string>(e, "Type")))
             .Distinct()
             .ToList();
@@ -31,6 +31,7 @@ public class ExerciseService : Service
     public IList<Exercise> GetExercisesByType(string type)
     {
         return _db.Exercise
+            .Where(e => e.Standard == true)
             .Where(e => EF.Property<string>(e, "Type") == type)
             .ToList();
     }
