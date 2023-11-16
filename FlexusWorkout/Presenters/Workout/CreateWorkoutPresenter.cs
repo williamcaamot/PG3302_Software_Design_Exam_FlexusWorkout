@@ -40,9 +40,6 @@ public class CreateWorkoutPresenter : Presenter
     {
         if (input == null)
         {
-        }
-
-        {
             MainHandler("error");
         }
         switch (key)
