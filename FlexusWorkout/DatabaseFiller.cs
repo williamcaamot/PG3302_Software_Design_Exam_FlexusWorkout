@@ -104,6 +104,7 @@ namespace FlexusWorkout;
                 };
                 foreach (var exercise in balanceExercises)
                 {
+                    exercise.Standard = true;
                     _exerciseService.AddExercise(exercise);
                 }
         }
