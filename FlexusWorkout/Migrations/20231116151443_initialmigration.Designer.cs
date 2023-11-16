@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlexusWorkout.Migrations
 {
     [DbContext(typeof(FlexusWorkoutDbContext))]
-    [Migration("20231116142406_initialMigration")]
-    partial class initialMigration
+    [Migration("20231116151443_initialmigration")]
+    partial class initialmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,12 +71,12 @@ namespace FlexusWorkout.Migrations
                     b.Property<int?>("Sets")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Standard")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<bool?>("standard")
-                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("ExerciseId");
 

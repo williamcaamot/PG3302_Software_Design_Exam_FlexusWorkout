@@ -68,12 +68,12 @@ namespace FlexusWorkout.Migrations
                     b.Property<int?>("Sets")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Standard")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<bool?>("standard")
-                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("ExerciseId");
 

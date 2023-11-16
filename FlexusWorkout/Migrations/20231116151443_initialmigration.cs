@@ -7,7 +7,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace FlexusWorkout.Migrations
 {
     /// <inheritdoc />
-    public partial class initialMigration : Migration
+    public partial class initialmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,7 +30,7 @@ namespace FlexusWorkout.Migrations
                     EquipmentRequired = table.Column<string>(type: "longtext", nullable: true),
                     IntensityLevel = table.Column<int>(type: "int", nullable: true),
                     Location = table.Column<string>(type: "longtext", nullable: true),
-                    standard = table.Column<bool>(type: "tinyint(1)", nullable: true),
+                    Standard = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     Discriminator = table.Column<string>(type: "longtext", nullable: false)
                 },
                 constraints: table =>
