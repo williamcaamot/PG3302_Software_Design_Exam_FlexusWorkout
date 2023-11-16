@@ -42,7 +42,7 @@ public class WorkoutPlannerPresenter : Presenter
         switch (key)
         {
             case "date":
-                if (DateOnly.TryParse(input, out DateOnly choosenDate))
+                if (DateTime.TryParse(input, out DateTime choosenDate))
                 {
                     DateHandler(choosenDate);
                 }
@@ -88,7 +88,7 @@ public class WorkoutPlannerPresenter : Presenter
 
     }
 
-    private void DateHandler(DateOnly choosenDate)
+    private void DateHandler(DateTime choosenDate)
     {
         _workoutDay.Date = choosenDate;
 

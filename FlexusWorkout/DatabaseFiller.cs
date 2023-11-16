@@ -164,20 +164,20 @@ namespace FlexusWorkout;
                 User william = _userService.GetUserByEmail("william@flexus.no");
             
 
-                markus.WorkoutDays.Add(new(markus.Workouts.Last(), DateOnly.Parse("2023-12-12")));
-                markus.WorkoutDays.Add(new(markus.Workouts.Last(), DateOnly.Parse("2023-12-05")));
+                markus.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-12")));
+                markus.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-05")));
                 _userService.update(markus);
             
-                johan.WorkoutDays.Add(new(markus.Workouts.Last(), DateOnly.Parse("2023-12-12")));
-                johan.WorkoutDays.Add(new(markus.Workouts.Last(), DateOnly.Parse("2023-12-05")));
+                johan.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-12")));
+                johan.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-05")));
                 _userService.update(johan);
             
-                jovana.WorkoutDays.Add(new(markus.Workouts.Last(), DateOnly.Parse("2023-12-12")));
-                jovana.WorkoutDays.Add(new(markus.Workouts.Last(), DateOnly.Parse("2023-12-05")));
+                jovana.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-12")));
+                jovana.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-05")));
                 _userService.update(jovana);
             
-                william.WorkoutDays.Add(new(markus.Workouts.Last(), DateOnly.Parse("2023-12-12")));
-                william.WorkoutDays.Add(new(markus.Workouts.Last(), DateOnly.Parse("2023-12-05")));
+                william.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-12")));
+                william.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-05")));
                 _userService.update(william);
             }
         
