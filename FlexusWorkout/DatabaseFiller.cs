@@ -5,7 +5,6 @@ using FlexusWorkout.Services.Repository;
 using MySql.Data.MySqlClient;
 
 namespace FlexusWorkout;
-
     public class DatabaseFiller
     {
         private UserService _userService;
@@ -73,26 +72,16 @@ namespace FlexusWorkout;
         {
             if (_userService.getUserById(1) == null)
             {
-                for (int i = 1; i <= 20; i++)
-                {
-                    // Generate a new user with some dummy data
-                    User newUser = new User
-                    {
-                        FirstName = $"Test{i}",
-                        LastName = $"User{i}",
-                        Email = $"test{i}@example.com",
-                        Password = $"password{i}" // This will be hashed in the Add method
-                    };
-
-                    // Add the new user to the database
-                    _userService.registerUser(newUser);
-                }
+                _userService.registerUser("Markus", "Hagen", "markus@flexus.no", "abcd", "abcd");
+                _userService.registerUser("Jovana", "Spasenic", "jovana@flexus.no", "abcd", "abcd");
+                _userService.registerUser("Johan", "Svendsen", "johan@flexus.no", "abcd", "abcd");
+                _userService.registerUser("William", "Aamot", "william@flexus.no", "abcd", "abcd");
+               
             }
             else
             {
                 return;
             }
-            
         }
         
         public void FillExercises()
@@ -109,11 +98,8 @@ namespace FlexusWorkout;
                     new StrengthExercise("Strength", "Squats", "A lower body exercise focusing on the thighs, hips, and buttocks.", null, 12, 3, "Barbell", 4, "Gym"),
                     new CardioExercise("Cardio", "Running", "A cardiovascular exercise increasing heart rate and burning calories.", 30, null, null, "Running Shoes", 4, "Outdoor/Track"),
                     new CardioExercise("Cardio", "Cycling", "An intense cycling workout that improves endurance and strength.", 45, null, null, "Bicycle", 3, "Cycling Studio"),
-                    new CardioExercise("Cardio", "Jump Rope", "En kul treningsøkt.", 20, null, null, "Jump Rope", 4, "Gym/Outdoor"),
-
-                
+                    new CardioExercise("Cardio", "Jump Rope", "Jumping ropes.", 20, null, null, "Jump Rope", 4, "Gym/Outdoor"),
                 };
-
                 foreach (var exercise in balanceExercises)
                 {
                     _exerciseService.AddExercise(exercise);
@@ -128,22 +114,25 @@ namespace FlexusWorkout;
 
         public void FillWorkouts()
         {
-            User user = _userService.getUserById(1);
+            User johan = _userService.GetUserByEmail("johan@flexus.no");
+            User jovana = _userService.GetUserByEmail("jovana@flexus.no");
+            User markus = _userService.GetUserByEmail("markus@flexus.no");
+            User william = _userService.GetUserByEmail("william@flexus.no");
             
-            Workout workout = new Workout(
-                "NewWorkout",
-                "This is a cool workout"
+            
+            Workout jovanaWorkout = new Workout(
+                "Jovanas Balance workout",
+                "The perfect balance workout for getting good at stretching and balance!"
                 )
             {
-                User = user
+                User = jovana
             };
-
-            workout = _workoutService.addWorkout(workout);
+            jovanaWorkout = _workoutService.addWorkout(jovanaWorkout);
+            jovanaWorkout = _workoutService.addExercise(jovanaWorkout, _exerciseService.getRandomExercise("balance"));
+            jovanaWorkout = _workoutService.addExercise(jovanaWorkout, _exerciseService.getRandomExercise("balance"));
             
-            workout.Exercises.Add(_exerciseService.GetExercise(1));
-            workout.Exercises.Add(_exerciseService.GetExercise(2));
+            
 
-            workout = _workoutService.updateWorkout(workout);
         }
 
         public void FillWorkoutDays()
