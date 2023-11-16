@@ -39,6 +39,12 @@
 
     <ItemGroup>
       <Compile Remove="Presenter\WorkoutPlanner\**" />
+      <Compile Remove="Decorator\RepitionsDecorator.cs" />
+      <Compile Remove="Decorator\SetsDecorator.cs" />
+      <Compile Remove="Decorator\IntensityLevelDecorator.cs" />
+      <Compile Remove="Decorator\DurationInMinutesDecorator.cs" />
+      <Compile Remove="Decorator\CustomizableExerciseDecorator.cs" />
+      <Compile Remove="Decorator\CustomizableExerciseFactory.cs" />
     </ItemGroup>
 
     <ItemGroup>
