@@ -58,7 +58,7 @@ public class WorkoutPlannerPresenter : Presenter
                 MainHandler("getWorkouts");
                 break;
             case "workout":
-                ExcersiseHandler(input);
+                WorkoutHandler(input);
                 break;
         }
     }
@@ -82,6 +82,7 @@ public class WorkoutPlannerPresenter : Presenter
                 {
                     View.DisplayText(i + 1 + " - " + _user.Workouts[i].Name);
                 }
+                View.Stop();
                 break;
         }
 
@@ -93,14 +94,13 @@ public class WorkoutPlannerPresenter : Presenter
 
     }
 
-    private void ExcersiseHandler(string input)
+    private void WorkoutHandler(string input)
     {
         if (int.TryParse(input, out int choice))
         {
             _workoutDay.Workout = _user.Workouts[choice - 1];
 
         }
-
     }
 }
    

@@ -36,6 +36,8 @@ public class WorkoutPlannerView : View
         string? workout = Console.ReadLine();
         OnInputReceived("workout", workout);
         
+        
+        
 
     }
 }
