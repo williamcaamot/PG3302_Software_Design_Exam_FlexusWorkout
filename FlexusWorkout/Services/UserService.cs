@@ -20,8 +20,6 @@ public class UserService : Service
     
     private User Add(User user)
     {
-        Console.WriteLine("Adding user");
-        Thread.Sleep(2000);
         user.Password = hashPassword(user.Password);
         var addeduser =_db.User.Add(user);
         _db.SaveChanges();

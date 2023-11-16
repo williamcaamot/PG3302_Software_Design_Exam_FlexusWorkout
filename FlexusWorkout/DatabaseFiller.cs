@@ -3,6 +3,7 @@ using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
 using FlexusWorkout.Services.Repository;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Crypto.Digests;
 
 namespace FlexusWorkout;
     public class DatabaseFiller
@@ -76,6 +77,9 @@ namespace FlexusWorkout;
                 _userService.registerUser("Jovana", "Spasenic", "jovana@flexus.no", "abcd", "abcd");
                 _userService.registerUser("Johan", "Svendsen", "johan@flexus.no", "abcd", "abcd");
                 _userService.registerUser("William", "Aamot", "william@flexus.no", "abcd", "abcd");
+                FillExercises();
+                FillWorkouts();
+                FillWorkoutDays();
                
             }
             else
@@ -114,47 +118,74 @@ namespace FlexusWorkout;
 
         public void FillWorkouts()
         {
-            User johan = _userService.GetUserByEmail("johan@flexus.no");
+
+                User johan = _userService.GetUserByEmail("johan@flexus.no");
             User jovana = _userService.GetUserByEmail("jovana@flexus.no");
             User markus = _userService.GetUserByEmail("markus@flexus.no");
             User william = _userService.GetUserByEmail("william@flexus.no");
             
-            
             Workout jovanaWorkout = new Workout(
                 "Jovanas Balance workout",
                 "The perfect balance workout for getting good at stretching and balance!"
-                )
-            {
-                User = jovana
-            };
-            jovanaWorkout = _workoutService.addWorkout(jovanaWorkout);
-            jovanaWorkout = _workoutService.addExercise(jovanaWorkout, _exerciseService.getRandomExercise("balance"));
-            jovanaWorkout = _workoutService.addExercise(jovanaWorkout, _exerciseService.getRandomExercise("balance"));
+                );
             
-            
+            jovana.Workouts.Add(jovanaWorkout);
+            jovanaWorkout.Exercises.Add(_exerciseService.getRandomExercise("balance"));
+            jovanaWorkout.Exercises.Add(_exerciseService.getRandomExercise("balance"));
+            _userService.update(jovana);
 
+
+            Workout johanWorkout = new Workout(
+                "Johans Strength Power Madhouse", "Do this to get strong fast!"
+            );
+            
+            johan.Workouts.Add(johanWorkout);
+            johanWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
+            johanWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
+            _userService.update(johan);
+
+            Workout markusCardioWorkout = new Workout(
+                "Psycho intervalz", "Don't do this unless you hate yourself");
+            
+            markus.Workouts.Add(markusCardioWorkout);
+            markusCardioWorkout.Exercises.Add(_exerciseService.getRandomExercise("cardio"));
+            markusCardioWorkout.Exercises.Add(_exerciseService.getRandomExercise("cardio"));
+            _userService.update(markus);
+
+
+            Workout williamStrengthWorkout =
+                new Workout("Leg day hell day", "You won't be able to walk for 5 days after this");
+            williamStrengthWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
+            williamStrengthWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
+            _userService.update(william);
+                
+            
         }
 
         public void FillWorkoutDays()
         {
-            User user = _userService.getUserById(1);
 
-            WorkoutDay workoutDay1 = new();
-            workoutDay1.Date = DateOnly.Parse("2023-12-12");
-            workoutDay1.Workout = user.Workouts[1];
-
-            _userService.addWorkoutDay(user, workoutDay1);
+                User johan = _userService.GetUserByEmail("johan@flexus.no");
+                User jovana = _userService.GetUserByEmail("jovana@flexus.no");
+                User markus = _userService.GetUserByEmail("markus@flexus.no");
+                User william = _userService.GetUserByEmail("william@flexus.no");
             
-            WorkoutDay workoutDay2 = new();
-            workoutDay2.Date = DateOnly.Parse("2023-12-14");
-            workoutDay2.Workout = user.Workouts[2];
 
-            _userService.addWorkoutDay(user, workoutDay2);
+                markus.WorkoutDays.Add(new(markus.Workouts.Last(), DateOnly.Parse("2023-12-12")));
+                markus.WorkoutDays.Add(new(markus.Workouts.Last(), DateOnly.Parse("2023-12-05")));
+                _userService.update(markus);
             
-            WorkoutDay workoutDay3 = new();
-            workoutDay3.Date = DateOnly.Parse("2023-12-17");
-            workoutDay3.Workout = user.Workouts[3];
-
-            _userService.addWorkoutDay(user, workoutDay3);
-        }
+                johan.WorkoutDays.Add(new(markus.Workouts.Last(), DateOnly.Parse("2023-12-12")));
+                johan.WorkoutDays.Add(new(markus.Workouts.Last(), DateOnly.Parse("2023-12-05")));
+                _userService.update(johan);
+            
+                jovana.WorkoutDays.Add(new(markus.Workouts.Last(), DateOnly.Parse("2023-12-12")));
+                jovana.WorkoutDays.Add(new(markus.Workouts.Last(), DateOnly.Parse("2023-12-05")));
+                _userService.update(jovana);
+            
+                william.WorkoutDays.Add(new(markus.Workouts.Last(), DateOnly.Parse("2023-12-12")));
+                william.WorkoutDays.Add(new(markus.Workouts.Last(), DateOnly.Parse("2023-12-05")));
+                _userService.update(william);
+            }
+        
     }
