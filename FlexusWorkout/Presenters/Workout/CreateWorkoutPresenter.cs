@@ -20,6 +20,8 @@ public class CreateWorkoutPresenter : Presenter
     private Exercise _selectedExercise;
     private ExerciseModifierFactory _exerciseModifierFactory;
     private UserService _userService;
+    private string _workoutName;
+    private string _workoutDescription;
 
     public CreateWorkoutPresenter(User user, CreateWorkout view, ExerciseService? service = default) : base(view,
         service)
@@ -46,9 +48,11 @@ public class CreateWorkoutPresenter : Presenter
         switch (key)
         {
             case "name":
+                _workoutName = input;
                 MainHandler("name");
                 break;
             case "description":
+                _workoutDescription = input;
                 MainHandler("description");
                 break;
             case "categoryInput":
@@ -86,10 +90,10 @@ public class CreateWorkoutPresenter : Presenter
         switch (input)
         {
             case "name":
-                _workout.Name = input;
+                _workout.Name = _workoutName;
                 break;
             case "description":
-                _workout.Description = input;
+                _workout.Description = _workoutDescription;
                 break;
             case "yes":
                 // go to exercise selection again
@@ -98,8 +102,13 @@ public class CreateWorkoutPresenter : Presenter
             case "no":
                 // finished adding exercises
                 _user.Workouts.Add(_workout);
+                
+                Console.WriteLine("ID OF THE EXERCISE ADDED TO THE NEW WORKOUT");
+                Console.WriteLine(_user.Workouts.Last().Exercises.Last().ExerciseId);
+
+                Thread.Sleep(5000);
+                
                 _user = _userService.update(_user);
-                _view.Stop();
                 break;
             case "error":
                 Console.Clear();
@@ -179,8 +188,6 @@ public class CreateWorkoutPresenter : Presenter
             else
             {
                 _selectedExercise = _exerciseType.Exercises[choice - 1];
-                Console.WriteLine(_selectedExercise.Name); // -------
-                Thread.Sleep(3000); // -------- remove this
                 _view.DisplayDecoratingChoices();
             }
         }
@@ -202,7 +209,7 @@ public class CreateWorkoutPresenter : Presenter
                 break;
             case "3":
                 // Keep exercise
-                _workout.Exercises.Add(_selectedExercise);
+                _workout.Exercises.Add(_service.GetExercise(_selectedExercise.ExerciseId));
                 _view.DisplayAddMore();
                 break;
         }

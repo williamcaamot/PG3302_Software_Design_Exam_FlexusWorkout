@@ -18,6 +18,7 @@ public class CreateWorkout : View
         OnInputReceived("description", description);
         
         DisplayCategories();
+        Stop();
     }
 
     public void DisplayCategories()
