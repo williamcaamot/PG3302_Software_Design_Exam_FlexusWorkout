@@ -34,20 +34,30 @@ public class WPUpcomingPresenter : Presenter
         switch (input)
         {
             case "getWorkoutPlans":
-                List<List<object>> tableData = new();
-                List<string> myStringList = new List<string> { "String1", "String2", "String3" };
+                    List<List<object>> tableData = new();
                 foreach (var workoutDay in _user.WorkoutDays)
                 {
-                    Console.WriteLine(workoutDay.Workout.Name);
                     List<object> dataSet = new List<object>
                     {
                         workoutDay.Workout.Name,
                         workoutDay.Workout.Description,
+                        workoutDay.Workout.Exercises,
+                        workoutDay.Date,
                     };
                     tableData.Add(dataSet);
                 }
-                
-                ConsoleTableBuilder.From(tableData).WithFormat(ConsoleTableBuilderFormat.Alternative).ExportAndWriteLine();
+                    
+                    ConsoleTableBuilder.From(tableData).WithFormat(ConsoleTableBuilderFormat.Alternative).ExportAndWriteLine();
+                    
+                   /* ConsoleTableBuilder.From(tableData)
+                        .WithFormat(ConsoleTableBuilderFormat.Alternative)
+                        .WithColumnFormatter(, cell => {
+                            Console.BackgroundColor = ConsoleColor.Cyan;
+                            Console.Write(cell);
+                            Console.ResetColor();
+                        })
+                        .ExportAndWriteLine(); */
+
                 View.Stop();
                 break;
         }
