@@ -10,7 +10,7 @@ public class Workout
     public int? WorkoutId { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
-    public IList<Exercise> Exercises { get; set; }
+    public List<Exercise> Exercises { get; set; }
     public User User { get; set; }
 
     public Workout(string name, string description)
@@ -24,8 +24,7 @@ public class Workout
 
     public Workout()
     {
+        Exercises = new List<Exercise>();
     }
-
-
 
 }

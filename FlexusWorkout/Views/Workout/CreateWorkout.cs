@@ -16,8 +16,8 @@ public class CreateWorkout : View
         Console.WriteLine("Enter a description for workout: ");
         var description = Console.ReadLine();
         OnInputReceived("description", description);
-        DisplayCategories();
         
+        DisplayCategories();
     }
 
     public void DisplayCategories()
@@ -30,6 +30,7 @@ public class CreateWorkout : View
         var input = Console.ReadLine();
         OnInputReceived("categoryInput", input);
     }
+    
     public void DisplayExercises(string type)
     {
         Console.Clear();
