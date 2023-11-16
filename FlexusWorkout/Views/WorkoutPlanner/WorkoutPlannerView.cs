@@ -27,17 +27,24 @@ public class WorkoutPlannerView : View
         Console.WriteLine("Select a date for you workout (YYYY-MM-DD)");
         string? date = Console.ReadLine();
         OnInputReceived("date", date);
+        
+        OnInputReceived("checkForWorkouts", "");
+    }
 
-
+    public void DisplayPrevWorkouts()
+    {
         Console.Clear();
         Console.WriteLine("Your previous workouts:");
         OnInputReceived("getWorkouts", "");
         Console.WriteLine("\r\nSelect from an existing workout ");
         string? workout = Console.ReadLine();
         OnInputReceived("workout", workout);
-        
-        
-        
+    }
 
+    public void DisplayNoWorkouts()
+    {
+        Console.Clear();
+        Console.WriteLine("You have no existing workouts");
+        Console.WriteLine("\r\nYou can create a workout under: See my workouts-> Add a new workout");
     }
 }

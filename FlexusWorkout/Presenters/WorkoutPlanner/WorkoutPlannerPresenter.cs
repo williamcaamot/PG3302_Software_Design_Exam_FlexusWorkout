@@ -16,21 +16,21 @@ public class WorkoutPlannerPresenter : Presenter
     private User _user;
     private FlexusDbContext _db;
     private WorkoutDay _workoutDay;
+    private WorkoutPlannerView _view;
 
-    public WorkoutPlannerPresenter(User user, View view, Service? service = default) : base(view, service)
+    public WorkoutPlannerPresenter(User user, WorkoutPlannerView view, Service? service = default) : base(view, service)
     {
+        _view = view;
         _db = new FlexusWorkoutDbContext();
         _user = user;
         _workoutDay = new WorkoutDay();
+        
         view.Run();
     }
 
     public override void HandleInput(string? key, string? input)
     {
         if (input == null)
-        {
-        }
-
         {
             MainHandler("Error");
         }
@@ -60,6 +60,9 @@ public class WorkoutPlannerPresenter : Presenter
             case "workout":
                 WorkoutHandler(input);
                 break;
+            case "checkForWorkouts":
+                MainHandler("checkForWorkouts");
+                break;
         }
     }
 
@@ -77,12 +80,24 @@ public class WorkoutPlannerPresenter : Presenter
                 Console.WriteLine("Error: Please try again, invalid date format ");
                 Thread.Sleep(2500);
                 break;
+            case "checkForWorkouts":
+                if (_user.Workouts.Count == 0)
+                {
+                    _view.DisplayNoWorkouts();
+                    _view.DisplayText("\r\nPress any key to exit.");
+                    Console.ReadKey();
+                    _view.Stop();
+                } else
+                {
+                    _view.DisplayPrevWorkouts();
+                }
+                break;
             case "getWorkouts":
                 for (int i = 0; i < _user.Workouts.Count; i++)
                 {
-                    View.DisplayText(i + 1 + " - " + _user.Workouts[i].Name);
+                    _view.DisplayText(i + 1 + " - " + _user.Workouts[i].Name);
                 }
-                View.Stop();
+                _view.Stop();
                 break;
         }
 
