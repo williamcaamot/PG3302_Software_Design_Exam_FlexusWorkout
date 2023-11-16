@@ -34,7 +34,9 @@ public class WPUpcomingPresenter : Presenter
         switch (input)
         {
             case "getWorkoutPlans":
-                    List<List<object>> tableData = new();
+                List<object> headers = new List<object> { "Workout Name", "Workout Description", "Exercises in workout", "Date" };
+                List<List<object>> tableData = new();
+                tableData.Add(headers);
                 foreach (var workoutDay in _user.WorkoutDays)
                 {
                     List<object> dataSet = new List<object>
