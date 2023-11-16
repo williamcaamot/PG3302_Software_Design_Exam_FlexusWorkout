@@ -19,19 +19,33 @@ namespace FlexusWorkout;
             _userService = new UserService(flexusWorkoutDbContext);
             _exerciseService = new ExerciseService(flexusWorkoutDbContext);
             _workoutService = new(flexusWorkoutDbContext);
+        }
 
-            
+        public void fill()
+        {
+            try
+            {
+                _userService.getUserById(1);
+            }
+            catch (Exception e)
+            {
+                runMySqlScript();
+                Console.WriteLine("Finished running database setup script");
+                FillUsers();
+                Console.WriteLine("Finished filling demo users");
+                FillExercises();
+                Console.WriteLine("Finished filling demo exercises");
+                FillWorkouts();
+                Console.WriteLine("Finished filling demo workouts");
+                FillWorkoutDays();
+                Console.WriteLine("Finished filling demo workoutdays");
+                Console.WriteLine("Starting program...");
+                Thread.Sleep(500);
+            }
         }
 
         public void runMySqlScript()
         {
-
-            try
-            {
-                _exerciseService.GetExercise(1);
-            }
-            catch (Exception e)
-            {
                     Console.Clear();
                     Console.WriteLine("------------------------------------------------------------");
                     Console.WriteLine("---- INITIAL SETUP - WAIT WHILE DATABASE IS INITIALIZED ----");
@@ -66,32 +80,19 @@ namespace FlexusWorkout;
                             }
                         }
                     
-                    }
+            
             }
         }
         public void FillUsers()
         {
-            if (_userService.getUserById(1) == null)
-            {
                 _userService.registerUser("Markus", "Hagen", "markus@flexus.no", "abcd", "abcd");
                 _userService.registerUser("Jovana", "Spasenic", "jovana@flexus.no", "abcd", "abcd");
                 _userService.registerUser("Johan", "Svendsen", "johan@flexus.no", "abcd", "abcd");
                 _userService.registerUser("William", "Aamot", "william@flexus.no", "abcd", "abcd");
-                FillExercises();
-                FillWorkouts();
-                FillWorkoutDays();
-               
-            }
-            else
-            {
-                return;
-            }
         }
         
         public void FillExercises()
         {
-            if (_exerciseService.GetExercise(1) == null)
-            {
                 var balanceExercises = new List<Exercise>
                 {
                     new BalanceExercise("Balance", "Tree Pose", "A pose that replicates the steady stance of a tree.", 5, 1, "Yoga studio"),
@@ -108,18 +109,11 @@ namespace FlexusWorkout;
                 {
                     _exerciseService.AddExercise(exercise);
                 }
-            }
-            else
-            {
-                return;
-            }
-            
         }
 
         public void FillWorkouts()
         {
-
-                User johan = _userService.GetUserByEmail("johan@flexus.no");
+            User johan = _userService.GetUserByEmail("johan@flexus.no");
             User jovana = _userService.GetUserByEmail("jovana@flexus.no");
             User markus = _userService.GetUserByEmail("markus@flexus.no");
             User william = _userService.GetUserByEmail("william@flexus.no");
@@ -152,19 +146,18 @@ namespace FlexusWorkout;
             markusCardioWorkout.Exercises.Add(_exerciseService.getRandomExercise("cardio"));
             _userService.update(markus);
 
-
+            
             Workout williamStrengthWorkout =
                 new Workout("Leg day hell day", "You won't be able to walk for 5 days after this");
+            william.Workouts.Add(williamStrengthWorkout);
             williamStrengthWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
             williamStrengthWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
-            _userService.update(william);
-                
             
+            _userService.update(william);
         }
 
         public void FillWorkoutDays()
         {
-
                 User johan = _userService.GetUserByEmail("johan@flexus.no");
                 User jovana = _userService.GetUserByEmail("jovana@flexus.no");
                 User markus = _userService.GetUserByEmail("markus@flexus.no");

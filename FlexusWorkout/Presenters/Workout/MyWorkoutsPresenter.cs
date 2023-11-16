@@ -34,7 +34,7 @@ public class MyWorkoutsPresenter : Presenter
                 int choice;
                 if (int.TryParse(input, out choice))
                 {
-                    if (0 <= choice && choice <= GetWorkouts().Count)
+                    if (0 <= choice && choice <= _user.Workouts.Count())
                     {
                         MainHandler(input);
                     } else
@@ -85,12 +85,5 @@ public class MyWorkoutsPresenter : Presenter
                 }
             }
         }
-    }
-
-    private IList<Workout> GetWorkouts()
-    {
-        // TODO make this return statement work. (add GetWorkouts(_user)
-        //return _workoutservice.GetWorkouts(_user);
- return null;
     }
 }
