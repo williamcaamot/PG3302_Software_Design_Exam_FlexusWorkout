@@ -3,7 +3,7 @@ namespace FlexusWorkoutTests;
 public class WorkoutPlannerTest
 {
     
-    public class GetInputFromConsole
+    public class GetInputFromConsole //Tests should be able to run without having to do inputs from the console, give the test the value it needs with a string and see if the methods handle it how it's supposed to
     {
         public virtual string? GetInput()
         {

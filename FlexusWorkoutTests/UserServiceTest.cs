@@ -2,7 +2,7 @@ using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
 using FlexusWorkout.Services.Repository;
 
-namespace FlexusWorkoutTests;
+namespace FlexusWorkoutTests; //TODO THis is not done, has to be an integration test
 public class UserServiceTest
 {
     private UserService Service;

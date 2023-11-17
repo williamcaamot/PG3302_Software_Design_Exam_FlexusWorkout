@@ -1,7 +1,7 @@
 using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
 
-namespace FlexusWorkout.MODIFINGGGGG.modifierAndDecorators;
+namespace FlexusWorkout.Decorator;
 
 
 //handles modification (making harder or easier) using decorators
@@ -24,7 +24,7 @@ public class ExerciseModifierFactory
                     e.Repetitions + 2,
                     e.Sets + 1,
                     e.EquipmentRequired, 
-                    e.IntensityLevel,
+                    e.IntensityLevel + 1,
                     e.Location);
             }
             else if (exercise is BalanceExercise)
@@ -68,31 +68,31 @@ public class ExerciseModifierFactory
                     //Exercise setsDecreasedExercise = new SetDecreaseDecorator(exercise);
                     //Exercise repsDecreasedExercise = new RepetitionDecreaseDecorator(setsDecreasedExercise);
                     //return repsDecreasedExercise;
-                    Exercise e = exercise; 
+                    Exercise e = exercise;
                     return new StrengthExercise(
-                        e.Type, 
-                        e.Name,  //BUG DECORATORS MUST RETURN A NEW OBJECT OR ACTUALLY CHANGE THE OBJECT
+                        e.Type,
+                        e.Name, //BUG DECORATORS MUST RETURN A NEW OBJECT OR ACTUALLY CHANGE THE OBJECT
                         e.Description,
                         e.Repetitions - 2,
                         e.Sets - 1,
-                        e.EquipmentRequired, 
+                        e.EquipmentRequired,
                         e.IntensityLevel - 2,
                         e.Location);
-                    
+
+                }
             }
             else if (exercise is BalanceExercise)
-            {
-                //Exercise durationDecreasedExercise = new DurationDecreaseDecorator(exercise);
-                //return durationDecreasedExercise;
-                Exercise e = exercise; 
-                return new BalanceExercise(
-                    e.Type, 
-                    e.Name, 
-                    e.Description,
-                    e.DurationInMinutes - 2, 
-                    e.IntensityLevel - 1,
-                    e.Location);
-            }
+                {
+                    //Exercise durationDecreasedExercise = new DurationDecreaseDecorator(exercise);
+                    //return durationDecreasedExercise;
+                    Exercise e = exercise; 
+                    return new BalanceExercise(
+                        e.Type, 
+                        e.Name, 
+                        e.Description,
+                        e.DurationInMinutes - 3, 
+                        e.IntensityLevel - 1,
+                        e.Location);
             }
             // Decrease intensity for CardioExercise
             else if (exercise is CardioExercise)
@@ -106,7 +106,7 @@ public class ExerciseModifierFactory
                         e.Type, 
                         e.Name, 
                         e.Description,
-                        e.DurationInMinutes - 5, 
+                        e.DurationInMinutes - 3, 
                         e.EquipmentRequired, 
                         e.IntensityLevel - 1,
                         e.Location);
