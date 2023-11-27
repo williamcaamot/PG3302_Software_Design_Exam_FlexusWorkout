@@ -7,8 +7,8 @@ public class WorkoutDay : Base.Model
     
     public virtual User user { get; set; }
     public DateTime Date { get; set; }
-    
-    private Boolean _notified = false;
+
+    public Boolean Notified { get; set; } = false;
 
     public WorkoutDay()
     {

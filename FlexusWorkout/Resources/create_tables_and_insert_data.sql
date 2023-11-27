@@ -45,10 +45,11 @@ CREATE TABLE `ExerciseWorkout` (
 CREATE TABLE `WorkoutDay` (
                               `WorkoutDayId` int NOT NULL AUTO_INCREMENT,
                               `WorkoutId` int NOT NULL,
+                              `UserId` int NOT NULL,
                               `Date` datetime(6) NOT NULL,
-                              `UserId` int NULL,
+                              `Notified` tinyint(1) NOT NULL,
                               PRIMARY KEY (`WorkoutDayId`),
-                              CONSTRAINT `FK_WorkoutDay_User_UserId` FOREIGN KEY (`UserId`) REFERENCES `User` (`UserId`),
+                              CONSTRAINT `FK_WorkoutDay_User_UserId` FOREIGN KEY (`UserId`) REFERENCES `User` (`UserId`) ON DELETE CASCADE,
                               CONSTRAINT `FK_WorkoutDay_Workout_WorkoutId` FOREIGN KEY (`WorkoutId`) REFERENCES `Workout` (`WorkoutId`) ON DELETE CASCADE
 );
 CREATE INDEX `IX_ExerciseWorkout_WorkoutId` ON `ExerciseWorkout` (`WorkoutId`);
@@ -56,12 +57,5 @@ CREATE INDEX `IX_Workout_UserId` ON `Workout` (`UserId`);
 CREATE INDEX `IX_WorkoutDay_UserId` ON `WorkoutDay` (`UserId`);
 CREATE INDEX `IX_WorkoutDay_WorkoutId` ON `WorkoutDay` (`WorkoutId`);
 INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
-VALUES ('20231116151443_initialmigration', '7.0.13');
-COMMIT;
-START TRANSACTION;
-ALTER TABLE `WorkoutDay` DROP CONSTRAINT `FK_WorkoutDay_User_UserId`;
-ALTER TABLE `WorkoutDay` MODIFY `UserId` int NOT NULL DEFAULT 0;
-ALTER TABLE `WorkoutDay` ADD CONSTRAINT `FK_WorkoutDay_User_UserId` FOREIGN KEY (`UserId`) REFERENCES `User` (`UserId`) ON DELETE CASCADE;
-INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
-VALUES ('20231127130749_changeWorkoutDay', '7.0.13');
+VALUES ('20231127132837_InitialMigration', '7.0.13');
 COMMIT;

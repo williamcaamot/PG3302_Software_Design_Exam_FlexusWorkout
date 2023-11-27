@@ -22,11 +22,6 @@ public class WorkoutNotificationService
     {
         IList<WorkoutDay> workoutDays = _workoutDayService.getAllWorkoutDays();
 
-
-        
-        
-        
-
     }
 
 }

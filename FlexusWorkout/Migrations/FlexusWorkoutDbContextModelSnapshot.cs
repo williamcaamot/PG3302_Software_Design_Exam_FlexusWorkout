@@ -143,6 +143,9 @@ namespace FlexusWorkout.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<bool>("Notified")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 

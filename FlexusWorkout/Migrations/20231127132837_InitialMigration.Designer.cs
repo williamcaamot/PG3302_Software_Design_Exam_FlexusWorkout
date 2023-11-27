@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlexusWorkout.Migrations
 {
     [DbContext(typeof(FlexusWorkoutDbContext))]
-    [Migration("20231116151443_initialmigration")]
-    partial class initialmigration
+    [Migration("20231127132837_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,9 @@ namespace FlexusWorkout.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.13")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("ExerciseWorkout", b =>
@@ -39,7 +42,7 @@ namespace FlexusWorkout.Migrations
 
             modelBuilder.Entity("FlexusWorkout.Models.Base.Exercise", b =>
                 {
-                    b.Property<int?>("ExerciseId")
+                    b.Property<int>("ExerciseId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -143,7 +146,10 @@ namespace FlexusWorkout.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("UserId")
+                    b.Property<bool>("Notified")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<int>("WorkoutId")
@@ -207,9 +213,11 @@ namespace FlexusWorkout.Migrations
 
             modelBuilder.Entity("FlexusWorkout.Models.Concrete.WorkoutDay", b =>
                 {
-                    b.HasOne("FlexusWorkout.Models.Concrete.User", null)
+                    b.HasOne("FlexusWorkout.Models.Concrete.User", "user")
                         .WithMany("WorkoutDays")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("FlexusWorkout.Models.Concrete.Workout", "Workout")
                         .WithMany()
@@ -218,6 +226,8 @@ namespace FlexusWorkout.Migrations
                         .IsRequired();
 
                     b.Navigation("Workout");
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("FlexusWorkout.Models.Concrete.User", b =>
