@@ -1,6 +1,8 @@
 ﻿using FlexusWorkout.Presenters;
+using FlexusWorkout.Services;
 using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Views.Menu;
+using System.Threading.Tasks;
 
 namespace FlexusWorkout
 {
@@ -25,9 +27,16 @@ namespace FlexusWorkout
             }
 
             PrintStartUpMessage();
-
+            
+            FlexusWorkoutDbContext flexusWorkoutDbContext = new FlexusWorkoutDbContext();
+            WorkoutDayService workoutDayService = new(flexusWorkoutDbContext);
+            WorkoutNotificationService workoutNotificationService = new WorkoutNotificationService(workoutDayService);
+            Task.Run(() => workoutNotificationService.notifyUsersAsync());
+            
             InitialMenu initialMenu = new();
             InitialMenuPresenter initialMenuPresenter = new(initialMenu);
+            
+            
         }
 
 

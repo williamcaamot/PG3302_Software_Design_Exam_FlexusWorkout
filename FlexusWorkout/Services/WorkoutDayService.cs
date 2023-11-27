@@ -13,7 +13,7 @@ public class WorkoutDayService : Service
         _db = db;
     }
 
-    public IList<WorkoutDay> getAllWorkoutDays()
+    public IList<WorkoutDay> GetAllWorkoutDays()
     {
         List <WorkoutDay> workoutDays= new();
         workoutDays = _db.WorkoutDay.ToList();
@@ -21,9 +21,10 @@ public class WorkoutDayService : Service
     }
 
 
-    public WorkoutDay updateWorkoutDay(WorkoutDay workoutDay)
+    public WorkoutDay UpdateWorkoutDay(WorkoutDay workoutDay)
     {
         EntityEntry<WorkoutDay> updatedWorkoutDay = _db.WorkoutDay.Update(workoutDay);
+        _db.SaveChanges();
         return updatedWorkoutDay.Entity;
     }
 

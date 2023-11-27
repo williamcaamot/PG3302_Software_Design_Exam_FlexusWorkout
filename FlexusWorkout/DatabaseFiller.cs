@@ -157,7 +157,7 @@ namespace FlexusWorkout;
                 User william = _userService.GetUserByEmail("william@flexus.no");
             
 
-                markus.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-12")));
+                markus.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-11-27")));
                 markus.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-05")));
                 _userService.update(markus);
             
