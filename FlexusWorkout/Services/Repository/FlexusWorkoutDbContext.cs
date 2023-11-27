@@ -11,6 +11,7 @@ public class FlexusWorkoutDbContext : DbContext, FlexusDbContext
     public DbSet<User> User => Set<User>();
     public DbSet<Exercise> Exercise => Set<Exercise>();
     public DbSet<Workout> Workout => Set<Workout>();
+    public DbSet<WorkoutDay> WorkoutDay => Set<WorkoutDay>();
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseLazyLoadingProxies();
