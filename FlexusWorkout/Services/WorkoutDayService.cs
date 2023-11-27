@@ -8,6 +8,7 @@ namespace FlexusWorkout.Services;
 public class WorkoutDayService : Service
 {
     private FlexusDbContext _db;
+    private readonly object _updateLock = new object();
     public WorkoutDayService(FlexusDbContext db)
     {
         _db = db;
@@ -23,9 +24,13 @@ public class WorkoutDayService : Service
 
     public WorkoutDay UpdateWorkoutDay(WorkoutDay workoutDay)
     {
-        EntityEntry<WorkoutDay> updatedWorkoutDay = _db.WorkoutDay.Update(workoutDay);
-        _db.SaveChanges();
-        return updatedWorkoutDay.Entity;
+        lock (_updateLock)
+        {
+            EntityEntry<WorkoutDay> updatedWorkoutDay = _db.WorkoutDay.Update(workoutDay);
+            _db.SaveChanges();
+            return updatedWorkoutDay.Entity;
+        }
     }
+        
 
 }

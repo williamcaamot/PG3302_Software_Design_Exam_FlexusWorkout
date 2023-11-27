@@ -20,7 +20,7 @@ public class WorkoutNotificationService
     {
         IList<WorkoutDay> workoutDays = _workoutDayService.GetAllWorkoutDays();
         
-        //TODO implement a check for date!
+        //TODO have a loop for this?
         
         foreach (var workoutDay in workoutDays)
         {
@@ -33,7 +33,6 @@ public class WorkoutNotificationService
 
                 string emailMessage = $@"Hello, {workoutDay.user.FirstName}, remember, you have a workout to finish today!";
                 sendEmail(workoutDay.user.Email, emailMessage);
-                Console.WriteLine($@"Hello, {workoutDay.user.FirstName}, remember, you have a workout to finish today!");
                 workoutDay.Notified = true;
                 _workoutDayService.UpdateWorkoutDay(workoutDay);
             }
