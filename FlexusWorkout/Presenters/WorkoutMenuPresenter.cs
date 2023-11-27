@@ -6,7 +6,6 @@ using FlexusWorkout.Services;
 using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Views.Base;
 using FlexusWorkout.Views.Workout;
-using ModifyWorkout = FlexusWorkout.Views.Workout.ModifyWorkout;
 
 namespace FlexusWorkout.Presenters;
 
@@ -53,8 +52,8 @@ public class WorkoutMenuPresenter : MenuPresenter
                 CreateWorkoutPresenter createWorkoutPresenter = new(_user, createWorkout, exerciseService);
                 break;
             case "3":
-                ModifyWorkout modifyWorkout = new();
-                ModifyWorkoutPresenter modifyWorkoutPresenter = new(_user, modifyWorkout);
+                DeleteWorkout deleteWorkout = new();
+                DeleteWorkoutPresenter deleteWorkoutPresenter = new(_user, deleteWorkout);
                 break;
             case "error":
                 Console.Clear();

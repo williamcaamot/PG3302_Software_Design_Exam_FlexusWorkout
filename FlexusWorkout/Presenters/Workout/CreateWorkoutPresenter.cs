@@ -144,7 +144,7 @@ public class CreateWorkoutPresenter : Presenter
             var categories = GetCategories();
             for (int i = 0; i < categories.Count; i++)
             {
-                View.DisplayText(i + 1 + " - " + categories[i].Name);
+                _view.DisplayText(i + 1 + " - " + categories[i].Name);
             }
         }
         else if (input == "invalid")
