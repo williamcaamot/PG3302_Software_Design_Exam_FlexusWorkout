@@ -7,7 +7,6 @@ public abstract class Presenter
     protected readonly View View;
     protected Service? Service;
     protected Presenter(View view, Service? service = default)
-    // TODO Service in constructor or model
     {
         View = view;
         Service = service;

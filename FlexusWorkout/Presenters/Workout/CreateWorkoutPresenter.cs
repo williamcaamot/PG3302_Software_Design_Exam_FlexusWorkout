@@ -107,8 +107,8 @@ public class CreateWorkoutPresenter : Presenter
                 // finished adding exercises
                 _user.Workouts.Add(_workout);
                 _user = _userService.update(_user);
-                Console.WriteLine("Successfully added workout!"); //TODO SHOULD PROABLY CHANGE THIS TO SOMETHING BETTER
-                Console.WriteLine("Returning...");
+                _view.DisplayText("Successfully added workout!"); //TODO SHOULD PROABLY CHANGE THIS TO SOMETHING BETTER
+                _view.DisplayText("Returning...");
                 Thread.Sleep(2000);
                 break;
             case "showDecoratorInfo":

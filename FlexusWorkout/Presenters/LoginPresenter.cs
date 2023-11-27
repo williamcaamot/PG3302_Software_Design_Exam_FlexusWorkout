@@ -19,7 +19,6 @@ public class LoginPresenter : Base.Presenter
         view.Run();   
     }
 
-    // TODO Add LoginPresenter
     public override void HandleInput(string? key, string? input)
     {
         if (input == null)
@@ -68,7 +67,6 @@ public class LoginPresenter : Base.Presenter
                 if (loginUser.Authenticated)
                 {
                     // redirects to main menu on successful login
-                    // TODO load user profile somehow (main menu takes in a user object?)
                     MainMenu mainMenu = new();
                     MainMenuPresenter mainMenuPresenter = new(mainMenu, loginUser);
                 }
