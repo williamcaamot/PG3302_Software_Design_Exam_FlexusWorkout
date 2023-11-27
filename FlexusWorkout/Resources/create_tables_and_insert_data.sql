@@ -58,3 +58,10 @@ CREATE INDEX `IX_WorkoutDay_WorkoutId` ON `WorkoutDay` (`WorkoutId`);
 INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
 VALUES ('20231116151443_initialmigration', '7.0.13');
 COMMIT;
+START TRANSACTION;
+ALTER TABLE `WorkoutDay` DROP CONSTRAINT `FK_WorkoutDay_User_UserId`;
+ALTER TABLE `WorkoutDay` MODIFY `UserId` int NOT NULL DEFAULT 0;
+ALTER TABLE `WorkoutDay` ADD CONSTRAINT `FK_WorkoutDay_User_UserId` FOREIGN KEY (`UserId`) REFERENCES `User` (`UserId`) ON DELETE CASCADE;
+INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+VALUES ('20231127130749_changeWorkoutDay', '7.0.13');
+COMMIT;
