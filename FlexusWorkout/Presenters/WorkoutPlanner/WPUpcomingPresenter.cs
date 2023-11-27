@@ -51,17 +51,6 @@ public class WPUpcomingPresenter : Presenter
                     tableData.Add(dataSet);
                 }
                 ConsoleTableBuilder.From(tableData).WithFormat(ConsoleTableBuilderFormat.Alternative).ExportAndWriteLine();
-                
-                
-                //todo, add implementation for a better interface. Fix underneath!!!!
-                   /* ConsoleTableBuilder.From(tableData)
-                        .WithFormat(ConsoleTableBuilderFormat.Alternative)
-                        .WithColumnFormatter(, cell => {
-                            Console.BackgroundColor = ConsoleColor.Cyan;
-                            Console.Write(cell);
-                            Console.ResetColor();
-                        })
-                        .ExportAndWriteLine(); */
 
                 View.Stop();
                 break;
