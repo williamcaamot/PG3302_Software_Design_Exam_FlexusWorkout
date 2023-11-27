@@ -1,6 +1,7 @@
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services.Base;
 using FlexusWorkout.Services.Repository;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace FlexusWorkout.Services;
 
@@ -14,22 +15,16 @@ public class WorkoutDayService : Service
 
     public IList<WorkoutDay> getAllWorkoutDays()
     {
-        IList<User> users = _db.User.ToList();
         List <WorkoutDay> workoutDays= new();
-        foreach (var User in users)
-        {
-            foreach (WorkoutDay workoutDay in User.WorkoutDays)
-            {
-                workoutDays.Add(workoutDay);
-            }
-        }
+        workoutDays = _db.WorkoutDay.ToList();
         return workoutDays;
     }
 
 
-    public WorkoutDay updateWorkout(WorkoutDay workoutDay)
+    public WorkoutDay updateWorkoutDay(WorkoutDay workoutDay)
     {
-        return new WorkoutDay();
+        EntityEntry<WorkoutDay> updatedWorkoutDay = _db.WorkoutDay.Update(workoutDay);
+        return updatedWorkoutDay.Entity;
     }
 
 }

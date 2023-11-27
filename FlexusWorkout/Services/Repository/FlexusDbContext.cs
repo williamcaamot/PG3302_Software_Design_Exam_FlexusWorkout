@@ -12,5 +12,6 @@ public interface FlexusDbContext
     DbSet<User> User { get; }
     DbSet<Exercise> Exercise { get; }
     DbSet<Workout> Workout { get; }
+    DbSet<WorkoutDay> WorkoutDay { get; }
 }
 
