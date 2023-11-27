@@ -40,11 +40,12 @@ public class WPUpcomingPresenter : Presenter
                 tableData.Add(headers);
                 foreach (var workoutDay in _user.WorkoutDays)
                 {
+                    string exercises = string.Join(", ", workoutDay.Workout.Exercises.Select(e => e.Name));
                     List<object> dataSet = new List<object>
                     {
                         workoutDay.Workout.Name,
                         workoutDay.Workout.Description,
-                        workoutDay.Workout.Exercises,
+                        exercises,
                         workoutDay.Date,
                     };
                     tableData.Add(dataSet);
