@@ -4,8 +4,8 @@ using FlexusWorkout.Models.Concrete;
 using Mysqlx.Datatypes;
 
 namespace FlexusWorkout.Views.WorkoutPlanner;
-
-public interface IWorkoutPlannerView
+//DELETE THIS, mabye add to repport, refactoring
+/*public interface IWorkoutPlannerView
 {
     List<string> ChooseExercise(DateOnly dateOnly, List<string> exercises, List<string>? retriveExisting);
     List<string> RetriveExistingWorkouts();
@@ -119,4 +119,4 @@ public interface IWorkoutPlannerView
     }
     
     
-}
+} */
