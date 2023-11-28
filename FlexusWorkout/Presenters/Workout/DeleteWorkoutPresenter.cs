@@ -1,8 +1,9 @@
+using FlexusWorkout.DataAccess;
+using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Presenters.Base;
 using FlexusWorkout.Services;
 using FlexusWorkout.Services.Base;
-using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Views.Base;
 
 namespace FlexusWorkout.Presenters.Workout;
@@ -80,7 +81,8 @@ public class DeleteWorkoutPresenter : Presenter
                 try
                 {
                     _user.Workouts.RemoveAt(choice - 1);
-                    UserService userService = new UserService(DbContextManager.Instance);
+                    MySqlUserDA mySqlUserDa = new MySqlUserDA(DbContextManager.Instance);
+                    UserService userService = new UserService(mySqlUserDa);
                     userService.Update(_user);
                     
                     Console.Clear();
