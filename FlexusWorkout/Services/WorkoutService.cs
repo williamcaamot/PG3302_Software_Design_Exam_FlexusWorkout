@@ -13,7 +13,7 @@ public class WorkoutService : Service
         _db = db;
     }
 
-    public Workout addExercise(Workout workout, Exercise exercise)
+    public Workout AddExercise(Workout workout, Exercise exercise)
     {
         workout.Exercises.Add(exercise);
         var updatedWorkout = _db.Workout.Update(workout);
@@ -21,14 +21,14 @@ public class WorkoutService : Service
         return updatedWorkout.Entity;
     }
 
-    public Workout addWorkout(Workout workout)
+    public Workout AddWorkout(Workout workout)
     {
         var addedWorkout = _db.Workout.Add(workout);
         _db.SaveChanges();
         return addedWorkout.Entity;
     }
 
-    public Workout updateWorkout(Workout workout)
+    public Workout UpdateWorkout(Workout workout)
     {
         var updatedWorkout = _db.Workout.Update(workout);
         _db.SaveChanges();

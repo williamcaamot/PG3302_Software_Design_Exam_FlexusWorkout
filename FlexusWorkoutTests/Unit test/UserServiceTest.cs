@@ -17,7 +17,7 @@ public class UserServiceTest
         mockContext.Setup(m => m.User).Returns(mockSet.Object);
 
         var service = new UserService(mockContext.Object);
-        service.registerUser("william","test","test@flexus.no","abcd","abcd");
+        service.RegisterUser("william","test","test@flexus.no","abcd","abcd");
         
         mockSet.Verify(m=>m.Add(It.IsAny<User>()), Times.Once());
         mockContext.Verify(m=>m.SaveChanges(), Times.Once);

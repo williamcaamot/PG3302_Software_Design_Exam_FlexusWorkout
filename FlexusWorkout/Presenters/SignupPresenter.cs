@@ -67,7 +67,7 @@ public class SignupPresenter : Presenter
                 User user = new User(_firstName, _lastName, _email, _password);
                 try
                 {
-                    user = service.registerUser(user);
+                    user = service.RegisterUser(user);
                 }
                 catch (Exception e)
                 {

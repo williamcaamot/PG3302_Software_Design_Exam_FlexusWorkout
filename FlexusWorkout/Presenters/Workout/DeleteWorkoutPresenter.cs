@@ -74,7 +74,7 @@ public class DeleteWorkoutPresenter : Presenter
             }
             else
             {
-                // TODO uncomment line below with working delete method.
+                // TODO uncomment line below with working Delete method.
                 //Service.deleteWorkoutById(_user.Workouts[choice - 1]);
                 View.Stop();
             }

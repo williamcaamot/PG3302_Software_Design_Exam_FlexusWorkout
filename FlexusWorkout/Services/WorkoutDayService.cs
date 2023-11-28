@@ -13,15 +13,12 @@ public class WorkoutDayService : Service
     {
         _db = db;
     }
-
     public IList<WorkoutDay> GetAllWorkoutDays()
     {
         List <WorkoutDay> workoutDays= new();
         workoutDays = _db.WorkoutDay.ToList();
         return workoutDays;
     }
-
-
     public WorkoutDay UpdateWorkoutDay(WorkoutDay workoutDay)
     {
         lock (_updateLock)

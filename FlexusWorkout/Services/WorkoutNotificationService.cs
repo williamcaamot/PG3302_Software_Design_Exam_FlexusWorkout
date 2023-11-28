@@ -16,7 +16,7 @@ public class WorkoutNotificationService
         _workoutDayService = workoutDayService;
     }
 
-    public async Task notifyUsersAsync() //Create new context for this
+    public async Task NotifyUsersAsync() //Create new context for this
     {
         IList<WorkoutDay> workoutDays = _workoutDayService.GetAllWorkoutDays();
         
@@ -32,13 +32,13 @@ public class WorkoutNotificationService
             {
 
                 string emailMessage = $@"Hello, {workoutDay.user.FirstName}, remember, you have a workout to finish today!";
-                sendEmail(workoutDay.user.Email, emailMessage);
+                SendEmail(workoutDay.user.Email, emailMessage);
                 workoutDay.Notified = true;
                 _workoutDayService.UpdateWorkoutDay(workoutDay);
             }
         }
     }
-    public void sendEmail(string email, string message)
+    public void SendEmail(string email, string message)
     {
         // in a real application this would send an email!
     }
