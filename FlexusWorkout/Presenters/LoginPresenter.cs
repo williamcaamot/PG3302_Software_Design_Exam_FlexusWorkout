@@ -12,12 +12,14 @@ public class LoginPresenter : Base.Presenter
 {
     private string? _email;
     private string? _password;
+    private View _view;
     private MySqlFlexusDbContext _mySqlFlexusDbContext;
     public LoginPresenter(View view, Service service) : base(view, service)
     {
+        _view = view;
         _mySqlFlexusDbContext = DbContextManager.Instance;
         // Run the View loop
-        view.Run();   
+        _view.Run();   
     }
 
     public override void HandleInput(string? key, string? input)
@@ -59,9 +61,9 @@ public class LoginPresenter : Base.Presenter
                 catch (Exception e)
                 {
                     Console.Clear();
-                    Console.WriteLine(e.Message); // ONLY FOR DEBUG USAGE, WE DO NOT WANT TO SEND MORE DETAILED INFO TO END USER
-                    Console.WriteLine("Wrong credentials. Try again.");
-                    Thread.Sleep(5000); // sleep so user can see error msg.
+                    //Console.WriteLine(e.Message); // ONLY FOR DEBUG USAGE, WE DO NOT WANT TO SEND MORE DETAILED INFO TO END USER
+                    _view.DisplayText("Wrong credentials. Try again.");
+                    Thread.Sleep(2000); // sleep so user can see error msg.
                     // TODO Write errors to log file???
                 }
         
@@ -72,14 +74,14 @@ public class LoginPresenter : Base.Presenter
                     MainMenu mainMenu = new();
                     MainMenuPresenter mainMenuPresenter = new(mainMenu, loginUser);
                 }
-                View.Stop();
+                _view.Stop();
                 break;
             
             case "error":
                 Console.Clear();
                 Console.WriteLine("Error getting input. Can't login.");
                 Thread.Sleep(2000); // sleep so user can see error msg.
-                View.Stop();
+                _view.Stop();
                 break;
         }
     }

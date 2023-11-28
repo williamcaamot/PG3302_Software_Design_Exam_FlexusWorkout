@@ -118,9 +118,17 @@ public class WorkoutPlannerPresenter : Presenter
     {
         if (int.TryParse(input, out int choice))
         {
-            _workoutDay.Workout = _user.Workouts[choice - 1];
-            _user.WorkoutDays.Add(_workoutDay);
-            _user = _userService.Update(_user);
+            try
+            {
+                _workoutDay.Workout = _user.Workouts[choice - 1];
+                _user.WorkoutDays.Add(_workoutDay);
+                _user = _userService.Update(_user);
+            }
+            catch (Exception e)
+            {
+
+            }
+            
         }
     }
 }

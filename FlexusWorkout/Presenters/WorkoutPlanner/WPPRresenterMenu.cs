@@ -1,10 +1,6 @@
-using System.Runtime.InteropServices.JavaScript;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Presenters.Base;
-using FlexusWorkout.Services.Base;
 using FlexusWorkout.Views.WorkoutPlanner;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using ZstdSharp.Unsafe;
 using View = FlexusWorkout.Views.Base.View;
 
 namespace FlexusWorkout.Presenters.WorkoutPlanner;
