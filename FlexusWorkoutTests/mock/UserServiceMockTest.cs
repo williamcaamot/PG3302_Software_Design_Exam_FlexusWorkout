@@ -29,9 +29,10 @@ public class UserServiceMockTest
 
         // Mocking the behavior of the DbContext
         var dbSetMock = new Mock<DbSet<User>>();
-        dbSetMock.Setup(d => d.Add(It.IsAny<User>())).Returns((EntityEntry<User> u) => u);
+
         
-//        dbContextMock.Setup(d => d.User).Returns(dbSetMock.Object);
+        
+        //dbContextMock.Setup(d => d.User).Returns(dbSetMock.Object);
 
         // Act
         

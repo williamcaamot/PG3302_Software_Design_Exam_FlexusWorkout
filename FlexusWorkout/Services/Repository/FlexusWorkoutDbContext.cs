@@ -8,10 +8,10 @@ namespace FlexusWorkout.Services.Repository;
 public class FlexusWorkoutDbContext : DbContext, FlexusDbContext
 {// One DB context for project to keep things simple
     
-    public DbSet<User> User => Set<User>();
-    public DbSet<Exercise> Exercise => Set<Exercise>();
-    public DbSet<Workout> Workout => Set<Workout>();
-    public DbSet<WorkoutDay> WorkoutDay => Set<WorkoutDay>();
+    public virtual DbSet<User> User => Set<User>();
+    public virtual DbSet<Exercise> Exercise => Set<Exercise>();
+    public virtual DbSet<Workout> Workout => Set<Workout>();
+    public virtual DbSet<WorkoutDay> WorkoutDay => Set<WorkoutDay>();
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseLazyLoadingProxies();

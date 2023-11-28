@@ -29,4 +29,9 @@
       <ProjectReference Include="..\FlexusWorkout\FlexusWorkout.csproj" />
     </ItemGroup>
 
+
+    <ItemGroup>
+      <Folder Include="Integration test\" />
+    </ItemGroup>
+
 </Project>
