@@ -117,7 +117,7 @@ public class WorkoutPlannerPresenter : Presenter
         {
             _workoutDay.Workout = _user.Workouts[choice - 1];
             _user.WorkoutDays.Add(_workoutDay);
-            _user = _userService.update(_user);
+            _user = _userService.Update(_user);
         }
     }
 }

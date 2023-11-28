@@ -31,7 +31,7 @@ namespace FlexusWorkout
             FlexusWorkoutDbContext flexusWorkoutDbContext = new FlexusWorkoutDbContext();
             WorkoutDayService workoutDayService = new(flexusWorkoutDbContext);
             WorkoutNotificationService workoutNotificationService = new WorkoutNotificationService(workoutDayService);
-            Task.Run(() => workoutNotificationService.notifyUsersAsync());
+            Task.Run(() => workoutNotificationService.NotifyUsersAsync());
             
             InitialMenu initialMenu = new();
             InitialMenuPresenter initialMenuPresenter = new(initialMenu);

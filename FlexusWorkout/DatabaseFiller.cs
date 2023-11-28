@@ -22,7 +22,7 @@ namespace FlexusWorkout;
         {
             try
             {
-                _userService.getUserById(1);
+                _userService.GetUserById(1);
             }
             catch (Exception e)
             {
@@ -77,10 +77,10 @@ namespace FlexusWorkout;
         }
         public void FillUsers()
         {
-                _userService.registerUser("Markus", "Hagen", "markus@flexus.no", "abcd", "abcd");
-                _userService.registerUser("Jovana", "Spasenic", "jovana@flexus.no", "abcd", "abcd");
-                _userService.registerUser("Johan", "Svendsen", "johan@flexus.no", "abcd", "abcd");
-                _userService.registerUser("William", "Aamot", "william@flexus.no", "abcd", "abcd");
+                _userService.RegisterUser("Markus", "Hagen", "markus@flexus.no", "abcd", "abcd");
+                _userService.RegisterUser("Jovana", "Spasenic", "jovana@flexus.no", "abcd", "abcd");
+                _userService.RegisterUser("Johan", "Svendsen", "johan@flexus.no", "abcd", "abcd");
+                _userService.RegisterUser("William", "Aamot", "william@flexus.no", "abcd", "abcd");
         }
         
         public void FillExercises()
@@ -119,7 +119,7 @@ namespace FlexusWorkout;
             jovana.Workouts.Add(jovanaWorkout);
             jovanaWorkout.Exercises.Add(_exerciseService.getRandomExercise("balance"));
             jovanaWorkout.Exercises.Add(_exerciseService.getRandomExercise("balance"));
-            _userService.update(jovana);
+            _userService.Update(jovana);
 
 
             Workout johanWorkout = new Workout(
@@ -129,7 +129,7 @@ namespace FlexusWorkout;
             johan.Workouts.Add(johanWorkout);
             johanWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
             johanWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
-            _userService.update(johan);
+            _userService.Update(johan);
 
             Workout markusCardioWorkout = new Workout(
                 "Psycho intervalz", "Don't do this unless you hate yourself");
@@ -137,7 +137,7 @@ namespace FlexusWorkout;
             markus.Workouts.Add(markusCardioWorkout);
             markusCardioWorkout.Exercises.Add(_exerciseService.getRandomExercise("cardio"));
             markusCardioWorkout.Exercises.Add(_exerciseService.getRandomExercise("cardio"));
-            _userService.update(markus);
+            _userService.Update(markus);
 
             
             Workout williamStrengthWorkout =
@@ -146,7 +146,7 @@ namespace FlexusWorkout;
             williamStrengthWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
             williamStrengthWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
             
-            _userService.update(william);
+            _userService.Update(william);
         }
 
         public void FillWorkoutDays()
@@ -159,19 +159,19 @@ namespace FlexusWorkout;
 
                 markus.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-11-27")));
                 markus.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-05")));
-                _userService.update(markus);
+                _userService.Update(markus);
             
                 johan.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-12")));
                 johan.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-05")));
-                _userService.update(johan);
+                _userService.Update(johan);
             
                 jovana.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-12")));
                 jovana.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-05")));
-                _userService.update(jovana);
+                _userService.Update(jovana);
             
                 william.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-12")));
                 william.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-05")));
-                _userService.update(william);
+                _userService.Update(william);
             }
         
     }

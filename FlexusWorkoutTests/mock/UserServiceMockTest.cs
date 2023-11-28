@@ -36,7 +36,7 @@ public class UserServiceMockTest
 
         // Act
         
-        var addedUser = userService.registerUser(user);
+        var addedUser = userService.RegisterUser(user);
         
         Console.WriteLine(user);
         Console.WriteLine(addedUser);

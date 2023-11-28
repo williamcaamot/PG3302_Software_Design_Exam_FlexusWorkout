@@ -20,7 +20,7 @@ public class UserServiceTest
         
         
         // Act
-        User addedUser = Service.registerUser(user);
+        User addedUser = Service.RegisterUser(user);
         
         // Assert
         Assert.That(user.FirstName, Is.EqualTo(addedUser.FirstName));
@@ -29,7 +29,7 @@ public class UserServiceTest
         Assert.That(addedUser.UserId, Is.GreaterThan(-1));
         
         //Cleanup
-        Service.delete(addedUser);
+        Service.Delete(addedUser);
     }
     
     
@@ -44,7 +44,7 @@ public class UserServiceTest
         //Act
         try
         {
-            registeredUser = Service.registerUser(user);
+            registeredUser = Service.RegisterUser(user);
         }
         catch (Exception e)
         {
@@ -64,11 +64,11 @@ public class UserServiceTest
              string errorMessage = null;
              
              //Act
-             Service.registerUser(user1);
+             Service.RegisterUser(user1);
              
              try
              {
-                 registeredUser = Service.registerUser(user);
+                 registeredUser = Service.RegisterUser(user);
              }
              catch (Exception e)
              {

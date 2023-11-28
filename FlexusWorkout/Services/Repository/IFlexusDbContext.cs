@@ -14,4 +14,3 @@ public interface IFlexusDbContext
     DbSet<Workout> Workout { get; }
     DbSet<WorkoutDay> WorkoutDay { get; }
 }
-

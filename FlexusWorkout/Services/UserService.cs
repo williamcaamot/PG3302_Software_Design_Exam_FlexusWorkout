@@ -19,19 +19,16 @@ public class UserService : Service
         
     }
     
-    private User Add(User user)
+    public User Add(User user)
     {
-        user.Password = hashPassword(user.Password);
+        user.Password = HashPassword(user.Password);
         var addeduser =_db.User.Add(user);
         _db.SaveChanges();
         
         return addeduser.Entity;
     }
     
-    
-    
-
-    public User update(User user)
+    public User Update(User user)
     {
         try
         {
@@ -45,7 +42,7 @@ public class UserService : Service
         }
     }
 
-    public void delete(User user)
+    public void Delete(User user)
     {
         _db.User.Remove(user);
         _db.SaveChanges();
@@ -58,7 +55,7 @@ public class UserService : Service
             .FirstOrDefault(u => u.Email == user.Email);
         return FoundUser ?? new User();
     }
-    public User getUserById(int id)
+    public User GetUserById(int id)
     {
         var FoundUser = _db.User
             .Include(u => u.Workouts)
@@ -79,7 +76,7 @@ public class UserService : Service
         {
             throw new Exception("Could not find user");
         }
-        string hashcheck = hashPassword(user.Password);
+        string hashcheck = HashPassword(user.Password);
         if (hashcheck != foundUser.Password)
         {
             throw new Exception("Input had wrong password");
@@ -88,7 +85,7 @@ public class UserService : Service
         return foundUser;
     }
 
-    private string hashPassword(string password)
+    private string HashPassword(string password)
     {
         using (SHA256 sha256 = SHA256.Create())
         {
@@ -97,13 +94,13 @@ public class UserService : Service
         }
     }
 
-    public User loginUser(string email, string password) //TODO use this instead of authentication method
+    public User LoginUser(string email, string password) //TODO use this instead of authentication method
     {
         User user = new User(email, password);
         User authedUser = Authenticate(user);
         return authedUser;
     }
-    public User registerUser(User user)
+    public User RegisterUser(User user)
     {
         try //Verify that the email is in fact an email
         {
@@ -123,19 +120,19 @@ public class UserService : Service
         newUser.Authenticated = true;
         return newUser;
     }
-    public User registerUser(string firstname, string lastname, string email, string password, string confirmPassword)
+    public User RegisterUser(string firstname, string lastname, string email, string password, string confirmPassword)
     {
         //Check that passwords are the same
         User user = new User(firstname, lastname, email, password);
-        return registerUser(user);
+        return RegisterUser(user);
     }
 
     
-    public User addWorkoutDay(User user, WorkoutDay workoutDay)
+    public User AddWorkoutDay(User user, WorkoutDay workoutDay)
     {
         //TODO NEED TO DO SOME CHECKING ON THE WORKOUT DAY HERE AND THROW AN ERROR
         user.WorkoutDays.Add(workoutDay);
-        user = update(user);
+        user = Update(user);
         return user;
     }
     

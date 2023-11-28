@@ -2,7 +2,7 @@ namespace FlexusWorkout.Models.Base;
 
 public abstract class Model
 {
-    // abstract method to update/modify data
+    // abstract method to Update/modify data
     //public abstract void UpdateData(object data);
     
     // abstract class for retrieving model data
