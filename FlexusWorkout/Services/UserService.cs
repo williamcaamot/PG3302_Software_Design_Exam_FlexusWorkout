@@ -1,5 +1,6 @@
 using System.Net.Mail;
 using System.Security.Cryptography;
+using System.Security.Policy;
 using System.Text;
 using FlexusWorkout.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
@@ -33,9 +34,27 @@ public class UserService : Service
     }
     
 
-    public void Delete(User user)
+    public void Delete(User user, string password)
     {
-        _mySqlUserDa.Delete(user);
+        if (user == null)
+        {
+            throw new Exception("User information is not complete!");
+        }
+        
+        var checkUser = _mySqlUserDa.GetUserByEmail(user.Email);
+        if (checkUser == null)
+        {
+            throw new Exception("Could not find user");
+        }
+        var checkPassword = HashPassword(password);
+        if (checkUser.Password == checkPassword)
+        {
+            _mySqlUserDa.Delete(user);    
+        }
+        else
+        {
+            throw new Exception("Password not correct!"); //Generic to not expose information to user, not that useful in our application
+        }
     }
     public User GetUserByEmail(User user)
     {
