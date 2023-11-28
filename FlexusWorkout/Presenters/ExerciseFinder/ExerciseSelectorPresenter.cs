@@ -73,8 +73,17 @@ public class ExerciseSelectorPresenter : Presenter
 
     private IList<Exercise> GetExercises()
     {
-        ExerciseService exerciseService = new(_mySqlFlexusDbContext);
-        var exercises = exerciseService.GetExercisesByType(_type.Name);
-        return exercises;
+        try
+        {
+            ExerciseService exerciseService = new(_mySqlFlexusDbContext);
+            var exercises = exerciseService.GetExercisesByType(_type.Name);
+            return exercises;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("lold"); //TODO FIX THIS TO USE THE VIEW TO PRINT SOMETHING USEFUL TO THE USER?
+            return null;
+        }
+        
     }
 }

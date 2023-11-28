@@ -232,12 +232,26 @@ public class CreateWorkoutPresenter : Presenter
                 // Keep exercise
                 if (_selectedExercise.Standard == false)
                 {
-                    _selectedExercise = _service.AddExercise(_selectedExercise);
-                    _workout.Exercises.Add(_service.GetExercise(_selectedExercise.ExerciseId));
+                    try
+                    {
+                        _selectedExercise = _service.AddExercise(_selectedExercise);
+                        _workout.Exercises.Add(_service.GetExercise(_selectedExercise.ExerciseId));
+                    }
+                    catch (Exception e)
+                    {
+                        _view.DisplayText(e.Message);
+                    }
                 }
                 else
                 {
-                    _workout.Exercises.Add(_service.GetExercise(_selectedExercise.ExerciseId));
+                    try
+                    {
+                        _workout.Exercises.Add(_service.GetExercise(_selectedExercise.ExerciseId));
+                    }
+                    catch (Exception e)
+                    {
+                        _view.DisplayText(e.Message);
+                    }
                 }
                 _view.DisplayAddMore();
                 break;

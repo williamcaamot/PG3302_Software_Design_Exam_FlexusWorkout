@@ -87,7 +87,14 @@ public class ExerciseFinderPresenter : Base.Presenter
 
     public IList<ExerciseType> GetCategories()
     {
-        var categories = _exerciseService.GetExerciseTypes();
-        return categories;
+        try
+        {
+            var categories = _exerciseService.GetExerciseTypes();
+            return categories;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 }
