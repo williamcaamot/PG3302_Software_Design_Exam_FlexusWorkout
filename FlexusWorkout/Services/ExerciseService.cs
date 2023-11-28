@@ -10,10 +10,10 @@ namespace FlexusWorkout.Services;
 
 public class ExerciseService : Service
 {
-    private readonly FlexusDbContext _db;
+    private readonly IFlexusDbContext _db;
     //TODO NEED TO EDIT THIS TO USE DEPENDENCY INJECTION
 
-    public ExerciseService(FlexusDbContext db)
+    public ExerciseService(IFlexusDbContext db)
     {
         _db = db;
     }

@@ -10,13 +10,13 @@ namespace FlexusWorkoutTests.mock;
 public class UserServiceMockTest
 {
     private UserService userService;
-    private Mock<FlexusDbContext> dbContextMock;
+    private Mock<IFlexusDbContext> dbContextMock;
 
     [SetUp]
     public void SetUpBeforeEachTest()
     {
         // Arrange
-        dbContextMock = new Mock<FlexusDbContext>();
+        dbContextMock = new Mock<IFlexusDbContext>();
         userService = new UserService(dbContextMock.Object);
     }
     

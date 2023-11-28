@@ -14,7 +14,7 @@ namespace FlexusWorkout.Presenters.WorkoutPlanner;
 public class WorkoutPlannerPresenter : Presenter
 {
     private User _user;
-    private FlexusDbContext _db;
+    private IFlexusDbContext _db;
     private WorkoutDay _workoutDay;
     private WorkoutPlannerView _view;
     private UserService _userService;
