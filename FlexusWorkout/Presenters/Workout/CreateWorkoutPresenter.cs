@@ -1,3 +1,4 @@
+using FlexusWorkout.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Decorator;
 using FlexusWorkout.Decorator.Factories;
@@ -13,7 +14,7 @@ using Models.Concrete;
 public class CreateWorkoutPresenter : Presenter
 {
     private User _user;
-    private IFlexusDbContext _db;
+    private MySqlFlexusDbContext _db;
     private CreateWorkout _view;
     private ExerciseService _service;
     private Workout _workout;
@@ -24,6 +25,7 @@ public class CreateWorkoutPresenter : Presenter
     private UserService _userService;
     private string _workoutName;
     private string _workoutDescription;
+    private readonly MySqlUserDA _mySqlUserDa;
 
     public CreateWorkoutPresenter(User user, CreateWorkout view, ExerciseService? service = default) : base(view,
         service)
@@ -32,7 +34,8 @@ public class CreateWorkoutPresenter : Presenter
         _user = user;
         _service = service;
         _view = view;
-        _userService = new UserService(_db);
+        _mySqlUserDa = new MySqlUserDA(_db);
+        _userService = new UserService(_mySqlUserDa);
 
         _workout = new Workout();
 

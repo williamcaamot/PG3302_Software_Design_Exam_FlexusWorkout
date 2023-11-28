@@ -1,6 +1,7 @@
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
+using FlexusWorkout.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services.Base;
@@ -10,61 +11,43 @@ namespace FlexusWorkout.Services;
 
 public class UserService : Service
 {
-    private readonly IFlexusDbContext _db;
+    private readonly MySqlUserDA _mySqlUserDa;
 
-    public UserService(IFlexusDbContext db)
+    public UserService(MySqlUserDA mySqlUserDa)
     {
-        _db = db; 
+
+        _mySqlUserDa = mySqlUserDa;
     }
     
     public User Add(User user)
     {
-        user.Password = HashPassword(user.Password);
-        var addeduser =_db.User.Add(user);
-        _db.SaveChanges();
-        
-        return addeduser.Entity;
+        user.Password = HashPassword(user.Password); //Need to keep this here, should not have this in DAL
+        var addeduser = _mySqlUserDa.Add(user);
+        return addeduser;
     }
     
     public User Update(User user)
     {
-        try
-        {
-            var updatedUser = _db.User.Update(user);
-            _db.SaveChanges();
-            return updatedUser.Entity;
-        }
-        catch (Exception e)
-        { // easy way to handle any kind of exception
-            throw new Exception(e.Message);
-        }
+        var updatedUser = _mySqlUserDa.Update(user);
+        return updatedUser;
     }
+    
 
     public void Delete(User user)
     {
-        _db.User.Remove(user);
-        _db.SaveChanges();
+        _mySqlUserDa.Delete(user);
     }
     public User GetUserByEmail(User user)
     {
-        var FoundUser = _db.User
-            .Include(u => u.Workouts)
-            .Include(u => u.WorkoutDays)//eager loading
-            .FirstOrDefault(u => u.Email == user.Email);
-        return FoundUser ?? new User();
+        return _mySqlUserDa.GetUserByEmail(user);
+    }
+    public User GetUserByEmail(String email)
+    {
+        return _mySqlUserDa.GetUserByEmail(email);
     }
     public User GetUserById(int id)
     {
-        var FoundUser = _db.User
-            .Include(u => u.Workouts)
-            .FirstOrDefault(u => u.UserId == id);
-        return FoundUser ?? null;
-    }
-    
-    public User GetUserByEmail(String email)
-    {
-        var FoundUser = _db.User.FirstOrDefault(u => u.Email == email);
-        return FoundUser ?? new User();
+        return _mySqlUserDa.GetUserById(id);
     }
     
     private User Authenticate(User user) // TAKES A USER IN - AND RETURNS THE AUTHENTICATED USER IF IT IS SUCCESSFUL!
@@ -123,15 +106,6 @@ public class UserService : Service
         //Check that passwords are the same
         User user = new User(firstname, lastname, email, password);
         return RegisterUser(user);
-    }
-
-    
-    public User AddWorkoutDay(User user, WorkoutDay workoutDay)
-    {
-        //TODO NEED TO DO SOME CHECKING ON THE WORKOUT DAY HERE AND THROW AN ERROR
-        user.WorkoutDays.Add(workoutDay);
-        user = Update(user);
-        return user;
     }
     
     

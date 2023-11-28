@@ -1,3 +1,4 @@
+using FlexusWorkout.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models;
 using FlexusWorkout.Models.Base;
@@ -14,10 +15,11 @@ namespace FlexusWorkout.Presenters.WorkoutPlanner;
 public class WorkoutPlannerPresenter : Presenter
 {
     private User _user;
-    private IFlexusDbContext _db;
+    private MySqlFlexusDbContext _db;
     private WorkoutDay _workoutDay;
     private WorkoutPlannerView _view;
     private UserService _userService;
+    private readonly MySqlUserDA _mySqlUserDa;
 
     public WorkoutPlannerPresenter(User user, WorkoutPlannerView view, Service? service = default) : base(view, service)
     {
@@ -25,7 +27,8 @@ public class WorkoutPlannerPresenter : Presenter
         _db = DbContextManager.Instance;
         _user = user;
         _workoutDay = new WorkoutDay();
-        _userService = new UserService(_db);
+        _mySqlUserDa = new MySqlUserDA(_db);
+        _userService = new UserService(_mySqlUserDa);
         
         view.Run();
     }

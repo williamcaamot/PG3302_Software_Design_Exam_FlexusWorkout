@@ -1,3 +1,4 @@
+using FlexusWorkout.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
@@ -49,7 +50,8 @@ public class LoginPresenter : Base.Presenter
         {
             case "ok":
                 User loginUser = new();
-                UserService userService = new(_mySqlFlexusDbContext);
+                MySqlUserDA mySqlUserDa = new MySqlUserDA(_mySqlFlexusDbContext);
+                UserService userService = new(mySqlUserDa);
                 try
                 {
                     loginUser = userService.LoginUser(_email, _password); // Will return the authentiacted user  

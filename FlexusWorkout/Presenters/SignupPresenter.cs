@@ -1,3 +1,4 @@
+using FlexusWorkout.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
@@ -63,7 +64,8 @@ public class SignupPresenter : Presenter
         switch (input)
         {
             case "ok":
-                UserService service = new(_mySqlFlexusDbContext);
+                MySqlUserDA mySqlUserDa = new MySqlUserDA(_mySqlFlexusDbContext);
+                UserService service = new(mySqlUserDa);
                 User user = new User(_firstName, _lastName, _email, _password);
                 try
                 {

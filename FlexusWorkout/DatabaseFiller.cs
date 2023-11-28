@@ -1,3 +1,4 @@
+using FlexusWorkout.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
@@ -11,10 +12,15 @@ namespace FlexusWorkout;
         private UserService _userService;
         private ExerciseService _exerciseService;
         private MySqlConnection _mySqlConnectionconn;
+        private readonly IFlexusDbContext _mySqlFlexusDbContext;
+        private readonly MySqlUserDA _mySqlUserDa;
 
         public DatabaseFiller(IFlexusDbContext flexusDbContext)
         {
-            _userService = new UserService(flexusDbContext);
+            
+            _mySqlFlexusDbContext = flexusDbContext;
+            _mySqlUserDa = new MySqlUserDA(_mySqlFlexusDbContext);
+            _userService = new UserService(_mySqlUserDa);
             _exerciseService = new ExerciseService(flexusDbContext);
         }
 

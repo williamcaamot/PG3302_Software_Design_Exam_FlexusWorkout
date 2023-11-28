@@ -1,3 +1,4 @@
+using FlexusWorkout.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Presenters.Base;
 using FlexusWorkout.Services;
@@ -8,7 +9,7 @@ namespace FlexusWorkout.Presenters;
 
 public class InitialMenuPresenter : MenuPresenter
 {
-    private MySqlFlexusDbContext _mySqlFlexusDbContext;
+    private readonly MySqlFlexusDbContext _mySqlFlexusDbContext;
     public InitialMenuPresenter(View view) : base(view)
     {
         // Run the View loop
@@ -42,13 +43,15 @@ public class InitialMenuPresenter : MenuPresenter
             case "1":
                 // send user to login view
                 LoginView loginView = new();
-                UserService userService = new(_mySqlFlexusDbContext);
+                MySqlUserDA mySqlUserDa = new MySqlUserDA(_mySqlFlexusDbContext);
+                UserService userService = new(mySqlUserDa);
                 LoginPresenter loginPresenter = new(loginView, userService);
                 break;
             case "2":
                 // send user to signup view
                 SignupView signupView = new();
-                UserService userService2 = new(_mySqlFlexusDbContext);
+                MySqlUserDA mySqlUserDa2 = new MySqlUserDA(_mySqlFlexusDbContext);
+                UserService userService2 = new(mySqlUserDa2); //TODO REFACTOR MYSQLUSERDA TO BE A LOCAL VARIABLE INSTANTIATED AT START
                 SignupPresenter signupPresenter = new(signupView, userService2);
                 break;
             case "3":
