@@ -1,6 +1,6 @@
+using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
-using FlexusWorkout.Services.Repository;
 
 namespace FlexusWorkoutTests; //TODO THis is not done, has to be an integration test
 public class UserServiceTest

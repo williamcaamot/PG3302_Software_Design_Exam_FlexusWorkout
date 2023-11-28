@@ -1,4 +1,4 @@
-namespace FlexusWorkout.Services.Repository;
+namespace FlexusWorkout.DataAccess.Repository;
 
 public class DbContextManager
 {

@@ -1,9 +1,9 @@
+using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Presenters.Base;
 using FlexusWorkout.Services;
 using FlexusWorkout.Services.Base;
-using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Views.Base;
 
 namespace FlexusWorkout.Presenters.ExerciseFinder;

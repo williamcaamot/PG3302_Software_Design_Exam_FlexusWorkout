@@ -1,10 +1,8 @@
 using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Internal;
 
-namespace FlexusWorkout.Services.Repository;
+namespace FlexusWorkout.DataAccess.Repository;
 
 public interface IFlexusDbContext
 {

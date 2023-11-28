@@ -1,5 +1,4 @@
 using FlexusWorkout.Models.Concrete;
-using FlexusWorkout.Services.Repository;
 using SQLitePCL;
 
 namespace FlexusWorkout.Services;

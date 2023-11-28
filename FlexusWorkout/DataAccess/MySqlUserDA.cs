@@ -1,5 +1,5 @@
+using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Concrete;
-using FlexusWorkout.Services.Repository;
 
 namespace FlexusWorkout.DataAccess;
 

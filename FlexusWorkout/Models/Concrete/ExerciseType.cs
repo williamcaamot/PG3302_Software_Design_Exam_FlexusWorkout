@@ -1,6 +1,6 @@
-﻿using FlexusWorkout.Models.Base;
+﻿using FlexusWorkout.DataAccess.Repository;
+using FlexusWorkout.Models.Base;
 using FlexusWorkout.Services;
-using FlexusWorkout.Services.Repository;
 
 namespace FlexusWorkout.Models.Concrete;
 

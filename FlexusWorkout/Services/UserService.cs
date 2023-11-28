@@ -1,10 +1,9 @@
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
+using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services.Base;
-using FlexusWorkout.Services.Repository;
-
 using Microsoft.EntityFrameworkCore;
 
 namespace FlexusWorkout.Services;

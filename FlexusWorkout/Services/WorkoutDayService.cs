@@ -1,6 +1,6 @@
+using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services.Base;
-using FlexusWorkout.Services.Repository;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace FlexusWorkout.Services;

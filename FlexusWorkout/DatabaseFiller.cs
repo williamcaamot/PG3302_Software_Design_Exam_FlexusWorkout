@@ -1,7 +1,7 @@
+using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
-using FlexusWorkout.Services.Repository;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Crypto.Digests;
 

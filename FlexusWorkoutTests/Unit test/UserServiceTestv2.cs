@@ -1,6 +1,6 @@
+using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
-using FlexusWorkout.Services.Repository;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 

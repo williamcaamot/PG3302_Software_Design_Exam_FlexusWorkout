@@ -1,9 +1,8 @@
 using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
-using Google.Protobuf;
 using Microsoft.EntityFrameworkCore;
 
-namespace FlexusWorkout.Services.Repository;
+namespace FlexusWorkout.DataAccess.Repository;
 
 public class FlexusWorkoutDbContext : DbContext, IFlexusDbContext
 {// One DB context for project to keep things simple
