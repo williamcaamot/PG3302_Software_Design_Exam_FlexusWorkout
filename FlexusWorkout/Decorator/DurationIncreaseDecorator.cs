@@ -4,7 +4,10 @@ namespace FlexusWorkout.MODIFINGGGGG.modifierAndDecorators;
 
 public class DurationIncreaseDecorator : ExerciseDecorator
 {
-    public DurationIncreaseDecorator(Exercise component) : base(component) { }
+    public DurationIncreaseDecorator(Exercise component) : base(component)
+    {
+        
+    }
 
     public void IncreaseDuration()
     {

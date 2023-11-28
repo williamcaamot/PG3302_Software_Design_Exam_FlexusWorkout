@@ -19,7 +19,7 @@ public class UserService : Service
         
     }
     
-    private User Add(User user)
+    public User Add(User user)
     {
         user.Password = HashPassword(user.Password);
         var addeduser =_db.User.Add(user);
