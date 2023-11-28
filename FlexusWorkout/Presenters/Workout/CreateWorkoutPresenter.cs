@@ -1,7 +1,8 @@
 
 using FlexusWorkout.Decorator;
+using FlexusWorkout.Decorator.Factories;
+using FlexusWorkout.Decorator.Factories.Base;
 using FlexusWorkout.Models.Base;
-using FlexusWorkout.MODIFINGGGGG.modifierAndDecorators;
 using FlexusWorkout.Presenters.Base;
 using FlexusWorkout.Services;
 using FlexusWorkout.Services.Repository;
@@ -19,7 +20,8 @@ public class CreateWorkoutPresenter : Presenter
     private Workout _workout;
     private ExerciseType _exerciseType;
     private Exercise _selectedExercise;
-    private ExerciseModifierFactory _exerciseModifierFactory;
+    private DecoratorFactory? _decoratorFactory;
+    private ExerciseDecoratorFactory? _exerciseDecoratorFactory;
     private UserService _userService;
     private string _workoutName;
     private string _workoutDescription;
@@ -28,7 +30,6 @@ public class CreateWorkoutPresenter : Presenter
         service)
     {
         _db = DbContextManager.Instance;
-        _exerciseModifierFactory = new ExerciseModifierFactory();
         _user = user;
         _service = service;
         _view = view;
@@ -213,12 +214,17 @@ public class CreateWorkoutPresenter : Presenter
         {
             case "1":
                 // Decorate harder
-                _selectedExercise = _exerciseModifierFactory.MakeHarder(_selectedExercise);
+                _decoratorFactory = new DecoratorFactory(_selectedExercise);
+                _exerciseDecoratorFactory = _decoratorFactory.CreateFactory();
+                _selectedExercise = _exerciseDecoratorFactory.MakeHarder();
+                
                 _view.DisplayDecoratingChoices();
                 break;
             case "2":
                 // Decorate easier
-                _selectedExercise = _exerciseModifierFactory.MakeEasier(_selectedExercise);
+                _decoratorFactory = new DecoratorFactory(_selectedExercise);
+                _exerciseDecoratorFactory = _decoratorFactory.CreateFactory();
+                _selectedExercise = _exerciseDecoratorFactory.MakeEasier();
                 _view.DisplayDecoratingChoices();
                 break;
             case "3":

@@ -26,7 +26,9 @@ public class FlexusWorkoutDbContext : DbContext, IFlexusDbContext
             .HasDiscriminator<string>("Discriminator")
             .HasValue<StrengthExercise>("Strength")
             .HasValue<BalanceExercise>("Balance")
-            .HasValue<CardioExercise>("Cardio");
+            .HasValue<CardioExercise>("Cardio")
+            .HasValue<CustomExercise>("Exercise");
+        
         
         modelBuilder.Entity<Workout>() //Should create a join table
             .HasMany(e => e.Exercises)
