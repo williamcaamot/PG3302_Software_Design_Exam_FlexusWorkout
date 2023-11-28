@@ -12,24 +12,24 @@ namespace FlexusWorkout.Services;
 
 public class UserService : Service
 {
-    private readonly MySqlUserDA _mySqlUserDa;
+    private readonly IUserDA _userDA;
 
-    public UserService(MySqlUserDA mySqlUserDa)
+    public UserService(IUserDA iUserDa)
     {
 
-        _mySqlUserDa = mySqlUserDa;
+        _userDA = iUserDa;
     }
     
     public User Add(User user)
     {
         user.Password = HashPassword(user.Password); //Need to keep this here, should not have this in DAL
-        var addeduser = _mySqlUserDa.Add(user);
+        var addeduser = _userDA.Add(user);
         return addeduser;
     }
     
     public User Update(User user)
     {
-        var updatedUser = _mySqlUserDa.Update(user);
+        var updatedUser = _userDA.Update(user);
         return updatedUser;
     }
     
@@ -41,7 +41,7 @@ public class UserService : Service
             throw new Exception("User information is not complete!");
         }
         
-        var checkUser = _mySqlUserDa.GetUserByEmail(user.Email);
+        var checkUser = _userDA.GetUserByEmail(user.Email);
         if (checkUser == null)
         {
             throw new Exception("Could not find user");
@@ -49,29 +49,25 @@ public class UserService : Service
         var checkPassword = HashPassword(password);
         if (checkUser.Password == checkPassword)
         {
-            _mySqlUserDa.Delete(user);    
+            _userDA.Delete(user);    
         }
         else
         {
             throw new Exception("Password not correct!"); //Generic to not expose information to user, not that useful in our application
         }
     }
-    public User GetUserByEmail(User user)
-    {
-        return _mySqlUserDa.GetUserByEmail(user);
-    }
     public User GetUserByEmail(String email)
     {
-        return _mySqlUserDa.GetUserByEmail(email);
+        return _userDA.GetUserByEmail(email);
     }
     public User GetUserById(int id)
     {
-        return _mySqlUserDa.GetUserById(id);
+        return _userDA.GetUserById(id);
     }
     
     private User Authenticate(User user) // TAKES A USER IN - AND RETURNS THE AUTHENTICATED USER IF IT IS SUCCESSFUL!
     {
-        var foundUser = GetUserByEmail(user);
+        var foundUser = _userDA.GetUserByEmail(user);
         if (foundUser.Email == null)
         {
             throw new Exception("Could not find user");
@@ -111,7 +107,7 @@ public class UserService : Service
             throw new Exception("Email is not formatted correctly");
         }
 
-        var checkUser = GetUserByEmail(user);
+        var checkUser = _userDA.GetUserByEmail(user);
         if (checkUser.Email != null)
         {
             throw new Exception("Email already exists");

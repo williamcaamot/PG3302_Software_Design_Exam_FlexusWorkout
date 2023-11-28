@@ -3,7 +3,7 @@ using FlexusWorkout.Models.Concrete;
 
 namespace FlexusWorkoutTests;
 
-public class UserUnitTests //USER UNIT TESTS = DONE 
+public class UserUnitTest //USER UNIT TESTS = DONE 
 {
     [Test]
     public void CreateUser()

@@ -1,3 +1,4 @@
+using FlexusWorkout.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
@@ -9,7 +10,8 @@ public class UserServiceTest
     [OneTimeSetUp]
     public void SetUpBeforeEachTest()
     {
-        Service = new UserService(new MySqlFlexusDbContext());
+        MySqlUserDA mySqlUserDa= new MySqlUserDA(DbContextManager.Instance);
+        Service = new UserService(mySqlUserDa);
     }
     
     [Test]
@@ -29,7 +31,7 @@ public class UserServiceTest
         Assert.That(addedUser.UserId, Is.GreaterThan(-1));
         
         //Cleanup
-        Service.Delete(addedUser);
+        Service.Delete(addedUser, "password");
     }
     
     

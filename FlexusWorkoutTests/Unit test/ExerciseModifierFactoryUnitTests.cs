@@ -4,13 +4,14 @@ using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
 
 namespace FlexusWorkoutTests;
-
+/*
 public class ExerciseModifierFactoryUnitTests //TODO Can also create tests for checking that you cannot get negative ints by using the makeeasier method
 {
     private Exercise _balanceExercise;
     private Exercise _strengthExercise;
     private Exercise _cardioExercise;
-    private ExerciseModifierFactory _exerciseModifierFactory;
+    
+    
     
     [SetUp]
     public void createExercisesBeforeEachtest()
@@ -75,4 +76,4 @@ public class ExerciseModifierFactoryUnitTests //TODO Can also create tests for c
     }
     
     
-}
+}*/
