@@ -16,7 +16,6 @@ public class UserService : Service
     public UserService(IFlexusDbContext db)
     {
         _db = db; 
-        
     }
     
     public User Add(User user)
