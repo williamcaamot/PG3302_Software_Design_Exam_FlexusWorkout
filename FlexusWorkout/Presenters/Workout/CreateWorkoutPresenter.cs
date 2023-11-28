@@ -107,12 +107,20 @@ public class CreateWorkoutPresenter : Presenter
                 _view.DisplayCategories();
                 break;
             case "no":
-                // finished adding exercises
-                _user.Workouts.Add(_workout);
-                _user = _userService.Update(_user);
-                _view.DisplayText("Successfully added workout!"); //TODO SHOULD PROABLY CHANGE THIS TO SOMETHING BETTER
-                _view.DisplayText("Returning...");
-                Thread.Sleep(2000);
+                try
+                {
+                    _user.Workouts.Add(_workout);
+                    _user = _userService.Update(_user);
+                    _view.DisplayText("Successfully added workout!"); //TODO SHOULD PROABLY CHANGE THIS TO SOMETHING BETTER
+                    _view.DisplayText("Returning...");
+                    Thread.Sleep(2000);
+                }
+                catch (Exception e)
+                {
+                    _view.DisplayText($"An error occured");
+                    _view.DisplayText(e.Message);
+                    Thread.Sleep(2000);
+                }
                 break;
             case "showDecoratorInfo":
                 if (_selectedExercise.Type == "Strength")
