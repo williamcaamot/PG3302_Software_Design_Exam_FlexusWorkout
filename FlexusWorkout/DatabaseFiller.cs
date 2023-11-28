@@ -12,7 +12,7 @@ namespace FlexusWorkout;
         private ExerciseService _exerciseService;
         private MySqlConnection _mySqlConnectionconn;
 
-        public DatabaseFiller(FlexusDbContext flexusDbContext)
+        public DatabaseFiller(IFlexusDbContext flexusDbContext)
         {
             _userService = new UserService(flexusDbContext);
             _exerciseService = new ExerciseService(flexusDbContext);

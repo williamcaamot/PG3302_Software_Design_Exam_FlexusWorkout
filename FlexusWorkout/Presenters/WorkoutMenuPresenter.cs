@@ -12,7 +12,7 @@ namespace FlexusWorkout.Presenters;
 public class WorkoutMenuPresenter : MenuPresenter
 {
     private User _user;
-    private FlexusDbContext _db;
+    private IFlexusDbContext _db;
     public WorkoutMenuPresenter(View view, User user) : base(view)
     {
         _db = DbContextManager.Instance;

@@ -7,8 +7,8 @@ namespace FlexusWorkout.Services;
 
 public class WorkoutService : Service
 {
-    private FlexusDbContext _db;
-    public WorkoutService(FlexusDbContext db)
+    private IFlexusDbContext _db;
+    public WorkoutService(IFlexusDbContext db)
     {
         _db = db;
     }

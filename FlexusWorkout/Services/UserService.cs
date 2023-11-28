@@ -11,20 +11,25 @@ namespace FlexusWorkout.Services;
 
 public class UserService : Service
 {
-    private readonly FlexusDbContext _db;
-    public UserService(FlexusDbContext db)
+    private readonly IFlexusDbContext _db;
+
+    public UserService(IFlexusDbContext db)
     {
-        _db = db;
+        _db = db; 
+        
     }
-    
     
     private User Add(User user)
     {
         user.Password = hashPassword(user.Password);
         var addeduser =_db.User.Add(user);
         _db.SaveChanges();
+        
         return addeduser.Entity;
     }
+    
+    
+    
 
     public User update(User user)
     {

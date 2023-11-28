@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Internal;
 
 namespace FlexusWorkout.Services.Repository;
 
-public interface FlexusDbContext
+public interface IFlexusDbContext
 {
     int SaveChanges();
     DbSet<User> User { get; }

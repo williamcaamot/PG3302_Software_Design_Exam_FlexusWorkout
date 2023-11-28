@@ -29,8 +29,8 @@ public class UserServiceTestv2
         mockSet.As<IQueryable<User>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
         
         
+        var mockContext = new Mock<IFlexusDbContext>();
         
-        var mockContext = new Mock<FlexusWorkoutDbContext>();
         mockContext.Setup(m => m.User).Returns(mockSet.Object);
 
         var service = new UserService(mockContext.Object);

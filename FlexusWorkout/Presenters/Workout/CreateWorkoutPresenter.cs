@@ -13,7 +13,7 @@ using Models.Concrete;
 public class CreateWorkoutPresenter : Presenter
 {
     private User _user;
-    private FlexusDbContext _db;
+    private IFlexusDbContext _db;
     private CreateWorkout _view;
     private ExerciseService _service;
     private Workout _workout;

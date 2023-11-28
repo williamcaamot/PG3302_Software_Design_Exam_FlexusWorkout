@@ -7,9 +7,9 @@ namespace FlexusWorkout.Services;
 
 public class WorkoutDayService : Service
 {
-    private FlexusDbContext _db;
+    private IFlexusDbContext _db;
     private readonly object _updateLock = new object();
-    public WorkoutDayService(FlexusDbContext db)
+    public WorkoutDayService(IFlexusDbContext db)
     {
         _db = db;
     }
