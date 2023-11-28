@@ -10,7 +10,7 @@ public class WorkoutPlannerUnitTest
     public void TestFillDatasetWorkoutPlanner()
     {
         // Arrange
-        var mockTheExercises = new List<Exercise>
+        var ConcreteExercises = new List<Exercise>
         {
             new StrengthExercise { Name = "Beachy looking pump", Description = "An assolute beast exercises for you bum" },
             new BalanceExercise { Name = "Howling dog to moon", Description = "An exercises for your pose" },
@@ -22,7 +22,7 @@ public class WorkoutPlannerUnitTest
             {
                 Name = "Blasting bubble butt",
                 Description = "Exercises for you bum!",
-                Exercises = mockTheExercises
+                Exercises = ConcreteExercises
             },
             Date = DateTime.Now
             
@@ -40,7 +40,7 @@ public class WorkoutPlannerUnitTest
         // Assert
         Assert.That(dataSet[0], Is.EqualTo("Blasting bubble butt"));
         Assert.That(dataSet[1], Is.EqualTo("Exercises for you bum!"));
-        Assert.That(dataSet[2], Is.EqualTo(string.Join(", ", mockTheExercises.Select(exercise => exercise.Name))));
+        Assert.That(dataSet[2], Is.EqualTo(string.Join(", ", ConcreteExercises.Select(exercise => exercise.Name))));
         Assert.That(dataSet[3], Is.EqualTo(workoutDay.Date));
     }
 }
