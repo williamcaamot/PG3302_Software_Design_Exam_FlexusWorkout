@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FlexusWorkout.Migrations
 {
-    [DbContext(typeof(FlexusWorkoutDbContext))]
+    [DbContext(typeof(MySqlFlexusDbContext))]
     [Migration("20231127132837_InitialMigration")]
     partial class InitialMigration
     {

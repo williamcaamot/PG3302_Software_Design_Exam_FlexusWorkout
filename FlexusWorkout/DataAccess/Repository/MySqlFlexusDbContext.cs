@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FlexusWorkout.DataAccess.Repository;
 
-public class FlexusWorkoutDbContext : DbContext, IFlexusDbContext
+public class MySqlFlexusDbContext : DbContext, IFlexusDbContext
 {// One DB context for project to keep things simple
     
     public virtual DbSet<User> User => Set<User>();

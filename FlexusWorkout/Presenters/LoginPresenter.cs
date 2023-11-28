@@ -11,10 +11,10 @@ public class LoginPresenter : Base.Presenter
 {
     private string? _email;
     private string? _password;
-    private FlexusWorkoutDbContext _flexusWorkoutDbContext;
+    private MySqlFlexusDbContext _mySqlFlexusDbContext;
     public LoginPresenter(View view, Service service) : base(view, service)
     {
-        _flexusWorkoutDbContext = DbContextManager.Instance;
+        _mySqlFlexusDbContext = DbContextManager.Instance;
         // Run the View loop
         view.Run();   
     }
@@ -49,7 +49,7 @@ public class LoginPresenter : Base.Presenter
         {
             case "ok":
                 User loginUser = new();
-                UserService userService = new(_flexusWorkoutDbContext);
+                UserService userService = new(_mySqlFlexusDbContext);
                 try
                 {
                     loginUser = userService.LoginUser(_email, _password); // Will return the authentiacted user  

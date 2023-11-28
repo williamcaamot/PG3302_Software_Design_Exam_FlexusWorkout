@@ -2,23 +2,23 @@ namespace FlexusWorkout.DataAccess.Repository;
 
 public class DbContextManager
 {
-    private static FlexusWorkoutDbContext _flexusWorkoutDbContext;
-    public static FlexusWorkoutDbContext Instance
+    private static MySqlFlexusDbContext _mySqlFlexusDbContext;
+    public static MySqlFlexusDbContext Instance
     {
         get
         {
-            if (_flexusWorkoutDbContext == null)
+            if (_mySqlFlexusDbContext == null)
             {
-                _flexusWorkoutDbContext = new FlexusWorkoutDbContext();
+                _mySqlFlexusDbContext = new MySqlFlexusDbContext();
 
             }
-            return _flexusWorkoutDbContext;
+            return _mySqlFlexusDbContext;
         }
     }
 
 
     public static void Dispose()
     {
-        _flexusWorkoutDbContext.Dispose();
+        _mySqlFlexusDbContext.Dispose();
     }
 }

@@ -8,11 +8,11 @@ namespace FlexusWorkout.Presenters;
 
 public class InitialMenuPresenter : MenuPresenter
 {
-    private FlexusWorkoutDbContext _flexusWorkoutDbContext;
+    private MySqlFlexusDbContext _mySqlFlexusDbContext;
     public InitialMenuPresenter(View view) : base(view)
     {
         // Run the View loop
-        _flexusWorkoutDbContext = DbContextManager.Instance;
+        _mySqlFlexusDbContext = DbContextManager.Instance;
         view.Run();
     }
 
@@ -42,13 +42,13 @@ public class InitialMenuPresenter : MenuPresenter
             case "1":
                 // send user to login view
                 LoginView loginView = new();
-                UserService userService = new(_flexusWorkoutDbContext);
+                UserService userService = new(_mySqlFlexusDbContext);
                 LoginPresenter loginPresenter = new(loginView, userService);
                 break;
             case "2":
                 // send user to signup view
                 SignupView signupView = new();
-                UserService userService2 = new(_flexusWorkoutDbContext);
+                UserService userService2 = new(_mySqlFlexusDbContext);
                 SignupPresenter signupPresenter = new(signupView, userService2);
                 break;
             case "3":

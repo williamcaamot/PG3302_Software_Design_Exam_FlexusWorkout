@@ -11,11 +11,11 @@ namespace FlexusWorkout.Presenters.ExerciseFinder;
 public class ExerciseSelectorPresenter : Presenter
 {
     private readonly ExerciseType _type;
-    private FlexusWorkoutDbContext _flexusWorkoutDbContext;
+    private MySqlFlexusDbContext _mySqlFlexusDbContext;
 
     public ExerciseSelectorPresenter(ExerciseType type, View view, Service? service = default) : base(view, service)
     {
-        _flexusWorkoutDbContext = new();
+        _mySqlFlexusDbContext = new();
         _type = type;
         // Run the View loop
         view.Run();
@@ -73,7 +73,7 @@ public class ExerciseSelectorPresenter : Presenter
 
     private IList<Exercise> GetExercises()
     {
-        ExerciseService exerciseService = new(_flexusWorkoutDbContext);
+        ExerciseService exerciseService = new(_mySqlFlexusDbContext);
         var exercises = exerciseService.GetExercisesByType(_type.Name);
         return exercises;
     }

@@ -9,10 +9,10 @@ namespace FlexusWorkout.Presenters;
 
 public class GuestMenuPresenter : MenuPresenter
 {
-    private FlexusWorkoutDbContext _flexusWorkoutDbContext;
+    private MySqlFlexusDbContext _mySqlFlexusDbContext;
     public GuestMenuPresenter(View view) : base(view)
     {
-        _flexusWorkoutDbContext = DbContextManager.Instance;
+        _mySqlFlexusDbContext = DbContextManager.Instance;
         // Run the View loop
         view.Run();
     }
@@ -41,7 +41,7 @@ public class GuestMenuPresenter : MenuPresenter
                 View.Stop();
                 break;
             case "1":
-                ExerciseService exerciseService = new(_flexusWorkoutDbContext);
+                ExerciseService exerciseService = new(_mySqlFlexusDbContext);
                 ExerciseFinderMenu exerciseFinderMenu = new();
                 ExerciseFinderPresenter exerciseFinderPresenter = new(exerciseFinderMenu, exerciseService);
                 break;

@@ -9,7 +9,7 @@ public class UserServiceTest
     [OneTimeSetUp]
     public void SetUpBeforeEachTest()
     {
-        Service = new UserService(new FlexusWorkoutDbContext());
+        Service = new UserService(new MySqlFlexusDbContext());
     }
     
     [Test]

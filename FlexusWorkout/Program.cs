@@ -28,8 +28,8 @@ namespace FlexusWorkout
 
             PrintStartUpMessage();
             
-            FlexusWorkoutDbContext flexusWorkoutDbContext = new FlexusWorkoutDbContext();
-            WorkoutDayService workoutDayService = new(flexusWorkoutDbContext);
+            MySqlFlexusDbContext mySqlFlexusDbContext = new MySqlFlexusDbContext();
+            WorkoutDayService workoutDayService = new(mySqlFlexusDbContext);
             WorkoutNotificationService workoutNotificationService = new WorkoutNotificationService(workoutDayService);
             Task.Run(() => workoutNotificationService.NotifyUsersAsync());
             

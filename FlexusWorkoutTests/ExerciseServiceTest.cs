@@ -10,12 +10,12 @@ namespace FlexusWorkoutTests;
 public class ExerciseServiceTest
 {
     private ExerciseService Service;
-    private FlexusWorkoutDbContext _flexusWorkoutDbContext;
+    private MySqlFlexusDbContext _mySqlFlexusDbContext;
     [OneTimeSetUp]
     public void SetUpBeforeEachTest()
     {
-        Service = new ExerciseService(new FlexusWorkoutDbContext());
-        _flexusWorkoutDbContext = new();
+        Service = new ExerciseService(new MySqlFlexusDbContext());
+        _mySqlFlexusDbContext = new();
 
     }
     [Test]
@@ -35,7 +35,7 @@ public class ExerciseServiceTest
             "Trenignssenter for yoga øvelser"
         );
         
-        ExerciseService exerciseService = new(_flexusWorkoutDbContext);
+        ExerciseService exerciseService = new(_mySqlFlexusDbContext);
         exerciseService.AddExercise(balanceExercise);
 
         IList<Exercise> strengthExercises = exerciseService.GetExercisesByType("Balance");
@@ -63,7 +63,7 @@ public class ExerciseServiceTest
             "Utendørs"
         );
         
-        ExerciseService exerciseService = new(_flexusWorkoutDbContext);
+        ExerciseService exerciseService = new(_mySqlFlexusDbContext);
         exerciseService.AddExercise(cardioExercise);
 
         IList<Exercise> strengthExercises = exerciseService.GetExercisesByType("Cardio");
@@ -82,8 +82,8 @@ public class ExerciseServiceTest
     public void GetExerciseTypes_ShouldReturnStringOfExercises()
     {
 
-        ExerciseService exerciseService = new(_flexusWorkoutDbContext);
-        DatabaseFiller databaseFiller = new(_flexusWorkoutDbContext);
+        ExerciseService exerciseService = new(_mySqlFlexusDbContext);
+        DatabaseFiller databaseFiller = new(_mySqlFlexusDbContext);
         databaseFiller.FillExercises();
         
         
@@ -97,8 +97,8 @@ public class ExerciseServiceTest
     [Test]
     public void GetExerciseById_ShouldReturnExercise()
     {
-        ExerciseService exerciseService = new(_flexusWorkoutDbContext);
-        DatabaseFiller databaseFiller = new(_flexusWorkoutDbContext);
+        ExerciseService exerciseService = new(_mySqlFlexusDbContext);
+        DatabaseFiller databaseFiller = new(_mySqlFlexusDbContext);
         databaseFiller.FillExercises();
         
         

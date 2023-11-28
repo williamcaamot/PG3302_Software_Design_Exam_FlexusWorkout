@@ -14,7 +14,7 @@ public class UserServiceTestv1
     public void CreateUser_saves_a_user_via_context()
     {
         var mockSet = new Mock<DbSet<User>>();
-        var mockContext = new Mock<FlexusWorkoutDbContext>();
+        var mockContext = new Mock<MySqlFlexusDbContext>();
         
         var mockEntry = new Mock<EntityEntry<User>>();
 

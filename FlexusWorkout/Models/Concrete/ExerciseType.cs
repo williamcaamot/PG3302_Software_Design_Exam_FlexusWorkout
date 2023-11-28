@@ -30,8 +30,8 @@ public class ExerciseType
 
     public void Populate()
     {
-        FlexusWorkoutDbContext flexusWorkoutDbContext = new();
-        ExerciseService exerciseService = new(flexusWorkoutDbContext);
+        MySqlFlexusDbContext mySqlFlexusDbContext = new();
+        ExerciseService exerciseService = new(mySqlFlexusDbContext);
         var exercises = exerciseService.GetExercisesByType(Name);
 
         for (int i = 0; i < exercises.Count; i++)

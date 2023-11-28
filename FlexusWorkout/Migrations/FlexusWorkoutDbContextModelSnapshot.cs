@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FlexusWorkout.Migrations
 {
-    [DbContext(typeof(FlexusWorkoutDbContext))]
+    [DbContext(typeof(MySqlFlexusDbContext))]
     partial class FlexusWorkoutDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
