@@ -162,8 +162,7 @@ public class CreateWorkoutPresenter : Presenter
             if (choice == 0) // Exit view
             {
                 View.Stop();
-            }
-            else
+            } else // TODO fix errors when giving wrong input
             {
                 _exerciseType = GetCategories()[choice - 1];
                 _view.DisplayExercises(_exerciseType.Name);
@@ -181,12 +180,6 @@ public class CreateWorkoutPresenter : Presenter
                 View.DisplayText(i + 1 + " - " + exercises[i].Name);
             }
         }
-        else if (input == "invalid")
-        {
-            Console.Clear();
-            Console.WriteLine("Invalid menu choice - try again.");
-            Thread.Sleep(2000);
-        }
     }
 
 
@@ -198,8 +191,7 @@ public class CreateWorkoutPresenter : Presenter
             if (choice == 0) // Exit view
             {
                 _view.Stop();
-            }
-            else
+            } else // TODO fix errors when giving wrong input
             {
                 _selectedExercise = _exerciseType.Exercises[choice - 1];
                 _view.DisplayDecoratingChoices();
@@ -216,7 +208,6 @@ public class CreateWorkoutPresenter : Presenter
                 _decoratorFactory = new DecoratorFactory(_selectedExercise);
                 _exerciseDecoratorFactory = _decoratorFactory.CreateFactory();
                 _selectedExercise = _exerciseDecoratorFactory.MakeHarder();
-                
                 _view.DisplayDecoratingChoices();
                 break;
             case "2":

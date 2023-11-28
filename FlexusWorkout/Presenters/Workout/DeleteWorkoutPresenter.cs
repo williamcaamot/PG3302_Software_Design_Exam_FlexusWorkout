@@ -1,9 +1,12 @@
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Presenters.Base;
+using FlexusWorkout.Services;
 using FlexusWorkout.Services.Base;
+using FlexusWorkout.Services.Repository;
 using FlexusWorkout.Views.Base;
 
 namespace FlexusWorkout.Presenters.Workout;
+using Models.Concrete;
 
 public class DeleteWorkoutPresenter : Presenter
 {
@@ -74,8 +77,24 @@ public class DeleteWorkoutPresenter : Presenter
             }
             else
             {
-                // TODO uncomment line below with working Delete method.
-                //Service.deleteWorkoutById(_user.Workouts[choice - 1]);
+                try
+                {
+                    _user.Workouts.RemoveAt(choice - 1);
+                    UserService userService = new UserService(DbContextManager.Instance);
+                    userService.Update(_user);
+                    
+                    Console.Clear();
+                    Thread.Sleep(1000);
+                    View.DisplayText("... Delete successful");
+                    View.DisplayText("Returning ...");
+                    Thread.Sleep(2000);
+                }
+                catch (Exception e)
+                {
+                    Console.Clear();
+                    View.DisplayText(e.Message);
+                    Thread.Sleep(2000);
+                }
                 View.Stop();
             }
         }
