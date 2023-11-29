@@ -1,6 +1,6 @@
 using FlexusWorkout.Models.Concrete;
 
-namespace FlexusWorkout.DataAccess;
+namespace FlexusWorkout.DataAccess.DataAccess;
 
 public interface IUserDA
 {

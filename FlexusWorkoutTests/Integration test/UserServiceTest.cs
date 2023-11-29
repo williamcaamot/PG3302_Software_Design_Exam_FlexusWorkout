@@ -1,4 +1,5 @@
 using FlexusWorkout.DataAccess;
+using FlexusWorkout.DataAccess.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
@@ -7,12 +8,15 @@ namespace FlexusWorkoutTests.Integration_test;
 
 public class UserServiceTest
 {
-    private UserService _service;
+    private UserService _userService;
+    private ExerciseService _exerciseService;
+    
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
         MySqlUserDA mySqlUserDa= new MySqlUserDA(new MySqlFlexusDbContext());
-        _service = new UserService(mySqlUserDa);
+        _userService = new UserService(mySqlUserDa);
+
     }
     
     [Test]
@@ -22,7 +26,7 @@ public class UserServiceTest
         User user = new User("test","user","test1@gmail.com","password");
         
         // Act
-        User addedUser = _service.RegisterUser(user);
+        User addedUser = _userService.RegisterUser(user);
         
         // Assert
         Assert.That(user.FirstName, Is.EqualTo(addedUser.FirstName));
@@ -31,7 +35,7 @@ public class UserServiceTest
         Assert.That(addedUser.UserId, Is.GreaterThan(-1));
         
         //Cleanup
-        _service.Delete(addedUser, "password");
+        _userService.Delete(addedUser, "password");
     }
     
     
@@ -46,7 +50,7 @@ public class UserServiceTest
         //Act
         try
         {
-            registeredUser = _service.RegisterUser(user);
+            registeredUser = _userService.RegisterUser(user);
         }
         catch (Exception e)
         {
@@ -58,7 +62,7 @@ public class UserServiceTest
     }
     [Test]
     public void RegisterUserWithExistingEmail_ShouldThrowError()
-         {
+    {
              // Arrange
              User user1 = new User("test","user","test3@test.com","password");
              User user = new User("test","user","test3@test.com","password");
@@ -66,11 +70,11 @@ public class UserServiceTest
              string errorMessage = null;
              
              //Act
-             _service.RegisterUser(user1);
+             registeredUser = _userService.RegisterUser(user1);
              
              try
              {
-                 registeredUser = _service.RegisterUser(user);
+                 _userService.RegisterUser(user);
              }
              catch (Exception e)
              {
@@ -79,5 +83,35 @@ public class UserServiceTest
              
              // Assert
              Assert.That(errorMessage == "Email already exists");
-         }
+             
+             
+             //Cleanup
+             _userService.Delete(registeredUser, "password");
+             
+    }
+
+    [Test]
+    public void addUserWithWorkouts_GettingUserShouldReturnUserWithWorkouts()
+    {
+        //Arrange
+        User user = new User("test","user","test1@gmail.com","password");
+        Workout workout = new Workout("Test Workout", "Cool Workout");
+
+        
+
+
+
+        //Act
+
+
+        //Assert
+
+
+
+        //Cleanup
+        //Delete user
+    }
+    
+    
+    
 }

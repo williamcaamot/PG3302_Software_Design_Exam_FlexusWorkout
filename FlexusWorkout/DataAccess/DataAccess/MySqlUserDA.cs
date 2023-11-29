@@ -2,7 +2,7 @@ using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Concrete;
 using Microsoft.EntityFrameworkCore;
 
-namespace FlexusWorkout.DataAccess;
+namespace FlexusWorkout.DataAccess.DataAccess;
 
 public class MySqlUserDA : IUserDA
 {
