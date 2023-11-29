@@ -72,7 +72,7 @@ public class UserServiceUnitTest
         //Act
         try
         {
-            userService.LoginUser("test@flexu.no", "abcd");
+            userService.LoginUser("test@flexus.no", "abcd");
         }
         catch (Exception e)
         {
@@ -81,6 +81,30 @@ public class UserServiceUnitTest
         
         //Assert
         Assert.That(errorMessage, Is.EqualTo("Could not find user"));
+        
+        _mockUserDA.VerifyAll();
+    }
+    
+    [Test]
+    public void loginUser_ShouldReturnUserLoggedIn()
+    {
+        //Arrange
+        List<User> users = new List<User> { new User("coolio", "userio", "coolio@flexus.no", "abcd") };
+        
+        _mockUserDA.Setup(m => m.Add(It.IsAny<User>()))
+            .Callback((User user) => users.Add(user))
+            .Returns((User user) => user);
+        _mockUserDA.Setup(m => m.GetUserByEmail(It.IsAny<User>())).Returns(users[0]);
+        User user = new User("Test", "User", "test@user.com", "abcd");
+        UserService userService = new UserService(_mockUserDA.Object);
+        
+        //Act
+        userService.RegisterUser(user);
+        
+        var loggedInUSer = userService.LoginUser("test@user.com", "abcd");
+        
+        //Assert
+        Assert.That(loggedInUSer.Authenticated, Is.True);
         
         _mockUserDA.VerifyAll();
     }

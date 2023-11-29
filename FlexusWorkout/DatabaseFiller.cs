@@ -122,17 +122,16 @@ namespace FlexusWorkout;
                 "The perfect balance workout for getting good at stretching and balance!"
                 );
             
-            john.Workouts.Add(ronnieWorkout);
+            ronnie.Workouts.Add(ronnieWorkout);
             ronnieWorkout.Exercises.Add(_exerciseService.getRandomExercise("balance"));
             ronnieWorkout.Exercises.Add(_exerciseService.getRandomExercise("balance"));
             _userService.Update(john);
-
 
             Workout johnWorkout = new Workout(
                 "Johns Strength Power Madhouse", "Do this to get strong fast!"
             );
             
-            ronnie.Workouts.Add(johnWorkout);
+            john.Workouts.Add(johnWorkout);
             johnWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
             johnWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
             _userService.Update(ronnie);
@@ -146,8 +145,7 @@ namespace FlexusWorkout;
             _userService.Update(sam);
 
             
-            Workout arnoldWorkout =
-                new Workout("Leg day hell day", "You won't be able to walk for 5 days after this");
+            Workout arnoldWorkout = new Workout("Leg day hell day", "You won't be able to walk for 5 days after this");
             arnold.Workouts.Add(arnoldWorkout);
             arnoldWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
             arnoldWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
