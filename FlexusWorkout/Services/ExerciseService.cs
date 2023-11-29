@@ -10,33 +10,21 @@ namespace FlexusWorkout.Services;
 
 public class ExerciseService : Service
 {
-    private readonly IFlexusDbContext _db;
-
     private readonly IExerciseDA _exerciseDa;
-    //TODO NEED TO EDIT THIS TO USE DEPENDENCY INJECTION
-
-    public ExerciseService(IFlexusDbContext db)
+    public ExerciseService(IExerciseDA iExerciseDa)
     {
-        _db = db;
-        _exerciseDa = new MySqlExerciseDA(_db);
+        _exerciseDa = iExerciseDa;
+
     }
 
     public IList<ExerciseType> GetExerciseTypes()
     {
-        IList<ExerciseType> exerciseTypes = _db.Exercise
-            .Where(e => e.Standard == true)
-            .Select(e => new ExerciseType(EF.Property<string>(e, "Type")))
-            .Distinct()
-            .ToList();
-        return exerciseTypes;
+        return _exerciseDa.GetExerciseTypes();
     }
     
     public IList<Exercise> GetExercisesByType(string type)
     {
-        return _db.Exercise
-            .Where(e => e.Standard == true)
-            .Where(e => EF.Property<string>(e, "Type") == type)
-            .ToList();
+        return _exerciseDa.GetExerciseByType(type);
     }
 
     public Exercise GetExercise(int id)
@@ -51,7 +39,7 @@ public class ExerciseService : Service
 
     public Exercise GetRandomExercise(string type)
     {
-        IList<Exercise> exercises = GetExercisesByType(type);
+        IList<Exercise> exercises = _exerciseDa.GetExerciseByType(type);
 
         Random random = new();
         int randomNumber = random.Next(exercises.Count);
@@ -61,8 +49,7 @@ public class ExerciseService : Service
 
     public void DeleteExercise(Exercise exercise)
     {
-        _db.Exercise.Remove(exercise);
-        _db.SaveChanges();
+        _exerciseDa.DeleteExercise(exercise);
     }
     
 }

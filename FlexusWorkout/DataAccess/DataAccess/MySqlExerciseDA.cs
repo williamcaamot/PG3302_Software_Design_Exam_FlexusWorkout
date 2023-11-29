@@ -1,6 +1,7 @@
 using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
+using Microsoft.EntityFrameworkCore;
 
 namespace FlexusWorkout.DataAccess.DataAccess;
 
@@ -14,11 +15,17 @@ public class MySqlExerciseDA : IExerciseDA
     
     public IList<ExerciseType> GetExerciseTypes()
     {
-        throw new NotImplementedException();
+        IList<ExerciseType> exerciseTypes = _db.Exercise
+            .Where(e => e.Standard == true)
+            .Select(e => new ExerciseType(EF.Property<string>(e, "Type")))
+            .Distinct()
+            .ToList();
+        return exerciseTypes;
     }
 
     public Exercise GetExerciseById(int id)
     {
+        //TODO fix this
         return _db.Exercise.FirstOrDefault(e => e.ExerciseId == id);
     }
 
@@ -31,11 +38,15 @@ public class MySqlExerciseDA : IExerciseDA
 
     public IList<Exercise> GetExerciseByType(string type)
     {
-        throw new NotImplementedException();
+        return _db.Exercise
+            .Where(e => e.Standard == true)
+            .Where(e => EF.Property<string>(e, "Type") == type)
+            .ToList();
     }
 
     public void DeleteExercise(Exercise exercise)
     {
-        throw new NotImplementedException();
+        _db.Exercise.Remove(exercise);
+        _db.SaveChanges();
     }
 }
