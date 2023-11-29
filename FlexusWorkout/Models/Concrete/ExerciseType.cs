@@ -1,4 +1,5 @@
-﻿using FlexusWorkout.DataAccess.Repository;
+﻿using FlexusWorkout.DataAccess.DataAccess;
+using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Base;
 using FlexusWorkout.Services;
 
@@ -20,12 +21,27 @@ public class ExerciseType
         Exercises = new List<Exercise>();
         
         // populate Exercises list
+        Populate();
 
     }
+
 
     public void AddExercise(Exercise exercise)
     {
         Exercises.Add(exercise);
+    }
+
+    public void Populate()
+    {
+        MySqlFlexusDbContext mySqlFlexusDbContext = new();
+        MySqlExerciseDA mySqlExerciseDa = new MySqlExerciseDA(mySqlFlexusDbContext);
+        ExerciseService exerciseService = new(mySqlExerciseDa);
+        var exercises = exerciseService.GetExercisesByType(Name);
+
+        for (int i = 0; i < exercises.Count; i++)
+        {
+            AddExercise(exercises[i]);
+        }
     }
 
 }
