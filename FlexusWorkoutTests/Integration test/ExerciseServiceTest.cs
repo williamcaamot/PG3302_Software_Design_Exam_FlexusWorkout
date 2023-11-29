@@ -73,18 +73,18 @@ public class ExerciseServiceTest
         );
         
         ExerciseService exerciseService = new(_mySqlExerciseDa);
-        exerciseService.AddExercise(cardioExercise);
+        var addedExercise = exerciseService.AddExercise(cardioExercise);
 
-        IList<Exercise> strengthExercises = exerciseService.GetExercisesByType("Cardio");
+        var strengthExercise = exerciseService.GetExercise(addedExercise.ExerciseId);
 
-        Assert.That(strengthExercises[0].ExerciseId, Is.GreaterThan(0));
-        Assert.That(strengthExercises[0].Name, Is.EqualTo(cardioExercise.Name));
-        Assert.That(strengthExercises[0].Description, Is.EqualTo(cardioExercise.Description));
-        Assert.That(strengthExercises[0].Repetitions, Is.EqualTo(cardioExercise.Repetitions));
-        Assert.That(strengthExercises[0].Sets, Is.EqualTo(cardioExercise.Sets));
-        Assert.That(strengthExercises[0].EquipmentRequired, Is.EqualTo(cardioExercise.EquipmentRequired));
-        Assert.That(strengthExercises[0].IntensityLevel, Is.EqualTo(cardioExercise.IntensityLevel));
-        Assert.That(strengthExercises[0].Location, Is.EqualTo(cardioExercise.Location));
+        Assert.That(strengthExercise.ExerciseId, Is.GreaterThan(0));
+        Assert.That(strengthExercise.Name, Is.EqualTo(cardioExercise.Name));
+        Assert.That(strengthExercise.Description, Is.EqualTo(cardioExercise.Description));
+        Assert.That(strengthExercise.Repetitions, Is.EqualTo(cardioExercise.Repetitions));
+        Assert.That(strengthExercise.Sets, Is.EqualTo(cardioExercise.Sets));
+        Assert.That(strengthExercise.EquipmentRequired, Is.EqualTo(cardioExercise.EquipmentRequired));
+        Assert.That(strengthExercise.IntensityLevel, Is.EqualTo(cardioExercise.IntensityLevel));
+        Assert.That(strengthExercise.Location, Is.EqualTo(cardioExercise.Location));
     }
 
     [Test]
