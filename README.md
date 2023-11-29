@@ -1,6 +1,6 @@
 
 <p align="center">
-  <strong>Software Design Eksamen - TEAM FLEXUS</strong>
+  #<strong>Software Design Eksamen - TEAM FLEXUS</strong>
 </p>
 
 # What is Flexus Workout?
