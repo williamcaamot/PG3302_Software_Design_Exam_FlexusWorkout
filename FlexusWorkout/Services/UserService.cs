@@ -5,7 +5,6 @@ using FlexusWorkout.DataAccess.DataAccess;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services.Base;
 
-
 namespace FlexusWorkout.Services;
 
 public class UserService : Service
@@ -121,6 +120,4 @@ public class UserService : Service
         User user = new User(firstname, lastname, email, password);
         return RegisterUser(user);
     }
-    
-    
 }

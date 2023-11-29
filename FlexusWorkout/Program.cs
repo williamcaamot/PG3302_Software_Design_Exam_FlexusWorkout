@@ -1,7 +1,6 @@
 ﻿using FlexusWorkout.Presenters;
 using FlexusWorkout.Services;
 using FlexusWorkout.Views.Menu;
-using System.Threading.Tasks;
 using FlexusWorkout.DataAccess.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
 

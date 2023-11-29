@@ -1,9 +1,7 @@
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
-using FlexusWorkout.Services.Base;
 using FlexusWorkout.Views.Base;
 using FlexusWorkout.Views.ExerciseFinder;
-
 
 namespace FlexusWorkout.Presenters.ExerciseFinder;
 
@@ -48,7 +46,6 @@ public class ExerciseFinderPresenter : Base.Presenter
         }
     }
     
-
     public override void MainHandler(string? input)
     {
         if (input == "getcategories") // writes menu choices to view
@@ -79,6 +76,7 @@ public class ExerciseFinderPresenter : Base.Presenter
                 } else
                 {
                     ExerciseSelector exerciseSelector = new();
+                    // Starts the ExerciseSelectorPresenter here - where user selects an exercise
                     ExerciseSelectorPresenter eSP = new(GetCategories()[choice - 1], exerciseSelector, _exerciseService);
                 }
             }
@@ -94,6 +92,7 @@ public class ExerciseFinderPresenter : Base.Presenter
         }
         catch (Exception e)
         {
+            View.DisplayText(e.Message);
             return null;
         }
     }

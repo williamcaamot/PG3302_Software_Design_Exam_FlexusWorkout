@@ -3,7 +3,6 @@ using FlexusWorkout.Views.Base;
 namespace FlexusWorkout.Views.Menu;
 public class SignupView : View
 {
-
     protected override void Display()
     {
         Console.Clear();

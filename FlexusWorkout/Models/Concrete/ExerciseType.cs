@@ -32,6 +32,8 @@ public class ExerciseType
     }
 
     public void Populate()
+    // Populates Exercises list with exercises belonging to this
+    // specific exercise type. I.E Running exercise in Cardio exercise type
     {
         MySqlFlexusDbContext mySqlFlexusDbContext = new();
         MySqlExerciseDA mySqlExerciseDa = new MySqlExerciseDA(mySqlFlexusDbContext);

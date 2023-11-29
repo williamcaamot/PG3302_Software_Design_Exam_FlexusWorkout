@@ -1,11 +1,9 @@
 using FlexusWorkout.Models.Concrete;
-using SQLitePCL;
 
 namespace FlexusWorkout.Services;
 
 public class WorkoutNotificationService
 {
-    
     private WorkoutDayService _workoutDayService;
 
     public WorkoutNotificationService(WorkoutDayService workoutDayService)
