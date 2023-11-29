@@ -5,11 +5,11 @@ using View = FlexusWorkout.Views.Base.View;
 
 namespace FlexusWorkout.Presenters.WorkoutPlanner;
 
-public class WPPRresenterMenu : Presenter
+public class WPMenuPresenter : Presenter
 {
     private readonly User _user;
 
-    public WPPRresenterMenu(View view, User user) : base(view)
+    public WPMenuPresenter(View view, User user) : base(view)
     {
         _user = user;
         View.Run();
