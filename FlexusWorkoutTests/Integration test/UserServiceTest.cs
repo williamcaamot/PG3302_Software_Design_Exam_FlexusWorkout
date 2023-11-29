@@ -1,6 +1,7 @@
 using FlexusWorkout.DataAccess;
 using FlexusWorkout.DataAccess.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
+using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services;
 
@@ -14,9 +15,11 @@ public class UserServiceTest
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
-        MySqlUserDA mySqlUserDa= new MySqlUserDA(new MySqlFlexusDbContext());
+        MySqlFlexusDbContext mySqlFlexusDbContext = new();
+        MySqlUserDA mySqlUserDa= new MySqlUserDA(mySqlFlexusDbContext);
+        MySqlExerciseDA mySqlExerciseDa = new MySqlExerciseDA(mySqlFlexusDbContext);
         _userService = new UserService(mySqlUserDa);
-
+        _exerciseService = new ExerciseService(mySqlExerciseDa);
     }
     
     [Test]
@@ -63,31 +66,30 @@ public class UserServiceTest
     [Test]
     public void RegisterUserWithExistingEmail_ShouldThrowError()
     {
-             // Arrange
-             User user1 = new User("test","user","test3@test.com","password");
-             User user = new User("test","user","test3@test.com","password");
-             User registeredUser;
-             string errorMessage = null;
-             
-             //Act
-             registeredUser = _userService.RegisterUser(user1);
-             
-             try
-             {
-                 _userService.RegisterUser(user);
-             }
-             catch (Exception e)
-             {
-                 errorMessage = e.Message;
-             }
-             
-             // Assert
-             Assert.That(errorMessage == "Email already exists");
-             
-             
-             //Cleanup
-             _userService.Delete(registeredUser, "password");
-             
+        // Arrange
+        User user1 = new User("test","user","test3@test.com","password");
+        User user = new User("test","user","test3@test.com","password");
+        User registeredUser;
+        string errorMessage = null;
+        
+        //Act
+        registeredUser = _userService.RegisterUser(user1);
+        
+        try
+        {
+            _userService.RegisterUser(user);
+        }
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
+        }
+        
+        // Assert
+        Assert.That(errorMessage == "Email already exists");
+        
+        
+        //Cleanup
+        _userService.Delete(registeredUser, "password");
     }
 
     [Test]
@@ -96,22 +98,58 @@ public class UserServiceTest
         //Arrange
         User user = new User("test","user","test1@gmail.com","password");
         Workout workout = new Workout("Test Workout", "Cool Workout");
+        Exercise exercise1 = _exerciseService.GetRandomExercise("Strength");
+        Exercise exercise2 = _exerciseService.GetRandomExercise("Strength");
 
+        workout.Exercises.Add(exercise1);
+        workout.Exercises.Add(exercise2);
         
-
-
-
         //Act
-
+        var addedUser = _userService.RegisterUser(user);
+        addedUser.Workouts.Add(workout);
+        var updatedUser = _userService.Update(user);
 
         //Assert
-
-
+        
+        Assert.That(updatedUser.Workouts[0].Exercises[0].Name, Is.EqualTo(exercise1.Name));
+        Assert.That(updatedUser.Workouts[0].Exercises[1].Name, Is.EqualTo(exercise2.Name));
+        Assert.That(updatedUser.Workouts[0].Exercises[0].Description, Is.EqualTo(exercise1.Description));
+        Assert.That(updatedUser.Workouts[0].Exercises[1].Description, Is.EqualTo(exercise2.Description));
 
         //Cleanup
-        //Delete user
+        _userService.Delete(updatedUser, "password");
     }
     
     
-    
+    [Test]
+    public void addUserWithWorkoutDay_ShouldReturnUserWithWorkoutDays()
+    {
+        //Arrange
+        User user = new User("test","user","test1@gmail.com","password");
+        Workout workout = new Workout("Test Workout", "Cool Workout");
+        Exercise exercise1 = _exerciseService.GetRandomExercise("Strength");
+        Exercise exercise2 = _exerciseService.GetRandomExercise("Strength");
+        WorkoutDay workoutDay = new WorkoutDay(workout, DateTime.Parse("21-12-2019"));
+
+        workout.Exercises.Add(exercise1);
+        workout.Exercises.Add(exercise2);
+        
+        //Act
+        var addedUser = _userService.RegisterUser(user);
+        addedUser.Workouts.Add(workout);
+        addedUser.WorkoutDays.Add(workoutDay);
+        var updatedUser = _userService.Update(user);
+
+        //Assert
+        Assert.That(updatedUser.Workouts[0].Exercises[0].Name, Is.EqualTo(exercise1.Name));
+        Assert.That(updatedUser.Workouts[0].Exercises[1].Name, Is.EqualTo(exercise2.Name));
+        Assert.That(updatedUser.Workouts[0].Exercises[0].Description, Is.EqualTo(exercise1.Description));
+        Assert.That(updatedUser.Workouts[0].Exercises[1].Description, Is.EqualTo(exercise2.Description));
+        
+        Assert.That(updatedUser.WorkoutDays[0].Workout.Name, Is.EqualTo("Test Workout"));
+        Assert.That(updatedUser.WorkoutDays[0].Workout.Description, Is.EqualTo("Cool Workout"));
+
+        //Cleanup
+        _userService.Delete(updatedUser, "password");
+    }
 }

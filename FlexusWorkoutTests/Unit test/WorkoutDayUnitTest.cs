@@ -30,7 +30,6 @@ public class WorkoutDayUnitTest
         DateTime date = DateTime.Parse("24-12-2023");
         Workout workout = _workout;
         
-        
         //Act
         WorkoutDay workoutDay = new WorkoutDay(workout, date); //DD/MM/YYYY is output with time
         
