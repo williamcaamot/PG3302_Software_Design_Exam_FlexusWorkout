@@ -9,10 +9,13 @@ Flexus Workout is a Workout Manager program that has a lot of features. Some of 
 - Users can create workouts from exercises, and customize exercises.
 - Users can plan workouts for later dates and get notified about their upcoming workouts.
 - The program will automatically fill the database with dummy data to play around with.
-- 
+
+
 
 One of the premade accounts has these details:
+
 Email: ronnie@flexus.no password: abcd
+
 
 
 - Remember to run "docker compose up -d" to run a MySQL database container.
