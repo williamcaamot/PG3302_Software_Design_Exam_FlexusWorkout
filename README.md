@@ -17,6 +17,6 @@ One of the premade accounts has these details:
 Email: ronnie@flexus.no password: abcd
 
 
-
+## Running the program
 - Remember to run "docker compose up -d" to run a MySQL database container.
 - The connection string in MySqlDbContext can be modified to connect to other 
