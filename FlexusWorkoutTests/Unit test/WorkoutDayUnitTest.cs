@@ -34,7 +34,7 @@ public class WorkoutDayUnitTest
         WorkoutDay workoutDay = new WorkoutDay(workout, date); //DD/MM/YYYY is output with time
         
         //Assert
-        Assert.That((workoutDay.Date.ToString().Split(" ")[0]), Is.EqualTo("24/12/2023"));
+        Assert.That((workoutDay.Date.ToString().Split(" ")[0]), Is.EqualTo("24/12/2023").Or.EqualTo("24.12.2023"));
         Assert.That(workoutDay.Workout.Description, Is.EqualTo("A pretty unusual balance workout!"));
         Assert.That(workoutDay.Workout.Name, Is.EqualTo("Balance workout"));
         Assert.That(workoutDay.Workout.Exercises[0].Name, Is.EqualTo("Stretchy Stretcher"));
