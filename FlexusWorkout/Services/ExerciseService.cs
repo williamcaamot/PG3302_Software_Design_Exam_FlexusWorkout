@@ -4,7 +4,6 @@ using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services.Base;
 using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Asn1.Cmp;
 
 namespace FlexusWorkout.Services;
 
