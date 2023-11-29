@@ -86,7 +86,7 @@ public class MyWorkoutsPresenter : Presenter
 
                     foreach (var exercise in _user.Workouts[choice - 1].Exercises)
                     {
-                        Console.WriteLine($"{exercise.Type,-15} {exercise.Name,-20} {exercise.Description, -80} {exercise.DurationInMinutes, -10} {exercise.Sets,-5}  {exercise.Repetitions,-5}  {exercise.IntensityLevel,-10}");
+                        Console.WriteLine($"{exercise.Type,-15} {exercise.Name,-20} {exercise.Description, -80} {exercise.DurationInMinutes + " minutes", -10} {exercise.Sets,-5}  {exercise.Repetitions,-5}  {exercise.IntensityLevel,-10}");
                     }
                     View.DisplayText("\r\nPress any key to exit.");
                     
