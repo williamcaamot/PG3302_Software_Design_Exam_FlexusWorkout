@@ -1,24 +1,31 @@
 namespace FlexusWorkout.DataAccess.Repository;
 
-public class DbContextManager
+public sealed class DbContextManager
 {
     private static MySqlFlexusDbContext _mySqlFlexusDbContext;
+    private static readonly object _lock = new object();
     public static MySqlFlexusDbContext Instance
     {
         get
         {
-            if (_mySqlFlexusDbContext == null)
+            lock (_lock)
             {
-                _mySqlFlexusDbContext = new MySqlFlexusDbContext();
+                if (_mySqlFlexusDbContext == null)
+                {
+                    _mySqlFlexusDbContext = new MySqlFlexusDbContext();
 
+                }
+                return _mySqlFlexusDbContext;
             }
-            return _mySqlFlexusDbContext;
+            
         }
     }
-
-
+    
     public static void Dispose()
     {
-        _mySqlFlexusDbContext.Dispose();
+        lock (_lock)
+        {
+            _mySqlFlexusDbContext.Dispose();    
+        }
     }
 }
