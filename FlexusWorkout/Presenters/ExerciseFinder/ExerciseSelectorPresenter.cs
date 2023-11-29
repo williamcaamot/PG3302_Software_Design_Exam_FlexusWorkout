@@ -14,7 +14,7 @@ public class ExerciseSelectorPresenter : Presenter
     private readonly ExerciseType _type;
     private readonly MySqlExerciseDA _mySqlExerciseDa;
 
-    public ExerciseSelectorPresenter(ExerciseType type, View view, Service? service = default) : base(view, service)
+    public ExerciseSelectorPresenter(ExerciseType type, View view, IService? service = default) : base(view, service)
     {
         MySqlFlexusDbContext db = new();
         _mySqlExerciseDa = new(db);

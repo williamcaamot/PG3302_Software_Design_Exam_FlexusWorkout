@@ -5,8 +5,8 @@ using Views.Base;
 public abstract class Presenter
 {
     protected readonly View View;
-    protected Service? Service;
-    protected Presenter(View view, Service? service = default)
+    protected IService? Service;
+    protected Presenter(View view, IService? service = default)
     {
         View = view;
         Service = service;

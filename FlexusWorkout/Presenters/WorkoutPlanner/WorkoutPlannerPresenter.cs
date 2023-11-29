@@ -17,7 +17,7 @@ public class WorkoutPlannerPresenter : Presenter
     private UserService _userService;
     private readonly MySqlUserDA _mySqlUserDa;
 
-    public WorkoutPlannerPresenter(User user, WorkoutPlannerView view, Service? service = default) : base(view, service)
+    public WorkoutPlannerPresenter(User user, WorkoutPlannerView view, IService? service = default) : base(view, service)
     {
         _view = view;
         _db = DbContextManager.Instance;

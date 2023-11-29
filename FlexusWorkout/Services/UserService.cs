@@ -7,7 +7,7 @@ using FlexusWorkout.Services.Base;
 
 namespace FlexusWorkout.Services;
 
-public class UserService : Service
+public class UserService : IService
 {
     private readonly IUserDA _userDA;
 

@@ -1,5 +1,5 @@
 namespace FlexusWorkout.Services.Base;
 
-public class Service
+public interface IService
 {
 }

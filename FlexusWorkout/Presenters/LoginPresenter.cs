@@ -15,7 +15,7 @@ public class LoginPresenter : Base.Presenter
     private View _view;
     private readonly MySqlUserDA _mySqlUserDa;
 
-    public LoginPresenter(View view, Service service) : base(view, service)
+    public LoginPresenter(View view, IService service) : base(view, service)
     {
         _view = view;
         var mySqlFlexusDbContext = DbContextManager.Instance;

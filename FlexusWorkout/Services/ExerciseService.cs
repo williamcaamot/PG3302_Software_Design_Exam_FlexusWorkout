@@ -5,7 +5,7 @@ using FlexusWorkout.Services.Base;
 
 namespace FlexusWorkout.Services;
 
-public class ExerciseService : Service
+public class ExerciseService : IService
 {
     private readonly IExerciseDA _exerciseDa;
     public ExerciseService(IExerciseDA iExerciseDa)

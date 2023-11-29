@@ -4,7 +4,7 @@ using FlexusWorkout.Services.Base;
 
 namespace FlexusWorkout.Services;
 
-public class WorkoutDayService : Service
+public class WorkoutDayService : IService
 {
     private MySqlWorkoutDayDA _mySqlWorkoutDayDa;
     public WorkoutDayService(MySqlWorkoutDayDA mySqlWorkoutDayDa)

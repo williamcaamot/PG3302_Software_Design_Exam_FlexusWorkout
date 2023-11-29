@@ -9,7 +9,7 @@ namespace FlexusWorkout.Presenters.WorkoutPlanner;
 public class WPUpcomingPresenter : Presenter
 {
     private User _user;
-    public WPUpcomingPresenter(User user, View view, Service? service = default) : base(view, service)
+    public WPUpcomingPresenter(User user, View view, IService? service = default) : base(view, service)
     {
         _user = user;
         View.Run();

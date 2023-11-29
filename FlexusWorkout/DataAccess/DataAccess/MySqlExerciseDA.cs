@@ -49,4 +49,5 @@ public class MySqlExerciseDA : IExerciseDA
         _db.Exercise.Remove(exercise);
         _db.SaveChanges();
     }
+    
 }

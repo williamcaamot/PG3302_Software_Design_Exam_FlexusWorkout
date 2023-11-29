@@ -11,7 +11,7 @@ using Models.Concrete;
 public class DeleteWorkoutPresenter : Presenter
 {
     private User _user;
-    public DeleteWorkoutPresenter(User user, View view, Service? service = default) : base(view, service)
+    public DeleteWorkoutPresenter(User user, View view, IService? service = default) : base(view, service)
     {
         _user = user;
         view.Run();

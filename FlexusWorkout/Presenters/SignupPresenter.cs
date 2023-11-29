@@ -17,7 +17,7 @@ public class SignupPresenter : Presenter
     private string? _password;
     private readonly MySqlFlexusDbContext _mySqlFlexusDbContext;
     
-    public SignupPresenter(View view, Service service) : base(view, service)
+    public SignupPresenter(View view, IService service) : base(view, service)
     {
         _mySqlFlexusDbContext = DbContextManager.Instance;
         // Run the View loop
