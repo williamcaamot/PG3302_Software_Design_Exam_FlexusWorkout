@@ -7,12 +7,12 @@ namespace FlexusWorkoutTests.Integration_test;
 
 public class UserServiceTest
 {
-    private UserService Service;
+    private UserService _service;
     [OneTimeSetUp]
-    public void SetUpBeforeEachTest()
+    public void OneTimeSetUp()
     {
         MySqlUserDA mySqlUserDa= new MySqlUserDA(new MySqlFlexusDbContext());
-        Service = new UserService(mySqlUserDa);
+        _service = new UserService(mySqlUserDa);
     }
     
     [Test]
@@ -22,7 +22,7 @@ public class UserServiceTest
         User user = new User("test","user","test1@gmail.com","password");
         
         // Act
-        User addedUser = Service.RegisterUser(user);
+        User addedUser = _service.RegisterUser(user);
         
         // Assert
         Assert.That(user.FirstName, Is.EqualTo(addedUser.FirstName));
@@ -31,7 +31,7 @@ public class UserServiceTest
         Assert.That(addedUser.UserId, Is.GreaterThan(-1));
         
         //Cleanup
-        Service.Delete(addedUser, "password");
+        _service.Delete(addedUser, "password");
     }
     
     
@@ -46,7 +46,7 @@ public class UserServiceTest
         //Act
         try
         {
-            registeredUser = Service.RegisterUser(user);
+            registeredUser = _service.RegisterUser(user);
         }
         catch (Exception e)
         {
@@ -66,11 +66,11 @@ public class UserServiceTest
              string errorMessage = null;
              
              //Act
-             Service.RegisterUser(user1);
+             _service.RegisterUser(user1);
              
              try
              {
-                 registeredUser = Service.RegisterUser(user);
+                 registeredUser = _service.RegisterUser(user);
              }
              catch (Exception e)
              {
