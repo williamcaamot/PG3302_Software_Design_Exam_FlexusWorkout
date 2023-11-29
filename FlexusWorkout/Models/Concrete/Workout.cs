@@ -11,7 +11,6 @@ public class Workout
     public string Description { get; set; }
     public virtual List<Exercise> Exercises { get; set; }
     public virtual User User { get; set; }
-    public virtual int UserId { get; set; }
 
     public Workout(string name, string description)
     {
