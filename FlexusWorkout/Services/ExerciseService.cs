@@ -57,4 +57,11 @@ public class ExerciseService : Service
 
         return exercises[randomNumber];
     }
+
+    public void deleteExercise(Exercise exercise)
+    {
+        _db.Exercise.Remove(exercise);
+        _db.SaveChanges();
+    }
+    
 }
