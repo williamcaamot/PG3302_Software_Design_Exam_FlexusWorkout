@@ -1,5 +1,4 @@
 using FlexusWorkout.Presenters.Base;
-using FlexusWorkout.Services;
 using FlexusWorkout.Views.Base;
 
 namespace FlexusWorkout.Presenters.Workout;

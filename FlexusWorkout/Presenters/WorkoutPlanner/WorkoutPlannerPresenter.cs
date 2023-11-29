@@ -1,13 +1,9 @@
-using FlexusWorkout.DataAccess;
 using FlexusWorkout.DataAccess.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
-using FlexusWorkout.Models;
-using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Presenters.Base;
 using FlexusWorkout.Services;
 using FlexusWorkout.Services.Base;
-using FlexusWorkout.Views.Base;
 using FlexusWorkout.Views.WorkoutPlanner;
 
 namespace FlexusWorkout.Presenters.WorkoutPlanner;
@@ -126,9 +122,9 @@ public class WorkoutPlannerPresenter : Presenter
             }
             catch (Exception e)
             {
-
+                View.DisplayText(e.Message);
+                Thread.Sleep(2500);
             }
-            
         }
     }
 }

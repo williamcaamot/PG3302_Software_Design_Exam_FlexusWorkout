@@ -1,4 +1,3 @@
-using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Views.Base;
 
 namespace FlexusWorkout.Views.WorkoutPlanner;

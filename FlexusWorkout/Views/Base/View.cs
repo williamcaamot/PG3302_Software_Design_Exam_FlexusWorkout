@@ -37,5 +37,4 @@ public abstract class View
     {
         Console.WriteLine(text);
     }
-
 }

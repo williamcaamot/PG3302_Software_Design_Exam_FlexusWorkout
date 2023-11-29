@@ -83,7 +83,8 @@ public class ExerciseSelectorPresenter : Presenter
         }
         catch (Exception e)
         {
-            Console.WriteLine("lold"); //TODO FIX THIS TO USE THE VIEW TO PRINT SOMETHING USEFUL TO THE USER?
+            View.DisplayText(e.Message);
+            Thread.Sleep(2500);
             return null;
         }
         

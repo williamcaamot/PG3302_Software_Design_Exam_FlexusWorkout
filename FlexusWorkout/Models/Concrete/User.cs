@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using FlexusWorkout.Models.Base;
 
 namespace FlexusWorkout.Models.Concrete;
 
@@ -16,21 +15,20 @@ public class User : Base.Model
 
     public virtual IList<WorkoutDay> WorkoutDays { get; set; } = new List<WorkoutDay>();
 
-    [NotMapped] //This dooes not need to be mapped, only for programming usage
+    [NotMapped] //This does not need to be mapped, only for programming usage
     public bool Authenticated = false;
 
-    //TODO implement workoutprogram FK ish
     public User(string firstName, string lastName, string email, string password)
     {
-        this.FirstName = firstName;
-        this.LastName = lastName;
-        this.Email = email;
-        this.Password = password;
+        FirstName = firstName;
+        LastName = lastName;
+        Email = email;
+        Password = password;
     }
     public User(string email, string password)
     {
-        this.Email = email;
-        this.Password = password;
+        Email = email;
+        Password = password;
     }
     public User() 
     {

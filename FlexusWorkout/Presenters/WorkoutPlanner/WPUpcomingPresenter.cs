@@ -1,5 +1,4 @@
 using ConsoleTableExt;
-using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Presenters.Base;
 using FlexusWorkout.Services.Base;
@@ -55,7 +54,5 @@ public class WPUpcomingPresenter : Presenter
                 View.Stop();
                 break;
         }
-        
     }
-    
 }

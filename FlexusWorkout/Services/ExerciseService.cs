@@ -1,10 +1,7 @@
-using System.Collections;
 using FlexusWorkout.DataAccess.DataAccess;
-using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services.Base;
-using Microsoft.EntityFrameworkCore;
 
 namespace FlexusWorkout.Services;
 
@@ -14,7 +11,6 @@ public class ExerciseService : Service
     public ExerciseService(IExerciseDA iExerciseDa)
     {
         _exerciseDa = iExerciseDa;
-
     }
 
     public IList<ExerciseType> GetExerciseTypes()
@@ -51,5 +47,4 @@ public class ExerciseService : Service
     {
         _exerciseDa.DeleteExercise(exercise);
     }
-    
 }

@@ -1,7 +1,5 @@
-using FlexusWorkout.DataAccess;
 using FlexusWorkout.DataAccess.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
-using FlexusWorkout.Decorator;
 using FlexusWorkout.Decorator.Factories;
 using FlexusWorkout.Decorator.Factories.Base;
 using FlexusWorkout.Models.Base;

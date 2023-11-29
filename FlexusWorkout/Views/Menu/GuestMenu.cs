@@ -2,7 +2,6 @@ namespace FlexusWorkout.Views.Menu;
 
 public class GuestMenu : Base.View
 {
-    
     protected override void Display()
     {
         Console.Clear();

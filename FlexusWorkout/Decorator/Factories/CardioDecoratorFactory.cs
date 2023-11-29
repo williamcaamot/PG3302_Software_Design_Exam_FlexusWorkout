@@ -1,7 +1,6 @@
 using FlexusWorkout.Decorator.Decorators;
 using FlexusWorkout.Decorator.Factories.Base;
 using FlexusWorkout.Models.Base;
-using FlexusWorkout.Models.Concrete;
 
 namespace FlexusWorkout.Decorator.Factories;
 

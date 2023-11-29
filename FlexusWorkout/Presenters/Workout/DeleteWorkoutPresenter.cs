@@ -1,7 +1,5 @@
-using FlexusWorkout.DataAccess;
 using FlexusWorkout.DataAccess.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
-using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Presenters.Base;
 using FlexusWorkout.Services;
 using FlexusWorkout.Services.Base;
