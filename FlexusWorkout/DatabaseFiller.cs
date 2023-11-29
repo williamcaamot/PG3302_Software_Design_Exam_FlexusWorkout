@@ -34,7 +34,7 @@ namespace FlexusWorkout;
             {
                 Console.Clear();
                 Console.WriteLine("-----------------------------------");
-                Console.WriteLine("---- Setting up... Please wait ----");
+                Console.WriteLine("---- Setting up....Please wait ----");
                 Console.WriteLine("------------------------------------");
                 runMySqlScript();
                 Console.WriteLine("Finished running database setup script");
