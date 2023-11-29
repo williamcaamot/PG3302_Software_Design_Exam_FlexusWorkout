@@ -7,7 +7,13 @@ namespace FlexusWorkoutTests;
 
 public class UserServiceUnitTest
 {
-    private Mock<IUserDA> _mockUserDA = new(MockBehavior.Default);
+
+    private Mock<IUserDA> _mockUserDA;
+    [SetUp]
+    public void SetUp()
+    {
+        _mockUserDA = new(MockBehavior.Default);    
+    }
 
     [Test]
     public void registerUser_shouldReturnSameUserWithoutPassword()
@@ -94,20 +100,25 @@ public class UserServiceUnitTest
         _mockUserDA.Setup(m => m.Add(It.IsAny<User>()))
             .Callback((User user) => users.Add(user))
             .Returns((User user) => user);
-        _mockUserDA.Setup(m => m.GetUserByEmail(It.IsAny<User>())).Returns(users[0]);
+        _mockUserDA.Setup(m => m.GetUserByEmail(It.IsAny<User>())).Returns(
+            (User inputUser) => inputUser.Email == users.Last().Email ? users.Last() : new User()
+            );
         User user = new User("Test", "User", "test@user.com", "abcd");
         UserService userService = new UserService(_mockUserDA.Object);
         
         //Act
-        userService.RegisterUser(user);
-        
+        var registeredUser = userService.RegisterUser(user);
         var loggedInUSer = userService.LoginUser("test@user.com", "abcd");
+        
         
         //Assert
         Assert.That(loggedInUSer.Authenticated, Is.True);
+        Assert.That(registeredUser.Authenticated, Is.True);
+        Assert.That(loggedInUSer.FirstName, Is.EqualTo("Test"));
+        Assert.That(loggedInUSer.LastName, Is.EqualTo("User"));
+        Assert.That(loggedInUSer.Email, Is.EqualTo("test@user.com"));
+        
         
         _mockUserDA.VerifyAll();
     }
-    
-    
 }
