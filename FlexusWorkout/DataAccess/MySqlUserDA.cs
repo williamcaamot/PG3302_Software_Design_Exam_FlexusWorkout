@@ -39,7 +39,7 @@ public class MySqlUserDA : IUserDA
         var FoundUser = _db.User
             .Include(u => u.Workouts)
             .FirstOrDefault(u => u.UserId == id);
-        return FoundUser ?? null;
+        return FoundUser ?? new User();
     }
 
     public User GetUserByEmail(User user)

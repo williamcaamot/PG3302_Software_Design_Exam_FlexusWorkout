@@ -18,8 +18,7 @@ public class UserServiceUnitTest
     public void registerUser()
     {
         //Arrange
-        _mockUserDA.Setup(m => m.GetUserByEmail(It.IsAny<string>())).Returns((User)null);
-        _mockUserDA.Setup(m => m.GetUserByEmail(It.IsAny<User>())).Returns((User)null);
+        _mockUserDA.Setup(m => m.GetUserByEmail(It.IsAny<User>())).Returns(new User());
         _mockUserDA.Setup(m => m.Add(It.IsAny<User>()))
             .Callback((User user) => user.UserId = 1)
             .Returns((User user) => user);
@@ -30,11 +29,10 @@ public class UserServiceUnitTest
         //Act
         var registeredUser = userService.RegisterUser(user);
 
-        //Console.WriteLine(registeredUser.FirstName);
-
-
         //Assert
-        
+        Assert.That(registeredUser.FirstName, Is.EqualTo(user.FirstName));
+        Assert.That(registeredUser.LastName, Is.EqualTo(user.LastName));
+        Assert.That(registeredUser.Email, Is.EqualTo(user.Email));
         
     }
     
