@@ -1,3 +1,4 @@
+using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
 
@@ -5,6 +6,12 @@ namespace FlexusWorkout.DataAccess.DataAccess;
 
 public class MySqlExerciseDA : IExerciseDA
 {
+    private IFlexusDbContext _db;
+    public MySqlExerciseDA(IFlexusDbContext db)
+    {
+        _db = db;
+    }
+    
     public IList<ExerciseType> GetExerciseTypes()
     {
         throw new NotImplementedException();
@@ -12,12 +19,14 @@ public class MySqlExerciseDA : IExerciseDA
 
     public Exercise GetExerciseById(int id)
     {
-        throw new NotImplementedException();
+        return _db.Exercise.FirstOrDefault(e => e.ExerciseId == id);
     }
 
     public Exercise AddExercise(Exercise exercise)
     {
-        throw new NotImplementedException();
+        var addedExercise = _db.Exercise.Add(exercise);
+        _db.SaveChanges();
+        return addedExercise.Entity;
     }
 
     public IList<Exercise> GetExerciseByType(string type)

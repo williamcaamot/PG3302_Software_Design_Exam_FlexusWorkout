@@ -124,8 +124,8 @@ namespace FlexusWorkout;
                 );
             
             ronnie.Workouts.Add(ronnieWorkout);
-            ronnieWorkout.Exercises.Add(_exerciseService.getRandomExercise("balance"));
-            ronnieWorkout.Exercises.Add(_exerciseService.getRandomExercise("balance"));
+            ronnieWorkout.Exercises.Add(_exerciseService.GetRandomExercise("balance"));
+            ronnieWorkout.Exercises.Add(_exerciseService.GetRandomExercise("balance"));
             _userService.Update(john);
 
             Workout johnWorkout = new Workout(
@@ -133,23 +133,23 @@ namespace FlexusWorkout;
             );
             
             john.Workouts.Add(johnWorkout);
-            johnWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
-            johnWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
+            johnWorkout.Exercises.Add(_exerciseService.GetRandomExercise("strength"));
+            johnWorkout.Exercises.Add(_exerciseService.GetRandomExercise("strength"));
             _userService.Update(ronnie);
 
             Workout samWorkout = new Workout(
                 "Psycho intervalz", "Don't do this unless you hate yourself");
             
             sam.Workouts.Add(samWorkout);
-            samWorkout.Exercises.Add(_exerciseService.getRandomExercise("cardio"));
-            samWorkout.Exercises.Add(_exerciseService.getRandomExercise("cardio"));
+            samWorkout.Exercises.Add(_exerciseService.GetRandomExercise("cardio"));
+            samWorkout.Exercises.Add(_exerciseService.GetRandomExercise("cardio"));
             _userService.Update(sam);
 
             
             Workout arnoldWorkout = new Workout("Leg day hell day", "You won't be able to walk for 5 days after this");
             arnold.Workouts.Add(arnoldWorkout);
-            arnoldWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
-            arnoldWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
+            arnoldWorkout.Exercises.Add(_exerciseService.GetRandomExercise("strength"));
+            arnoldWorkout.Exercises.Add(_exerciseService.GetRandomExercise("strength"));
             
             _userService.Update(arnold);
         }

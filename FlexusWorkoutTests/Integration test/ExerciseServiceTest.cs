@@ -51,7 +51,7 @@ public class ExerciseServiceTest
         Assert.That(balanceExercises.Last().Location, Is.EqualTo(balanceExercise.Location));
         
         //Cleanup
-        exerciseService.deleteExercise(addedExercise);
+        exerciseService.DeleteExercise(addedExercise);
         
         //Extra assertion to make sure the exercise added in the test is in fact deleted
         Assert.That(exerciseService.GetExercisesByType("Balance").Count, Is.EqualTo(amountOfExercisesPreTest));

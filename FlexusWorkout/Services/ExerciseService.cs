@@ -1,4 +1,5 @@
 using System.Collections;
+using FlexusWorkout.DataAccess.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
@@ -10,11 +11,14 @@ namespace FlexusWorkout.Services;
 public class ExerciseService : Service
 {
     private readonly IFlexusDbContext _db;
+
+    private readonly IExerciseDA _exerciseDa;
     //TODO NEED TO EDIT THIS TO USE DEPENDENCY INJECTION
 
     public ExerciseService(IFlexusDbContext db)
     {
         _db = db;
+        _exerciseDa = new MySqlExerciseDA(_db);
     }
 
     public IList<ExerciseType> GetExerciseTypes()
@@ -37,17 +41,15 @@ public class ExerciseService : Service
 
     public Exercise GetExercise(int id)
     {
-        return _db.Exercise.FirstOrDefault(e => e.ExerciseId == id);
+        return _exerciseDa.GetExerciseById(id);
     }
     
     public Exercise AddExercise(Exercise exercise)
     {
-        var addedExercise = _db.Exercise.Add(exercise);
-        _db.SaveChanges();
-        return addedExercise.Entity;
+        return _exerciseDa.AddExercise(exercise);
     }
 
-    public Exercise getRandomExercise(string type)
+    public Exercise GetRandomExercise(string type)
     {
         IList<Exercise> exercises = GetExercisesByType(type);
 
@@ -57,7 +59,7 @@ public class ExerciseService : Service
         return exercises[randomNumber];
     }
 
-    public void deleteExercise(Exercise exercise)
+    public void DeleteExercise(Exercise exercise)
     {
         _db.Exercise.Remove(exercise);
         _db.SaveChanges();
