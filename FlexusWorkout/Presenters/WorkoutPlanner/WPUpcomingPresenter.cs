@@ -46,7 +46,7 @@ public class WPUpcomingPresenter : Presenter
                         workoutDay.Workout.Name,
                         workoutDay.Workout.Description,
                         exercises,
-                        workoutDay.Date,
+                        workoutDay.Date.ToString().Split(" ")[0],
                     };
                     tableData.Add(dataSet);
                 }
