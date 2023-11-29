@@ -12,7 +12,7 @@ public class WorkoutPlannerMenu : View
         _weeklyWorkoutPlanners = new List<WeeklyWorkoutPlanner>();
     }
 
-    public void addWeeklyPlan(List<WeeklyWorkoutPlanner> weekPlan)
+    public void AddWeeklyPlan(List<WeeklyWorkoutPlanner> weekPlan)
     {
         _weeklyWorkoutPlanners.AddRange(weekPlan);
         Console.WriteLine("Your plan was added successfully");
