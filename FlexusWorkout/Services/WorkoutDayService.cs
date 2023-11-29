@@ -1,3 +1,4 @@
+using FlexusWorkout.DataAccess.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Concrete;
 using FlexusWorkout.Services.Base;
@@ -7,26 +8,20 @@ namespace FlexusWorkout.Services;
 
 public class WorkoutDayService : Service
 {
-    private IFlexusDbContext _db;
-    private readonly object _updateLock = new object();
-    public WorkoutDayService(IFlexusDbContext db)
+    private MySqlWorkoutDayDA _mySqlWorkoutDayDa;
+    public WorkoutDayService(MySqlWorkoutDayDA mySqlWorkoutDayDa)
     {
-        _db = db;
+        _mySqlWorkoutDayDa = mySqlWorkoutDayDa;
     }
+    
     public IList<WorkoutDay> GetAllWorkoutDays()
     {
-        List <WorkoutDay> workoutDays= new();
-        workoutDays = _db.WorkoutDay.ToList();
-        return workoutDays;
+        return _mySqlWorkoutDayDa.GetAllWorkoutDays();
     }
     public WorkoutDay UpdateWorkoutDay(WorkoutDay workoutDay)
     {
-        lock (_updateLock)
-        {
-            EntityEntry<WorkoutDay> updatedWorkoutDay = _db.WorkoutDay.Update(workoutDay);
-            _db.SaveChanges();
-            return updatedWorkoutDay.Entity;
-        }
+        return _mySqlWorkoutDayDa.UpdateWorkoutDay(workoutDay);
+
     }
         
 

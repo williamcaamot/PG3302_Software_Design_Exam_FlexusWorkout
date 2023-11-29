@@ -20,7 +20,7 @@ public class WorkoutNotificationService
             IList<WorkoutDay> workoutDays = _workoutDayService.GetAllWorkoutDays();
             foreach (var workoutDay in workoutDays)
             {
-                if (workoutDay.Notified == true)
+                if (workoutDay.Notified)
                 {
                     return;
                 }            

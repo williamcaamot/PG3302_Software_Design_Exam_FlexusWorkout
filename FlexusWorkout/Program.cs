@@ -2,6 +2,7 @@
 using FlexusWorkout.Services;
 using FlexusWorkout.Views.Menu;
 using System.Threading.Tasks;
+using FlexusWorkout.DataAccess.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
 
 namespace FlexusWorkout
@@ -10,11 +11,11 @@ namespace FlexusWorkout
     {
         static void Main(string[] args)
         {
+            //Initial setup of database
             try
             {
                 DatabaseFiller databaseFiller = new(DbContextManager.Instance);
-                databaseFiller
-                    .Fill(); //Keep fill data methods in here and not convert to SQL script, that makes these methods work regardless of what database type / context we use.    
+                databaseFiller.Fill();    
             }
             catch (Exception e)
             {
@@ -28,15 +29,16 @@ namespace FlexusWorkout
 
             PrintStartUpMessage();
             
+            //Starting background service notification
             MySqlFlexusDbContext mySqlFlexusDbContext = new MySqlFlexusDbContext();
-            WorkoutDayService workoutDayService = new(mySqlFlexusDbContext);
+            MySqlWorkoutDayDA mySqlWorkoutDayDa = new MySqlWorkoutDayDA(mySqlFlexusDbContext);
+            WorkoutDayService workoutDayService = new(mySqlWorkoutDayDa);
             WorkoutNotificationService workoutNotificationService = new WorkoutNotificationService(workoutDayService);
             Task.Run(() => workoutNotificationService.NotifyUsersAsync());
             
+            //Starting main program
             InitialMenu initialMenu = new();
             InitialMenuPresenter initialMenuPresenter = new(initialMenu);
-            
-            
         }
 
 
