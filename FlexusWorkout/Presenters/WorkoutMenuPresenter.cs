@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using FlexusWorkout.DataAccess.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
@@ -13,10 +15,12 @@ public class WorkoutMenuPresenter : MenuPresenter
 {
     private User _user;
     private IFlexusDbContext _db;
+    private MySqlExerciseDA _mySqlExerciseDa;
     public WorkoutMenuPresenter(View view, User user) : base(view)
     {
         _db = DbContextManager.Instance;
         _user = user;
+        _mySqlExerciseDa = new(_db);
         // Run the View loop
         view.Run();
     }
@@ -47,7 +51,7 @@ public class WorkoutMenuPresenter : MenuPresenter
                 MyWorkoutsPresenter myWorkoutsPresenter = new(_user, myWorkouts);
                 break;
             case "2":
-                ExerciseService exerciseService = new(_db);
+                ExerciseService exerciseService = new(_mySqlExerciseDa);
                 CreateWorkout createWorkout = new();
                 CreateWorkoutPresenter createWorkoutPresenter = new(_user, createWorkout, exerciseService);
                 break;

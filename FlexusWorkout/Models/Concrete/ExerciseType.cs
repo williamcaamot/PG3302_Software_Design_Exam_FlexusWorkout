@@ -20,7 +20,7 @@ public class ExerciseType
         Exercises = new List<Exercise>();
         
         // populate Exercises list
-        Populate();
+
     }
 
     public void AddExercise(Exercise exercise)
@@ -28,15 +28,4 @@ public class ExerciseType
         Exercises.Add(exercise);
     }
 
-    public void Populate()
-    {
-        MySqlFlexusDbContext mySqlFlexusDbContext = new();
-        ExerciseService exerciseService = new(mySqlFlexusDbContext);
-        var exercises = exerciseService.GetExercisesByType(Name);
-
-        for (int i = 0; i < exercises.Count; i++)
-        {
-            AddExercise(exercises[i]);
-        }
-    }
 }

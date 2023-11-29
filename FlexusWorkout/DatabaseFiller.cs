@@ -15,14 +15,16 @@ namespace FlexusWorkout;
         private MySqlConnection _mySqlConnectionconn;
         private readonly IFlexusDbContext _mySqlFlexusDbContext;
         private readonly MySqlUserDA _mySqlUserDa;
+        private readonly MySqlExerciseDA _mySqlExerciseDa;
 
         public DatabaseFiller(IFlexusDbContext flexusDbContext)
         {
             
             _mySqlFlexusDbContext = flexusDbContext;
             _mySqlUserDa = new MySqlUserDA(_mySqlFlexusDbContext);
+            _mySqlExerciseDa = new MySqlExerciseDA(_mySqlFlexusDbContext);
             _userService = new UserService(_mySqlUserDa);
-            _exerciseService = new ExerciseService(flexusDbContext);
+            _exerciseService = new ExerciseService(_mySqlExerciseDa);
         }
 
         public void Fill()

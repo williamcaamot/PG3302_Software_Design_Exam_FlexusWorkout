@@ -1,3 +1,4 @@
+using FlexusWorkout.DataAccess.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
@@ -11,11 +12,13 @@ namespace FlexusWorkout.Presenters.ExerciseFinder;
 public class ExerciseSelectorPresenter : Presenter
 {
     private readonly ExerciseType _type;
-    private MySqlFlexusDbContext _mySqlFlexusDbContext;
+    private MySqlFlexusDbContext _db;
+    private MySqlExerciseDA _mySqlExerciseDa;
 
     public ExerciseSelectorPresenter(ExerciseType type, View view, Service? service = default) : base(view, service)
     {
-        _mySqlFlexusDbContext = new();
+        _db = new();
+        _mySqlExerciseDa = new(_db);
         _type = type;
         // Run the View loop
         view.Run();
@@ -75,7 +78,7 @@ public class ExerciseSelectorPresenter : Presenter
     {
         try
         {
-            ExerciseService exerciseService = new(_mySqlFlexusDbContext);
+            ExerciseService exerciseService = new(_mySqlExerciseDa);
             var exercises = exerciseService.GetExercisesByType(_type.Name);
             return exercises;
         }
