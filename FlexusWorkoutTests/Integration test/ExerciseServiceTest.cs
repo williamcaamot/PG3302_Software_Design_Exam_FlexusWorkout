@@ -1,4 +1,5 @@
 using FlexusWorkout;
+using FlexusWorkout.DataAccess.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
@@ -10,12 +11,13 @@ public class ExerciseServiceTest
 {
     private ExerciseService _service;
     private MySqlFlexusDbContext _mySqlFlexusDbContext;
+    private MySqlExerciseDA _mySqlExerciseDa;
     [OneTimeSetUp]
     public void OneTimeSetup()
     {
-        _service = new ExerciseService(new MySqlFlexusDbContext());
+        _mySqlExerciseDa = new MySqlExerciseDA(new MySqlFlexusDbContext());
+        _service = new ExerciseService(new MySqlExerciseDA(new MySqlFlexusDbContext()));
         _mySqlFlexusDbContext = new();
-
     }
     
     [Test]
@@ -31,7 +33,7 @@ public class ExerciseServiceTest
             "A YOGA GYM"
         );
         balanceExercise.Standard = true;
-        ExerciseService exerciseService = new ExerciseService(_mySqlFlexusDbContext);
+        ExerciseService exerciseService = new ExerciseService(_mySqlExerciseDa);
         int amountOfExercisesPreTest = 0;
         
         //Act
@@ -70,7 +72,7 @@ public class ExerciseServiceTest
             "Utendørs"
         );
         
-        ExerciseService exerciseService = new(_mySqlFlexusDbContext);
+        ExerciseService exerciseService = new(_mySqlExerciseDa);
         exerciseService.AddExercise(cardioExercise);
 
         IList<Exercise> strengthExercises = exerciseService.GetExercisesByType("Cardio");
@@ -88,7 +90,7 @@ public class ExerciseServiceTest
     [Test]
     public void GetExerciseTypes_ShouldReturnStringOfExercises()
     {
-        ExerciseService exerciseService = new(_mySqlFlexusDbContext);
+        ExerciseService exerciseService = new(_mySqlExerciseDa);
         
         IList<ExerciseType> exercisesTypes = exerciseService.GetExerciseTypes();
         Console.WriteLine(exercisesTypes);

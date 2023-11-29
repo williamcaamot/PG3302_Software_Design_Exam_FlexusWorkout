@@ -10,12 +10,11 @@ namespace FlexusWorkout.Presenters;
 
 public class GuestMenuPresenter : MenuPresenter
 {
-    private readonly IFlexusDbContext _db;
-    private MySqlExerciseDA _mySqlExerciseDa;
+    private readonly MySqlExerciseDA _mySqlExerciseDa;
     public GuestMenuPresenter(View view) : base(view)
     {
-        _db = DbContextManager.Instance;
-        _mySqlExerciseDa = new(_db);
+        IFlexusDbContext db = DbContextManager.Instance;
+        _mySqlExerciseDa = new(db);
         // Run the View loop
         view.Run();
     }

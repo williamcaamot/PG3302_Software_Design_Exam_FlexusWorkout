@@ -1,6 +1,5 @@
 using FlexusWorkout.Presenters.Base;
 using FlexusWorkout.Services;
-using FlexusWorkout.Services.Base;
 using FlexusWorkout.Views.Base;
 
 namespace FlexusWorkout.Presenters.Workout;
@@ -9,11 +8,10 @@ using Models.Concrete;
 public class MyWorkoutsPresenter : Presenter
 {
     private readonly User _user;
-    private readonly WorkoutService? _workoutservice;
-    public MyWorkoutsPresenter(User user, View view, WorkoutService? service = default) : base(view, service)
+
+    public MyWorkoutsPresenter(User user, View view) : base(view)
     {
         _user = user;
-        _workoutservice = service;
         // Run the View loop
         view.Run();
     }

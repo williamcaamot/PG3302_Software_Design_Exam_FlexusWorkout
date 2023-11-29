@@ -1,4 +1,3 @@
-using FlexusWorkout.DataAccess;
 using FlexusWorkout.DataAccess.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Concrete;
@@ -6,7 +5,6 @@ using FlexusWorkout.Services;
 using FlexusWorkout.Services.Base;
 using FlexusWorkout.Views.Base;
 using FlexusWorkout.Views.Menu;
-using ZstdSharp.Unsafe;
 
 namespace FlexusWorkout.Presenters;
 using Base;
@@ -17,7 +15,7 @@ public class SignupPresenter : Presenter
     private string? _lastName;
     private string? _email;
     private string? _password;
-    private MySqlFlexusDbContext _mySqlFlexusDbContext;
+    private readonly MySqlFlexusDbContext _mySqlFlexusDbContext;
     
     public SignupPresenter(View view, Service service) : base(view, service)
     {

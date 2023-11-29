@@ -12,13 +12,12 @@ namespace FlexusWorkout.Presenters.ExerciseFinder;
 public class ExerciseSelectorPresenter : Presenter
 {
     private readonly ExerciseType _type;
-    private MySqlFlexusDbContext _db;
-    private MySqlExerciseDA _mySqlExerciseDa;
+    private readonly MySqlExerciseDA _mySqlExerciseDa;
 
     public ExerciseSelectorPresenter(ExerciseType type, View view, Service? service = default) : base(view, service)
     {
-        _db = new();
-        _mySqlExerciseDa = new(_db);
+        MySqlFlexusDbContext db = new();
+        _mySqlExerciseDa = new(db);
         _type = type;
         // Run the View loop
         view.Run();

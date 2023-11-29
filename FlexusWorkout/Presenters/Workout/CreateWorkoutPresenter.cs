@@ -15,7 +15,6 @@ using Models.Concrete;
 public class CreateWorkoutPresenter : Presenter
 {
     private User _user;
-    private MySqlFlexusDbContext _db;
     private CreateWorkout _view;
     private ExerciseService _service;
     private Workout _workout;
@@ -23,20 +22,19 @@ public class CreateWorkoutPresenter : Presenter
     private Exercise _selectedExercise;
     private DecoratorFactory? _decoratorFactory;
     private ExerciseDecoratorFactory? _exerciseDecoratorFactory;
-    private UserService _userService;
+    private readonly UserService _userService;
     private string _workoutName;
     private string _workoutDescription;
-    private readonly MySqlUserDA _mySqlUserDa;
 
     public CreateWorkoutPresenter(User user, CreateWorkout view, ExerciseService? service = default) : base(view,
         service)
     {
-        _db = DbContextManager.Instance;
+        var db = DbContextManager.Instance;
         _user = user;
         _service = service;
         _view = view;
-        _mySqlUserDa = new MySqlUserDA(_db);
-        _userService = new UserService(_mySqlUserDa);
+        var mySqlUserDa = new MySqlUserDA(db);
+        _userService = new UserService(mySqlUserDa);
 
         _workout = new Workout();
 

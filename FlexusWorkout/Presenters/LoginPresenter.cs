@@ -1,4 +1,3 @@
-using FlexusWorkout.DataAccess;
 using FlexusWorkout.DataAccess.DataAccess;
 using FlexusWorkout.DataAccess.Repository;
 using FlexusWorkout.Models.Concrete;
@@ -14,11 +13,13 @@ public class LoginPresenter : Base.Presenter
     private string? _email;
     private string? _password;
     private View _view;
-    private MySqlFlexusDbContext _mySqlFlexusDbContext;
+    private readonly MySqlUserDA _mySqlUserDa;
+
     public LoginPresenter(View view, Service service) : base(view, service)
     {
         _view = view;
-        _mySqlFlexusDbContext = DbContextManager.Instance;
+        var mySqlFlexusDbContext = DbContextManager.Instance;
+        _mySqlUserDa = new MySqlUserDA(mySqlFlexusDbContext);
         // Run the View loop
         _view.Run();   
     }
@@ -53,8 +54,7 @@ public class LoginPresenter : Base.Presenter
         {
             case "ok":
                 User loginUser = new();
-                MySqlUserDA mySqlUserDa = new MySqlUserDA(_mySqlFlexusDbContext);
-                UserService userService = new(mySqlUserDa);
+                UserService userService = new(_mySqlUserDa);
                 try
                 {
                     loginUser = userService.LoginUser(_email, _password); // Will return the authentiacted user  
