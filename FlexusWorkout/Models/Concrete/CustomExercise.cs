@@ -15,7 +15,7 @@ public class CustomExercise : Exercise
     
     public override string ToString()
     {
-        return $"{Name}" + //TODO FIX THIS IF THIS WORKS!!
+        return $"{Name}" + 
                "\r\n---------------" +
                $"\r\n{Description}" +
                "\r\n---------------" +
