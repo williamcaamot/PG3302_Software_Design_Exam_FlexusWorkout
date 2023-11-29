@@ -6,6 +6,7 @@ public class WorkoutDay : Base.Model
     public virtual Workout Workout { get; set; }
     
     public virtual User user { get; set; }
+    public virtual int UserId { get; set; }
     public DateTime Date { get; set; }
 
     public Boolean Notified { get; set; } = false;

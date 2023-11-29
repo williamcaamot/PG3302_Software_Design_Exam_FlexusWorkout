@@ -9,7 +9,6 @@ using FlexusWorkout.Services;
 using FlexusWorkout.Services.Base;
 using FlexusWorkout.Views.Base;
 using FlexusWorkout.Views.WorkoutPlanner;
-using WorkoutPlanner = FlexusWorkout.Models.Concrete.WorkoutPlanner;
 
 namespace FlexusWorkout.Presenters.WorkoutPlanner;
 
