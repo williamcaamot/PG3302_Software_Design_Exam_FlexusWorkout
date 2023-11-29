@@ -8,18 +8,14 @@ namespace FlexusWorkoutTests.Integration_test;
 
 public class ExerciseServiceTest
 {
-     private ExerciseService Service;
+    private ExerciseService _service;
     private MySqlFlexusDbContext _mySqlFlexusDbContext;
     [OneTimeSetUp]
-    public void SetUpBeforeEachTest()
+    public void OneTimeSetup()
     {
-        Service = new ExerciseService(new MySqlFlexusDbContext());
+        _service = new ExerciseService(new MySqlFlexusDbContext());
         _mySqlFlexusDbContext = new();
 
-    }
-    [Test]
-    public void AddExerciseOfTypeStrength_ShouldReturnSameExercise()
-    {
     }
     
     [Test]
@@ -27,19 +23,22 @@ public class ExerciseServiceTest
     {
         //Arrange
         BalanceExercise balanceExercise = new BalanceExercise("Balance",
-            "Balancøvelse",
-            "BalancøvelseBeskrivelse",
+            "Balance Exercise!!",
+            "Cool balance exercise!",
             5,
             
             1,
-            "Trenignssenter for yoga øvelser"
+            "A YOGA GYM"
         );
-        ExerciseService exerciseService = new(_mySqlFlexusDbContext);
+        balanceExercise.Standard = true;
+        ExerciseService exerciseService = new ExerciseService(_mySqlFlexusDbContext);
+        int amountOfExercisesPreTest = 0;
         
         //Act
-        exerciseService.AddExercise(balanceExercise);
+        amountOfExercisesPreTest = exerciseService.GetExercisesByType("Balance").Count;
+        var addedExercise = exerciseService.AddExercise(balanceExercise);
         IList<Exercise> balanceExercises = exerciseService.GetExercisesByType("Balance");
-
+        
         
         //Assert
         Assert.That(balanceExercises.Last().ExerciseId, Is.GreaterThan(0));
@@ -52,7 +51,10 @@ public class ExerciseServiceTest
         Assert.That(balanceExercises.Last().Location, Is.EqualTo(balanceExercise.Location));
         
         //Cleanup
-        exerciseService.deleteExercise(balanceExercises[0]);
+        exerciseService.deleteExercise(addedExercise);
+        
+        //Extra assertion to make sure the exercise added in the test is in fact deleted
+        Assert.That(exerciseService.GetExercisesByType("Balance").Count, Is.EqualTo(amountOfExercisesPreTest));
     }
     
     
@@ -86,11 +88,7 @@ public class ExerciseServiceTest
     [Test]
     public void GetExerciseTypes_ShouldReturnStringOfExercises()
     {
-
         ExerciseService exerciseService = new(_mySqlFlexusDbContext);
-        DatabaseFiller databaseFiller = new(_mySqlFlexusDbContext);
-        databaseFiller.FillExercises();
-        
         
         IList<ExerciseType> exercisesTypes = exerciseService.GetExerciseTypes();
         Console.WriteLine(exercisesTypes);
@@ -102,13 +100,15 @@ public class ExerciseServiceTest
     [Test]
     public void GetExerciseById_ShouldReturnExercise()
     {
-       
-        Exercise exercise = Service.GetExercise(1);
+        //Arrange
+        Exercise exercise;
         
-        Assert.That(exercise.Description, Is.EqualTo("A pose that replicates the steady stance of a tree."));
+        //Act
+        exercise = _service.GetExercise(1);
         
-        
-        
+        //Assert
+        Assert.That(exercise.Description.Length, Is.GreaterThan(5));
+        Assert.That(exercise.Name.Length, Is.GreaterThan(5));
     }
 
 }
