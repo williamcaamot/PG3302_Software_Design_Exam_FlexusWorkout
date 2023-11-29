@@ -28,9 +28,62 @@ public class UserServiceUnitTest
         Assert.That(registeredUser.LastName, Is.EqualTo(user.LastName));
         Assert.That(registeredUser.Email, Is.EqualTo(user.Email));
         Assert.That(registeredUser.GetFullName(), Is.EqualTo(user.GetFullName()));
+        Assert.That(registeredUser.Authenticated, Is.True);
+        
+        _mockUserDA.VerifyAll();
+        
+    }
+    
+    [Test]
+    public void registerUser_ShouldThrowErrorEmailNotFormatCorrectly()
+    {
+        //Arrange
+        UserService userService = new UserService(_mockUserDA.Object);
+        User user = new User("Test", "User", "thisIsNotACorrectEmail", "abcd");
+        String errorMessage = "";
+        
+        //Act
+        try
+        {
+            var registeredUser = userService.RegisterUser(user);
+        }
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
+        }
+
+        //Assert
+        Assert.That(errorMessage, Is.EqualTo("Email is not formatted correctly"));
+        _mockUserDA.VerifyAll();
+        
     }
     
     
+    
+
+    [Test]
+    public void loginUser_ShouldThrowExceptionUserNotFound()
+    {
+        //Arrange
+        _mockUserDA.Setup(m => m.GetUserByEmail(It.IsAny<User>())).Returns(new User());
+        UserService userService = new UserService(_mockUserDA.Object);
+        string errorMessage = "";
+        
+        //Act
+        try
+        {
+            userService.LoginUser("test@flexu.no", "abcd");
+        }
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
+        }
+        
+        //Assert
+        Assert.That(errorMessage, Is.EqualTo("Could not find user"));
+        
+        _mockUserDA.VerifyAll();
+    }
     
     
 }
