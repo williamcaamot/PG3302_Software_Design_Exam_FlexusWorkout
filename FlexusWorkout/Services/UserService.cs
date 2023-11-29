@@ -110,6 +110,7 @@ public class UserService : Service
         var checkUser = _userDA.GetUserByEmail(user);
         if (checkUser.Email != null)
         {
+            Console.WriteLine(checkUser.Email);
             throw new Exception("Email already exists");
         }
         var newUser = Add(user);
