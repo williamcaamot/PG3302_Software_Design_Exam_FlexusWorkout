@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  #Containers
+  mysql:
+    image: 'mysql:8.2.0'
+    volumes:
+      - /var/lib/mysql
+    environment:
+      MYSQL_DATABASE: 'db' #DB name
+      MYSQL_USER: 'user' #DB username
+      MYSQL_PASSWORD: 'password' #PW for user above
+      MYSQL_ROOT_PASSWORD: 'password' #root PW
+    ports:
+      - '3200:3306'
+    tty: true
