@@ -50,7 +50,7 @@ public class CreateWorkout : View
         OnInputReceived("showDecoratorInfo", "");
         Console.WriteLine("\r\n1 - Make it harder");
         Console.WriteLine("2 - Make it easier");
-        Console.WriteLine("3 - Don't change anything.");
+        Console.WriteLine("3 - Keep the exercise as it is now");
         var input = Console.ReadLine();
         OnInputReceived("decoratingChoice", input);
     }
