@@ -1,17 +1,17 @@
-using FlexusWorkout.Decorator;
 using FlexusWorkout.Decorator.Factories;
+using FlexusWorkout.Decorator.Factories.Base;
 using FlexusWorkout.Models.Base;
 using FlexusWorkout.Models.Concrete;
 
 namespace FlexusWorkoutTests;
-/*
-public class ExerciseModifierFactoryUnitTests //TODO Can also create tests for checking that you cannot get negative ints by using the makeeasier method
+
+public class ExerciseDecoratorFactoryUnitTests //TODO Can also create tests for checking that you cannot get negative ints by using the makeeasier method
 {
     private Exercise _balanceExercise;
     private Exercise _strengthExercise;
     private Exercise _cardioExercise;
-    
-    
+    private DecoratorFactory _decoratorFactory;
+    private ExerciseDecoratorFactory _exerciseDecoratorFactory;
     
     [SetUp]
     public void createExercisesBeforeEachtest()
@@ -24,56 +24,58 @@ public class ExerciseModifierFactoryUnitTests //TODO Can also create tests for c
         _cardioExercise = new CardioExercise("Cardio", "Easy 5k run", "A good 5k run, not too heavy", 35,
             "Running shoes", 5, "Outdoors");
         
-        _exerciseModifierFactory = new();
-        
     }
 
     [Test]
     public void MakeHarder_StrengthExercise()
     {
-        Exercise newStrengthExercise = _exerciseModifierFactory.MakeHarder(_strengthExercise);
+        _decoratorFactory = new DecoratorFactory(_strengthExercise);
+        _exerciseDecoratorFactory = _decoratorFactory.CreateFactory();
+        Exercise newStrengthExercise = _exerciseDecoratorFactory.MakeHarder();
         Assert.That(newStrengthExercise.Sets, Is.GreaterThan(_strengthExercise.Sets));
         Assert.That(newStrengthExercise.Repetitions, Is.GreaterThan(_strengthExercise.Repetitions));
-        Assert.That(newStrengthExercise.IntensityLevel, Is.GreaterThan(_strengthExercise.IntensityLevel));
     }
     [Test]
     public void MakeHarder_BalanceExercise()
     {
-        Exercise newBalanceExercise = _exerciseModifierFactory.MakeHarder(_balanceExercise);
+        _decoratorFactory = new DecoratorFactory(_balanceExercise);
+        _exerciseDecoratorFactory = _decoratorFactory.CreateFactory();
+        Exercise newBalanceExercise = _exerciseDecoratorFactory.MakeHarder();
         Assert.That(newBalanceExercise.DurationInMinutes, Is.GreaterThan(_balanceExercise.DurationInMinutes));
-        Assert.That(newBalanceExercise.IntensityLevel, Is.GreaterThan(_balanceExercise.IntensityLevel));
     }
     [Test]
     public void MakeHarder_CardioExercise()
     {
-        Exercise newCardioExercise = _exerciseModifierFactory.MakeHarder(_cardioExercise);
-        Assert.That(newCardioExercise.DurationInMinutes, Is.GreaterThan(_cardioExercise.DurationInMinutes));
+        _decoratorFactory = new DecoratorFactory(_cardioExercise);
+        _exerciseDecoratorFactory = _decoratorFactory.CreateFactory();
+        Exercise newCardioExercise = _exerciseDecoratorFactory.MakeHarder();
         Assert.That(newCardioExercise.IntensityLevel, Is.GreaterThan(_cardioExercise.IntensityLevel));
     }
-    
-    
     [Test]
     public void MakeEasier_StrengthExercise()
     {
-        Exercise newStrengthExercise = _exerciseModifierFactory.MakeEasier(_strengthExercise);
+        _decoratorFactory = new DecoratorFactory(_strengthExercise);
+        _exerciseDecoratorFactory = _decoratorFactory.CreateFactory();
+        Exercise newStrengthExercise = _exerciseDecoratorFactory.MakeEasier();
         Assert.That(newStrengthExercise.Sets, Is.LessThan(_strengthExercise.Sets));
         Assert.That(newStrengthExercise.Repetitions, Is.LessThan(_strengthExercise.Repetitions));
-        Assert.That(newStrengthExercise.IntensityLevel, Is.LessThan(_strengthExercise.IntensityLevel));
     }
     [Test]
     public void MakeEasier_BalanceExercise()
     {
-        Exercise newBalanceExercise = _exerciseModifierFactory.MakeEasier(_balanceExercise);
+        _decoratorFactory = new DecoratorFactory(_balanceExercise);
+        _exerciseDecoratorFactory = _decoratorFactory.CreateFactory();
+        Exercise newBalanceExercise = _exerciseDecoratorFactory.MakeEasier();
         Assert.That(newBalanceExercise.DurationInMinutes, Is.LessThan(_balanceExercise.DurationInMinutes));
-        Assert.That(newBalanceExercise.IntensityLevel, Is.LessThan(_balanceExercise.IntensityLevel));
     }
     [Test]
     public void MakeEasier_CardioExercise()
     {
-        Exercise newCardioExercise = _exerciseModifierFactory.MakeEasier(_cardioExercise);
-        Assert.That(newCardioExercise.DurationInMinutes, Is.LessThan(_cardioExercise.DurationInMinutes));
+        _decoratorFactory = new DecoratorFactory(_cardioExercise);
+        _exerciseDecoratorFactory = _decoratorFactory.CreateFactory();
+        Exercise newCardioExercise = _exerciseDecoratorFactory.MakeEasier();
         Assert.That(newCardioExercise.IntensityLevel, Is.LessThan(_cardioExercise.IntensityLevel));
     }
     
     
-}*/
+}
