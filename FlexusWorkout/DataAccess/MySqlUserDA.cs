@@ -16,7 +16,7 @@ public class MySqlUserDA : IUserDA
     {
         var addeduser =_db.User.Add(user);
         _db.SaveChanges();
-        
+        addeduser.Entity.Password = null;
         return addeduser.Entity;
     }
 
@@ -26,6 +26,7 @@ public class MySqlUserDA : IUserDA
         {
             var updatedUser = _db.User.Update(user);
             _db.SaveChanges();
+            updatedUser.Entity.Password = null;
             return updatedUser.Entity;
         }
         catch (Exception e)
@@ -39,6 +40,7 @@ public class MySqlUserDA : IUserDA
         var FoundUser = _db.User
             .Include(u => u.Workouts)
             .FirstOrDefault(u => u.UserId == id);
+        FoundUser.Password = null;
         return FoundUser ?? new User();
     }
 
@@ -48,12 +50,14 @@ public class MySqlUserDA : IUserDA
             .Include(u => u.Workouts)
             .Include(u => u.WorkoutDays)//eager loading
             .FirstOrDefault(u => u.Email == user.Email);
+        FoundUser.Password = null;
         return FoundUser ?? new User();
     }
 
     public User GetUserByEmail(string email)
     {
         var FoundUser = _db.User.FirstOrDefault(u => u.Email == email);
+        FoundUser.Password = null;
         return FoundUser ?? new User();
     }
 

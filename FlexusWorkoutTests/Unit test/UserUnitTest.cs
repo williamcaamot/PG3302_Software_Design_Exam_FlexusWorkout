@@ -23,6 +23,7 @@ public class UserUnitTest //USER UNIT TESTS = DONE
         Assert.That(user.LastName, Is.EqualTo(lastname));
         Assert.That(user.Email, Is.EqualTo(email));
         Assert.That(user.Password, Is.EqualTo(password));
+        Assert.That(user.GetFullName(), Is.EqualTo("Flexus BigBoy"));
     }
 
     

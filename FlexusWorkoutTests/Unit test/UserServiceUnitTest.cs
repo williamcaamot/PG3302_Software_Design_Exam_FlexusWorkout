@@ -7,15 +7,10 @@ namespace FlexusWorkoutTests;
 
 public class UserServiceUnitTest
 {
-    private Mock<IUserDA> _mockUserDA;
-
-    public UserServiceUnitTest()
-    {
-        _mockUserDA = new(MockBehavior.Default);
-    }
+    private Mock<IUserDA> _mockUserDA = new(MockBehavior.Default);
 
     [Test]
-    public void registerUser()
+    public void registerUser_shouldReturnSameUserWithoutPassword()
     {
         //Arrange
         _mockUserDA.Setup(m => m.GetUserByEmail(It.IsAny<User>())).Returns(new User());
@@ -25,7 +20,6 @@ public class UserServiceUnitTest
         UserService userService = new UserService(_mockUserDA.Object);
         User user = new User("Test", "User", "test@user.com", "abcd");
         
-        
         //Act
         var registeredUser = userService.RegisterUser(user);
 
@@ -33,8 +27,9 @@ public class UserServiceUnitTest
         Assert.That(registeredUser.FirstName, Is.EqualTo(user.FirstName));
         Assert.That(registeredUser.LastName, Is.EqualTo(user.LastName));
         Assert.That(registeredUser.Email, Is.EqualTo(user.Email));
-        
+        Assert.That(registeredUser.GetFullName(), Is.EqualTo(user.GetFullName()));
     }
+    
     
     
     
