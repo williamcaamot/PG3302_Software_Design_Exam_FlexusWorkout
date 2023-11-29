@@ -80,12 +80,12 @@ public class MyWorkoutsPresenter : Presenter
                     Console.WriteLine($"Workout Name:    {_user.Workouts[choice - 1].Name}");
                     Console.WriteLine($"Description:     {_user.Workouts[choice - 1].Description}");
                     Console.WriteLine($"Exercises:");
-                    Console.WriteLine($"{"Exercise Type",-15} {"Name",-20} {"Description", -80}  {"Duration",-10} {"Sets",-5} {"Reps",-5} {"Intensity",-10}");
+                    Console.WriteLine($"{"Exercise Type",-15} {"Name",-20} {"Description", -80}  {"Duration (minutes)",-20} {"Sets",-5} {"Reps",-5} {"Intensity",-10}");
                     Console.WriteLine(new string('-', 150)); // Creates a separator line
 
                     foreach (var exercise in _user.Workouts[choice - 1].Exercises)
                     {
-                        Console.WriteLine($"{exercise.Type,-15} {exercise.Name,-20} {exercise.Description, -80} {exercise.DurationInMinutes + " minutes", -10} {exercise.Sets,-5}  {exercise.Repetitions,-5}  {exercise.IntensityLevel,-10}");
+                        Console.WriteLine($"{exercise.Type,-15} {exercise.Name,-20} {exercise.Description, -80} {exercise.DurationInMinutes, -20} {exercise.Sets,-5}  {exercise.Repetitions,-5}  {exercise.IntensityLevel,-10}");
                     }
                     View.DisplayText("\r\nPress any key to exit.");
                     
