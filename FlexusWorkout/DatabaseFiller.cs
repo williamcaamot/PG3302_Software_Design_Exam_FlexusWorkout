@@ -83,10 +83,10 @@ namespace FlexusWorkout;
         }
         public void FillUsers()
         {
-                _userService.RegisterUser("Markus", "Hagen", "markus@flexus.no", "abcd", "abcd");
-                _userService.RegisterUser("Jovana", "Spasenic", "jovana@flexus.no", "abcd", "abcd");
-                _userService.RegisterUser("Johan", "Svendsen", "johan@flexus.no", "abcd", "abcd");
-                _userService.RegisterUser("William", "Aamot", "william@flexus.no", "abcd", "abcd");
+                _userService.RegisterUser("Ronnie", "Huge", "ronnie@flexus.no", "abcd", "abcd");
+                _userService.RegisterUser("John", "Runner", "john@flexus.no", "abcd", "abcd");
+                _userService.RegisterUser("Sam", "Sulek", "sam@flexus.no", "abcd", "abcd");
+                _userService.RegisterUser("Arnold", "BigGuns", "arnold@flexus.no", "abcd", "abcd");
         }
         
         public void FillExercises()
@@ -112,72 +112,72 @@ namespace FlexusWorkout;
 
         public void FillWorkouts()
         {
-            User johan = _userService.GetUserByEmail("johan@flexus.no");
-            User jovana = _userService.GetUserByEmail("jovana@flexus.no");
-            User markus = _userService.GetUserByEmail("markus@flexus.no");
-            User william = _userService.GetUserByEmail("william@flexus.no");
+            User ronnie = _userService.GetUserByEmail("ronnie@flexus.no");
+            User john = _userService.GetUserByEmail("john@flexus.no");
+            User sam = _userService.GetUserByEmail("sam@flexus.no");
+            User arnold = _userService.GetUserByEmail("arnold@flexus.no");
             
-            Workout jovanaWorkout = new Workout(
-                "Jovanas Balance workout",
+            Workout ronnieWorkout = new Workout(
+                "Ronnies Balance workout",
                 "The perfect balance workout for getting good at stretching and balance!"
                 );
             
-            jovana.Workouts.Add(jovanaWorkout);
-            jovanaWorkout.Exercises.Add(_exerciseService.getRandomExercise("balance"));
-            jovanaWorkout.Exercises.Add(_exerciseService.getRandomExercise("balance"));
-            _userService.Update(jovana);
+            john.Workouts.Add(ronnieWorkout);
+            ronnieWorkout.Exercises.Add(_exerciseService.getRandomExercise("balance"));
+            ronnieWorkout.Exercises.Add(_exerciseService.getRandomExercise("balance"));
+            _userService.Update(john);
 
 
-            Workout johanWorkout = new Workout(
-                "Johans Strength Power Madhouse", "Do this to get strong fast!"
+            Workout johnWorkout = new Workout(
+                "Johns Strength Power Madhouse", "Do this to get strong fast!"
             );
             
-            johan.Workouts.Add(johanWorkout);
-            johanWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
-            johanWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
-            _userService.Update(johan);
+            ronnie.Workouts.Add(johnWorkout);
+            johnWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
+            johnWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
+            _userService.Update(ronnie);
 
-            Workout markusCardioWorkout = new Workout(
+            Workout samWorkout = new Workout(
                 "Psycho intervalz", "Don't do this unless you hate yourself");
             
-            markus.Workouts.Add(markusCardioWorkout);
-            markusCardioWorkout.Exercises.Add(_exerciseService.getRandomExercise("cardio"));
-            markusCardioWorkout.Exercises.Add(_exerciseService.getRandomExercise("cardio"));
-            _userService.Update(markus);
+            sam.Workouts.Add(samWorkout);
+            samWorkout.Exercises.Add(_exerciseService.getRandomExercise("cardio"));
+            samWorkout.Exercises.Add(_exerciseService.getRandomExercise("cardio"));
+            _userService.Update(sam);
 
             
-            Workout williamStrengthWorkout =
+            Workout arnoldWorkout =
                 new Workout("Leg day hell day", "You won't be able to walk for 5 days after this");
-            william.Workouts.Add(williamStrengthWorkout);
-            williamStrengthWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
-            williamStrengthWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
+            arnold.Workouts.Add(arnoldWorkout);
+            arnoldWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
+            arnoldWorkout.Exercises.Add(_exerciseService.getRandomExercise("strength"));
             
-            _userService.Update(william);
+            _userService.Update(arnold);
         }
 
         public void FillWorkoutDays()
         {
-                User johan = _userService.GetUserByEmail("johan@flexus.no");
-                User jovana = _userService.GetUserByEmail("jovana@flexus.no");
-                User markus = _userService.GetUserByEmail("markus@flexus.no");
-                User william = _userService.GetUserByEmail("william@flexus.no");
+                User ronnie = _userService.GetUserByEmail("ronnie@flexus.no");
+                User john = _userService.GetUserByEmail("john@flexus.no");
+                User sam = _userService.GetUserByEmail("sam@flexus.no");
+                User arnold = _userService.GetUserByEmail("arnold@flexus.no");
             
 
-                markus.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-11-27")));
-                markus.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-05")));
-                _userService.Update(markus);
+                sam.WorkoutDays.Add(new(sam.Workouts.Last(), DateTime.Parse("2023-11-27")));
+                sam.WorkoutDays.Add(new(sam.Workouts.Last(), DateTime.Parse("2023-12-05")));
+                _userService.Update(sam);
             
-                johan.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-12")));
-                johan.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-05")));
-                _userService.Update(johan);
+                ronnie.WorkoutDays.Add(new(sam.Workouts.Last(), DateTime.Parse("2023-12-12")));
+                ronnie.WorkoutDays.Add(new(sam.Workouts.Last(), DateTime.Parse("2023-12-05")));
+                _userService.Update(ronnie);
             
-                jovana.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-12")));
-                jovana.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-05")));
-                _userService.Update(jovana);
+                john.WorkoutDays.Add(new(sam.Workouts.Last(), DateTime.Parse("2023-12-12")));
+                john.WorkoutDays.Add(new(sam.Workouts.Last(), DateTime.Parse("2023-12-05")));
+                _userService.Update(john);
             
-                william.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-12")));
-                william.WorkoutDays.Add(new(markus.Workouts.Last(), DateTime.Parse("2023-12-05")));
-                _userService.Update(william);
+                arnold.WorkoutDays.Add(new(sam.Workouts.Last(), DateTime.Parse("2023-12-12")));
+                arnold.WorkoutDays.Add(new(sam.Workouts.Last(), DateTime.Parse("2023-12-05")));
+                _userService.Update(arnold);
             }
         
     }
