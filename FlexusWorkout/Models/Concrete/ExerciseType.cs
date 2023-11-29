@@ -45,5 +45,4 @@ public class ExerciseType
             AddExercise(exercises[i]);
         }
     }
-
 }
